@@ -1,0 +1,102 @@
+[
+  {
+    "travel": [
+      {
+        "title": "test",
+        "description": "test",
+        "city": "ulaanbaatar",
+        "nature": "ustai oirhon tengertei oirhon",
+        "rate": 8.7,
+        "visit_user": 1,
+        "tr_type": ""
+      },
+      {
+        "title": "test2",
+        "description": "test2",
+        "city": "ulaanbaatar",
+        "nature": "ustai oirhon tengertei oirhon",
+        "rate": 8.7,
+        "visit_user": 1,
+        "tr_type": ""
+      },
+      {
+        "title": "test3",
+        "description": "test3",
+        "city": "ulaanbaatar",
+        "nature": "ustai oirhon tengertei oirhon",
+        "rate": 8.7,
+        "visit_user": 1,
+        "tr_type": ""
+      },
+      {
+        "title": "test4",
+        "description": "test4",
+        "city": "ulaanbaatar",
+        "nature": "ustai oirhon tengertei oirhon",
+        "rate": 8.7,
+        "visit_user": 1,
+        "tr_type": ""
+      }
+    ]
+  },
+
+  {
+    "users": [
+      {
+        "firstName": "test",
+        "lastName": "test",
+        "eMail": "test@gmail.com",
+        "phone": 88462089,
+        "password": "password",
+        "created_date": 1985,
+        "address": "address",
+        "biography": "biography",
+        "image": "zurag",
+        "travels": [{}, {}],
+        "creator": true
+      },
+      {
+        "_id": "6433866077d2d0280e182bbe",
+        "firstName": "namka",
+        "lastName": "namka",
+        "eMail": "namka@gmail.com",
+        "phone": 88462089,
+        "password": "password",
+        "created_date": 1985,
+        "address": "adnamkadress",
+        "biography": "biography",
+        "image": "namka zurag",
+        "travels": [{}, {}],
+        "creator": true
+      },
+      {
+        "_id": "6433866077d2d0280e182bbf",
+        "firstName": "sharva",
+        "lastName": "sharva",
+        "eMail": "sharva@gmail.com",
+        "phone": 88462089,
+        "password": "password",
+        "created_date": 1985,
+        "address": "sharva address",
+        "biography": "biography",
+        "image": "sharva zurag",
+        "travels": [{}, {}],
+        "creator": true
+      },
+      {
+        "_id": "6433866077d2d0280e182bbf",
+        "firstName": "sharva",
+        "lastName": "sharva",
+        "eMail": "sharva@gmail.com",
+        "phone": 88462089,
+        "password": "password",
+        "created_date": 1985,
+        "address": "sharva address",
+        "biography": "biography",
+        "image": "sharva zurag",
+        "travels": [{}, {}],
+        "creator": true
+      }
+    ]
+  }
+]
