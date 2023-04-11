@@ -18,3 +18,11 @@ HALAO HALAO namka
 Namka
 namka added again
 -- Yalalt added comment
+
+Add details READMe
+Name
+introduction project
+ERD LINK
+Contribution Guide
+
+
