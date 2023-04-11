@@ -11,8 +11,8 @@ const TagsSchema: Schema = new Schema(
         title: { type: String, required: true }
     },
     {
-        timestamps: true
+        collection: 'tags'
     }
 );
 
-export default mongoose.model<ITagsModel>('Tags', TagsSchema);
+export default mongoose.model<ITagsModel>('Tags', TagsSchema, 'tags');
