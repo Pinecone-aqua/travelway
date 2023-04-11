@@ -2,7 +2,7 @@ import mongoose, { Document, Schema } from 'mongoose';
 
 export interface IUser {
     firstname: string;
-    lastname: string;
+    lastname?: string;
     email: string;
     phone1: number;
     phone2?: number;
@@ -22,8 +22,9 @@ const UserSchema: Schema = new Schema(
     },
     {
         timestamps: true,
-        versionKey: false
+        versionKey: false,
+        collection: 'users'
     }
 );
 
-export default mongoose.model<IUserModel>('User', UserSchema);
+export default mongoose.model<IUserModel>('User', UserSchema, 'users');
