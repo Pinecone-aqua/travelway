@@ -1,5 +1,4 @@
-import Link from "next/link";
-import Login from "./Login";
+import Layout from "@/components/Layout";
 
 export default function Index() {
   return (
