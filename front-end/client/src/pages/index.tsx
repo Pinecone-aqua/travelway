@@ -1,13 +1,9 @@
-import Link from "next/link";
-import Login from "./Login";
+import Introduction from "./introduction";
 
 export default function Home() {
   return (
     <div>
-      
-      HOME a PAGE
-      <br/>
-      <Login />
+      <Introduction />
     </div>
-  )
+  );
 }
