@@ -16,3 +16,4 @@ export const config = {
         port: SERVER_PORT
     }
 };
+/** Backend Mongo Database maani minii ooriin database holboson bgaa, nogoo uusgesen database ruu ni bi holbogdoj chadahgvi bgaa  */

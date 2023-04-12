@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Login from "./Login";
 
 export default function Home() {
   return (
@@ -6,7 +7,7 @@ export default function Home() {
       
       HOME a PAGE
       <br/>
-      <Link href="/login">Login</Link>
+      <Login />
     </div>
   )
 }

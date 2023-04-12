@@ -1,35 +1,115 @@
-import Head from "next/head";
-import React from "react";
-import {data} from "../../util/user";
+import Head from "head/next";
+import { useRouter } from "next/router";
+import React, { useState } from "react";
 
-interface UserType  {
-        firstname: string;
-        password: string;
+type LoginForm = {
+  username: string;
+  password: string;
+};
+
+interface ApiResponse {
+    data: string;
 }
 
-export default function Login(allDataUser: UserType) {
-    
+const Login: React.FC = () => {
+  const [loginForm, setLoginForm] = useState<LoginForm>({
+    username: "",
+    password: "",
+  });
+  const [error, setError] = useState<string>("");
 
-  return <div className="bg-slate-100 flex items-center justify-center flex-col">
-    <Head>
-        <title>Хэрэглэгч нэвтрэх</title>
-    </Head>
-    <div>НЭВТРЭХ</div>
-    <input type="text" name="username" value={allDataUser.firstname}/>
-    <input type="password" name="password" value={allDataUser.password} />
-    <button>Нэвтрэх</button>
-    </div>
-}
+  const router = useRouter();
 
-export async function getStaticProps() {
-    const { users } = data;
-    const allDataUser = users;
-    console.log("All users==> ", allDataUser);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setLoginForm({ ...loginForm, [name]: value });
+  };
 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
 
-    return {
-      props: {
-        allDataUser
-      }
+    // const data = {
+    //   username: loginForm.username,
+    //   password: loginForm.password,
+    // };
+
+    const data = {
+        username: (e.target as HTMLFormElement).username.value,
+        password: (e.target as HTMLFormElement).password.value,
     }
-  }
+
+    if(loginForm.username === "admin") {
+        if (loginForm.password === "pwd") {
+          router.push("/dashboard");
+        } else {
+            setError("Админ хэрэглэгч дээр нууц үг буруу байна.");
+        }
+    }
+
+    const JSONdata = JSON.stringify(data);
+    const endpoint = "/api/form";
+
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSONdata,
+    };
+
+    const response = await fetch(endpoint, options);
+
+    const result: ApiResponse = await response.json();
+
+    // console not print
+    console.log("Your information: ", result.data);
+  };
+
+  return (
+    <div className="bg-slate-100 h-85vh">
+      <Head>
+        <title>Хэрэглэгч нэвтрэх</title>
+      </Head>
+      <h1>Login page</h1>
+      {error && <p>{error}</p>}
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="username" className="block text-xl">
+          User name
+        </label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          value={loginForm.username}
+          onChange={handleChange}
+          placeholder="username"
+          required
+          className="border border-gray-500 px-4 py-2 text-xl rounded"
+        />
+        <br />
+        <br />
+        <label htmlFor="password" className="block text-xl">
+          Password
+        </label>
+        <input
+          type="text"
+          id="password"
+          name="password"
+          value={loginForm.password}
+          onChange={handleChange}
+          placeholder="password"
+          required
+          className="border border-gray-500 px-4 py-2 text-xl rounded"
+        />
+        <br />
+        <br />
+        <button
+          type="submit"
+          className="border border-slate-500 rounded px-8 py-2"
+        >
+          Login
+        </button>
+      </form>
+    </div>
+  );
+};
