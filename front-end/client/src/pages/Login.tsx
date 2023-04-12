@@ -1,4 +1,4 @@
-import Head from "next/head";
+import Head from "head/next";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 
@@ -113,5 +113,3 @@ const Login: React.FC = () => {
     </div>
   );
 };
-
-export default Login;
