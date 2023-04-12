@@ -1,9 +1,10 @@
-import Introduction from "./introduction";
+import Layout from "@/components/Layout";
 
-export default function Home() {
+export default function Index() {
   return (
     <div>
-      <Introduction />
+      HOME a PAGE
+      <br />
     </div>
   );
 }
