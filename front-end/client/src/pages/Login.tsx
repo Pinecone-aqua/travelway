@@ -1,4 +1,4 @@
-import Head from "head/next";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 
@@ -8,10 +8,10 @@ type LoginForm = {
 };
 
 interface ApiResponse {
-    data: string;
+  data: string;
 }
 
-const Login: React.FC = () => {
+export default function Login() {
   const [loginForm, setLoginForm] = useState<LoginForm>({
     username: "",
     password: "",
@@ -34,16 +34,16 @@ const Login: React.FC = () => {
     // };
 
     const data = {
-        username: (e.target as HTMLFormElement).username.value,
-        password: (e.target as HTMLFormElement).password.value,
-    }
+      username: (e.target as HTMLFormElement).username.value,
+      password: (e.target as HTMLFormElement).password.value,
+    };
 
-    if(loginForm.username === "admin") {
-        if (loginForm.password === "pwd") {
-          router.push("/dashboard");
-        } else {
-            setError("Админ хэрэглэгч дээр нууц үг буруу байна.");
-        }
+    if (loginForm.username === "admin") {
+      if (loginForm.password === "pwd") {
+        router.push("/dashboard");
+      } else {
+        setError("Админ хэрэглэгч дээр нууц үг буруу байна.");
+      }
     }
 
     const JSONdata = JSON.stringify(data);
@@ -112,4 +112,4 @@ const Login: React.FC = () => {
       </form>
     </div>
   );
-};
+}
