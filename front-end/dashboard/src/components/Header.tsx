@@ -1,11 +1,10 @@
-
 import Link from "next/link";
 import DropProfile from "./DropProfile";
 
 export default function Header(): JSX.Element {
   return (
-    <div className="flex justify-center bg-purple-600">
-      <div className="container flex justify-between h-32 items-center">
+    <div className="flex justify-center bg-slate-50 rounded-b-3xl">
+      <div className="container flex justify-between h-24 items-center">
         <Link href={"/"}>LOGO</Link>
         <div className="flex">
           <input
@@ -17,7 +16,7 @@ export default function Header(): JSX.Element {
         </div>
 
         <div>
-          <DropProfile/>
+          <DropProfile />
         </div>
       </div>
     </div>
