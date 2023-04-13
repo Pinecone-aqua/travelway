@@ -1,9 +1,13 @@
 import Layout from "@/components/Layout";
+import Introduction from "./introduction";
 
 export default function Index() {
   return (
     <div>
-      HOME a PAGE
+
+      <Introduction />
+
+
     </div>
   );
 }

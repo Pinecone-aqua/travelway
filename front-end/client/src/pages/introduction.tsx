@@ -1,24 +1,28 @@
 /* eslint-disable react/no-unescaped-entities */
 
+import Header from "@/components/Header";
+
 export default function Introduction(): JSX.Element {
-  // function search() {
-  //   if()
-  // }
   return (
-    <div>
-      <div className="w-full">
+    <>
+      <div className="w-full 2xl:w-[1920px] sm:w-full ">
         <picture>
-          <img src="./fuji.jpg" alt="pic" className="absolute w-full h-full" />
+          <img
+            src="./fuji.jpg"
+            alt="pic"
+            className="absolute w-full h-full object-cover "
+          />
         </picture>
+        <Header />
         <div className="flex justify-center content-center ">
-          <p className="relative text-white text-[250px] mt-[200px] font-roboto font-extrabold drop-shadow-2xl transition ease-in-out  delay-300 ">
+          <p className="text-transparent bg-clip-text | bg-gradient-to-r from-teal-500 via-blue-500 to-pink-500 | lg:text-[250px]  xmd:text-[150px] md:text-[100px] sm:text-[90px] lg:mt-[5rem]  sm:mt-[12rem]  relative text-white m-auto font-roboto font-extrabold drop-shadow-2xl ">
             Let's Travel
           </p>
         </div>
         <form className="flex justify-center content-center">
           <input
             type="text"
-            className="rounded-s-2xl h-[40px]  w-2/5 outline-0 placeholder-gray-350 pl-6 drop-shadow-2xl"
+            className="lg:w-[550px] xmd:w-[450px] sm:w-[270px] rounded-s-2xl h-[40px]  w-2/5 outline-0 placeholder-gray-350 pl-6 drop-shadow-2xl"
             placeholder="Where you wanna go?"
             name="search"
           />
@@ -29,6 +33,6 @@ export default function Introduction(): JSX.Element {
           </button>
         </form>
       </div>
-    </div>
+    </>
   );
 }
