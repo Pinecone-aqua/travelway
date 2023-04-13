@@ -32,13 +32,11 @@ export const Schemas = {
         create: Joi.object<IUser>({
             firstname: Joi.string().required(),
             email: Joi.string().required(),
-            phone1: Joi.string().required(),
             password: Joi.string().required()
         }),
         update: Joi.object<IUser>({
             firstname: Joi.string().required(),
             email: Joi.string().required(),
-            phone1: Joi.string().required(),
             password: Joi.string().required()
         })
     },
@@ -53,7 +51,3 @@ export const Schemas = {
         })
     }
 };
-
-/** author: Joi.string()
-                .regex(/^[0-9a-fA-F]{24}$/)
-                .required(), */
