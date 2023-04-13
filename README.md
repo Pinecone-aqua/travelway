@@ -4,12 +4,12 @@
 > Аялагчдын аяллын тэмдэглэл
 
 ## Team members
-* Namnantseren
-* Sharawnyambuu
-* Yalalt
+* Намнанцэрэн
+* Шаравнямбуу
+* Ялалт
 
 ## Project ERD diagram
-[ERD Link](https://github.com/Pinecone-aqua/travelway/blob/main/Travelway%20ERD.jpg)
+[*see* ERD Link *here*](https://github.com/Pinecone-aqua/travelway/blob/main/Travelway%20ERD.jpg)
 
 ##### Project Structure
 1. Front end
@@ -18,5 +18,5 @@
     * Dashboard
         * *Technology:* **Nextjs, Typescript**
 2. Back end
-    * *Database:* **MongoDB**
+    * *Database:* **Atlas MongoDB**
     * *Technology:* **Typescript, Node**
