@@ -1,14 +1,14 @@
-# Travel-Way
+# Төслийн нэр: Travel-Way
 
 > Аялагчдад зориулсан аяллын хөтөлбөр,
 > Аялагчдын аяллын тэмдэглэл
 
-## Team members
+## Багийн гишүүд
 * Намнанцэрэн
 * Шаравнямбуу
 * Ялалт
 
-## Project ERD diagram
+## Төслийн ERD diagram
 [*see* ERD Link *here*](https://github.com/Pinecone-aqua/travelway/blob/main/Travelway%20ERD.jpg)
 
 ##### Project Structure
