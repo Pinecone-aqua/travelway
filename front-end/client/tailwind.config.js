@@ -4,9 +4,16 @@ module.exports = {
     "./src/pages/**/*.{js,ts,jsx,tsx}",
     "./src/components/**/*.{js,ts,jsx,tsx}",
     "./src/app/**/*.{js,ts,jsx,tsx}",
-    "./node_modules/tw-elements/dist/js/**/*.js",
   ],
   theme: {
+    screens: {
+      sm: "360px",
+      md: "640px",
+      xmd: "896px",
+      lg: "1485px",
+      xl: "1280px",
+      xxl: "1920px",
+    },
     extend: {
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
@@ -15,5 +22,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tw-elements/dist/plugin.cjs")],
+  plugins: [],
 };
