@@ -1,4 +1,3 @@
-import Login from "@/pages/Login";
 import React, { ReactNode } from "react";
 import Header from "./Header";
 import SideMenu from "./SideMenu";

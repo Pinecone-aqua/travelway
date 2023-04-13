@@ -1,4 +1,6 @@
+
 import Link from "next/link";
+import DropProfile from "./DropProfile";
 
 export default function Header(): JSX.Element {
   return (
@@ -15,7 +17,7 @@ export default function Header(): JSX.Element {
         </div>
 
         <div>
-          <Link href={"/profile"}>profile</Link>
+          <DropProfile/>
         </div>
       </div>
     </div>
