@@ -45,6 +45,8 @@ export default function Login() {
       } else {
         setError("Админ хэрэглэгч дээр нууц үг буруу байна.");
       }
+    } else {
+      setError("");
     }
 
     const JSONdata = JSON.stringify(data);

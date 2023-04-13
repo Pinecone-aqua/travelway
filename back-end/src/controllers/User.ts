@@ -45,14 +45,16 @@ const readUser = (req: Request, res: Response, next: NextFunction) => {
 };
 
 const readUserByName = (req: Request, res: Response, next: NextFunction) => {
-    const { firstname } = req.body;
-    
-    if(!firstname) return res.status(404).json({ message: "Are you really send username? Name field is empty"});
+    const { username, password } = req.body;
 
-    return User.findOne({firstname: new RegExp('^'+firstname+'$', 'i')}, function(err:/**type here*/, doc:/** type here */) {
+    if (!username) return res.status(404).json({ message: 'Are you really send username? Name field is empty' });
 
-    });
-} 
+    const result = User.findOne({ firstname: new RegExp('^' + username + '$', 'i') });
+
+    console.log("BE-User name and password: ", result);
+
+    return result;
+};
 
 const readAllUsers = (req: Request, res: Response, next: NextFunction) => {
     return User.find()
@@ -85,4 +87,4 @@ const deleteUser = (req: Request, res: Response, next: NextFunction) => {
         .catch((error) => res.status(500).json({ error }));
 };
 
-export default { createUser, readUser, readAllUsers, updateUser, deleteUser };
+export default { createUser, readUser, readUserByName, readAllUsers, updateUser, deleteUser };
