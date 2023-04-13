@@ -18,5 +18,5 @@
     * Dashboard
         * *Technology:* **Nextjs, Typescript**
 2. Back end
-    *Database:* **MongoDB**
-    *Technology:* **Typescript, Node**
+    * *Database:* **MongoDB**
+    * *Technology:* **Typescript, Node**
