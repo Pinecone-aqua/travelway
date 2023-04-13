@@ -74,8 +74,8 @@ export default function Login() {
       <Head>
         <title>Хэрэглэгч нэвтрэх</title>
       </Head>
-      <div className="flex container mx-auto shadow-md rounded p-6 justify-evenly items-center">
-        <div className="w-6/12">
+      <div className="flex flex-col md:flex-row container mx-auto rounded-md p-6 md:2 justify-normal md:justify-around items-center">
+        <div className="w-11/12 md:w-6/12">
           <img
             src="/images/draw2.webp"
             style={{ width: 400 }}
@@ -83,7 +83,7 @@ export default function Login() {
           />
         </div>
 
-        <div className="flex flex-col w-6/12">
+        <div className="flex flex-col w-11/12 md:w-6/12">
           <div>
             {error && <p>{error}</p>}
             <form onSubmit={handleSubmit}>
@@ -98,7 +98,7 @@ export default function Login() {
                 onChange={handleChange}
                 placeholder="хэрэглэгч нэр"
                 required
-                className="border border-gray-500 px-4 py-2 text-md rounded"
+                className="border border-gray-500 px-4 py-1 text-md rounded"
               />
               <br />
               <br />
@@ -113,7 +113,7 @@ export default function Login() {
                 onChange={handleChange}
                 placeholder="нууц үг"
                 required
-                className="border border-gray-500 px-4 py-2 text-md rounded"
+                className="border border-gray-500 px-4 py-1 text-md rounded"
               />
               <br />
               <br />
@@ -124,7 +124,7 @@ export default function Login() {
               >
                 нэвтрэх
               </button>
-              {" "}|{" "}<Link href="/register" className="text-sm text-slate-200">Шинээр бүртгүүлэх?</Link>
+              <span className="ms-4 text-sm text-slate-400">{" "}|{" "}<Link href="/register">Шинээр бүртгүүлэх?</Link></span>
             </form>
           </div>
         </div>
