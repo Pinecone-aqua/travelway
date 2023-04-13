@@ -48,7 +48,7 @@ export default function Login() {
     }
 
     const JSONdata = JSON.stringify(data);
-    const endpoint = "/api/form";
+    const endpoint = "http://localhost:9090/users/auth";
 
     const options = {
       method: "POST",
