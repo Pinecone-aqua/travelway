@@ -1,5 +1,6 @@
 import Layout from "@/components/Layout";
 import Head from "next/head";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 
@@ -123,6 +124,7 @@ export default function Login() {
               >
                 нэвтрэх
               </button>
+              {" "}|{" "}<Link href="/register" className="text-sm text-slate-200">Шинээр бүртгүүлэх?</Link>
             </form>
           </div>
         </div>

@@ -4,7 +4,6 @@ export default function Index() {
   return (
     <div>
       HOME a PAGE
-      <br />
     </div>
   );
 }
