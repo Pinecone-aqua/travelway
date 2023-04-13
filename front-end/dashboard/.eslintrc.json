@@ -17,6 +17,7 @@
   "overrides": [
     {
       "files": ["*.ts", "**/*.ts", "*.tsx", "**/*.tsx"],
+
       "excludedFiles": ["*.test.js"],
       "rules": {
         "import/first": "error",
@@ -35,6 +36,7 @@
         "@typescript-eslint/return-await": "error",
         "arrow-body-style": ["error", "as-needed"]
       }
+
     },
     {
       "files": ["*.jsx", "**/*.tsx", "**/**/*.tsx", "!^\\[.*]\\.tsx$"], // for JSX Component
