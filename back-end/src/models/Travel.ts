@@ -18,7 +18,7 @@ const TravelSchema: Schema = new Schema(
         description: { type: String, required: false },
         tags: { type: String, required: false },
         season: { type: String, required: false },
-        iamge: { type: String, required: false },
+        image: { type: String, required: false },
     },
     {
         timestamps: true

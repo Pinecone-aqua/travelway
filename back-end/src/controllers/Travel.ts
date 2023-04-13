@@ -3,11 +3,15 @@ import mongoose from 'mongoose';
 import Travel from '../models/Travel';
 
 const createTravel = (req: Request, res: Response, next: NextFunction) => {
-    const { name } = req.body;
+    const { destination, subDest, description, tags, season } = req.body;
 
     const travel = new Travel({
         _id: new mongoose.Types.ObjectId(),
-        name
+        destination,
+        subDest,
+        description,
+        tags,
+        season
     });
 
     return travel
