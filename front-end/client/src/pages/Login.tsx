@@ -1,3 +1,4 @@
+import Layout from "@/components/Layout";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
@@ -40,14 +41,16 @@ export default function Login() {
 
     if (loginForm.username === "admin") {
       if (loginForm.password === "pwd") {
-        router.push("/dashboard");
+        router.push("/");
       } else {
         setError("Админ хэрэглэгч дээр нууц үг буруу байна.");
       }
+    } else {
+      setError("");
     }
 
     const JSONdata = JSON.stringify(data);
-    const endpoint = "/api/form";
+    const endpoint = "http://localhost:9090/users/auth";
 
     const options = {
       method: "POST",
@@ -66,50 +69,64 @@ export default function Login() {
   };
 
   return (
-    <div className="bg-slate-100 h-85vh">
+    <div className="py-24">
       <Head>
         <title>Хэрэглэгч нэвтрэх</title>
       </Head>
-      <h1>Login page</h1>
-      {error && <p>{error}</p>}
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="username" className="block text-xl">
-          User name
-        </label>
-        <input
-          type="text"
-          id="username"
-          name="username"
-          value={loginForm.username}
-          onChange={handleChange}
-          placeholder="username"
-          required
-          className="border border-gray-500 px-4 py-2 text-xl rounded"
-        />
-        <br />
-        <br />
-        <label htmlFor="password" className="block text-xl">
-          Password
-        </label>
-        <input
-          type="text"
-          id="password"
-          name="password"
-          value={loginForm.password}
-          onChange={handleChange}
-          placeholder="password"
-          required
-          className="border border-gray-500 px-4 py-2 text-xl rounded"
-        />
-        <br />
-        <br />
-        <button
-          type="submit"
-          className="border border-slate-500 rounded px-8 py-2"
-        >
-          Login
-        </button>
-      </form>
+      <div className="flex container mx-auto shadow-md rounded p-6 justify-evenly items-center">
+        <div className="w-6/12">
+          <img
+            src="/images/draw2.webp"
+            style={{ width: 400 }}
+            alt="Left side login image"
+          />
+        </div>
+
+        <div className="flex flex-col w-6/12">
+          <div>
+            {error && <p>{error}</p>}
+            <form onSubmit={handleSubmit}>
+              <label htmlFor="username" className="block text-md">
+                Хэрэглэгч нэр
+              </label>
+              <input
+                type="text"
+                id="username"
+                name="username"
+                value={loginForm.username}
+                onChange={handleChange}
+                placeholder="хэрэглэгч нэр"
+                required
+                className="border border-gray-500 px-4 py-2 text-md rounded"
+              />
+              <br />
+              <br />
+              <label htmlFor="password" className="block text-md">
+                Нууц үг
+              </label>
+              <input
+                type="text"
+                id="password"
+                name="password"
+                value={loginForm.password}
+                onChange={handleChange}
+                placeholder="нууц үг"
+                required
+                className="border border-gray-500 px-4 py-2 text-md rounded"
+              />
+              <br />
+              <br />
+              <button
+                type="submit"
+                className="inline-block rounded bg-blue-500 px-7 pb-2.5 pt-3 text-sm
+                font-medium uppercase leading-normal text-white"
+              >
+                нэвтрэх
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

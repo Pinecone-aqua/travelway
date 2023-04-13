@@ -21,3 +21,15 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Data>)
 
     res.status(200).json({ result: `${body.username} ${body.password}` });
 }
+
+async function getStaticProps(){
+    const endpoint = "http://localhost:9090/users/get";
+    const result = await fetch(endpoint);
+    const data = result.json();
+
+    return {
+        props: {
+            data
+        }
+    }
+}

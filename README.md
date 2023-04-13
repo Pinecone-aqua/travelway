@@ -1,28 +1,22 @@
-# Travel-Way
+# Төслийн нэр: Travel-Way
 
-\*\*\* Hello
--- 1. Namnantseren
--- 2. Sharawnyambuu
--- 3. Yalalt
+> Аялагчдад зориулсан аяллын хөтөлбөр,
+> Аялагчдын аяллын тэмдэглэл
 
-\*\*\* Greatings
-HALAO HALAO namka
+## Багийн гишүүд
+* Намнанцэрэн
+* Шаравнямбуу
+* Ялалт
 
-    ******* Hello
+## Төслийн ERD diagram
+[*see* ERD Link *here*](https://github.com/Pinecone-aqua/travelway/blob/main/Travelway%20ERD.jpg)
 
-    1. shrawaa uurchilluu
-
-
-####
-
-Namka
-namka added again
--- Yalalt added comment
-
-Add details READMe
-Name
-introduction project
-ERD LINK
-Contribution Guide
-
-
+##### Project Structure
+1. Front end
+    * Client
+        * *Technology:* **Nextjs, Typescript**
+    * Dashboard
+        * *Technology:* **Nextjs, Typescript**
+2. Back end
+    * *Database:* **Atlas MongoDB**
+    * *Technology:* **Typescript, Node**
