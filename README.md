@@ -20,3 +20,7 @@
 2. Back end
     * *Database:* **Atlas MongoDB**
     * *Technology:* **Typescript, Node**
+
+## API
+- API Documentation [Link here](https://documenter.getpostman.com/view/25681732/2s93XvXQb7)
+ 
