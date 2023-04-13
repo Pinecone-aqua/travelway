@@ -51,7 +51,7 @@ const StartServer = () => {
     });
 
     /** Routes */
-    router.use('/authors', travelRouter);
+    router.use('/travels', travelRouter);
     router.use('/users', userRouter);
     router.use('/tags', tagRouter);
 
