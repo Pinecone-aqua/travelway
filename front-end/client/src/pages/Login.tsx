@@ -45,10 +45,12 @@ export default function Login() {
       } else {
         setError("Админ хэрэглэгч дээр нууц үг буруу байна.");
       }
+    } else {
+      setError("");
     }
 
     const JSONdata = JSON.stringify(data);
-    const endpoint = "/api/form";
+    const endpoint = "http://localhost:9090/users/auth";
 
     const options = {
       method: "POST",
