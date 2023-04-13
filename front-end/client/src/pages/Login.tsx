@@ -1,5 +1,6 @@
 import Layout from "@/components/Layout";
 import Head from "next/head";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 
@@ -45,10 +46,12 @@ export default function Login() {
       } else {
         setError("Админ хэрэглэгч дээр нууц үг буруу байна.");
       }
+    } else {
+      setError("");
     }
 
     const JSONdata = JSON.stringify(data);
-    const endpoint = "/api/form";
+    const endpoint = "http://localhost:9090/users/auth";
 
     const options = {
       method: "POST",
@@ -121,6 +124,7 @@ export default function Login() {
               >
                 нэвтрэх
               </button>
+              {" "}|{" "}<Link href="/register" className="text-sm text-slate-200">Шинээр бүртгүүлэх?</Link>
             </form>
           </div>
         </div>

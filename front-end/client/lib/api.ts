@@ -1,9 +1,9 @@
 const API_URL = process.env.API_SERVER;
 
-async function checkoutUser(query, { variables } = {}) {
+async function checkoutUser(query:Object, { variables } : any = {}) {
   const headers = { 'Content-Type': 'application/json' };
 
-  const res = await fetch(API_URL, {
+  const res = await fetch(`${API_URL}/users/get`, {
     method: 'POST',
     headers,
     body: JSON.stringify({ query, variables }),

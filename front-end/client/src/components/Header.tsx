@@ -2,6 +2,7 @@ import Link from "next/link";
 
 export default function Header(): JSX.Element {
   return (
+
     <div className="relative">
       <div className="flex gap-3 justify-center content-center text-center  text-white  ">
         <div className="flex w-[15rem] h-7 mt-3">
@@ -17,5 +18,6 @@ export default function Header(): JSX.Element {
         </div>
       </div>
     </div>
+
   );
 }
