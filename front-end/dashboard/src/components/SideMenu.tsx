@@ -16,8 +16,8 @@ export default function SideMenu(): JSX.Element {
           <Link
             className={
               color === "Orders"
-                ? "bg-blue-200 text-blue-600 text-2xl font-serif flex justify-center items-center  rounded-2xl w-64 h-16 m-7"
-                : "flex justify-center items-center  rounded-2xl w-64 h-16 m-7"
+                ? "bg-blue-200 text-blue-600 text-2xl font-serif flex justify-center items-center  rounded-2xl w-9/12 h-16 m-7"
+                : "flex justify-center items-center  rounded-2xl w-9/12 h-16 m-7"
             }
             href={"/orders"}
             onClick={hadleClick}
@@ -29,8 +29,8 @@ export default function SideMenu(): JSX.Element {
           <Link
             className={
               color === "Travels"
-                ? "bg-blue-200 text-blue-600 text-2xl font-serif flex justify-center items-center  rounded-2xl w-64 h-16 m-7"
-                : "flex justify-center items-center  rounded-2xl w-64 h-16 m-7"
+                ? "bg-blue-200 text-blue-600 text-2xl font-serif flex justify-center items-center  rounded-2xl w-9/12 h-16 m-7"
+                : "flex justify-center items-center rounded-2xl w-9/12 h-16 m-7"
             }
             href={"/travels"}
             onClick={hadleClick}
@@ -42,8 +42,8 @@ export default function SideMenu(): JSX.Element {
           <Link
             className={
               color === "Users"
-                ? "bg-blue-200 text-blue-600 text-2xl font-serif flex justify-center items-center  rounded-2xl w-64 h-16 m-7"
-                : "flex justify-center items-center  rounded-2xl w-64 h-16 m-7"
+                ? "bg-blue-200 text-blue-600 text-2xl font-serif flex justify-center items-center  rounded-2xl w-9/12 h-16 m-7"
+                : "flex justify-center items-center  rounded-2xl w-9/12 h-16 m-7"
             }
             href={"/users"}
             onClick={hadleClick}
