@@ -3,7 +3,6 @@ import Header from "./Header";
 
 const Layout = ({ children }: { children: ReactNode }): JSX.Element => {
   return (
-
     <>
     <div>
       {/* <Header /> */}
