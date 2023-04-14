@@ -1,10 +1,12 @@
 import Layout from "@/components/Layout";
 import Introduction from "./introduction";
+import TravelJourney from "./travelJourney";
 
 export default function Index() {
   return (
-    <Layout>
-      <Introduction />
-    </Layout>
+    <div>
+      {/* <Introduction /> */}
+      <TravelJourney />
+    </div>
   );
 }

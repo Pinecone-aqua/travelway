@@ -8,14 +8,14 @@ export default function Introduction(): JSX.Element {
       <div className="w-full 2xl:w-[1920px] sm:w-full ">
         <picture>
           <img
-            src="./fuji.jpg"
+            src="./images/fuji.webp"
             alt="pic"
             className="absolute w-full h-full object-cover "
           />
         </picture>
         <Header />
         <div className="flex justify-center content-center ">
-          <p  className="disable-text-selection text-transparent bg-clip-text  bg-gradient-to-r from-gray-500 via-blue-500 to-pink-300  xl:text-[250px]  xmd:text-[150px] md:text-[100px] sm:text-[90px] xl:mt-[5rem]  sm:mt-[12rem] font-roboto font-extrabold drop-shadow-2xl ">
+          <p className="disable-text-selection text-transparent bg-clip-text  bg-gradient-to-r from-gray-500 via-blue-500 to-pink-300  xl:text-[250px]  xmd:text-[150px] md:text-[100px] sm:text-[90px] xl:mt-[5rem]  sm:mt-[12rem] font-roboto font-extrabold drop-shadow-2xl ">
             Let's Travel
           </p>
         </div>
@@ -28,7 +28,11 @@ export default function Introduction(): JSX.Element {
           />
           <button className="relative bg-white rounded-e-xl" type="submit">
             <picture>
-              <img src="./Search.svg" alt="pic" className="w-[20px] me-3" />
+              <img
+                src="./images/search.svg"
+                alt="pic"
+                className="w-[20px] me-3"
+              />
             </picture>
           </button>
         </form>
