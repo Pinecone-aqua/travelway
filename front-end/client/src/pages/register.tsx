@@ -1,3 +1,4 @@
+import Layout from "@/components/Layout";
 import { useState } from "react";
 
 type formType = {
@@ -19,10 +20,11 @@ export default function Register() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setRegisterForm({ ...registerForm, [name]: value });
+    setRegisterForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  async function handleSubmit(e: React.FormEvent) {
+  // Async function declare here
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     const data = {
@@ -33,87 +35,99 @@ export default function Register() {
       password: registerForm.password,
     };
 
-    const JSONdata = JSON.stringify(data);
-    const endpoint = "http://localhost:9090/users/create";
+    try {
+      // console.log("User entered data: ", data);
 
-    const options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSONdata,
-    };
+      const JSONdata = JSON.stringify(data);
+      const endpoint = "http://localhost:9090/users/create";
 
-    const response = await fetch(endpoint, options);
-    const result: formType = await response.json();
+      // console.log(`JSON data and Endpoint JSON:/ ${JSONdata} P:/ ${endpoint}`);
 
-    console.log("CLient SSR ===> ", result);
-  }
+      const options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSONdata,
+      };
+
+      // console.log(`OPTIONS===>`);
+      // console.log(options);
+      const resData = await fetch(endpoint, options);
+
+      const dataResult = resData.json();
+      console.log(dataResult);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
-    <div className="mt-4 md:mt-16 mx-auto max-w-screen-md">
-      <h3 className="uppercase text-center">бүртгүүлэх</h3>
-      <div className="flex justify-center md:flex-row">
-        <div className="formgroup mx-auto flex flex-col my-4 w-[80%] px-2 md:w-[60%] gap-3">
-          <form onSubmit={handleSubmit}>
-            <label htmlFor="firstname">Нэр</label>
-            <input
-              onChange={handleChange}
-              type="text"
-              name="firstname"
-              id="firstname"
-              placeholder="Хэрэглэгч нэр"
-              className="text-md border border-slate-500 rounded p-1  placeholder-gray-300 mb-4"
-            />
+    <Layout>
+      <div className="mt-4 md:mt-16 mx-auto max-w-screen-md">
+        <form onSubmit={handleSubmit}>
+          <h3 className="uppercase text-center">бүртгүүлэх</h3>
+          <div className="flex justify-center md:flex-row">
+            <div className="formgroup mx-auto flex flex-col my-4 w-[80%] px-2 md:w-[60%] gap-3">
+              <label htmlFor="firstname">Нэр</label>
+              <input
+                onChange={handleChange}
+                type="text"
+                name="firstname"
+                id="firstname"
+                placeholder="Хэрэглэгч нэр"
+                className="text-md border border-slate-500 rounded p-1  placeholder-gray-300 mb-4"
+              />
 
-            <label htmlFor="lastname">Овог</label>
-            <input
-              onChange={handleChange}
-              type="text"
-              name="lastname"
-              id="lastname"
-              placeholder="Овог"
-              className="text-md border border-slate-500 rounded p-1  placeholder-gray-300 mb-4"
-            />
+              <label htmlFor="lastname">Овог</label>
+              <input
+                onChange={handleChange}
+                type="text"
+                name="lastname"
+                id="lastname"
+                placeholder="Овог"
+                className="text-md border border-slate-500 rounded p-1  placeholder-gray-300 mb-4"
+              />
 
-            <label htmlFor="email">И-мейл хаяг</label>
-            <input
-              onChange={handleChange}
-              type="email"
-              name="email"
-              id="email"
-              placeholder="email хаяг"
-              className="text-md border border-slate-500 rounded p-1  placeholder-gray-300 mb-4"
-            />
-            <label htmlFor="phone">Утасны дугаар</label>
-            <input
-              onChange={handleChange}
-              type="text"
-              name="phone"
-              id="phone"
-              placeholder="Утасны дугаар"
-              className="text-md border border-slate-500 rounded p-1  placeholder-gray-300 mb-4"
-            />
+              <label htmlFor="email">И-мейл хаяг</label>
+              <input
+                onChange={handleChange}
+                type="email"
+                name="email"
+                id="email"
+                placeholder="email хаяг"
+                className="text-md border border-slate-500 rounded p-1  placeholder-gray-300 mb-4"
+              />
+              <label htmlFor="phone">Утасны дугаар</label>
+              <input
+                onChange={handleChange}
+                type="text"
+                name="phone"
+                id="phone"
+                placeholder="Утасны дугаар"
+                className="text-md border border-slate-500 rounded p-1  placeholder-gray-300 mb-4"
+              />
 
-            <label htmlFor="password">Нууц үг</label>
-            <input
-              onChange={handleChange}
-              type="password"
-              name="password"
-              id="password"
-              placeholder="Нууц үг"
-              className="text-md border border-slate-500 rounded p-1 placeholder-gray-300 mb-4"
-            />
+              <label htmlFor="password">Нууц үг</label>
+              <input
+                onChange={handleChange}
+                type="password"
+                name="password"
+                id="password"
+                placeholder="Нууц үг"
+                className="text-md border border-slate-500 rounded p-1 placeholder-gray-300 mb-4"
+              />
 
-            <button
-              type="submit"
-              className="inline-block rounded bg-blue-500 px-7 pb-2.5 pt-3 text-sm font-medium uppercase leading-normal text-white"
-            >
-              БҮРТГҮҮЛЭХ
-            </button>
-          </form>
-        </div>
+              <button
+                type="submit"
+                className="inline-block rounded bg-blue-500 px-7 pb-2.5 pt-3 text-sm font-medium uppercase leading-normal text-white"
+              >
+                БҮРТГҮҮЛЭХ
+              </button>
+            </div>
+          </div>
+        </form>
       </div>
-    </div>
+    </Layout>
   );
 }
