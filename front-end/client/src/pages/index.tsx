@@ -3,11 +3,8 @@ import Introduction from "./introduction";
 
 export default function Index() {
   return (
-    <div>
-
+    <Layout>
       <Introduction />
-
-
-    </div>
+    </Layout>
   );
 }
