@@ -51,7 +51,7 @@ const readUserByName = (req: Request, res: Response, next: NextFunction) => {
 
     const result = User.findOne({ firstname: new RegExp('^' + username + '$', 'i') });
 
-    console.log("BE-User name and password: ", result);
+    console.log('BE-User name and password: ', result);
 
     return result;
 };
@@ -81,6 +81,7 @@ const updateUser = (req: Request, res: Response, next: NextFunction) => {
 
 const deleteUser = (req: Request, res: Response, next: NextFunction) => {
     const userId = req.params.userId;
+    console.log('user id', userId);
 
     return User.findByIdAndDelete(userId)
         .then((user) => (user ? res.status(201).json({ message: 'deleted' }) : res.status(404).json({ message: 'Not Found' })))

@@ -1,35 +1,25 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
 type Data = {
-    result: string
-}
+  result: string;
+};
 
 type BodyType = {
-    username: string;
-    password:string;
-}
+  username: string;
+  password: string;
+};
 
-export default function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
+export default function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<Data>
+) {
+  const body: BodyType = req.body;
 
-    const body: BodyType = req.body;
+  console.log("Body: ", body);
 
-    console.log("Body: ", body);
+  if (!body.username || !body.password) {
+    return res.status(400).json({ result: "First name or password not found" });
+  }
 
-    if(!body.username || !body.password) {
-        return res.status(400).json({ result: 'First name or password not found'})
-    }
-
-    res.status(200).json({ result: `${body.username} ${body.password}` });
-}
-
-async function getStaticProps(){
-    const endpoint = "http://localhost:9090/users/get";
-    const result = await fetch(endpoint);
-    const data = result.json();
-
-    return {
-        props: {
-            data
-        }
-    }
+  res.status(200).json({ result: `${body.username} ${body.password}` });
 }
