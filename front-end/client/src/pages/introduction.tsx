@@ -15,7 +15,7 @@ export default function Introduction(): JSX.Element {
         </picture>
         <Header />
         <div className="flex justify-center content-center ">
-          <p className="disable-text-selection text-transparent bg-clip-text  bg-gradient-to-r from-gray-500 via-blue-500 to-pink-300  xl:text-[250px]  xmd:text-[150px] md:text-[100px] sm:text-[90px] xl:mt-[5rem]  sm:mt-[12rem] font-roboto font-extrabold drop-shadow-2xl ">
+          <p className="disable-text-selection text-transparent bg-clip-text  bg-gradient-to-r from-gray-500 via-blue-500 to-pink-300  xl:text-[250px]  xmd:text-[150px] md:text-[100px] sm:text-[90px] xl:mt-[5rem]  sm:mt-[12rem] font-roboto font-extrabold drop-shadow-2xl">
             Let's Travel
           </p>
         </div>

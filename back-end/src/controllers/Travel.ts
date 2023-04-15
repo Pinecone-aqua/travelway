@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import Travel from '../models/Travel';
 
 const createTravel = (req: Request, res: Response, next: NextFunction) => {
-    const { destination, subDest, description, tags, season } = req.body;
+    const { destination, subDest, description, tags, season, image } = req.body;
 
     const travel = new Travel({
         _id: new mongoose.Types.ObjectId(),
@@ -11,7 +11,8 @@ const createTravel = (req: Request, res: Response, next: NextFunction) => {
         subDest,
         description,
         tags,
-        season
+        season,
+        image
     });
 
     return travel
@@ -21,7 +22,7 @@ const createTravel = (req: Request, res: Response, next: NextFunction) => {
 };
 
 const readTravel = (req: Request, res: Response, next: NextFunction) => {
-    const travelId = req.params.travelId;
+    const travelId = req.params.travelid;
 
     return Travel.findById(travelId)
         .then((travel) => (travel ? res.status(200).json({ travel }) : res.status(404).json({ message: 'Not found by id' })))
@@ -35,13 +36,13 @@ const readAllTravel = (req: Request, res: Response, next: NextFunction) => {
 };
 
 const readTravelAllIDs = (req: Request, res: Response, next: NextFunction) => {
-    return Travel.find({}, { _id: 1})
+    return Travel.find({}, { _id: 1 })
         .then((travels) => res.status(200).json({ travels }))
         .catch((error) => res.status(500).json({ error }));
 };
 
 const updateTravel = (req: Request, res: Response, next: NextFunction) => {
-    const travelId = req.params.travelId;
+    const travelId = req.params.travelid;
 
     return Travel.findById(travelId).then((travel) => {
         if (travel) {
@@ -58,7 +59,7 @@ const updateTravel = (req: Request, res: Response, next: NextFunction) => {
 };
 
 const deleteTravel = (req: Request, res: Response, next: NextFunction) => {
-    const travelId = req.params.travelId;
+    const travelId = req.params.travelid;
 
     return Travel.findByIdAndDelete(travelId)
         .then((travel) => (travel ? res.status(201).json({ message: 'deleted' }) : res.status(404).json({ message: 'Not Found' })))
