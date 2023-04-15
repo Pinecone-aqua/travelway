@@ -47,4 +47,4 @@ const TravelSchema: Schema = new Schema(
     }
 );
 
-export default mongoose.model<ITravelModel>('Travels', TravelSchema);
+export default mongoose.model<ITravelModel>('Travel', TravelSchema);
