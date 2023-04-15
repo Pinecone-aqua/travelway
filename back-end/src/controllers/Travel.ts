@@ -34,6 +34,12 @@ const readAllTravel = (req: Request, res: Response, next: NextFunction) => {
         .catch((error) => res.status(500).json({ error }));
 };
 
+const readTravelAllIDs = (req: Request, res: Response, next: NextFunction) => {
+    return Travel.find({}, { _id: 1})
+        .then((travels) => res.status(200).json({ travels }))
+        .catch((error) => res.status(500).json({ error }));
+};
+
 const updateTravel = (req: Request, res: Response, next: NextFunction) => {
     const travelId = req.params.travelId;
 
@@ -59,4 +65,4 @@ const deleteTravel = (req: Request, res: Response, next: NextFunction) => {
         .catch((error) => res.status(500).json({ error }));
 };
 
-export default { createTravel, readTravel, readAllTravel, updateTravel, deleteTravel };
+export default { createTravel, readTravel, readAllTravel, readTravelAllIDs, updateTravel, deleteTravel };
