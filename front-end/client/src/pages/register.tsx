@@ -1,5 +1,5 @@
 import Layout from "@/components/Layout";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 
 type formType = {
   firstname: string;
@@ -24,7 +24,7 @@ export default function Register() {
   };
 
   // Async function declare here
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
     const data = {
@@ -55,7 +55,7 @@ export default function Register() {
       // console.log(options);
       const resData = await fetch(endpoint, options);
 
-      const dataResult = resData.json();
+      const dataResult = await resData.json();
       console.log(dataResult);
     } catch (error) {
       console.log(error);
