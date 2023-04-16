@@ -10,12 +10,13 @@ export default function User(props: { unit: userType }): JSX.Element {
   return (
     <tr>
       <td>{data._id.slice(0, 5)}...</td>
-      <td>{data.lastname}</td>
-      <td>{data.firstname}</td>
-      <td>{data.email}</td>
+      <td>{data.lastName}</td>
+      <td>{data.firstName}</td>
+      <td>{data.eMail}</td>
       <td>{data.phone}</td>
       <td>a</td>
-      <td>{data.updatedAt}</td>
+      <td>{data.
+created_date}</td>
       <td>
         <button onClick={() => deleteHandler(data._id)}>
           <FcEmptyTrash />
