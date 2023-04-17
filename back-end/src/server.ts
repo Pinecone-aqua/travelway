@@ -4,6 +4,7 @@ import http from 'http';
 import mongoose from 'mongoose';
 import Logging from './library/Logging';
 import travelRouter from './routes/TravelRouter';
+import destinationRoutes from "./routes/Destination"
 import userRouter from './routes/UserRouter';
 import tagRouter from './routes/TagsRouter';
 
@@ -52,6 +53,7 @@ const StartServer = () => {
 
     /** Routes */
     router.use('/travels', travelRouter);
+    router.use('/destination', destinationRoutes);
     router.use('/users', userRouter);
     router.use('/tags', tagRouter);
 

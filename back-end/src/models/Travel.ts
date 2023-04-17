@@ -11,6 +11,8 @@ export interface ITravel {
     title: string;
     description: string;
     plan: Array<PlanType>;
+    createdAt: Date;
+    updatedAt: Date;
 }
 
 export interface ITravelModel extends ITravel, Document {}
