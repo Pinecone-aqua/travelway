@@ -4,5 +4,17 @@ export interface userType {
   lastName: string;
   eMail: string;
   phone: number;
-created_date: number;
+  created_date: number;
+}
+export interface travelType {
+  _id: string;
+  title: string;
+  description: string;
+  plan: [];
+}
+export interface planType {
+  title: string;
+  description: string;
+  image: string;
+  considerations: string;
 }

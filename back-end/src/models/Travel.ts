@@ -29,9 +29,9 @@ const TravelSchema: Schema = new Schema(
                 properties: {
                     _id: { type: Schema.Types.ObjectId },
                     title: { type: String }
-                },
+                }
             },
-            required: false,
+            required: false
         },
         season: {
             type: 'array',

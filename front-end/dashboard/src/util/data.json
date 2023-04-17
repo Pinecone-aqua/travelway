@@ -1,62 +1,230 @@
-
-    {"travel":[
+{
+  "travel": [
+    {
+      "title": "huvsgul 3 uduriin aylal",
+      "description": "darhan erdeneteer dairan huvsgul dalai yvah 3 uduriin aylaliig taniltsuullaa",
+      "plan": [
         {
-            "title":"huvsgul 3 uduriin aylal",
-            "description":"darhan erdeneteer dairan huvsgul dalai yvah 3 uduriin aylaliig taniltsuullaa",
-            "plan":[{
-                "title":"darhan",
-                "description":"ene udur ulaanbaateraas ertlen garch darhan hotiig uzaej sonirhon udriig unguruulj erdeneted ochij honogloloo",
-                "image":"https://scontent.fuln4-2.fna.fbcdn.net/v/t39.30808-6/312794917_3370903729848610_3010496911206948357_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=8631f5&_nc_ohc=4Af2qsbHeosAX9QqDWj&_nc_ht=scontent.fuln4-2.fna&oh=00_AfB7sCSWj8HKOVjyihRKfmimcJ-vph0sEXp4UW0KJ5I9-g&oe=643FDA3A",
-                "considerations":"anhaarah zuils"
-            },{
-                "title":"erdenet",
-                "description":"ene udur tsaigaa uun erdenetiiin dursgalt gazar hushuu, uurhai, musue uzej sonirhon huvsgulruu hudulluu",
-                "image":"https://news.mn/en/wp-content/uploads/sites/3/2020/07/4-2.jpg",
-                "considerations":"anhaarah zuils"
-            },{
-                "title":"Murun",
-                "description":"aylaliin guravdahi udur huvsguliin tuv murun hotod serlee ene udur hottoi tovch taniltsaad huvsgul dalaid iren nar shingehiig harlaa ",
-                "image":["https://gertoger.org/wp-content/uploads/2018/01/GERtoGER-Geotourism-Mongoila-_-Trek-White-Lake-1.jpg","https://nomadictrails.com/wp-content/uploads/2021/04/Murun-town.jpg"],
-                "considerations":"anhaarah zuils"
-            }]
-        }, {
-            "title":"huvsgul dalaid unguruulsen 3 udur",
-            "description":"huvsgul dalai deer 3 udur yu2 hiij boloh mun anhaarah zuils yu2 baisaniig oruullaa",
-            "plan":[{
-                "title":"zipline, zavi, zagas",
-                "description":"bid egiin gol deeguur zipline-aar gulsaj hatgalaas hadan hui aralruu zaviar aylalaa, Janhai orj honogloh maihana barilaaa ",
-                "image":"https://live.staticflickr.com/2514/3732344086_4154594f71_z.jpg",
-                "considerations":"zavin deer suuhdaa dulaan huvtsas umsuh, ziplined suuhaasaa umnu une hulsuu tohiroh, maihan barih gazraa sain sudlah"
-            },{
-                "title":"janhaid unguruulsen neg udur",
-                "description":"ugluu ert uuland aviran husgul dalaig deerees harlaa uduriin undaa uugaad morior dalain ereg deeguur zugaallaa oroi ni il gal deer shorlog horhog hiij iden amartsgaalaa ",
-                "image":"https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Panoramic_view_of_Lake_Kh%C3%B6vsg%C3%B6l.jpg/800px-Panoramic_view_of_Lake_Kh%C3%B6vsg%C3%B6l.jpg",
-                "considerations":"anhaarah zuils"
-            },{
-                "title":"huvsgul dalaigaas terhiin tsagaan nuurluu",
-                "description":"huvsgul dalaigaas hudlun murun orj tendeesee 180 garui km gazar shoroogoor yvan zasmal zamd holbogddog ajee. zamd baigaliin uzesgelent gazar nileedgui taaraldsanii dotor Zuun nuur hemees gazar goid taalagdav iinhuu yvsaar oroi terhiin tsagaan nuurand irj honogloloo",
-                "image":"https://s3-ap-southeast-2.amazonaws.com/mongolianways.website/assets/galleries/Natural-Beauty-of-Mongolia/_682x383_crop_center-center_none/Zuun_Nuur.jpg",
-                "considerations":"shoroon zam chuluu ihtei gants hoyr gazar shavar taaraldsan zamdaa beltgeltei garaarai"
-            }]
-        }, {
-            "title":"garchig",
-            "description":"yrunhii tailbar",
-            "plan":[{
-                "title":"garchig",
-                "description":"tuhain uduriin tailbar",
-                "image":"zurag",
-                "considerations":"anhaarah zuils"
-            },{
-                "title":"garchig",
-                "description":"tuhain uduriin tailbar",
-                "image":"zurag",
-                "considerations":"anhaarah zuils"
-            },{
-                "title":"garchig",
-                "description":"tuhain uduriin tailbar",
-                "image":"zurag",
-                "considerations":"anhaarah zuils"
-            }]
+          "title": "darhan",
+          "description": "ene udur ulaanbaateraas ertlen garch darhan hotiig uzaej sonirhon udriig unguruulj erdeneted ochij honogloloo",
+          "image": "https://scontent.fuln4-2.fna.fbcdn.net/v/t39.30808-6/312794917_3370903729848610_3010496911206948357_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=8631f5&_nc_ohc=4Af2qsbHeosAX9QqDWj&_nc_ht=scontent.fuln4-2.fna&oh=00_AfB7sCSWj8HKOVjyihRKfmimcJ-vph0sEXp4UW0KJ5I9-g&oe=643FDA3A",
+          "considerations": "anhaarah zuils"
+        },
+        {
+          "title": "erdenet",
+          "description": "ene udur tsaigaa uun erdenetiiin dursgalt gazar hushuu, uurhai, musue uzej sonirhon huvsgulruu hudulluu",
+          "image": "https://news.mn/en/wp-content/uploads/sites/3/2020/07/4-2.jpg",
+          "considerations": "anhaarah zuils"
+        },
+        {
+          "title": "Murun",
+          "description": "aylaliin guravdahi udur huvsguliin tuv murun hotod serlee ene udur hottoi tovch taniltsaad huvsgul dalaid iren nar shingehiig harlaa ",
+          "image": [
+            "https://gertoger.org/wp-content/uploads/2018/01/GERtoGER-Geotourism-Mongoila-_-Trek-White-Lake-1.jpg",
+            "https://nomadictrails.com/wp-content/uploads/2021/04/Murun-town.jpg"
+          ],
+          "considerations": "anhaarah zuils"
         }
-    ]
+      ]
+    },
+    {
+      "title": "huvsgul dalaid unguruulsen 3 udur",
+      "description": "huvsgul dalai deer 3 udur yu2 hiij boloh mun anhaarah zuils yu2 baisaniig oruullaa",
+      "plan": [
+        {
+          "title": "zipline, zavi, zagas",
+          "description": "bid egiin gol deeguur zipline-aar gulsaj hatgalaas hadan hui aralruu zaviar aylalaa, Janhai orj honogloh maihana barilaaa ",
+          "image": "https://live.staticflickr.com/2514/3732344086_4154594f71_z.jpg",
+          "considerations": "zavin deer suuhdaa dulaan huvtsas umsuh, ziplined suuhaasaa umnu une hulsuu tohiroh, maihan barih gazraa sain sudlah"
+        },
+        {
+          "title": "janhaid unguruulsen neg udur",
+          "description": "ugluu ert uuland aviran husgul dalaig deerees harlaa uduriin undaa uugaad morior dalain ereg deeguur zugaallaa oroi ni il gal deer shorlog horhog hiij iden amartsgaalaa ",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Panoramic_view_of_Lake_Kh%C3%B6vsg%C3%B6l.jpg/800px-Panoramic_view_of_Lake_Kh%C3%B6vsg%C3%B6l.jpg",
+          "considerations": "anhaarah zuils"
+        },
+        {
+          "title": "huvsgul dalaigaas terhiin tsagaan nuurluu",
+          "description": "huvsgul dalaigaas hudlun murun orj tendeesee 180 garui km gazar shoroogoor yvan zasmal zamd holbogddog ajee. zamd baigaliin uzesgelent gazar nileedgui taaraldsanii dotor Zuun nuur hemees gazar goid taalagdav iinhuu yvsaar oroi terhiin tsagaan nuurand irj honogloloo",
+          "image": "https://s3-ap-southeast-2.amazonaws.com/mongolianways.website/assets/galleries/Natural-Beauty-of-Mongolia/_682x383_crop_center-center_none/Zuun_Nuur.jpg",
+          "considerations": "shoroon zam chuluu ihtei gants hoyr gazar shavar taaraldsan zamdaa beltgeltei garaarai"
+        }
+      ]
+    },
+    {
+      "title": "huvsgul dalaigaas arhaingai 3 uduriin aylal",
+      "description": "huvsgul dalaigaas arhangai oroh dut zam uzeh gazaruudiig delgerengui oruullaa",
+      "plan": [
+        {
+          "title": "zuun nuur",
+          "description": "ene udur ulaanbaateraas ertlen garch darhan hotiig uzaej sonirhon udriig unguruulj erdeneted ochij honogloloo",
+          "image": "https://scontent.fuln4-2.fna.fbcdn.net/v/t39.30808-6/312794917_3370903729848610_3010496911206948357_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=8631f5&_nc_ohc=4Af2qsbHeosAX9QqDWj&_nc_ht=scontent.fuln4-2.fna&oh=00_AfB7sCSWj8HKOVjyihRKfmimcJ-vph0sEXp4UW0KJ5I9-g&oe=643FDA3A",
+          "considerations": "anhaarah zuils"
+        },
+        {
+          "title": "terhiin tsagaan nuur",
+          "description": "ene udur tsaigaa uun erdenetiiin dursgalt gazar hushuu, uurhai, musue uzej sonirhon huvsgulruu hudulluu",
+          "image": "https://news.mn/en/wp-content/uploads/sites/3/2020/07/4-2.jpg",
+          "considerations": "anhaarah zuils"
+        },
+        {
+          "title": "tsetserleg",
+          "description": "aylaliin guravdahi udur huvsguliin tuv murun hotod serlee ene udur hottoi tovch taniltsaad huvsgul dalaid iren nar shingehiig harlaa ",
+          "image": [
+            "https://gertoger.org/wp-content/uploads/2018/01/GERtoGER-Geotourism-Mongoila-_-Trek-White-Lake-1.jpg",
+            "https://nomadictrails.com/wp-content/uploads/2021/04/Murun-town.jpg"
+          ],
+          "considerations": "anhaarah zuils"
+        }
+      ]
+    },
+    {
+      "title": "huvsgul dalaid unguruulsen 3 udur",
+      "description": "huvsgul dalai deer 3 udur yu2 hiij boloh mun anhaarah zuils yu2 baisaniig oruullaa",
+      "plan": [
+        {
+          "title": "zipline, zavi, zagas",
+          "description": "bid egiin gol deeguur zipline-aar gulsaj hatgalaas hadan hui aralruu zaviar aylalaa, Janhai orj honogloh maihana barilaaa ",
+          "image": "https://live.staticflickr.com/2514/3732344086_4154594f71_z.jpg",
+          "considerations": "zavin deer suuhdaa dulaan huvtsas umsuh, ziplined suuhaasaa umnu une hulsuu tohiroh, maihan barih gazraa sain sudlah"
+        },
+        {
+          "title": "janhaid unguruulsen neg udur",
+          "description": "ugluu ert uuland aviran husgul dalaig deerees harlaa uduriin undaa uugaad morior dalain ereg deeguur zugaallaa oroi ni il gal deer shorlog horhog hiij iden amartsgaalaa ",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Panoramic_view_of_Lake_Kh%C3%B6vsg%C3%B6l.jpg/800px-Panoramic_view_of_Lake_Kh%C3%B6vsg%C3%B6l.jpg",
+          "considerations": "anhaarah zuils"
+        },
+        {
+          "title": "huvsgul dalaigaas terhiin tsagaan nuurluu",
+          "description": "huvsgul dalaigaas hudlun murun orj tendeesee 180 garui km gazar shoroogoor yvan zasmal zamd holbogddog ajee. zamd baigaliin uzesgelent gazar nileedgui taaraldsanii dotor Zuun nuur hemees gazar goid taalagdav iinhuu yvsaar oroi terhiin tsagaan nuurand irj honogloloo",
+          "image": "https://s3-ap-southeast-2.amazonaws.com/mongolianways.website/assets/galleries/Natural-Beauty-of-Mongolia/_682x383_crop_center-center_none/Zuun_Nuur.jpg",
+          "considerations": "shoroon zam chuluu ihtei gants hoyr gazar shavar taaraldsan zamdaa beltgeltei garaarai"
+        }
+      ]
+    },
+    {
+      "_id": {
+        "$oid": "643aae23fbe0fb191b6b3bbf"
+      },
+      "destination": "Хөвсгөл аймаг, Цагаан үүр сумын төвөөс зүүн тийш Уйлган багийн нутаг Дээрхийн гол, Үүрийн голын бэлчир, Дээрхийн ам хэмээх газар",
+      "subDest": "Цагаан үүр сум",
+      "description": "Агуй дотроо 450 шоо метр хэмжээтэй, арав гаруй тасалгаатай, зүг бүрдээ олон ам бүхий хаалгатай. Төрөл бүрийн нарийн шороо, рашаантай, Эхийн умай хэмээх эмэгтэй хүний савыг дүрсэлсэн амсартай дэлхийд ховор байгалийн үзмэр юм.",
+      "tags": [
+        {
+          "_id": "1234",
+          "name": "Хангайн аялал"
+        },
+        {
+          "_id": "23456",
+          "name": "Агуй"
+        }
+      ],
+      "season": ["зун", "хавар", "намар"],
+      "image": "http://www.ub.life/uploads/images/33846060_576467932726749_3329209638540279808_n.jpg",
+      "createdAt": {
+        "$date": {
+          "$numberLong": "1681567267872"
+        }
+      },
+      "updatedAt": {
+        "$date": {
+          "$numberLong": "1681567267872"
+        }
+      },
+      "__v": 0
+    },
+    {
+      "_id": {
+        "$oid": "643aaf74fbe0fb191b6b3bc2"
+      },
+      "destination": "Архангай аймгийн Хорго уул",
+      "subDest": "Тариат сумын төв",
+      "description": "Одоогоос 9 мянга орчим жилийн ємнє дэлбэрч байгаад унтарсан галт уул юм гэдгийг манай газар зvйн эрдэмтэд тогтоожээ. Өєрєєр хэлбэл энэ нь манай орны унтарсан галт уулуудын дотроос хамгийн сvvлд унтарсан галт уул тєдийгvй жаахан хэтрүүлбэл уур нь савсаж байгаа шинэхэн уул",
+      "tags": [
+        {
+          "_id": "746u6u",
+          "name": "Хангайн аялал"
+        },
+        {
+          "_id": "98u6a5",
+          "name": "Гол мөрөн"
+        }
+      ],
+      "season": ["зун", "хавар", "намар"],
+      "image": "http://mecc.mn/wp-content/uploads/2019/05/CHh29bBUwAAz3uB.jpg",
+      "createdAt": {
+        "$date": {
+          "$numberLong": "1681567604454"
+        }
+      },
+      "updatedAt": {
+        "$date": {
+          "$numberLong": "1681567604454"
+        }
+      },
+      "__v": 0
+    },
+    {
+      "_id": {
+        "$oid": "643ab053fbe0fb191b6b3bc5"
+      },
+      "destination": "Архангай аймгийн Тэрхийн цагаан нуур",
+      "subDest": "Тариат сумаас баруун тийш",
+      "description": "Тэрхийн цагаан нуур нь 16 километр урт, 6 километр өргөн, 61 ам километр талбайтай 20 метр гvн цэнгэг устай урсгал нуур",
+      "tags": [
+        {
+          "_id": "abe5d88",
+          "name": "Хангайн аялал"
+        },
+        {
+          "_id": "56u782e",
+          "name": "Нуур"
+        }
+      ],
+      "season": ["зун", "хавар", "намар"],
+      "image": "https://dnn.mn/media/dnn/content/202106/%D0%BC%D1%85%D0%B1.jpg",
+      "createdAt": {
+        "$date": {
+          "$numberLong": "1681567827398"
+        }
+      },
+      "updatedAt": {
+        "$date": {
+          "$numberLong": "1681567827398"
+        }
+      },
+      "__v": 0
+    },
+    {
+      "_id": {
+        "$oid": "643ab1bcfbe0fb191b6b3bc8"
+      },
+      "destination": "Завхан аймгийн Хар нуур",
+      "subDest": "Эрдэнэхайрхан сумын төвөөс зүүн хойш 80км",
+      "description": "Хойд талаараа элсэн манхан, элсэн шанаагаар хүрээлэгдсэн, урд талаараа эрэг орчмын шанаанууд зэгстэй жаахан нуур Товхошийн сүрлэг уулаар хүрээлэгдсэн байдаг",
+      "tags": [
+        {
+          "_id": "ff98765",
+          "name": "Хангайн аялал"
+        },
+        {
+          "_id": "3456acac",
+          "name": "Нуур"
+        }
+      ],
+      "season": ["зун", "хавар"],
+      "image": "https://mongolia-guide.com/uploads/main/zavkhan/places/khar%20lake3.jpg",
+      "createdAt": {
+        "$date": {
+          "$numberLong": "1681568188381"
+        }
+      },
+      "updatedAt": {
+        "$date": {
+          "$numberLong": "1681568188381"
+        }
+      },
+      "__v": 0
     }
+  ]
+}
