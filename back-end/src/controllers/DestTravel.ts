@@ -1,29 +1,18 @@
 import { NextFunction, Request, Response } from 'express';
 import mongoose from 'mongoose';
-import Travel from '../models/Travel';
-
-export type ReqType = {
-    title: string;
-    description: string;
-    plan: [
-        {
-            title: string;
-            description: string;
-            image: string;
-            considerations: string;
-        },
-    ]
-}
+import Travel from '../models/DestTravel';
 
 const createTravel = (req: Request, res: Response, next: NextFunction) => {
-
-    const { title, description, plan } : ReqType = req.body;
+    const { destination, subDest, description, tags, season, image } = req.body;
 
     const travel = new Travel({
         _id: new mongoose.Types.ObjectId(),
-        title: title,
-        description: description,
-        plan: [...plan],
+        destination,
+        subDest,
+        description,
+        tags,
+        season,
+        image
     });
 
     return travel
@@ -51,7 +40,6 @@ const readTravelAllIDs = (req: Request, res: Response, next: NextFunction) => {
         .then((travels) => res.status(200).json({ travels }))
         .catch((error) => res.status(500).json({ error }));
 };
-
 
 const updateTravel = (req: Request, res: Response, next: NextFunction) => {
     const travelId = req.params.travelid;
