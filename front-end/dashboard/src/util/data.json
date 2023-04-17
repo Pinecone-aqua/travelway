@@ -1,0 +1,62 @@
+
+    {"travel":[
+        {
+            "title":"huvsgul 3 uduriin aylal",
+            "description":"darhan erdeneteer dairan huvsgul dalai yvah 3 uduriin aylaliig taniltsuullaa",
+            "plan":[{
+                "title":"darhan",
+                "description":"ene udur ulaanbaateraas ertlen garch darhan hotiig uzaej sonirhon udriig unguruulj erdeneted ochij honogloloo",
+                "image":"https://scontent.fuln4-2.fna.fbcdn.net/v/t39.30808-6/312794917_3370903729848610_3010496911206948357_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=8631f5&_nc_ohc=4Af2qsbHeosAX9QqDWj&_nc_ht=scontent.fuln4-2.fna&oh=00_AfB7sCSWj8HKOVjyihRKfmimcJ-vph0sEXp4UW0KJ5I9-g&oe=643FDA3A",
+                "considerations":"anhaarah zuils"
+            },{
+                "title":"erdenet",
+                "description":"ene udur tsaigaa uun erdenetiiin dursgalt gazar hushuu, uurhai, musue uzej sonirhon huvsgulruu hudulluu",
+                "image":"https://news.mn/en/wp-content/uploads/sites/3/2020/07/4-2.jpg",
+                "considerations":"anhaarah zuils"
+            },{
+                "title":"Murun",
+                "description":"aylaliin guravdahi udur huvsguliin tuv murun hotod serlee ene udur hottoi tovch taniltsaad huvsgul dalaid iren nar shingehiig harlaa ",
+                "image":["https://gertoger.org/wp-content/uploads/2018/01/GERtoGER-Geotourism-Mongoila-_-Trek-White-Lake-1.jpg","https://nomadictrails.com/wp-content/uploads/2021/04/Murun-town.jpg"],
+                "considerations":"anhaarah zuils"
+            }]
+        }, {
+            "title":"huvsgul dalaid unguruulsen 3 udur",
+            "description":"huvsgul dalai deer 3 udur yu2 hiij boloh mun anhaarah zuils yu2 baisaniig oruullaa",
+            "plan":[{
+                "title":"zipline, zavi, zagas",
+                "description":"bid egiin gol deeguur zipline-aar gulsaj hatgalaas hadan hui aralruu zaviar aylalaa, Janhai orj honogloh maihana barilaaa ",
+                "image":"https://live.staticflickr.com/2514/3732344086_4154594f71_z.jpg",
+                "considerations":"zavin deer suuhdaa dulaan huvtsas umsuh, ziplined suuhaasaa umnu une hulsuu tohiroh, maihan barih gazraa sain sudlah"
+            },{
+                "title":"janhaid unguruulsen neg udur",
+                "description":"ugluu ert uuland aviran husgul dalaig deerees harlaa uduriin undaa uugaad morior dalain ereg deeguur zugaallaa oroi ni il gal deer shorlog horhog hiij iden amartsgaalaa ",
+                "image":"https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Panoramic_view_of_Lake_Kh%C3%B6vsg%C3%B6l.jpg/800px-Panoramic_view_of_Lake_Kh%C3%B6vsg%C3%B6l.jpg",
+                "considerations":"anhaarah zuils"
+            },{
+                "title":"huvsgul dalaigaas terhiin tsagaan nuurluu",
+                "description":"huvsgul dalaigaas hudlun murun orj tendeesee 180 garui km gazar shoroogoor yvan zasmal zamd holbogddog ajee. zamd baigaliin uzesgelent gazar nileedgui taaraldsanii dotor Zuun nuur hemees gazar goid taalagdav iinhuu yvsaar oroi terhiin tsagaan nuurand irj honogloloo",
+                "image":"https://s3-ap-southeast-2.amazonaws.com/mongolianways.website/assets/galleries/Natural-Beauty-of-Mongolia/_682x383_crop_center-center_none/Zuun_Nuur.jpg",
+                "considerations":"shoroon zam chuluu ihtei gants hoyr gazar shavar taaraldsan zamdaa beltgeltei garaarai"
+            }]
+        }, {
+            "title":"garchig",
+            "description":"yrunhii tailbar",
+            "plan":[{
+                "title":"garchig",
+                "description":"tuhain uduriin tailbar",
+                "image":"zurag",
+                "considerations":"anhaarah zuils"
+            },{
+                "title":"garchig",
+                "description":"tuhain uduriin tailbar",
+                "image":"zurag",
+                "considerations":"anhaarah zuils"
+            },{
+                "title":"garchig",
+                "description":"tuhain uduriin tailbar",
+                "image":"zurag",
+                "considerations":"anhaarah zuils"
+            }]
+        }
+    ]
+    }
