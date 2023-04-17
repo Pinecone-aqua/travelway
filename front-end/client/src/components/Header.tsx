@@ -4,21 +4,21 @@ export default function Header(): JSX.Element {
       <div className="flex gap-3 justify-center content-center text-center  text-white  ">
         <div className="flex w-[15rem] h-7 mt-3">
           <button className="w-[15rem] md:w-[10rem] sm:w-[5rem] opacity-50">
-            Tool
+            Home
           </button>
           <button className="w-[15rem] md:w-[10rem] sm:w-[7rem] opacity-70">
-            Article
+            Our company
           </button>
         </div>
-        <button className="text-[30px] w-[15rem] md:w-[10rem] sm:w-[8rem] mt-1 font-serif">
-          Home
+        <button className="text-[30px] w-[15rem] md:w-[10rem] sm:w-[8rem] mt-1">
+          Travel
         </button>
         <div className="flex w-[15rem] h-7 mt-3">
           <button className="w-[15rem] md:w-[10rem] sm:w-[5rem] opacity-70">
-            Travel
+            Gudget
           </button>
           <button className="w-[15rem] md:w-[10rem] sm:w-[5rem] opacity-50">
-            Random
+            Contact us
           </button>
         </div>
       </div>
