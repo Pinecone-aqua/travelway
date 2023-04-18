@@ -13,7 +13,7 @@ export default function TravelJourney(): JSX.Element {
 
   return (
     <>
-      <div className="w-full xxl:h-[500px] xl:h-[400px] lg:h-[300px] md:h-[200px] drop-shadow-2xl">
+      {/* <div className="w-full xxl:h-[500px] xl:h-[400px] lg:h-[300px] md:h-[200px] drop-shadow-2xl">
         <picture>
           <img
             src="./images/fuji.webp"
@@ -28,9 +28,9 @@ export default function TravelJourney(): JSX.Element {
           </h2>
           <p className="text-white text-[20px]">visited 20 Septenber 2020</p>
         </div>
-      </div>
+      </div> */}
       <div>
-        <div className="flex justify-center  h-[84px] max-h-[125px] mt-5">
+        <div className="flex justify-center  h-[84px] max-h-[125px] ">
           <div className="flex w-[850px] gap-10 bg-gray-800 h-[84px] items-center rounded-[10px] justify-center">
             <button
               className={
