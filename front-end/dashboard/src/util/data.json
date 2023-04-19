@@ -226,5 +226,25 @@
       },
       "__v": 0
     }
+  ],
+  "admin":[
+    {"firstName":"sharvaa",
+    "lastName":"Urtnasan",
+    "password":"123",
+    "eMail":"sharva@gmail.com",
+    "phone":99112089
+    },{
+      "firstName":"namka",
+      "lastName":"Nanzad",
+      "password":"123",
+      "eMail":"Namka@gmail.com",
+      "phone":88110932
+    },{
+      "firstName":"ylalt",
+      "lastName":"ylalt",
+      "password":"123",
+      "eMail":"Ylalt@gmail.com",
+      "phone":99110932
+    }
   ]
 }

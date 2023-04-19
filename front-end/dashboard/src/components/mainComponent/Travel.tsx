@@ -9,8 +9,10 @@ export default function Travel(props: { unit: travelType }): JSX.Element {
       <p>{data.description}</p>
       <h2>
         {plan.map((unit: planType, index: number) => (
-          <div key={index} className="flex my-3">
+          <div key={index} className="flex my-3"><picture>
             <img className="h-16 w-16 rounded-2xl" src={unit.image} alt="" />
+          </picture>
+
             <div>
               <h1>{unit.title}</h1>
               <p>{unit.description}</p>
@@ -21,3 +23,4 @@ export default function Travel(props: { unit: travelType }): JSX.Element {
     </div>
   );
 }
+
