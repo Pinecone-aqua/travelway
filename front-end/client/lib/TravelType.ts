@@ -1,9 +1,13 @@
 export interface TravelType {
-    _id: string;
-    destination: string;
-    subDest: string;
-    description: string;
-    tags: Array<string>;
-    season: Array<string>;
-    image: string;
-  };
+  _id: string;
+  title: string;
+  description: string;
+  plan: [
+    {
+      title: string;
+      description: string;
+      image: string;
+      considerations: string;
+    }
+  ];
+}

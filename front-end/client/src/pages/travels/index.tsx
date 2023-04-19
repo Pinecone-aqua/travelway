@@ -23,34 +23,19 @@ export default function Travel({ travels }: TravelProps) {
         <section className="flex flex-wrap gap-4 my-8 container mx-auto">
           {travels.map((travel) => (
             <Link href={`/travels/${travel._id}`} key={travel._id}>
-              <div
-                className="max-w-md border rounded bg-slate-100 flex p-0"
-                key={travel._id}
-              >
-                <div className="max-h-60 w-[40%] overflow-hidden rounded-md">
-                  <img
-                    src={travel.image}
-                    alt="profile image 1"
-                    className="w-full h-full"
-                  />
+              <div className="flex flex-col">
+                <div>
+                  <h2>{travel.title}</h2>
+                  <p>{travel.description}</p>
                 </div>
-                <div key={`${travel._id}abcd3be`} className="flex flex-col w-[60%] p-4">
-                  <p className="text-slate-600 text-justify">
-                    <span className="font-bold text-teal-800">
-                      Destination:
-                    </span>{" "}
-                    {travel.destination}
-                  </p>
-                  <p className="text-slate-600 text-justify">
-                    <span className="font-bold text-teal-800">Location:</span>{" "}
-                    {travel.subDest}
-                  </p>
-                  <p className="text-slate-600 text-justify">
-                    <span className="font-bold text-teal-800">
-                      Description:
-                    </span>{" "}
-                    {travel.description}
-                  </p>
+                <div>
+                  { travel.plan.map((day, index) => (
+                    <div className="flex gap-4" key={index}>
+                      <div>{<img src={day.image} width={80} />}</div>
+                      <div>{day.description}</div>
+                    </div>
+                  ))
+                  }
                 </div>
               </div>
             </Link>
