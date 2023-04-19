@@ -31,7 +31,7 @@ export default function Travel({ travels }: TravelProps) {
                 <div>
                   { travel.plan.map((day, index) => (
                     <div className="flex gap-4" key={index}>
-                      <div>{<img src={day.image} width={80} />}</div>
+                      <div><picture><img src={day.image} width={80} alt="Image profile"/></picture></div>
                       <div>{day.description}</div>
                     </div>
                   ))

@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 export default function TravelJourney(): JSX.Element {
-  const [color, useColor] = useState();
+  const [color, useColor] = useState<string | undefined>();
   function changeColor(e: any) {
     useColor(e.target.innerText);
   }
@@ -34,7 +34,7 @@ export default function TravelJourney(): JSX.Element {
           <div className="flex w-[850px] gap-10 bg-gray-800 h-[84px] items-center rounded-[10px] justify-center">
             <button
               className={
-                color === "Travel Plan"
+                color?.includes("Travel Plan")
                   ? "text-black w-[250px] h-[54px] bg-orange-500 rounded-2xl"
                   : "text-white w-[250px] h-[54px]"
               }
@@ -44,7 +44,7 @@ export default function TravelJourney(): JSX.Element {
             </button>
             <button
               className={
-                color === "Description"
+                color?.includes("Description")
                   ? "text-black w-[250px] h-[54px] bg-orange-500 rounded-2xl"
                   : "text-white w-[250px] h-[54px]"
               }
@@ -54,7 +54,7 @@ export default function TravelJourney(): JSX.Element {
             </button>
             <button
               className={
-                color === "Budget"
+                color?.includes("Budget")
                   ? "text-black w-[250px] h-[54px] bg-orange-500 rounded-2xl"
                   : "text-white w-[250px] h-[54px]"
               }
@@ -67,11 +67,11 @@ export default function TravelJourney(): JSX.Element {
       </div>
       <div className="flex justify-center">
         <div className="flex justify-center bg-gray-500 xxl:w-[1280px] xl:w-[896px] lg:w-[640px] xmd:w-[360px] sm: h-[800px] mt-5 rounded-[20px]">
-          {color == "Travel Plan" ? (
+          {color?.includes("Travel Plan") ? (
             <TravelPlan />
-          ) : color == "Description" ? (
+          ) : color?.includes("Description") ? (
             <Description />
-          ) : color == "Budget" ? (
+          ) : color?.includes("Budget") ? (
             <Budget />
           ) : (
             <Description />

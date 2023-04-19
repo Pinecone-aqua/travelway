@@ -36,8 +36,7 @@ export const getStaticProps: GetStaticProps<TravelData> = async ({
 };
 
 export default function Travel({ travelData }: { travelData: TravelTypeID }) {
-  let { id } = travelData;
-  let { travel } = travelData;
+  const { travel } = travelData;
 
   return (
     <Layout>
@@ -53,10 +52,12 @@ export default function Travel({ travelData }: { travelData: TravelTypeID }) {
             <h4>Description</h4>
             <p>{travel.description}</p>
           </div>
-          {travel.plan.map((day) => (
-            <div className="px-2 py-4 flex gap-y-2">
+          {travel.plan.map((day, index) => (
+            <div className="px-2 py-4 flex gap-y-2" key={index}>
               <div className="bg-red-400">
-                <img src={day.image} />
+                <picture>
+                <img src={day.image} width={90} alt="Card image" />
+                </picture>
               </div>
               <div className="bg-blue-500">
                 <h4>{day.title}</h4>
