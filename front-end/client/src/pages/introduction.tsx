@@ -1,7 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
 
-import Header from "@/components/Header";
-
 export default function Introduction(): JSX.Element {
   return (
     <>
