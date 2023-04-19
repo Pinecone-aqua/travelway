@@ -1,9 +1,22 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { travelType } from "@/util/types";
+import Travel from "@/components/mainComponent/Travel";
 export default function Travels(): JSX.Element {
+  const [travels, setTravels] = useState<travelType[] | null>(null);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:9090/travels/get")
+      .then(({ data }) => setTravels(data.travels));
+  }, []);
+  console.log("aylaluud", travels);
   return (
     <>
       <div className="bg-violet-300 h-2/3 rounded-2xl h-screen w-10/12 h-2/3 ">
-        {" "}
-        travels
+        {travels?.map((unit: travelType, index: number) => (
+          <Travel key={index} unit={unit} />
+        ))}
       </div>
     </>
   );

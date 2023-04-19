@@ -27,13 +27,13 @@ const TravelSchema: Schema = new Schema(
             items: {
                 type: 'object',
                 properties: {
+
                     title: { type: String, required: true },
                     description: { type: String, required: true },
                     image: { type: String, required: false },
                     considerations: { type: String, required: false }
                 }
             }
-        }
     },
     {
         timestamps: true,

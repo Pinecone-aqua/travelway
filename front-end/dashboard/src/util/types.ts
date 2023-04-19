@@ -1,8 +1,20 @@
 export interface userType {
   _id: string;
-  firstname: string;
-  lastname: string;
-  email: string;
+  firstName: string;
+  lastName: string;
+  eMail: string;
   phone: number;
-  updatedAt: number;
+  created_date: number;
+}
+export interface travelType {
+  _id: string;
+  title: string;
+  description: string;
+  plan: [];
+}
+export interface planType {
+  title: string;
+  description: string;
+  image: string;
+  considerations: string;
 }

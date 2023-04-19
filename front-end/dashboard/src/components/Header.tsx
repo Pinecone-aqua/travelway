@@ -12,7 +12,7 @@ export default function Header(): JSX.Element {
             type="text"
             placeholder="search"
           />
-          <button className="bg-purple-300 w-16 rounded-e-3xl">haih</button>
+          <button className="bg-purple-300 w-16 rounded-e-3xl">search</button>
         </div>
 
         <div>

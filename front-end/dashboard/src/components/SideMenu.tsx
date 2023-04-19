@@ -5,7 +5,7 @@ import TravelIcon from "../../public/icons/TravelIcon";
 import UserIcon from "../../public/icons/UserIcon";
 
 export default function SideMenu(): JSX.Element {
-  const [color, setColor] = useState();
+  const [color, setColor] = useState("Orders");
   function hadleClick(e: any): void {
     setColor(e.target.innerText);
   }
