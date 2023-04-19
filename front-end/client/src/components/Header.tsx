@@ -11,16 +11,16 @@ export default function Header(): JSX.Element {
     <div className="relative">
       <div className="flex gap-3 justify-center content-center text-center  text-white  ">
         <div className="flex w-[15rem] h-7">
-        <button
-          className={
-            nav == "Travel"
-              ? "text-[30px] w-[15rem] md:w-[10rem] sm:w-[8rem] mt-1"
-              : "w-[15rem] md:w-[10rem] sm:w-[5rem] opacity-50 mt-3"
-          }
-          onClick={changeNav}
-        >
-          Travel
-        </button>
+          <button
+            className={
+              nav == "Travel"
+                ? "text-[30px] w-[15rem] md:w-[10rem] sm:w-[8rem] mt-1"
+                : "w-[15rem] md:w-[10rem] sm:w-[5rem] opacity-50 mt-3"
+            }
+            onClick={changeNav}
+          >
+            Travel
+          </button>
           <button
             className={
               nav == "Our company"
@@ -33,15 +33,15 @@ export default function Header(): JSX.Element {
           </button>
         </div>
         <button
-            className={
-              nav == "Home"
-                ? "text-[30px] w-[15rem] md:w-[10rem] sm:w-[8rem] mt-1"
-                : "w-[15rem] md:w-[10rem] sm:w-[5rem] opacity-50 mt-3"
-            }
-            onClick={changeNav}
-          >
-            Home
-          </button>
+          className={
+            nav == "Home"
+              ? "text-[30px] w-[15rem] md:w-[10rem] sm:w-[8rem] mt-1"
+              : "w-[15rem] md:w-[10rem] sm:w-[5rem] opacity-50 mt-3"
+          }
+          onClick={changeNav}
+        >
+          Home
+        </button>
         <div className="flex w-[15rem] h-7 ">
           <button
             className={

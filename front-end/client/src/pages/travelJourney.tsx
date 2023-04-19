@@ -1,14 +1,15 @@
-import Header from "@/components/Header";
+/* eslint-disable @typescript-eslint/no-unnecessary-condition */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Budget from "@/components/travel/Budget";
 import Description from "@/components/travel/Description";
 import TravelPlan from "@/components/travel/TravelPlan";
-import Link from "next/link";
 import { useState } from "react";
+import ContainerPages from "./containerPages";
 
 export default function TravelJourney(): JSX.Element {
-  const [color, useColor] = useState();
+  const [color, setColor] = useState();
   function changeColor(e: any) {
-    useColor(e.target.innerText);
+    setColor(e.target.innerText);
   }
 
   return (
@@ -29,9 +30,10 @@ export default function TravelJourney(): JSX.Element {
           <p className="text-white text-[20px]">visited 20 Septenber 2020</p>
         </div>
       </div> */}
+      <ContainerPages />
       <div>
-        <div className="flex justify-center  h-[84px] max-h-[125px] ">
-          <div className="flex w-[850px] gap-10 bg-gray-800 h-[84px] items-center rounded-[10px] justify-center">
+        <div className="flex justify-center  h-[84px] max-h-[125px]  ">
+          <div className="flex w-full gap-10 bg-teal-900 h-[84px] items-center  justify-center">
             <button
               className={
                 color === "Travel Plan"
@@ -66,7 +68,7 @@ export default function TravelJourney(): JSX.Element {
         </div>
       </div>
       <div className="flex justify-center">
-        <div className="flex justify-center bg-gray-500 xxl:w-[1280px] xl:w-[896px] lg:w-[640px] xmd:w-[360px] sm: h-[800px] mt-5 rounded-[20px]">
+        <div className="flex justify-center bg-gray-500 w-full  sm:h-[800px] mt-5 rounded-[20px]">
           {color == "Travel Plan" ? (
             <TravelPlan />
           ) : color == "Description" ? (
