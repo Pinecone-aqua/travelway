@@ -1,17 +1,18 @@
 import mongoose, { Document, Schema } from 'mongoose';
 
-export type ITags = {
-    _id: string;
+export interface PlanType {
     title: string;
-};
+    description: string;
+    image: string;
+    considerations: string;
+}
 
 export interface ITravel {
-    destination: string;
-    subDest: string;
-    description?: string;
-    tags?: Array<ITags>;
-    season?: Array<string>;
-    image?: string;
+    title: string;
+    description: string;
+    plan: Array<PlanType>;
+    createdAt: Date;
+    updatedAt: Date;
 }
 
 export interface ITravelModel extends ITravel, Document {}
@@ -19,32 +20,25 @@ export interface ITravelModel extends ITravel, Document {}
 // daraa Tags id deer tagsiin ref holbono
 const TravelSchema: Schema = new Schema(
     {
-        destination: { type: String, required: true },
-        subDest: { type: String, required: true },
+        title: { type: String, required: true },
         description: { type: String, required: false },
-        tags: {
+        plan: {
             type: 'array',
             items: {
                 type: 'object',
                 properties: {
-                    _id: { type: Schema.Types.ObjectId },
-                    title: { type: String }
+
+                    title: { type: String, required: true },
+                    description: { type: String, required: true },
+                    image: { type: String, required: false },
+                    considerations: { type: String, required: false }
                 }
-            },
-            required: false
-        },
-        season: {
-            type: 'array',
-            items: {
-                type: String
-            },
-            required: false
-        },
-        image: { type: String, required: false }
+            }
     },
     {
-        timestamps: true
+        timestamps: true,
+        collection: 'travels'
     }
 );
 
-export default mongoose.model<ITravelModel>('Travel', TravelSchema);
+export default mongoose.model<ITravelModel>('Travel', TravelSchema, 'travels');
