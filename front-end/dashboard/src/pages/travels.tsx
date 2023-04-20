@@ -13,7 +13,7 @@ export default function Travels(): JSX.Element {
   console.log("aylaluud", travels);
   return (
     <>
-      <div className="bg-violet-300 h-2/3 rounded-2xl h-screen w-10/12 h-2/3 ">
+      <div className="bg-violet-300 h-2/3 rounded-2xl min-h-screen h-100 w-10/12  h-2/3 ">
         {travels?.map((unit: travelType, index: number) => (
           <Travel key={index} unit={unit} />
         ))}
