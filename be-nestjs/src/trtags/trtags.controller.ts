@@ -16,12 +16,12 @@ import { UpdateTagsDto } from './dto/update-tags.dto';
 export class TrtagsController {
   constructor(private readonly tagsService: TrtagsService) {}
 
-  @Post()
+  @Post('add')
   async create(@Body() createTagsDto: CreateTagsDto): Promise<TrTags> {
     return this.tagsService.create(createTagsDto);
   }
 
-  @Get()
+  @Get('get')
   async findAll(): Promise<TrTags[]> {
     return this.tagsService.findAll();
   }
