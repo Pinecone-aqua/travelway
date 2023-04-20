@@ -54,7 +54,7 @@ export class UsersService {
   }
 
   async remove(id: string): Promise<User> {
-    const deletedUserLocal = await this.userModel.findByIdAndRemove(id);
+    const deletedUserLocal = await this.userModel.findByIdAndRemove({ _id: id });
 
     if (!deletedUserLocal) {
       throw new NotFoundException(`Хэрэглэгч ${id} ID-тай олдсонгүй`);
