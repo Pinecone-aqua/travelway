@@ -54,7 +54,7 @@ import { UpdateTravelDto } from './dto/update-travel.dto';
     }
   
     async remove(id: string): Promise<Travel> {
-      const deletedTravels = await this.travelModel.findByIdAndRemove(id);
+      const deletedTravels = await this.travelModel.findByIdAndRemove({ _id: id });
   
       if (!deletedTravels) {
         throw new NotFoundException(`Аяллын ${id} ID-тай аялал олдсонгүй`);

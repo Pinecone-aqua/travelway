@@ -55,7 +55,7 @@ import { UpdateTagsDto } from './dto/update-tags.dto';
     }
   
     async remove(id: string): Promise<TrTags> {
-      const deleteTag = await this.tagsModel.findByIdAndRemove(id);
+      const deleteTag = await this.tagsModel.findByIdAndRemove({ _id: id });
   
       if (!deleteTag) {
         throw new NotFoundException(`ID Хоосон байна олдсонгүй`);
