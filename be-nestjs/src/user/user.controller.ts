@@ -16,12 +16,12 @@ import { User } from './schemas/user.schema';
 export class UsersController {
   constructor(private readonly userService: UsersService) {}
 
-  @Post()
+  @Post('add')
   create(@Body() createUserDto: CreateUserDto): Promise<User> {
     return this.userService.create(createUserDto);
   }
 
-  @Get()
+  @Get('get')
   findAll() {
     return this.userService.findAll();
   }
