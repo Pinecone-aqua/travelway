@@ -5,7 +5,7 @@ import axios from "axios";
 export default function User(props: { unit: userType }): JSX.Element {
   const data = props.unit;
   function deleteHandler(userId: string) {
-    axios.delete(`http://localhost:9090/users/delete/${userId}`);
+    axios.delete(`http://localhost:3009/users/${userId}`);
   }
   return (
     <tr>
@@ -15,8 +15,7 @@ export default function User(props: { unit: userType }): JSX.Element {
       <td>{data.eMail}</td>
       <td>{data.phone}</td>
       <td>a</td>
-      <td>{data.
-created_date}</td>
+      <td>{data.created_date}</td>
       <td>
         <button onClick={() => deleteHandler(data._id)}>
           <FcEmptyTrash />

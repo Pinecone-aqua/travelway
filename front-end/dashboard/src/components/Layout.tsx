@@ -16,7 +16,7 @@ export default function Layout({
         <SideMenu />
         <div className="w-9/12">{children}</div>
       </div>
-      <div>footer</div>
+      <div>footer shuu</div>
     </div>
   );
 }

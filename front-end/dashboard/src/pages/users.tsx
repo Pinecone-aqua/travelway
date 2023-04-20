@@ -1,16 +1,21 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+//import axios from "axios";
 import { userType } from "@/util/types";
 import User from "@/components/mainComponent/User";
 
 export default function Users(): JSX.Element {
-  const [user, setUser] = useState<userType[] | null>(null);
+  const [users, setUsers] = useState<userType[] | null>(null);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:9090/users/get")
-      .then(({ data }) => setUser(data.users));
+    // axios
+    //   .get("http://localhost:9090/users")
+    //   .then(({ data }) => setUsers(data.users));
+    fetch("http://localhost:3009/users/get")
+      .then((response) => response.json())
+      .then((res) => setUsers(res));
+    // fetch("http://localhost:3009/users").then
   }, []);
+  console.log(users);
 
   return (
     <>
@@ -28,7 +33,7 @@ export default function Users(): JSX.Element {
           </tr>
         </thead>
         <tbody className="h-32">
-          {user?.map((unit: userType, index: number) => (
+          {users?.map((unit: userType, index: number) => (
             <User key={index} unit={unit} />
           ))}
         </tbody>
