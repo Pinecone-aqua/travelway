@@ -16,12 +16,12 @@ import { UpdateTravelDto } from './dto/update-travel.dto';
 export class TravelsController {
   constructor(private readonly travelService: TravelsService) {}
 
-  @Post()
+  @Post('add')
   create(@Body() createTravelDto: CreateTravelDto): Promise<Travel> {
     return this.travelService.create(createTravelDto);
   }
 
-  @Get()
+  @Get('get')
   findAll(): Promise<Travel[]> {
     return this.travelService.findAll();
   }
