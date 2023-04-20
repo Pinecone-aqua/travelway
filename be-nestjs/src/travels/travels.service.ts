@@ -13,7 +13,7 @@ import { UpdateTravelDto } from './dto/update-travel.dto';
   export class TravelsService {
     constructor(@InjectModel('Travel') private readonly travelModel: Model<Travel>) {}
   
-    async create(createTravelDto: CreateTravelDto) {
+    async create(createTravelDto: CreateTravelDto): Promise<Travel> {
       const { title, description, day, season } = createTravelDto;
   
       if (!title && !description && !day && !season) {
@@ -27,12 +27,12 @@ import { UpdateTravelDto } from './dto/update-travel.dto';
       return result;
     }
   
-    async findAll(): Promise<any> {
+    async findAll(): Promise<Travel[]> {
       const result = await this.travelModel.find();
       return result;
     }
   
-    async findOne(id: string) {
+    async findOne(id: string): Promise<Travel> {
       const result = await this.travelModel.findOne({ _id: id });
   
       return result;
@@ -53,13 +53,13 @@ import { UpdateTravelDto } from './dto/update-travel.dto';
       return updatedtravels;
     }
   
-    async remove(id: string): Promise<string> {
+    async remove(id: string): Promise<Travel> {
       const deletedTravels = await this.travelModel.findByIdAndRemove(id);
   
       if (!deletedTravels) {
         throw new NotFoundException(`Аяллын ${id} ID-тай аялал олдсонгүй`);
       }
-      return 'success';
+      return deletedTravels;
     }
   }
   

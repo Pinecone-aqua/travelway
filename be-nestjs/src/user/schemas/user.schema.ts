@@ -30,6 +30,7 @@ export class User {
   @Prop()
   image: string;
 
+  
   @Prop()
   role: string;
 

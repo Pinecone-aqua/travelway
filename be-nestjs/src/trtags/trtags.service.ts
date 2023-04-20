@@ -14,7 +14,7 @@ import { UpdateTagsDto } from './dto/update-tags.dto';
   export class TrtagsService {
     constructor(@InjectModel('TrTags') private readonly tagsModel: Model<TrTags>) {}
   
-    async create(createTagsDto: CreateTagsDto) {
+    async create(createTagsDto: CreateTagsDto): Promise<TrTags> {
       const { name } = createTagsDto;
   
       if (!name) {
@@ -28,12 +28,12 @@ import { UpdateTagsDto } from './dto/update-tags.dto';
       return result;
     }
 
-    async findAll(): Promise<any> {
+    async findAll(): Promise<TrTags[]> {
       const result = await this.tagsModel.find();
       return result;
     }
   
-    async findOne(id: string) {
+    async findOne(id: string):Promise<TrTags> {
       const result = await this.tagsModel.findOne({ _id: id });
   
       return result;
@@ -54,13 +54,13 @@ import { UpdateTagsDto } from './dto/update-tags.dto';
       return updatedTagNames;
     }
   
-    async remove(id: string): Promise<string> {
+    async remove(id: string): Promise<TrTags> {
       const deleteTag = await this.tagsModel.findByIdAndRemove(id);
   
       if (!deleteTag) {
         throw new NotFoundException(`ID Хоосон байна олдсонгүй`);
       }
-      return 'success';
+      return deleteTag;
     }
   }
   

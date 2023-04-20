@@ -1,7 +1,9 @@
 import { IsArray, IsEmail, IsEnum, IsNotEmpty, IsString, MinLength } from 'class-validator';
 import { Role } from '../role.enum';
+import { STATUS_CODES } from 'http';
 
 export class CreateUserDto {
+
     @IsString()
     readonly username: string;
     
@@ -12,6 +14,7 @@ export class CreateUserDto {
     @IsEmail({}, { message: 'Зөв И-мейл хаяг оруулна уу' })
     readonly email: string;
   
+    
     @IsNotEmpty()
     @IsString()
     @MinLength(6)

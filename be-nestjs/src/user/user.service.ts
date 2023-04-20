@@ -13,7 +13,7 @@ import { InjectModel } from '@nestjs/mongoose';
 export class UsersService {
   constructor(@InjectModel('User') private readonly userModel: Model<User>) {}
 
-  async create(createUserDto: CreateUserDto) {
+  async create(createUserDto: CreateUserDto): Promise<User> {
     const { username, nickname, email, password } = createUserDto;
 
     if (!username && !nickname && !email && !password) {
@@ -27,12 +27,12 @@ export class UsersService {
     return result;
   }
 
-  async findAll(): Promise<any> {
-    const result = await this.userModel.find();
+  async findAll(): Promise<User[]> {
+    const result = await this.userModel.find({});
     return result;
   }
 
-  async findOne(id: string) {
+  async findOne(id: string):Promise<User> {
     const result = await this.userModel.findOne({ _id: id });
 
     return result;
@@ -53,12 +53,12 @@ export class UsersService {
     return updatedUserLocal;
   }
 
-  async remove(id: string): Promise<string> {
+  async remove(id: string): Promise<User> {
     const deletedUserLocal = await this.userModel.findByIdAndRemove(id);
 
     if (!deletedUserLocal) {
       throw new NotFoundException(`Хэрэглэгч ${id} ID-тай олдсонгүй`);
     }
-    return 'success';
+    return deletedUserLocal;
   }
 }

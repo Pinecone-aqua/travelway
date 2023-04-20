@@ -37,6 +37,7 @@ export class AuthService {
     const user = await this.userModel.findOne({ email: email });
 
     if (!user) {
+      // throw new BadRequestException(HttpStatus.BAD_REQUEST);
       throw new UnauthorizedException('И-мейл хаяг эсвэл нууц үг буруу байна!');
     }
 
