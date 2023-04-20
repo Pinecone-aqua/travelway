@@ -16,7 +16,7 @@ export default function ContainerPages() {
   }
   return (
     <>
-      <div className="w-full xxl:h-[500px] xl:h-[400px] lg:h-[300px] md:h-[200px] drop-shadow-2xl">
+      <div className="w-full xxl:h-[500px] xl:h-[400px] lg:h-[300px] md:h-[200px] drop-shadow-2xl relative">
         <picture>
           <img
             src="./images/fuji.webp"
