@@ -33,6 +33,7 @@ export class CreateUserDto {
     @IsString()
     readonly role: string;
 
-    @IsArray()
-    readonly travel_id: Array<string>;
 }
+
+// @IsArray()
+// readonly travel_id: Array<string>;

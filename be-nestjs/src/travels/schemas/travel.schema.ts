@@ -20,8 +20,9 @@ export class Travel {
   @Prop()
   season: string;
 
-  @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'TrTags' }] })
-  tags_id: TrTags[];
 }
 
 export const TravelSchema = SchemaFactory.createForClass(Travel);
+
+// @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'TrTags' }] })
+// tags_id: TrTags[];
