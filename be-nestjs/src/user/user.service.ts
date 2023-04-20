@@ -32,7 +32,7 @@ export class UsersService {
     return result;
   }
 
-  async findOne(id: string):Promise<User> {
+  async findOne(id: string): Promise<User> {
     const result = await this.userModel.findOne({ _id: id });
 
     return result;
@@ -54,7 +54,10 @@ export class UsersService {
   }
 
   async remove(id: string): Promise<User> {
-    const deletedUserLocal = await this.userModel.findByIdAndRemove(id);
+    const deletedUserLocal = await this.userModel.findByIdAndRemove({
+      _id: id,
+    });
+    console.log('delete id', id);
 
     if (!deletedUserLocal) {
       throw new NotFoundException(`Хэрэглэгч ${id} ID-тай олдсонгүй`);

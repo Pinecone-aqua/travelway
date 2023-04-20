@@ -10,9 +10,9 @@ export interface travelType {
   _id: string;
   title: string;
   description: string;
-  plan: [];
+  day: [];
 }
-export interface planType {
+export interface dayType {
   title: string;
   description: string;
   image: string;

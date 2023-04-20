@@ -19,10 +19,8 @@
         {
           "title": "Murun",
           "description": "aylaliin guravdahi udur huvsguliin tuv murun hotod serlee ene udur hottoi tovch taniltsaad huvsgul dalaid iren nar shingehiig harlaa ",
-          "image": [
-            "https://gertoger.org/wp-content/uploads/2018/01/GERtoGER-Geotourism-Mongoila-_-Trek-White-Lake-1.jpg",
-            "https://nomadictrails.com/wp-content/uploads/2021/04/Murun-town.jpg"
-          ],
+          "image": "https://gertoger.org/wp-content/uploads/2018/01/GERtoGER-Geotourism-Mongoila-_-Trek-White-Lake-1.jpg",
+
           "considerations": "anhaarah zuils"
         }
       ]
@@ -227,24 +225,27 @@
       "__v": 0
     }
   ],
-  "admin":[
-    {"firstName":"sharvaa",
-    "lastName":"Urtnasan",
-    "password":"123",
-    "eMail":"sharva@gmail.com",
-    "phone":99112089
-    },{
-      "firstName":"namka",
-      "lastName":"Nanzad",
-      "password":"123",
-      "eMail":"Namka@gmail.com",
-      "phone":88110932
-    },{
-      "firstName":"ylalt",
-      "lastName":"ylalt",
-      "password":"123",
-      "eMail":"Ylalt@gmail.com",
-      "phone":99110932
+  "admin": [
+    {
+      "firstName": "sharvaa",
+      "lastName": "Urtnasan",
+      "password": "123",
+      "eMail": "sharva@gmail.com",
+      "phone": 99112089
+    },
+    {
+      "firstName": "namka",
+      "lastName": "Nanzad",
+      "password": "123",
+      "eMail": "Namka@gmail.com",
+      "phone": 88110932
+    },
+    {
+      "firstName": "ylalt",
+      "lastName": "ylalt",
+      "password": "123",
+      "eMail": "Ylalt@gmail.com",
+      "phone": 99110932
     }
   ]
 }
