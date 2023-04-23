@@ -16,7 +16,7 @@ export default function ContainerPages() {
   }
   return (
     <>
-      <div className="w-full xxl:h-[500px] xl:h-[400px] lg:h-[300px] md:h-[200px] drop-shadow-2xl relative">
+      <div className="w-full xxl:h-[500px] xl:h-[400px] lg:h-[300px] md:h-[200px]  drop-shadow-2xl relative">
         <picture>
           <img
             src="./images/fuji.webp"
@@ -40,16 +40,16 @@ export default function ContainerPages() {
                   Travel
                 </button>
               </Link>
-              <Link href="/ourCompany">
+              <Link href="/about">
                 <button
                   className={
-                    nav == "Our company"
+                    nav == "About"
                       ? "sm:text-[15px] text-[30px] xl:w-[15rem] md:w-[10rem] sm:w-[8rem] mt-3"
                       : "sm:text-[12.5px] w-[15rem] md:w-[10rem] sm:w-[5rem] opacity-50 mt-4"
                   }
                   onClick={changeNav}
                 >
-                  Our company
+                  About
                 </button>
               </Link>
             </div>

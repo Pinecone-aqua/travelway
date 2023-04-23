@@ -1,11 +1,11 @@
 import ContainerPages from "./containerPages";
 
-export default function Ourcompany() {
+export default function about() {
   return (
     <>
       <div>
         <ContainerPages />
-        <p>Ourcompany</p>
+        <p>About</p>
       </div>
     </>
   );

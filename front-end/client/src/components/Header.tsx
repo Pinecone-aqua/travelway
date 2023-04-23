@@ -24,16 +24,16 @@ export default function Header(): JSX.Element {
               Travel
             </button>
           </Link>
-          <Link href="/ourCompany">
+          <Link href="/about">
             <button
               className={
-                nav == "Our company"
+                nav == "About"
                   ? "sm:text-[15px] text-[30px] xl:w-[15rem] md:w-[10rem] sm:w-[8rem] mt-3"
                   : "sm:text-[12.5px] w-[15rem] md:w-[10rem] sm:w-[5rem] opacity-50 mt-4"
               }
               onClick={changeNav}
             >
-              Our company
+              About
             </button>
           </Link>
         </div>
@@ -76,15 +76,18 @@ export default function Header(): JSX.Element {
           </Link>
         </div>
         <div>
-          <button className="absolute right-0 mr-[1rem]">
-            <picture>
-              <img
-                src="../../images/white.svg"
-                alt="pic"
-                className="w-4 mt-4"
-              />
-            </picture>
-          </button>
+          <div className="absolute right-0 mr-[1rem] flex items-center mt-4">
+            {/* <input type="text" className="relative right-0 items-center" /> */}
+            <button className="bg-pink-500 w-8 h-6">
+              <picture>
+                <img
+                  src="../../images/white.svg"
+                  alt="pic"
+                  className="w-5"
+                />
+              </picture>
+            </button>
+          </div>
         </div>
       </div>
     </div>
