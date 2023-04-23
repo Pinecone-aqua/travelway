@@ -1,7 +1,7 @@
 import Layout from "@/components/Layout";
 import Head from "next/head";
-import { getAllTravelIDs, getTravelData } from "../../../lib/travels";
-import { TravelType } from "../../../lib/TravelType";
+import { getAllTravelIDs, getTravelData } from "../../../lib/travelsService";
+import { TravelType } from "./types";
 import { GetStaticProps } from "next";
 import Header from "@/components/Header";
 
@@ -36,9 +36,7 @@ export const getStaticProps: GetStaticProps<TravelData> = async ({
 };
 
 export default function Travel({ travelData }: { travelData: TravelTypeID }) {
- 
-  let { id } = travelData;
-  let { travel } = travelData;
+  const { travel } = travelData;
 
   return (
     <Layout>
@@ -51,18 +49,18 @@ export default function Travel({ travelData }: { travelData: TravelTypeID }) {
       <article>
         <div className="flex gap-2 justify-center items-center bg-white w-[90vw] mx-auto m-4 rounded-sm shadow-md">
           <div className="max-h-60 w-full overflow-hidden rounded-md bg-blue-500">
-            <img src={travel.image} alt="profile image 1" className="w-full shadow-lg" />
+            {travel.title}
           </div>
           <div className="px-2 py-4 flex flex-col gap-y-2">
-            <p className="text-slate-800"><span className="text-sm font-bold text-gray-900">Аймаг: </span>{travel.destination}</p>
-            <p className="text-slate-800"><span className="text-sm font-bold text-gray-900">Сум, газрын нэр: </span>{travel.subDest}</p>
-            <p className="text-slate-800"><span className="text-sm font-bold text-gray-900 text-justify">Товч мэдээлэл: </span>{travel.description}</p>
-            <p><span className="text-sm font-bold text-gray-900">Тохиромжтой улирал: </span>
-            /{travel.season.map(elem => (<span>{elem}, </span>))}/
+            <p className="text-slate-800"><span className="text-sm font-bold text-gray-900">Товч мэдээлэл: </span>{travel.description}</p>
+            <p className="text-slate-800"><span className="text-sm font-bold text-gray-900">Тохиромжтой улирал: </span>{travel.season}</p>
+            <p className="text-slate-800"><span className="text-sm font-bold text-gray-900 text-justify">{travel.createdAt.toISOString().substring(0,9)}</span></p>
+            <p><span className="text-sm font-bold text-gray-900">Title: </span>
+            /{travel.season.map((elem, index) => (<span key={index}>{elem}, </span>))}/
             </p>
-            <p><span className="text-sm font-bold text-gray-900">Tags: </span>
+            {/* <p><span className="text-sm font-bold text-gray-900">Tags: </span>
             [{travel.tags.map(item => (<span>{item.name},{" "}</span>))}]
-            </p>
+            </p> */}
           </div>
         </div>
       </article>
