@@ -24,7 +24,7 @@ export default function TravelJourney(): JSX.Element {
           />
         </picture>
         <Header />
-        <div className="flex justify-center  h-[84px] max-h-[125px] w-full  absolute bottom-0 -bottom-10">
+        <div className="flex justify-center  h-[84px] max-h-[125px] w-full  absolute bottom-0 -bottom-9">
           <div className="flex rounded-[10px] p-3 gap-10 bg-gray-500 h-[84px] items-center  justify-center drop-shadow-2xl">
             <button
               className={
@@ -47,7 +47,7 @@ export default function TravelJourney(): JSX.Element {
             >
               Travel Plan
             </button>
-            <button
+            {/* <button
               className={
                 color === "Budget"
                   ? "transition ease-in-out  delay-100 active:scale-110 text-black w-full h-[54px] bg-orange-500 rounded-2xl drop-shadow-2xl"
@@ -56,12 +56,12 @@ export default function TravelJourney(): JSX.Element {
               onClick={changeColor}
             >
               Budget
-            </button>
+            </button> */}
           </div>
         </div>
       </div>
       <div className="flex justify-center">
-        <div className="flex justify-center bg-gray-500 w-full  rounded-[20px] abso">
+        <div className="flex justify-center  w-full  rounded-[20px] abso">
           <div className="mt-[100px]  ">
             {color == "Travel Plan" ? (
               <TravelPlan />

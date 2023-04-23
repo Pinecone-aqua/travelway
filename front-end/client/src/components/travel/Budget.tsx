@@ -3,6 +3,32 @@ export default function Budget() {
     <>
       <div>
         <p>Budget</p>
+        <p>Budget</p>
+        <p>Budget</p>
+        <p>Budget</p>
+        <p>Budget</p>
+        <p>Budget</p>
+        <p>Budget</p>
+        <p>Budget</p>
+        <p>Budget</p>
+        <p>Budget</p>
+        <p>Budget</p>
+        <p>Budget</p>
+        <p>Budget</p>
+        <p>Budget</p>
+        <p>Budget</p>
+        <p>Budget</p>
+        <p>Budget</p>
+        <p>Budget</p>
+        <p>Budget</p>
+        <p>Budget</p>
+        <p>Budget</p>
+        <p>Budget</p>
+        <p>Budget</p>
+        <p>Budget</p>
+        <p>Budget</p>
+        <p>Budget</p>
+        <p>Budget</p>
       </div>
     </>
   );
