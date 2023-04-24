@@ -46,6 +46,13 @@ export class QuestService {
   }
 
   async create(newQuest: CreateQuestDto) {
-    console.log(newQuest);
+    const { title, description, myth } = newQuest;
+
+    if (!title && !description && !myth) {
+      throw new BadRequestException('Аяллын мэдээлэл дутуу байна');
+    }
+    const newAsQuest = new this.questModel(newQuest);
+    const result = await newAsQuest.save();
+    return result;
   }
 }

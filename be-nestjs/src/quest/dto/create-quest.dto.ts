@@ -8,4 +8,6 @@ export class CreateQuestDto {
   readonly description: string;
   @IsString()
   readonly image: string;
+  @IsString()
+  readonly myth: string;
 }

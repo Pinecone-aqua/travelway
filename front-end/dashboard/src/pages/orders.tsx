@@ -1,4 +1,3 @@
-/* eslint-disable unicorn/filename-case */
 import CreateQuest from "@/components/mainComponent/CreateQuest";
 import Quest from "@/components/mainComponent/Quest";
 import { questType } from "@/util/types";
