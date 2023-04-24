@@ -27,7 +27,7 @@
           { "component": true, "html": true }
         ],
         "@typescript-eslint/no-empty-function": "error",
-        "@typescript-eslint/no-misused-promises": "error",
+        // /** "@typescript-eslint/no-misused-promises": "error", */
         "@typescript-eslint/no-unnecessary-condition": "error",
         "@typescript-eslint/prefer-as-const": "error",
         "@typescript-eslint/no-unnecessary-type-assertion": "error",

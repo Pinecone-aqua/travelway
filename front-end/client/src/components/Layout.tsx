@@ -1,8 +1,7 @@
 import React, { ReactNode } from "react";
 
 
-const Layout = ({ children }: { children: ReactNode }): JSX.Element => {
-  return (
+const Layout = ({ children }: { children: ReactNode }): JSX.Element => (
     <>
     <div>
       {/* <Header /> */}
@@ -11,7 +10,6 @@ const Layout = ({ children }: { children: ReactNode }): JSX.Element => {
     </div>
     </>
   );
-};
 
 
 export default Layout;

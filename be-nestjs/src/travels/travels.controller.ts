@@ -31,6 +31,11 @@ export class TravelsController {
     return this.travelService.findOne(id);
   }
 
+  @Get('getid')
+  findAllId(): Promise<any[]> {
+    return this.travelService.findIdAll();
+  }
+
   @Patch(':id')
   update(
     @Param('id') id: string,
