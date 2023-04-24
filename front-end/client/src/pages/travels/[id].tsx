@@ -1,17 +1,33 @@
 import Layout from "@/components/Layout";
 import Head from "next/head";
-import { getAllTravelIDs, getTravelData } from "../../../lib/travelsService";
-import { TravelType } from "./types";
-import { GetStaticProps } from "next";
+import { getAllTravelIDs } from "../../../lib/travelsService";
+// import { GetStaticProps } from "next";
 import Header from "@/components/Header";
 
-interface TravelTypeID {
+interface TravelType {
   id: string;
-  travel: TravelType;
+  title: string;
+  description: string;
+  day: [
+    {
+      title: string;
+      description: string;
+      image: string;
+      considerations: string;
+      destination: string;
+    }
+  ];
+  season: string[];
+  createdAt: Date;
+  updatedAt: Date;
 }
 
+// interface TravelTypeID {
+//   travel: TravelType;
+// }
+
 interface TravelData {
-  travelData: TravelTypeID;
+  travelData: TravelType;
 }
 
 export async function getStaticPaths() {
@@ -22,21 +38,23 @@ export async function getStaticPaths() {
   };
 }
 
-export const getStaticProps: GetStaticProps<TravelData> = async ({
-  params,
-}) => {
-  const id = params?.id ?? "";
-  const travelData: TravelTypeID = await getTravelData(id as string);
+// export const getStaticProps: GetStaticProps<TravelData> = async ({
+//   params,
+// }) => {
+//   // const id = params?.id ?? "";
+//   // const travelData: TravelType = await getTravelData(id as string);
 
-  return {
-    props: {
-      travelData,
-    },
-  };
-};
+//   return {
+//     // props: {
+//     //   travelData,
+//     // },
+//   };
+// };
 
-export default function Travel({ travelData }: { travelData: TravelTypeID }) {
-  const { travel } = travelData;
+export default function Travel({ travelData }: TravelData ) {
+  const travel = travelData;
+
+  console.log(travel);
 
   return (
     <Layout>
@@ -47,7 +65,7 @@ export default function Travel({ travelData }: { travelData: TravelTypeID }) {
         <Header />
       </div>
       <article>
-        <div className="flex gap-2 justify-center items-center bg-white w-[90vw] mx-auto m-4 rounded-sm shadow-md">
+        {/* <div className="flex gap-2 justify-center items-center bg-white w-[90vw] mx-auto m-4 rounded-sm shadow-md">
           <div className="max-h-60 w-full overflow-hidden rounded-md bg-blue-500">
             {travel.title}
           </div>
@@ -58,11 +76,11 @@ export default function Travel({ travelData }: { travelData: TravelTypeID }) {
             <p><span className="text-sm font-bold text-gray-900">Title: </span>
             /{travel.season.map((elem, index) => (<span key={index}>{elem}, </span>))}/
             </p>
-            {/* <p><span className="text-sm font-bold text-gray-900">Tags: </span>
+            <p><span className="text-sm font-bold text-gray-900">Tags: </span>
             [{travel.tags.map(item => (<span>{item.name},{" "}</span>))}]
-            </p> */}
+            </p> 
           </div>
-        </div>
+        </div> */}
       </article>
     </Layout>
   );

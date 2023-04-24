@@ -3,11 +3,14 @@ import axios from "axios";
 type IdsType = { _id: string };
 
 export async function getAllTravelIDs() {
+
   try {
-    // Get all id travels data from API localhsot:3009/travels/getid
+    // Get all id travels data from API localhost:3009/travels/getid
     const result = await axios.get("http://localhost:3009/travels/getid");
     const { data } = result;
     const idsData: IdsType[] = data;
+    
+    console.log(idsData);
 
     return idsData.map(({ _id }) => ({
       params: {
