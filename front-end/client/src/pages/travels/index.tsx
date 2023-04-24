@@ -10,7 +10,7 @@ interface TravelProps {
 }
 
 export default function Travel({ travels }: TravelProps) {
-  console.log("data shuu", travels);
+  // console.log("data shuu", travels);
 
   return (
     <Layout>

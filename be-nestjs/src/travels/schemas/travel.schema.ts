@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { HydratedDocument } from 'mongoose';
+import mongoose, { HydratedDocument } from 'mongoose';
 
 export type TravelDocument = HydratedDocument<Travel>;
 
@@ -7,6 +7,9 @@ export type TravelDocument = HydratedDocument<Travel>;
   timestamps: true,
 })
 export class Travel {
+  @Prop({ type: mongoose.Types.ObjectId })
+  _id: string;
+
   @Prop()
   title: string;
 
