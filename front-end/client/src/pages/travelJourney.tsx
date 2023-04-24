@@ -46,16 +46,6 @@ export default function TravelJourney(): JSX.Element {
             >
               Travel Plan
             </button>
-            {/* <button
-              className={
-                color === "Budget"
-                  ? "transition ease-in-out  delay-100 active:scale-110 text-black w-full h-[54px] bg-orange-500 rounded-2xl drop-shadow-2xl"
-                  : "text-white w-[250px] h-[54px]"
-              }
-              onClick={changeColor}
-            >
-              Budget
-            </button> */}
           </div>
         </div>
       </div>
