@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unnecessary-condition */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Header from "@/components/Header";
-import Budget from "@/components/travel/Budget";
 import Description from "@/components/travel/Description";
 import TravelPlan from "@/components/travel/TravelPlan";
 import { useState } from "react";
@@ -24,7 +23,7 @@ export default function TravelJourney(): JSX.Element {
           />
         </picture>
         <Header />
-        <div className="flex justify-center  h-[84px] max-h-[125px] w-full  absolute bottom-0 -bottom-9">
+        <div className="flex justify-center  h-[84px] max-h-[125px] w-full  absolute bottom-0 -bottom-10">
           <div className="flex rounded-[10px] p-3 gap-10 bg-gray-500 h-[84px] items-center  justify-center drop-shadow-2xl">
             <button
               className={
@@ -61,17 +60,9 @@ export default function TravelJourney(): JSX.Element {
         </div>
       </div>
       <div className="flex justify-center">
-        <div className="flex justify-center  w-full  rounded-[20px] abso">
-          <div className="mt-[100px]  ">
-            {color == "Travel Plan" ? (
-              <TravelPlan />
-            ) : color == "Description" ? (
-              <Description />
-            ) : color == "Budget" ? (
-              <Budget />
-            ) : (
-              <Description />
-            )}
+        <div className="flex justify-center  w-full  rounded-[20px]">
+          <div className="mt-[60px]  ">
+            {color == "Travel Plan" ? <TravelPlan /> : <Description />}
           </div>
         </div>
       </div>
