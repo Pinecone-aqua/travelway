@@ -15,11 +15,10 @@ export class Travel {
   description: string;
 
   @Prop([Object])
-  day: Object[];
+  day: object[];
 
   @Prop()
   season: string;
-
 }
 
 export const TravelSchema = SchemaFactory.createForClass(Travel);
