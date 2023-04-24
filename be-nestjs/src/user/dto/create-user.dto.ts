@@ -1,42 +1,38 @@
-import {
-  IsArray,
-  IsEmail,
-  IsEnum,
-  IsNotEmpty,
-  IsString,
-  MinLength,
-} from 'class-validator';
+import { IsArray, IsEmail, IsEnum, IsNotEmpty, IsString, MinLength } from 'class-validator';
 import { Role } from '../role.enum';
 import { STATUS_CODES } from 'http';
 
 export class CreateUserDto {
-  @IsString()
-  readonly username: string;
 
-  @IsString()
-  readonly nickname: string;
+    @IsString()
+    readonly username: string;
+    
+    @IsString()
+    readonly nickname: string;
+  
+    @IsNotEmpty()
+    @IsEmail({}, { message: 'Зөв И-мейл хаяг оруулна уу' })
+    readonly email: string;
+  
+    
+    @IsNotEmpty()
+    @IsString()
+    @MinLength(6)
+    readonly password: string;
 
-  @IsNotEmpty()
-  @IsEmail({}, { message: 'Зөв И-мейл хаяг оруулна уу' })
-  readonly email: string;
+    @MinLength(8)
+    readonly phone: number;
 
-  @IsNotEmpty()
-  @IsString()
-  @MinLength(6)
-  readonly password: string;
+    @IsString()
+    readonly biography: string;
 
-  @MinLength(8)
-  readonly phone: number;
+    @IsString()
+    readonly image: string;
 
-  @IsString()
-  readonly biography: string;
+    @IsEnum(Role)
+    @IsString()
+    readonly role: string;
 
-  @IsString()
-  readonly image: string;
-
-  @IsEnum(Role)
-  @IsString()
-  readonly role: string;
 }
 
 // @IsArray()

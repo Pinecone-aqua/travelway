@@ -9,6 +9,6 @@ import { TrTagsSchema } from './schemas/tags.schema';
     MongooseModule.forFeature([{ name: 'TrTags', schema: TrTagsSchema }]),
   ],
   controllers: [TrtagsController],
-  providers: [TrtagsService],
+  providers: [TrtagsService]
 })
 export class TrtagsModule {}

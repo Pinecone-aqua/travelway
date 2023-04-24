@@ -32,6 +32,7 @@ export class User {
 
   @Prop()
   role: string;
+
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
