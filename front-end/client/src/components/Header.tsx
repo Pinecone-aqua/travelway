@@ -9,7 +9,7 @@ export default function Header(): JSX.Element {
     setNav(e.target.innerText);
   }
   return (
-    <div className="relative sticky top-0  ">
+    <div className="absolute sticky top-0  ">
       <div className="flex gap-3 justify-center content-center text-center  text-white  ">
         <div className="flex  h-7">
           <Link href="/travelJourney">
@@ -78,15 +78,13 @@ export default function Header(): JSX.Element {
         <div>
           <div className="absolute right-0 mr-[1rem] flex items-center mt-4">
             {/* <input type="text" className="relative right-0 items-center" /> */}
-            <button className="bg-pink-500 w-8 h-6">
-              <picture>
-                <img
-                  src="../../images/white.svg"
-                  alt="pic"
-                  className="w-5"
-                />
-              </picture>
-            </button>
+            <Link href="/user">
+              <button className="bg-pink-500 w-8 h-6">
+                <picture>
+                  <img src="../../images/white.svg" alt="pic" className="w-5" />
+                </picture>
+              </button>
+            </Link>
           </div>
         </div>
       </div>
