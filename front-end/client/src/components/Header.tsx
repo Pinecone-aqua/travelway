@@ -80,11 +80,7 @@ export default function Header(): JSX.Element {
             {/* <input type="text" className="relative right-0 items-center" /> */}
             <button className="bg-pink-500 w-8 h-6">
               <picture>
-                <img
-                  src="../../images/white.svg"
-                  alt="pic"
-                  className="w-5"
-                />
+                <img src="../../images/white.svg" alt="pic" className="w-5" />
               </picture>
             </button>
           </div>

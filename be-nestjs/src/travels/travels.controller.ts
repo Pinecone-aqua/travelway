@@ -11,6 +11,7 @@ import { TravelsService } from './travels.service';
 import { CreateTravelDto } from './dto/create-travel.dto';
 import { Travel } from './schemas/travel.schema';
 import { UpdateTravelDto } from './dto/update-travel.dto';
+import { Types } from 'mongoose';
 
 @Controller('travels')
 export class TravelsController {
@@ -28,11 +29,12 @@ export class TravelsController {
 
   @Get(':id')
   findOne(@Param('id') id: string): Promise<Travel> {
+    console.log(id);
     return this.travelService.findOne(id);
   }
 
-  @Get('getid')
-  findAllId(): Promise<any[]> {
+  @Get('allid')
+  findAllId(): Promise<Types.ObjectId[]> {
     return this.travelService.findIdAll();
   }
 
