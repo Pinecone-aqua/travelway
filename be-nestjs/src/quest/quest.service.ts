@@ -5,6 +5,7 @@ import {
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { CreateQuestDto } from './dto/create-quest.dto';
 import { UpdateQuestDto } from './dto/update-quest.dto';
 import { Quest } from './schemas/quest.schema';
 
@@ -42,5 +43,9 @@ export class QuestService {
       );
     }
     return updatedQuest;
+  }
+
+  async create(newQuest: CreateQuestDto) {
+    console.log(newQuest);
   }
 }

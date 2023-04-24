@@ -1,5 +1,5 @@
 /* eslint-disable unicorn/filename-case */
-import CreateQuest from "@/components/mainComponent/createQuest";
+import CreateQuest from "@/components/mainComponent/CreateQuest";
 import Quest from "@/components/mainComponent/Quest";
 import { questType } from "@/util/types";
 import { useEffect, useState } from "react";
@@ -17,14 +17,20 @@ export default function Orders(): JSX.Element {
     <>
       {create == true ? (
         <div>
-          <button className="bg-green-500" onClick={() => setCreate(false)}>
-            bask
+          <button
+            className="bg-green-500 px-4 py-2 rounded-xl border-2"
+            onClick={() => setCreate(false)}
+          >
+            back
           </button>
           <CreateQuest />
         </div>
       ) : (
         <div>
-          <button className="bg-green-500" onClick={() => setCreate(true)}>
+          <button
+            className="bg-green-500 px-4 py-2 rounded-xl"
+            onClick={() => setCreate(true)}
+          >
             create
           </button>
           <table className="table-auto w-9/12">

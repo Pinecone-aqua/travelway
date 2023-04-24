@@ -36,11 +36,10 @@
         "@typescript-eslint/return-await": "error",
         "arrow-body-style": ["error", "as-needed"]
       }
-
     },
     {
       "files": ["*.jsx", "**/*.tsx", "**/**/*.tsx", "!^\\[.*]\\.tsx$"], // for JSX Component
-      "excludedFiles": ["^\\[.*]\\.tsx$"],
+      "excludedFiles": ["^\\[.*]\\.tsx$", "./src/pages/**"],
       "rules": {
         "unicorn/prefer-module": "off",
         "unicorn/filename-case": ["error", { "case": "pascalCase" }]

@@ -19,8 +19,10 @@ export default function QuestID(): JSX.Element {
   function editHandler(e: any): void {
     e.preventDefault();
 
-    axios.put(`http://localhost:3009/quests/${query.id}`, {
+    axios.patch(`http://localhost:3009/quests/${query.id}`, {
       title: e.target.title.value,
+      description: e.target.description.value,
+      myth: e.target.myth.value,
     });
   }
 
@@ -49,9 +51,9 @@ export default function QuestID(): JSX.Element {
           <div className="text-2xl">домог хууч</div>
           <input
             type="text"
-            name="legend"
+            name="myth"
             className="disabled:opacity-75"
-            defaultValue={data?.legend}
+            defaultValue={data?.myth}
           />
           <div>
             {" "}

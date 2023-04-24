@@ -12,7 +12,7 @@ export interface questType {
   province: string;
   description: string;
   image: string;
-  legend: string;
+  myth: string;
   coord: object;
   toDoList: [];
 }

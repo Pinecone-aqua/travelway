@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-//import axios from "axios";
+
 import { userType } from "@/util/types";
 import User from "@/components/mainComponent/User";
 

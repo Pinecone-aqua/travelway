@@ -1,4 +1,13 @@
-import { Body, Controller, Delete, Get, Param, Patch } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+} from '@nestjs/common';
+import { CreateQuestDto } from './dto/create-quest.dto';
 import { UpdateQuestDto } from './dto/update-quest.dto';
 import { QuestService } from './quest.service';
 import { Quest } from './schemas/quest.schema';
@@ -19,13 +28,17 @@ export class QuestsController {
   remove(@Param('id') id: string): Promise<Quest> {
     return this.questService.remove(id);
   }
+  @Post('create')
+  create(@Body() create: CreateQuestDto) {
+    console.log('asd');
+
+    return this.questService.create(create);
+  }
   @Patch(':id')
   update(
     @Param('id') id: string,
     @Body() updateQuestDto: UpdateQuestDto,
   ): Promise<Quest> {
-    console.log('asa', id);
-
     return this.questService.update(id, updateQuestDto);
   }
 }
