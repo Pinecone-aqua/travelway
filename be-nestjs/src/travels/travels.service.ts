@@ -16,9 +16,9 @@ export class TravelsService {
   ) {}
 
   async create(createTravelDto: CreateTravelDto): Promise<Travel> {
-    const { title, description, day, season } = createTravelDto;
+    const { title, description, day, season, tags_id } = createTravelDto;
 
-    if (!title && !description && !day && !season) {
+    if (!(title && description && day && season && tags_id)) {
       throw new BadRequestException('Аяллын мэдээлэл дутуу байна');
     }
 

@@ -7,9 +7,6 @@ export type TravelDocument = HydratedDocument<Travel>;
   timestamps: true,
 })
 export class Travel {
-  @Prop({ type: mongoose.Types.ObjectId })
-  _id: string;
-
   @Prop()
   title: string;
 
