@@ -7,23 +7,21 @@ export default function Users(): JSX.Element {
   const [users, setUsers] = useState<userType[] | null>(null);
 
   useEffect(() => {
-    // axios
-    //   .get("http://localhost:9090/users")
-    //   .then(({ data }) => setUsers(data.users));
     fetch("http://localhost:3009/users/get")
       .then((response) => response.json())
       .then((res) => setUsers(res));
-    // fetch("http://localhost:3009/users").then
   }, []);
   console.log(users);
 
   return (
-    <>
-      <table className="table-auto w-9/12">
-        <thead className="h-24">
-          <tr>
-            <th scope="col">User ID</th>
-            <th scope="col">Овог</th>
+    <div className="bg-white rounded-2xl h-full p-20">
+      <table className="table-auto bg-gray-200 w-full h-100 rounded-2xl ">
+        <thead className="h-24 text-left p-5">
+          <tr className="ml-5">
+            <th scope="col" className="p-5">
+              User ID
+            </th>
+            <th scope="col">Хоч</th>
             <th scope="col">Нэр</th>
             <th scope="col">И-мэйл хаяг</th>
             <th scope="col">Утас</th>
@@ -38,6 +36,6 @@ export default function Users(): JSX.Element {
           ))}
         </tbody>
       </table>
-    </>
+    </div>
   );
 }

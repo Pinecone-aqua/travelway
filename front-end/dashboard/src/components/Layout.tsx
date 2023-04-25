@@ -14,7 +14,7 @@ export default function Layout({
       </div>
       <div className="flex mt-12">
         <SideMenu />
-        <div className="w-9/12">{children}</div>
+        <div className="w-9/12 mr-20">{children}</div>
       </div>
       <div>footer shuu</div>
     </div>
