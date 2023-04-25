@@ -1,40 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../../components/Layout";
 import Head from "next/head";
 import Header from "../../components/Header";
 import axios from "axios";
+import { TravelType } from "../../../util/types";
 
-interface TravelType {
-  _id: string;
-  title: string;
-  description: string;
-  day: [
-    {
-      title: string;
-      description: string;
-      image: string;
-      considerations: string;
-      destination: string;
-    }
-  ];
-  season: string[];
-  createdAt: Date;
-  updatedAt: Date;
-}
-
-export async function getStaticProps({ params }: any) {
+export async function getStaticProps({ params }: { params: { id: string } }) {
   try {
-    const id = params?.id ?? "";
+    const id = params.id;
     if (id == "") {
       console.log("Amjilttgui");
       return;
     }
-    // console.log("Params id:===> " +id);
+    // console.log("Params id:===> " + id);
     // console.log(typeof params.id);
 
     const travelData = await axios.get(`http://localhost:3009/travels/${id}`);
-
     const result = travelData.data;
+
+    console.log("TravelData => ", travelData);
+
+    console.log("Result in PROPS==> ");
+    console.log(result);
 
     return {
       props: {
@@ -58,6 +45,9 @@ export async function getStaticPaths() {
       },
     }));
 
+    console.log("Get static Paths====>  ");
+    console.log(path);
+
     return {
       paths: path,
       fallback: false,
@@ -69,9 +59,16 @@ export async function getStaticPaths() {
 }
 
 export default function Travel({ result }: { result: TravelType }) {
-
   // console.log(JSON.stringify(result, null, 2));
   // console.log(await result);
+
+  const [travelData, setTravelData] = useState<TravelType | null>(null);
+
+  useEffect(() => {
+    setTravelData(result);
+  }, [result]);
+
+  console.log(travelData);
 
   return (
     <Layout>
@@ -108,11 +105,10 @@ export default function Travel({ result }: { result: TravelType }) {
               <span className="text-sm font-bold text-gray-900">Title: </span>/
               {
                 JSON.stringify(result.season, null, 2)
-              
-              // .map((elem, index) => (
-              // <span key={index}>{elem}, </span>
-              // ))
-              
+
+                // .map((elem, index) => (
+                // <span key={index}>{elem}, </span>
+                // ))
               }
               /
             </p>
@@ -127,12 +123,8 @@ export default function Travel({ result }: { result: TravelType }) {
               }
             </p>
           </div>
-        </div>{" "}
-        */
+        </div>
       </article>
     </Layout>
   );
-}
-
-{
 }

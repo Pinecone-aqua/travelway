@@ -10,8 +10,6 @@ interface TravelProps {
 }
 
 export default function Travel({ travels }: TravelProps) {
-  // console.log("data shuu", travels);
-
   return (
     <Layout>
       <Head>
@@ -24,6 +22,7 @@ export default function Travel({ travels }: TravelProps) {
         <section className="flex flex-wrap gap-4 my-8 container mx-auto">
           {travels.map((travel: TravelType, index: number) => (
             <Link href={`/travels/${travel._id}`} key={index}>
+              {JSON.stringify(travel._id, null, 2)}
               <div
                 className="max-w-md border rounded bg-slate-100 flex p-0"
                 key={travel._id}

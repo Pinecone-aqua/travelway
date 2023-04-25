@@ -27,9 +27,9 @@ export class TravelsController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string): Promise<Travel> {
-    console.log(id);
-    return this.travelService.findOne(id);
+  findOne(@Param() params: { id: string }): Promise<Travel> {
+    console.log('Request ID orj irlee', params.id);
+    return this.travelService.findOne(params.id);
   }
 
   @Patch(':id')

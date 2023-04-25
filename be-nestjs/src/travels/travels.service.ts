@@ -3,7 +3,7 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { Model } from 'mongoose';
+import mongoose, { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { Travel } from './schemas/travel.schema';
 import { CreateTravelDto } from './dto/create-travel.dto';
@@ -38,9 +38,16 @@ export class TravelsService {
   // }
 
   async findOne(id: string): Promise<Travel> {
-    const result = await this.travelModel.findOne({ _id: id });
-
-    return result;
+    try {
+      const result = await this.travelModel.findOne({
+        _id: new mongoose.Types.ObjectId(id),
+      });
+      console.log('Object ID==> ', id);
+      console.log(await result);
+      return result;
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   async update(id: string, updateTravelDto: UpdateTravelDto): Promise<Travel> {
