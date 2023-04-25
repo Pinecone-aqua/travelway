@@ -2,6 +2,8 @@ import axios from "axios";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { TravelType } from "../../../util/types";
+import Image from "next/image";
+import Date from "../date";
 
 export default function TravelPlan(): JSX.Element {
   const [travels, setTravels] = useState<TravelType[]>([]);
@@ -18,39 +20,121 @@ export default function TravelPlan(): JSX.Element {
 
   return (
     <>
-      <div className="bg-teal-500 ">
+      <div>
         <div>
-          <section className="grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 my-8 container mx-auto bg-slate-500">
+          <section className="flex flex-col gap-2 my-8 container mx-auto">
             {travels.map((travel: TravelType, index: number) => (
-              <Link href={`/travels/${travel._id}`} key={index}>
+              <Link href={`/travelJourney/${travel._id}`} key={index}>
                 <div
-                  className="max-w-md border rounded bg-slate-100 flex p-0"
-                  key={travel._id}
+                  className="max-full mt-4 px-4 text-slate-800 flex flex-col"
+                  key={index}
                 >
-                  <div
-                    key={`${travel._id}abcd3be`}
-                    className="flex flex-col w-[60%] p-4"
-                  >
-                    <p className="text-slate-600 text-justify">
-                      <span className="font-bold text-teal-800">
-                        Description:
-                      </span>{" "}
-                      {travel.description}
-                    </p>
-                    <p className="text-slate-600 text-justify">
-                      <span className="font-bold text-teal-800">TITLE:</span>{" "}
-                      {travel.title}
-                    </p>
-                    <p className="text-slate-600 text-justify">
-                      <span className="font-bold text-teal-800">SEASON:</span>{" "}
-                      {travel.season}
-                    </p>
+                  <h1 className="text-3xl text-start p-2 mb-6">
+                    {travel.title}
+                  </h1>
+                  <p className="w-full text-justify text-lg mt-4 mb-10">
+                    {travel.description}
+                  </p>
+                  <div>
+                    {travel.day.map((oneday, index) => (
+                      <div key={index}>
+                        {index === 0 ? (
+                          <div className="my-4">
+                            <Image
+                              src={oneday.image}
+                              alt={oneday.image}
+                              width={1450}
+                              height={300}
+                              className="rounded-md"
+                            />
+                            <h2 className="font-bold text-slate-700 text-4xl mt-4 mb-2">
+                              Day {index + 1}
+                            </h2>
+                            <p className="text-xl text-orange-500 font-normal">
+                              {Date(travel.updatedAt)}
+                            </p>
+                            <h3 className="font-bold mb-2 text-lg">
+                              {oneday.title}
+                            </h3>
+                            <p className="my-4 text-xl text-justify">{oneday.description}</p>
+                            <h3 className="font-bold mt-2">
+                              Очих газар: {oneday.destination}
+                            </h3>
+                            <h3 className="text-normal text-lg">
+                                <span className="font-bold">Анхаарах зүйл:{" "}</span>
+                                {oneday.considerations}
+                              </h3>
+                          </div>
+                        ) : index % 2 === 0 ? (
+                          <div className="flex gap-12 mt-8 mb-4 items-center">
+                            <div className="w-5/12">
+                              <Image
+                                src={oneday.image}
+                                alt={oneday.image}
+                                width={550}
+                                height={400}
+                                className="rounded-md"
+                              />
+                            </div>
+                            <div className="6/12">
+                              <h2 className="font-bold text-slate-700 text-4xl mt-4 mb-2">
+                                Day {index + 1}
+                              </h2>
+                              <p className="text-xl text-orange-500 font-normal">
+                                {Date(travel.updatedAt)}
+                              </p>
+                              <h3 className="font-bold mb-2 text-lg">
+                                {oneday.title}
+                              </h3>
+                              <p className="my-4 text-xl text-justify">{oneday.description}</p>
+                              <h3 className="font-bold mt-2">
+                                Очих газар: {oneday.destination}
+                              </h3>
+                              <h3 className="text-normal text-lg">
+                                <span className="font-bold">Анхаарах зүйл:{" "}</span>
+                                {oneday.considerations}
+                              </h3>
+                            </div>
+                          </div>
+                        ) : (
+                          <div className="flex gap-12 mt-8 mb-4 items-center">
+                            <div className="w-6/12">
+                              <h2 className="font-bold text-slate-700 text-4xl mt-4 mb-2">
+                                Day {index + 1}
+                              </h2>
+                              <p className="text-xl text-orange-500 font-normal">
+                                {Date(travel.updatedAt)}
+                              </p>
+                              <h3 className="font-bold mb-2 text-lg">
+                                {oneday.title}
+                              </h3>
+                              <p className="my-4 text-xl text-justify">{oneday.description}</p>
+                              <h3 className="font-bold mt-2">
+                                Очих газар: {oneday.destination}
+                              </h3>
+                              <h3 className="text-normal text-lg">
+                                <span className="font-bold">Анхаарах зүйл:{" "}</span>
+                                {oneday.considerations}
+                              </h3>
+                            </div>
+                            <div className="w-5/12">
+                              <Image
+                                src={oneday.image}
+                                alt={oneday.image}
+                                width={550}
+                                height={400}
+                                className="rounded-md"
+                              />
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    ))}
                   </div>
                 </div>
               </Link>
             ))}
           </section>
-          <div>HERE Tour Plan Information</div>
         </div>
       </div>
     </>

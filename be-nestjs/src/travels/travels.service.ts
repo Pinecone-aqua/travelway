@@ -42,8 +42,6 @@ export class TravelsService {
       const result = await this.travelModel.findOne({
         _id: new mongoose.Types.ObjectId(id),
       });
-      console.log('Object ID==> ', id);
-      console.log(await result);
       return result;
     } catch (error) {
       console.log(error);
