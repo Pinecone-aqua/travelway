@@ -10,8 +10,8 @@ export default function MiniStory() {
 
   return (
     <div className="card flex justify-content-center">
-      <button onClick={() => setVisible(true)}>
-        <img src="./images/fuji.webp" alt="pic" className="w-[33%]" />
+      <button onClick={() => setVisible(true)} className="w-[33%]">
+        <img src="./images/fuji.webp" alt="pic" />
       </button>
       <Dialog
         header={
@@ -40,7 +40,7 @@ export default function MiniStory() {
             className="md:w-[60%] object-cover "
           />
 
-          <div className="m-0 md:w-[50%] px-5 ">
+          <div className="m-0 md:w-[50%] px-5 relative">
             <div className="m-0 flex items-center gap-2 hidden md:visible ">
               <img
                 src="./images/fuji.webp"
@@ -59,6 +59,16 @@ export default function MiniStory() {
               nulla pariatur. Excepteur sint occaecat cupidatat non proident,
               sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
+            <div className="h-[70px]"></div>
+            <div className="absolute flex justify-between pb-2 bottom-0 w-[100%] ">
+              <div className="flex gap-4">
+                <img src="./images/search.svg" alt="pic" />
+                <img src="./images/search.svg" alt="pic" />
+              </div>
+              <div>
+                <img src="./images/search.svg" alt="pic" className="pr-7" />
+              </div>
+            </div>
           </div>
         </div>
       </Dialog>
