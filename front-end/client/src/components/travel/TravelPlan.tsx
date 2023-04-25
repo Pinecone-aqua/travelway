@@ -50,6 +50,7 @@ export default function TravelPlan(): JSX.Element {
               </Link>
             ))}
           </section>
+          <div>HERE Tour Plan Information</div>
         </div>
       </div>
     </>
