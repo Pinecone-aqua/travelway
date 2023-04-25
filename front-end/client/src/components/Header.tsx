@@ -66,12 +66,12 @@ export default function Header(): JSX.Element {
             <button
               className={
                 nav == "Contact us"
-                  ? "text-[30px] sm:text-[20px] xl:w-[15rem] md:w-[10rem] sm:w-[8rem] mt-1"
+                  ? "text-[30px] sm:text-[20px] xl:w-[15rem] md:w-[10rem] sm:w-[2rem] mt-1"
                   : "w-[15rem] md:w-[10rem] sm:w-[5rem] opacity-50 mt-3"
               }
               onClick={changeNav}
             >
-              Contact us
+              Contact
             </button>
           </Link>
         </div>
