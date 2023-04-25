@@ -1,9 +1,9 @@
-import Header from "@/components/Header";
 import Layout from "@/components/Layout";
 import Head from "next/head";
 import axios from "axios";
 import Link from "next/link";
 import { TravelType } from "../../../util/types";
+import HeaderWhiteBlack from "@/components/headerbw";
 
 interface TravelProps {
   travels: TravelType[];
@@ -15,9 +15,7 @@ export default function Travel({ travels }: TravelProps) {
       <Head>
         <title>Travel Name here</title>
       </Head>
-      <div className="bg-slate-800">
-        <Header />
-      </div>
+      <HeaderWhiteBlack />
       <div>
         <section className="flex flex-wrap gap-4 my-8 container mx-auto">
           {travels.map((travel: TravelType, index: number) => (

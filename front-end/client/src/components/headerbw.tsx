@@ -1,16 +1,18 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Link from "next/link";
 import { useState } from "react";
+// import { useRouter } from "next/router";
 
-export default function Header(): JSX.Element {
+export default function HeaderWhiteBlack(): JSX.Element {
   const [nav, setNav] = useState<null | string>();
+  //   const  router = useRouter();
 
   function changeNav(e: any) {
     setNav(e.target.innerText);
   }
   return (
-    <div className="relative sticky top-0">
-      <div className="flex gap-3 justify-center content-center text-center  text-white  ">
+    <div className="relative sticky top-0 bg-white">
+      <div className="flex gap-3 justify-center content-center text-center  text-slate-800  ">
         <div className="flex  h-7">
           <Link href="/travelJourney">
             <button

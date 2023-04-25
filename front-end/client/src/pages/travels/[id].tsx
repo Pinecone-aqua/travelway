@@ -18,10 +18,9 @@ export async function getStaticProps({ params }: { params: { id: string } }) {
     const travelData = await axios.get(`http://localhost:3009/travels/${id}`);
     const result = travelData.data;
 
-    console.log("TravelData => ", travelData);
-
-    console.log("Result in PROPS==> ");
-    console.log(result);
+    // console.log("TravelData => ", travelData);
+    // console.log("Result in PROPS==> ");
+    // console.log(result);
 
     return {
       props: {
@@ -45,8 +44,8 @@ export async function getStaticPaths() {
       },
     }));
 
-    console.log("Get static Paths====>  ");
-    console.log(path);
+    // console.log("Get static Paths====>  ");
+    // console.log(path);
 
     return {
       paths: path,
@@ -75,9 +74,7 @@ export default function Travel({ result }: { result: TravelType }) {
       <Head>
         <title>Аялал</title>
       </Head>
-      <div className="bg-slate-800">
-        <Header />
-      </div>
+      <Header />
       <article>
         <div className="flex gap-2 justify-center items-center bg-white w-[90vw] mx-auto m-4 rounded-sm shadow-md">
           <div className="max-h-60 w-full overflow-hidden rounded-md bg-blue-500">
