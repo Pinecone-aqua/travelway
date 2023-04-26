@@ -34,10 +34,7 @@ export default function Login(): JSX.Element {
         password: loginForm.password,
       };
 
-      console.log("Data Object");
-      console.log(data);
-
-      // Validate email or password here
+      // Validate email or password here gehdee barag ajillahgvi
       if (!data.email || !data.password) {
         setError("Нэр болон нууц үгээ бүрэн оруулна уу");
         return;
@@ -45,22 +42,10 @@ export default function Login(): JSX.Element {
 
       const endpoint = "http://localhost:3009/auth/login";
 
-      // const options = {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify(data),
-      // };
-
       const response = await axios.post(endpoint, data);
 
       if (response.status === 200 || response.status === 201) {
-        // console not print
-        console.log("Your information status: ", response.status);
-        console.log("Your response body: ");
-        console.log(JSON.stringify(response, null, 2));
-        router.push("/");
+        router.push("/travelJourney");
 
         return;
       }
@@ -84,12 +69,12 @@ export default function Login(): JSX.Element {
             />
           </picture>
 
-          <div className="flex flex-col w-11/12 md:w-6/12">
+          <div className="flex flex-col w-11/12 md:w-6/12 lg:w-4/12">
             <div>
               {error && <p>{error}</p>}
               <form onSubmit={onSubmit}>
-                <label htmlFor="email" className="block text-md">
-                  Хэрэглэгч нэр
+                <label htmlFor="email" className="block text-md mb-1">
+                  И-мейл хаяг
                 </label>
                 <input
                   type="text"
@@ -97,13 +82,13 @@ export default function Login(): JSX.Element {
                   name="email"
                   value={loginForm.email}
                   onChange={handleChange}
-                  placeholder="хэрэглэгч нэр"
+                  placeholder="Email"
                   required
-                  className="border border-gray-500 px-4 py-1 text-md rounded"
+                  className="border border-gray-500 px-5 py-2 text-md rounded w-full"
                 />
                 <br />
                 <br />
-                <label htmlFor="password" className="block text-md">
+                <label htmlFor="password" className="block text-md mb-1">
                   Нууц үг
                 </label>
                 <input
@@ -114,21 +99,20 @@ export default function Login(): JSX.Element {
                   onChange={handleChange}
                   placeholder="нууц үг"
                   required
-                  className="border border-gray-500 px-4 py-1 text-md rounded"
+                  className="border border-gray-500 px-5 py-2 text-md rounded w-full"
                 />
                 <br />
                 <br />
                 <button
                   type="submit"
-                  className="inline-block rounded bg-blue-500 px-7 pb-2.5 pt-3 text-sm
-                font-medium uppercase leading-normal text-white"
+                  className="inline-block rounded bg-blue-500 px-5 py-2 text-sm
+                font-medium uppercase leading-normal text-white w-full"
                 >
                   нэвтрэх
                 </button>
-                <span className="ms-4 text-sm text-slate-400">
-                  {" "}
-                  | <Link href="/register">Шинээр бүртгүүлэх?</Link>
-                </span>
+                <div className="text-sm font-normal text-slate-400 text-center mt-4 uppercase">
+                  <Link href="/register">Шинэ хэрэглэгч бүртгүүлэх?</Link>
+                </div>
               </form>
             </div>
           </div>
