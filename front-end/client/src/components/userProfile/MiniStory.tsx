@@ -59,7 +59,7 @@ export default function MiniStory() {
               nulla pariatur. Excepteur sint occaecat cupidatat non proident,
               sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
-            <div className="h-[70px]"></div>
+            <div className="h-[70px]">Name</div>
             <div className="absolute flex justify-between pb-2 bottom-0 w-[100%] ">
               <div className="flex gap-4">
                 <img src="./images/search.svg" alt="pic" />

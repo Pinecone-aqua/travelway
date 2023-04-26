@@ -1,20 +1,20 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState } from "react";
+// import { useState } from "react";
 // import TravelJourney from "./travelJourney";
 // import ContuctUs from "./contuctUs";
 // import Layout from "@/components/Layout";
 // import Gadget from "./gadget";
 // import Home from "./home";
-import Link from "next/link";
+// import Link from "next/link";
 import Header from "@/components/Header";
 // import Ourcompany from "./ourcompany";
 
 export default function ContainerPages() {
-  const [nav, setNav] = useState<null | string>();
+  // const [nav, setNav] = useState<null | string>();
 
-  function changeNav(e: any) {
-    setNav(e.target.innerText);
-  }
+  // function changeNav(e: any) {
+  //   setNav(e.target.innerText);
+  // }
   return (
     <>
       <div className="w-full xxl:h-[500px] xl:h-[400px] lg:h-[300px] md:h-[200px]  drop-shadow-2xl relative">

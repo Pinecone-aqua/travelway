@@ -1,11 +1,12 @@
 import Layout from "@/components/Layout";
+import axios from "axios";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { FormEvent, useState } from "react";
 
 interface LoginForm {
-  username: string;
+  email: string;
   password: string;
 }
 
@@ -13,11 +14,10 @@ type DataInput = { target: { name: string; value: string } };
 
 export default function Login(): JSX.Element {
   const [loginForm, setLoginForm] = useState<LoginForm>({
-    username: "",
+    email: "",
     password: "",
   });
   const [error, setError] = useState<string>("");
-
   const router = useRouter();
 
   const handleChange = (e: DataInput) => {
@@ -25,50 +25,47 @@ export default function Login(): JSX.Element {
     setLoginForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  
   const onSubmit = async (e: FormEvent): Promise<void> => {
     e.preventDefault();
 
     try {
       const data: LoginForm = {
-        username: loginForm.username,
+        email: loginForm.email,
         password: loginForm.password,
       };
 
-      // Validate username or password here
-      if (!data.username || !data.password) {
+      console.log("Data Object");
+      console.log(data);
+
+      // Validate email or password here
+      if (!data.email || !data.password) {
         setError("Нэр болон нууц үгээ бүрэн оруулна уу");
         return;
       }
 
-      const endpoint = "http://localhost:3009/users/auth";
+      const endpoint = "http://localhost:3009/auth/login";
 
-      const options = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      };
+      // const options = {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify(data),
+      // };
 
-      const response = await fetch(endpoint, options);
+      const response = await axios.post(endpoint, data);
 
-      if (response.ok) {
+      if (response.status === 200 || response.status === 201) {
         // console not print
         console.log("Your information status: ", response.status);
         console.log("Your response body: ");
         console.log(JSON.stringify(response, null, 2));
         router.push("/");
-        
+
         return;
-
-      } else {
-        setError("Your name and password is wrong, Please check in try again");
       }
-
     } catch (error) {
-      console.log("Error occure: ", error);
-      setError(`Error occurence in onSubmit fn: ${error}`);
+      setError(`OnSubmit deer aldaa garsan fn: ${error}`);
     }
   };
 
@@ -91,14 +88,14 @@ export default function Login(): JSX.Element {
             <div>
               {error && <p>{error}</p>}
               <form onSubmit={onSubmit}>
-                <label htmlFor="username" className="block text-md">
+                <label htmlFor="email" className="block text-md">
                   Хэрэглэгч нэр
                 </label>
                 <input
                   type="text"
-                  id="username"
-                  name="username"
-                  value={loginForm.username}
+                  id="email"
+                  name="email"
+                  value={loginForm.email}
                   onChange={handleChange}
                   placeholder="хэрэглэгч нэр"
                   required
