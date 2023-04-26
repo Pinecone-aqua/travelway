@@ -13,8 +13,6 @@ export default function SideMenu(): JSX.Element {
   // }
   const route = useRouter();
 
-  console.log("ene yu vee", route.route);
-
   return (
     <>
       <div className="w-3/12 h-screen flex justify-center bg-slate-200">

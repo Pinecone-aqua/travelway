@@ -1,5 +1,4 @@
-/* eslint-disable unicorn/filename-case */
-import { questType, toDoType } from "../../util/types";
+import { questType } from "../../util/types";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -15,7 +14,6 @@ export default function QuestID(): JSX.Element {
         .then((res) => setData(res));
     }
   }, [query.id]);
-  console.log(query);
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-explicit-any
   function editHandler(e: any): void {
@@ -25,6 +23,7 @@ export default function QuestID(): JSX.Element {
       title: e.target.title.value,
       description: e.target.description.value,
       myth: e.target.myth.value,
+      toDo: e.target.activity.value,
     });
   }
 
@@ -59,11 +58,12 @@ export default function QuestID(): JSX.Element {
           </div>
           <div className="w-96">
             <div>Хийж болох зүйлс</div>
-            {toDo?.map((unit: toDoType, index: number) => (
+            {toDo?.map((unit: string, index: number) => (
               <div key={index}>
                 <textarea
                   className="my-2 text-slate-500  w-full rounded-2xl p-2"
-                  defaultValue={unit.activity}
+                  name="activity"
+                  defaultValue={unit}
                 />
               </div>
             ))}

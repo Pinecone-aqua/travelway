@@ -1,4 +1,4 @@
-import { IsString } from 'class-validator';
+import { IsArray, IsString } from 'class-validator';
 
 export class CreateQuestDto {
   @IsString()
@@ -10,4 +10,6 @@ export class CreateQuestDto {
   readonly image: string;
   @IsString()
   readonly myth: string;
+  @IsArray()
+  readonly toDoList: [];
 }

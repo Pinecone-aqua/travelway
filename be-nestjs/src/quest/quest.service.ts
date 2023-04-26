@@ -46,11 +46,12 @@ export class QuestService {
   }
 
   async create(newQuest: CreateQuestDto) {
-    const { title, description, myth } = newQuest;
+    const { title, description, myth, toDoList } = newQuest;
 
-    if (!title && !description && !myth) {
+    if (!title && !description && !myth && !toDoList) {
       throw new BadRequestException('Аяллын мэдээлэл дутуу байна');
     }
+    console.log(newQuest);
     const newAsQuest = new this.questModel(newQuest);
     const result = await newAsQuest.save();
     return result;

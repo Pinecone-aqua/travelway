@@ -28,6 +28,7 @@ export interface dayType {
   image: string;
   considerations: string;
 }
+
 export interface toDoType {
   activity: string;
 }

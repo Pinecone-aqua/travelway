@@ -30,7 +30,9 @@ export default function Quest(props: { unit: questType }): JSX.Element {
             </button>
 
             <button
-              onClick={() => deleteHandler(data._id)}
+              onClick={() => {
+                deleteHandler(data._id), setIsOpen(false);
+              }}
               className="h-10 bg-cyan-500 w-24 shadow-lg shadow-gray-500/100 rounded-xl"
             >
               устгах

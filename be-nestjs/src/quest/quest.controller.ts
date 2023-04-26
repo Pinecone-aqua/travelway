@@ -30,8 +30,6 @@ export class QuestsController {
   }
   @Post('create')
   create(@Body() create: CreateQuestDto) {
-    console.log('asd');
-
     return this.questService.create(create);
   }
   @Patch(':id')

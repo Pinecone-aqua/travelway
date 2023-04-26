@@ -13,6 +13,10 @@ export class Quest {
   description: string;
   @Prop()
   image: string;
+  @Prop()
+  myth: string;
+  @Prop()
+  toDoList: [];
 }
 
 export const QuestSchema = SchemaFactory.createForClass(Quest);
