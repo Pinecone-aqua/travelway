@@ -13,15 +13,22 @@ export default function MiniStoryAdd(): JSX.Element {
     setPopup(false);
   }
 
-  function miniStoryHandler(e: any) {
+  // function miniStoryHandler(e: any) {
+  //   e.preventDefault();
+  //   axios.post(`http://localhost:3009/miniStory/add`, {
+  //     image: e.target.image.innerText,
+  //     title: e.target.title.innerText,
+  //     sentence: e.target.sentence.innerText,
+  //   });
+  //   console.log("e.target.title.innerText :", e.target.title.innerText);
+  //   console.log("e.target.sentence.innerText :", e.target.sentence.innerText);
+  // }
+
+  async function miniStoryHandler(e: any) {
     e.preventDefault();
-    axios.post(`http://localhost:3009/miniStory/add`, {
-      image: e.target.image.innerText,
-      title: e.target.title.innerText,
-      sentence: e.target.sentence.innerText,
-    });
-    console.log("e.target.title.innerText :", e.target.title.innerText);
-    console.log("e.target.image.innerText :", e.target.image.innerText);
+    const travels = await axios.get("http://localhost:3009/miniStory/get");
+    const { data } = travels;
+    console.log(data);
   }
   return (
     <>

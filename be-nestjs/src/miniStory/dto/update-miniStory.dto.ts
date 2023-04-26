@@ -1,6 +1,5 @@
 import { PartialType } from '@nestjs/mapped-types';
 import { CreateMiniStoryDto } from './create-miniStory.dto';
-import { isObjectIdOrHexString } from 'mongoose';
 import { IsNotEmpty, IsString } from 'class-validator';
 
 export class UpdateMiniStorylDto extends PartialType(CreateMiniStoryDto) {
