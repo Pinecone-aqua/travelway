@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unnecessary-condition */
 import MiniStory from "@/components/userProfile/MiniStory";
+import MiniStoryAdd from "@/components/userProfile/MiniStoryAdd";
 import TravelGuide from "@/components/userProfile/TravelGuide";
 import TravelWay from "@/components/userProfile/TravelWay";
 import { useState } from "react";
@@ -29,7 +30,7 @@ export default function User() {
         </div>
       </div>
       <div className="h-[8rem]" />
-      <div className="items-center justify-center flex flex-col gap-10 ">
+      <div className="items-center justify-center flex flex-col gap-10 relative ">
         <p className="font-bold text-[26px]">Robert Harrison</p>
         <div className="w-[80%] grid gap-10">
           <div className="flex justify-center gap-5 font-semibold">
@@ -83,9 +84,14 @@ export default function User() {
               TravelGuide
             </button>
           </div>
-          <div>
+          <div className="relative">
             {change == "Mini story" ? (
-              <MiniStory />
+              <>
+                <div className="flex gap-5">
+                  <MiniStoryAdd />
+                  <MiniStory />
+                </div>
+              </>
             ) : change == "TravelWay" ? (
               <TravelWay />
             ) : (
