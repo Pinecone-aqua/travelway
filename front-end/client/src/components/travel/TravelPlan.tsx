@@ -39,14 +39,15 @@ export default function TravelPlan(): JSX.Element {
                     {travel.day.map((oneday, index) => (
                       <div key={index}>
                         {index === 0 ? (
-                          <div className="my-4">
+                          <div className="my-4 w-full">
                             <Image
                               src={oneday.image}
                               alt={oneday.image}
                               width={1450}
                               height={300}
-                              className="rounded-md"
+                              className="rounded-md w-full"
                             />
+
                             <h2 className="font-bold text-slate-700 text-4xl mt-4 mb-2">
                               Day {index + 1}
                             </h2>
@@ -56,18 +57,20 @@ export default function TravelPlan(): JSX.Element {
                             <h3 className="font-bold mb-2 text-lg">
                               {oneday.title}
                             </h3>
-                            <p className="my-4 text-xl text-justify">{oneday.description}</p>
+                            <p className="my-4 text-xl text-justify">
+                              {oneday.description}
+                            </p>
                             <h3 className="font-bold mt-2">
                               Очих газар: {oneday.destination}
                             </h3>
                             <h3 className="text-normal text-lg">
-                                <span className="font-bold">Анхаарах зүйл:{" "}</span>
-                                {oneday.considerations}
-                              </h3>
+                              <span className="font-bold">Анхаарах зүйл: </span>
+                              {oneday.considerations}
+                            </h3>
                           </div>
                         ) : index % 2 === 0 ? (
-                          <div className="flex gap-12 mt-8 mb-4 items-center">
-                            <div className="w-5/12">
+                          <div className="flex justify-between gap-20 items-center mt-8 mb-4">
+                            <div className="flex-0">
                               <Image
                                 src={oneday.image}
                                 alt={oneday.image}
@@ -76,8 +79,8 @@ export default function TravelPlan(): JSX.Element {
                                 className="rounded-md"
                               />
                             </div>
-                            <div className="6/12">
-                              <h2 className="font-bold text-slate-700 text-4xl mt-4 mb-2">
+                            <div className="flex-1">
+                              <h2 className="font-bold text-4xl mt-4 mb-2">
                                 Day {index + 1}
                               </h2>
                               <p className="text-xl text-orange-500 font-normal">
@@ -86,19 +89,23 @@ export default function TravelPlan(): JSX.Element {
                               <h3 className="font-bold mb-2 text-lg">
                                 {oneday.title}
                               </h3>
-                              <p className="my-4 text-xl text-justify">{oneday.description}</p>
+                              <p className="my-4 text-xl text-justify">
+                                {oneday.description}
+                              </p>
                               <h3 className="font-bold mt-2">
                                 Очих газар: {oneday.destination}
                               </h3>
                               <h3 className="text-normal text-lg">
-                                <span className="font-bold">Анхаарах зүйл:{" "}</span>
+                                <span className="font-bold">
+                                  Анхаарах зүйл:{" "}
+                                </span>
                                 {oneday.considerations}
                               </h3>
                             </div>
                           </div>
                         ) : (
-                          <div className="flex gap-12 mt-8 mb-4 items-center">
-                            <div className="w-6/12">
+                          <div className="flex justify-between gap-x-20 items-center mt-8 mb-4">
+                            <div className="flex-1">
                               <h2 className="font-bold text-slate-700 text-4xl mt-4 mb-2">
                                 Day {index + 1}
                               </h2>
@@ -108,16 +115,20 @@ export default function TravelPlan(): JSX.Element {
                               <h3 className="font-bold mb-2 text-lg">
                                 {oneday.title}
                               </h3>
-                              <p className="my-4 text-xl text-justify">{oneday.description}</p>
+                              <p className="my-4 text-xl text-justify">
+                                {oneday.description}
+                              </p>
                               <h3 className="font-bold mt-2">
                                 Очих газар: {oneday.destination}
                               </h3>
                               <h3 className="text-normal text-lg">
-                                <span className="font-bold">Анхаарах зүйл:{" "}</span>
+                                <span className="font-bold">
+                                  Анхаарах зүйл:{" "}
+                                </span>
                                 {oneday.considerations}
                               </h3>
                             </div>
-                            <div className="w-5/12">
+                            <div className="flex-0">
                               <Image
                                 src={oneday.image}
                                 alt={oneday.image}
