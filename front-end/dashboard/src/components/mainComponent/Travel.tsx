@@ -9,7 +9,7 @@ export default function Travel(props: { unit: travelType }): JSX.Element {
     console.log(travelId);
   }
   return (
-    <div className="flex flex-col min-h-96 h-100 w-full bg-gray-200 rounded-2xl p-10 mb-10">
+    <div className="flex flex-col min-h-96 h-100 w-full bg-gray-200 rounded-2xl p-10 mb-10 shadow-xl shadow-cyan-700">
       <h1>{data._id}</h1>
       <p>{data.description}</p>
       <h2>

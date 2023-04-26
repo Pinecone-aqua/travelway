@@ -14,7 +14,7 @@ export default function CreateQuest(): JSX.Element {
 
   return (
     <form
-      className=" flex flex-col bg-gray-200 rounded-2xl w-full items-center text-2xl mt-5"
+      className=" flex flex-col bg-gray-200 rounded-2xl w-full items-center text-2xl mt-5 shadow-xl shadow-cyan-700"
       onSubmit={createHandler}
     >
       <div className="w-96">

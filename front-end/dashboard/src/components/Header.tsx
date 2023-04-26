@@ -3,7 +3,7 @@ import DropProfile from "./DropProfile";
 
 export default function Header(): JSX.Element {
   return (
-    <div className="flex justify-center bg-slate-50 rounded-b-3xl">
+    <div className="flex justify-center bg-slate-50 rounded-b-3xl  shadow-xl shadow-cyan-600">
       <div className="container flex justify-between h-24 items-center">
         <Link href={"/"}>LOGO</Link>
         <div className="flex ">

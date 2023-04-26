@@ -17,12 +17,12 @@ export default function SideMenu(): JSX.Element {
 
   return (
     <>
-      <div className="w-3/12 h-screen flex justify-center bg-slate-200 ">
-        <ul className="flex flex-col rounded-2xl  bg-slate-50 h-2/3 w-4/6">
+      <div className="w-3/12 h-screen flex justify-center bg-slate-200">
+        <ul className="flex flex-col rounded-2xl  bg-slate-50 h-2/3 w-4/6  shadow-xl shadow-cyan-500">
           <Link
             className={
               route.route === "/orders"
-                ? " text-white bg-cyan-500 shadow-2xl shadow-cyan-500/100 text-2xl font-serif flex justify-center items-center  rounded-2xl w-9/12 h-16 m-7"
+                ? " text-white bg-cyan-500 shadow-2xl shadow-cyan-900 text-2xl font-serif flex justify-center items-center  rounded-2xl w-9/12 h-16 m-7"
                 : "flex justify-center items-center  rounded-2xl w-9/12 h-16 m-7"
             }
             href={"/orders"}
@@ -34,7 +34,7 @@ export default function SideMenu(): JSX.Element {
           <Link
             className={
               route.route === "/travels"
-                ? "text-white bg-cyan-500 shadow-2xl shadow-cyan-500/100  text-2xl font-serif flex justify-center items-center  rounded-2xl w-9/12 h-16 m-7"
+                ? "text-white bg-cyan-500 shadow-xl shadow-cyan-900  text-2xl font-serif flex justify-center items-center  rounded-2xl w-9/12 h-16 m-7"
                 : "flex justify-center items-center rounded-2xl w-9/12 h-16 m-7"
             }
             href={"/travels"}
@@ -46,7 +46,7 @@ export default function SideMenu(): JSX.Element {
           <Link
             className={
               route.route === "/users"
-                ? "text-white bg-cyan-500 shadow-2xl shadow-cyan-500/100   text-2xl font-serif flex justify-center items-center  rounded-2xl w-9/12 h-16 m-7"
+                ? "text-white bg-cyan-500 shadow-2xl shadow-cyan-900   text-2xl font-serif flex justify-center items-center  rounded-2xl w-9/12 h-16 m-7"
                 : "flex justify-center items-center  rounded-2xl w-9/12 h-16 m-7"
             }
             href={"/users"}
