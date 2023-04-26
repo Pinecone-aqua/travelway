@@ -1,20 +1,18 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Link from "next/link";
 import { useState } from "react";
+// import { useRouter } from "next/router";
 
-export default function Header(): JSX.Element {
+export default function HeaderWhiteBlack(): JSX.Element {
   const [nav, setNav] = useState<null | string>();
+  //   const  router = useRouter();
 
   function changeNav(e: any) {
     setNav(e.target.innerText);
   }
   return (
-<<<<<<< HEAD
-    <div className="relative sticky top-0">
-=======
-    <div className="absolute sticky top-0  ">
->>>>>>> main
-      <div className="flex gap-3 justify-center content-center text-center  text-white  ">
+    <div className="relative sticky top-0 bg-white">
+      <div className="flex gap-3 justify-center content-center text-center  text-slate-800  ">
         <div className="flex  h-7">
           <Link href="/travelJourney">
             <button
@@ -70,33 +68,23 @@ export default function Header(): JSX.Element {
             <button
               className={
                 nav == "Contact us"
-                  ? "text-[30px] sm:text-[20px] xl:w-[15rem] md:w-[10rem] sm:w-[2rem] mt-1"
+                  ? "text-[30px] sm:text-[20px] xl:w-[15rem] md:w-[10rem] sm:w-[8rem] mt-1"
                   : "w-[15rem] md:w-[10rem] sm:w-[5rem] opacity-50 mt-3"
               }
               onClick={changeNav}
             >
-              Contact
+              Contact us
             </button>
           </Link>
         </div>
         <div>
           <div className="absolute right-0 mr-[1rem] flex items-center mt-4">
             {/* <input type="text" className="relative right-0 items-center" /> */}
-<<<<<<< HEAD
             <button className="bg-pink-500 w-8 h-6">
               <picture>
                 <img src="../../images/white.svg" alt="pic" className="w-5" />
               </picture>
             </button>
-=======
-            <Link href="/user">
-              <button className="bg-pink-500 w-8 h-6">
-                <picture>
-                  <img src="../../images/white.svg" alt="pic" className="w-5" />
-                </picture>
-              </button>
-            </Link>
->>>>>>> main
           </div>
         </div>
       </div>

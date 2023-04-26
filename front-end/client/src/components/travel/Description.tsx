@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Description() {
   return (
     <>
@@ -16,9 +18,9 @@ export default function Description() {
             </picture>
             <div className="gap-2 flex">
               <p>by</p>
-              <a href="/" className="underline underline-offset-1">
+              <Link href="/" className="underline underline-offset-1">
                 Naruto
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -56,7 +58,7 @@ export default function Description() {
                 praesentium inventore eveniet consequatur dolorum dolores
                 molestiae, itaque aperiam ad ut alias enim. Corrupti, obcaecati?
               </p>
-              <hr className="text-black mt-10"/>
+              <hr className="text-black mt-10" />
             </div>
             <div className="w-[32rem]">
               <div className="w-[32rem]">
@@ -99,7 +101,9 @@ export default function Description() {
                   </p>
                 </div>
               </div>
-              <button className="w-[32rem] border border-[1px] border-black rounded-[20px] py-[10px] font-bold mt-[50px]">See all blog post</button>
+              <button className="w-[32rem] border border-[1px] border-black rounded-[20px] py-[10px] font-bold mt-[50px]">
+                See all blog post
+              </button>
             </div>
           </div>
         </div>

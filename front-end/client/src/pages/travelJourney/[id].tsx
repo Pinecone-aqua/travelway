@@ -12,15 +12,9 @@ export async function getStaticProps({ params }: { params: { id: string } }) {
       console.log("Amjilttgui");
       return;
     }
-    // console.log("Params id:===> " + id);
-    // console.log(typeof params.id);
 
     const travelData = await axios.get(`http://localhost:3009/travels/${id}`);
     const result = travelData.data;
-
-    // console.log("TravelData => ", travelData);
-    // console.log("Result in PROPS==> ");
-    // console.log(result);
 
     return {
       props: {
@@ -44,9 +38,6 @@ export async function getStaticPaths() {
       },
     }));
 
-    // console.log("Get static Paths====>  ");
-    // console.log(path);
-
     return {
       paths: path,
       fallback: false,
@@ -58,8 +49,6 @@ export async function getStaticPaths() {
 }
 
 export default function Travel({ result }: { result: TravelType }) {
-  // console.log(JSON.stringify(result, null, 2));
-  // console.log(await result);
 
   const [travelData, setTravelData] = useState<TravelType | null>(null);
 
@@ -93,19 +82,10 @@ export default function Travel({ result }: { result: TravelType }) {
               </span>
               {result.season}
             </p>
-            <p className="text-slate-800">
-              <span className="text-sm font-bold text-gray-900 text-justify">
-                {/* {result.createdAt.toISOString().substring(0, 9)} */}
-              </span>
-            </p>
             <p>
               <span className="text-sm font-bold text-gray-900">Title: </span>/
               {
                 JSON.stringify(result.season, null, 2)
-
-                // .map((elem, index) => (
-                // <span key={index}>{elem}, </span>
-                // ))
               }
               /
             </p>
@@ -113,10 +93,6 @@ export default function Travel({ result }: { result: TravelType }) {
               <span className="text-sm font-bold text-gray-900">Day: </span>
               {
                 JSON.stringify(result.day, null, 2)
-
-                // .map((item, index) => (
-                //   <span key={index}>{item.title}</span>
-                // ))
               }
             </p>
           </div>

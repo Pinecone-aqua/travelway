@@ -1,53 +1,33 @@
-import { getAllTravelData } from "../../../lib/travelsService";
-import Link from "next/link";
-import Header from "@/components/Header";
 import Layout from "@/components/Layout";
 import Head from "next/head";
-
-interface TravelType {
-  id: string;
-  title: string;
-  description: string;
-  day: [
-    {
-      title: string;
-      description: string;
-      image: string;
-      considerations: string;
-      destination: string;
-    }
-  ];
-  season: string[];
-  createdAt: Date;
-  updatedAt: Date;
-}
+import axios from "axios";
+import Link from "next/link";
+import { TravelType } from "../../../util/types";
+import HeaderWhiteBlack from "@/components/headerbw";
 
 interface TravelProps {
   travels: TravelType[];
 }
 
 export default function Travel({ travels }: TravelProps) {
-  // console.log(travels);
   return (
     <Layout>
       <Head>
         <title>Travel Name here</title>
       </Head>
-      <div className="bg-slate-800">
-        <Header />
-      </div>
+      <HeaderWhiteBlack />
       <div>
         <section className="flex flex-wrap gap-4 my-8 container mx-auto">
-          {travels.map((travel) => (
-            <Link href={`/travels/${travel.id}`} key={travel.id}>
+          {travels.map((travel: TravelType, index: number) => (
+            <Link href={`/travels/${travel._id}`} key={index}>
               <div
                 className="max-w-md border rounded bg-slate-100 flex p-0"
-                key={travel.id}
+                key={travel._id}
               >
-                <div className="max-h-60 w-[40%] overflow-hidden rounded-md">
-                  Date: {travel.createdAt.toISOString().substring(0,11)}
-                </div>
-                <div key={`${travel.id}abcd3be`} className="flex flex-col w-[60%] p-4">
+                <div
+                  key={`${travel._id}abcd3be`}
+                  className="flex flex-col w-[60%] p-4"
+                >
                   <p className="text-slate-600 text-justify">
                     <span className="font-bold text-teal-800">
                       Description:
@@ -59,9 +39,7 @@ export default function Travel({ travels }: TravelProps) {
                     {travel.title}
                   </p>
                   <p className="text-slate-600 text-justify">
-                    <span className="font-bold text-teal-800">
-                      SEASON:
-                    </span>{" "}
+                    <span className="font-bold text-teal-800">SEASON:</span>{" "}
                     {travel.season}
                   </p>
                 </div>
@@ -75,11 +53,12 @@ export default function Travel({ travels }: TravelProps) {
 }
 
 export async function getStaticProps() {
-  const { travels } = await getAllTravelData();
-  // const res = await getAllTravelIDs();
+  const travels = await axios.get("http://localhost:3009/travels/get");
+  const result = await travels.data;
+
   return {
     props: {
-      travels,
+      travels: result,
     },
   };
 }

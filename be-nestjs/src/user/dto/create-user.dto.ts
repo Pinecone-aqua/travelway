@@ -1,5 +1,4 @@
 import {
-  IsArray,
   IsEmail,
   IsEnum,
   IsNotEmpty,
@@ -7,7 +6,6 @@ import {
   MinLength,
 } from 'class-validator';
 import { Role } from '../role.enum';
-import { STATUS_CODES } from 'http';
 
 export class CreateUserDto {
   @IsString()

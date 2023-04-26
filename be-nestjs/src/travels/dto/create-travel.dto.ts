@@ -20,4 +20,7 @@ export class CreateTravelDto {
 
   @IsString()
   readonly season: string;
+
+  @IsString()
+  readonly tags_id: string;
 }
