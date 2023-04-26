@@ -14,22 +14,22 @@ import { UpdateMiniStorylDto } from './dto/update-miniStory.dto';
 
 @Controller('miniStory')
 export class MiniStoryController {
-  constructor(private readonly travelService: MiniStoryService) {}
+  constructor(private readonly miniStoryService: MiniStoryService) {}
 
   @Post('add')
-  create(@Body() createTravelDto: CreateMiniStoryDto): Promise<miniStory> {
-    return this.travelService.create(createTravelDto);
+  create(@Body() createMiniStoryDto: CreateMiniStoryDto): Promise<miniStory> {
+    return this.miniStoryService.create(createMiniStoryDto);
   }
 
   @Get('get')
   findAll(): Promise<miniStory[]> {
-    return this.travelService.findAll();
+    return this.miniStoryService.findAll();
   }
 
   @Get(':id')
   findOne(@Param() params: { id: string }): Promise<miniStory> {
     // console.log('Request ID orj irlee', params.id);
-    return this.travelService.findOne(params.id);
+    return this.miniStoryService.findOne(params.id);
   }
 
   @Patch(':id')
@@ -37,11 +37,11 @@ export class MiniStoryController {
     @Param('id') id: string,
     @Body() updateTravelDto: UpdateMiniStorylDto,
   ): Promise<miniStory> {
-    return this.travelService.update(id, updateTravelDto);
+    return this.miniStoryService.update(id, updateTravelDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string): Promise<miniStory> {
-    return this.travelService.remove(id);
+    return this.miniStoryService.remove(id);
   }
 }

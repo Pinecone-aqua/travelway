@@ -15,15 +15,15 @@ export class MiniStoryService {
     @InjectModel('miniStory') private readonly miniStoryModel: Model<miniStory>,
   ) {}
 
-  async create(createTravelDto: CreateMiniStoryDto): Promise<miniStory> {
-    const { title, image, sentence } = createTravelDto;
+  async create(createMiniStoryDto: CreateMiniStoryDto): Promise<miniStory> {
+    const { title, sentence } = createMiniStoryDto;
 
-    if (!(title && image && sentence)) {
+    if (!(title  && sentence)) {
       throw new BadRequestException('MiniStory мэдээлэл дутуу байна');
     }
 
-    const newTravel = new this.miniStoryModel(createTravelDto);
-    const result = await newTravel.save();
+    const newMiniStory = new this.miniStoryModel(createMiniStoryDto);
+    const result = await newMiniStory.save();
     return result;
   }
 
