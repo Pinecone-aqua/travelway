@@ -27,10 +27,10 @@ export default function ContainerPages() {
         </picture>
         <Header />
         <div className="relative ms-5 h-full">
-          <h2 className="text-white  xxl:text-[10rem] xl:text-[8rem] md:text-[5rem] sm:text-[3rem] ">
-            Japan
+          <h2 className="text-white  xxl:text-[10rem] xl:text-[8rem] md:text-[5rem] sm:text-[3rem]">
+            Mongolia
           </h2>
-          <p className="text-white text-[20px]">visited 20 Septenber 2020</p>
+          <p className="inline-block bg-white bg-opacity-40 rounded-lg right-0 text-center py-1 px-4"><span className="opacity-100 text-white text-3xl font-bold">28th, April 2023</span></p>
         </div>
       </div>
     </>
