@@ -13,23 +13,17 @@ export default function MiniStoryAdd(): JSX.Element {
     setPopup(false);
   }
 
-  // function miniStoryHandler(e: any) {
-  //   e.preventDefault();
-  //   axios.post(`http://localhost:3009/miniStory/add`, {
-  //     image: e.target.image.innerText,
-  //     title: e.target.title.innerText,
-  //     sentence: e.target.sentence.innerText,
-  //   });
-  //   console.log("e.target.title.innerText :", e.target.title.innerText);
-  //   console.log("e.target.sentence.innerText :", e.target.sentence.innerText);
-  // }
-
-  async function miniStoryHandler(e: any) {
+  function miniStoryHandler(e: any) {
     e.preventDefault();
-    const travels = await axios.get("http://localhost:3009/miniStory/get");
-    const { data } = travels;
-    console.log(data);
+    axios.post(`http://localhost:3009/ministories/add`, {
+      image: e.target.image.value,
+      title: e.target.title.value,
+      sentence: e.target.sentence.value,
+    });
+    console.log("e.target.title.innerText :", e.target.title.value);
+    console.log("e.target.sentence.innerText :", e.target.sentence.value);
   }
+
   return (
     <>
       {popup ? (
@@ -49,10 +43,10 @@ export default function MiniStoryAdd(): JSX.Element {
               </div>
               <div>
                 <input
+                  name="title"
                   type="text"
                   placeholder="Title"
                   className="border w-full"
-                  name="title"
                 />
 
                 <textarea
@@ -75,7 +69,7 @@ export default function MiniStoryAdd(): JSX.Element {
         </div>
       ) : (
         <button
-          className="grid place-content-center w-[100%] border border-1px shadow-inner"
+          className="grid place-content-center w-[100%] border border-1px shadow-inner p-2"
           onClick={popUpHandler}
         >
           <GrAddCircle size={"2em"} />

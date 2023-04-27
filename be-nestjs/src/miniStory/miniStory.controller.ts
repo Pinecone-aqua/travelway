@@ -9,39 +9,41 @@ import {
 } from '@nestjs/common';
 import { MiniStoryService } from './miniStory.service';
 import { CreateMiniStoryDto } from './dto/create-miniStory.dto';
-import { miniStory } from './schemas/miniStory.schema';
+import { MiniStory } from './schemas/miniStory.schema';
 import { UpdateMiniStorylDto } from './dto/update-miniStory.dto';
 
 @Controller('miniStory')
 export class MiniStoryController {
-  constructor(private readonly miniStoryService: MiniStoryService) {}
+  constructor(private readonly travelService: MiniStoryService) {}
 
   @Post('add')
-  create(@Body() createMiniStoryDto: CreateMiniStoryDto): Promise<miniStory> {
-    return this.miniStoryService.create(createMiniStoryDto);
+  create(@Body() createTravelDto: CreateMiniStoryDto): Promise<MiniStory> {
+    console.log(createTravelDto);
+
+    return this.travelService.create(createTravelDto);
   }
 
   @Get('get')
-  findAll(): Promise<miniStory[]> {
-    return this.miniStoryService.findAll();
+  findAll(): Promise<MiniStory[]> {
+    return this.travelService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param() params: { id: string }): Promise<miniStory> {
+  findOne(@Param() params: { id: string }): Promise<MiniStory> {
     // console.log('Request ID orj irlee', params.id);
-    return this.miniStoryService.findOne(params.id);
+    return this.travelService.findOne(params.id);
   }
 
   @Patch(':id')
   update(
     @Param('id') id: string,
     @Body() updateTravelDto: UpdateMiniStorylDto,
-  ): Promise<miniStory> {
-    return this.miniStoryService.update(id, updateTravelDto);
+  ): Promise<MiniStory> {
+    return this.travelService.update(id, updateTravelDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string): Promise<miniStory> {
-    return this.miniStoryService.remove(id);
+  remove(@Param('id') id: string): Promise<MiniStory> {
+    return this.travelService.remove(id);
   }
 }

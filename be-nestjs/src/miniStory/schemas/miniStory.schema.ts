@@ -1,14 +1,14 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import mongoose, { HydratedDocument } from 'mongoose';
+import { HydratedDocument } from 'mongoose';
 
-export type miniStoryDocument = HydratedDocument<miniStory>;
+export type miniStoryDocument = HydratedDocument<MiniStory>;
 
 @Schema({
   timestamps: true,
 })
-export class miniStory {
-  // @Prop()
-  // image: string;
+export class MiniStory {
+  @Prop()
+  image: string;
 
   @Prop()
   title: string;
@@ -17,7 +17,4 @@ export class miniStory {
   sentence: string;
 }
 
-export const miniStorySchema = SchemaFactory.createForClass(miniStory);
-
-// @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'TrTags' }] })
-// tags_id: TrTags[];
+export const miniStorySchema = SchemaFactory.createForClass(MiniStory);
