@@ -28,7 +28,7 @@ export default function TravelPlan(): JSX.Element {
                 className="max-full mt-4 px-4 text-slate-800 flex flex-col"
                 key={index}
               >
-                <h1 className="text-3xl text-start p-2 mb-6">{travel.title}</h1>
+                <h1 className="text-3xl text-start p-2 mb-6 text-orange-700">{travel.title}</h1>
                 <p className="w-full text-justify text-lg mt-4 mb-10">
                   {travel.description}
                 </p>
@@ -36,13 +36,13 @@ export default function TravelPlan(): JSX.Element {
                   {travel.day.map((oneday, index) => (
                     <div key={index}>
                       {index === 0 ? (
-                        <div className="my-4 w-full">
+                        <div className="my-4 w-full overflow-hidden">
                           <Image
                             src={oneday.image}
                             alt={oneday.image}
                             width={1450}
                             height={300}
-                            className="rounded-md w-full"
+                            className="rounded-md w-full h-96 object-cover"
                           />
 
                           <h2 className="font-bold text-slate-700 text-4xl mt-4 mb-2">

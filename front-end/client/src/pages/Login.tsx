@@ -50,17 +50,18 @@ export default function Login(): JSX.Element {
         return;
       }
     } catch (error) {
-      setError(`OnSubmit deer aldaa garsan fn: ${error}`);
+      console.log("Error occure: ", error);
+      setError(`Хэрэглэгчийн и-мейл, нууц үг буруу байна`);
     }
   };
 
   return (
     <Layout>
-      <div className="py-24">
+      <div className="h-[100vh] flex flex-col items-center justify-center">
         <Head>
           <title>Хэрэглэгч нэвтрэх</title>
         </Head>
-        <div className="flex flex-col md:flex-row container mx-auto rounded-md p-6 md:2 justify-normal md:justify-around items-center">
+        <div className="flex flex-col md:flex-row container mx-auto rounded-md p-6 justify-normal md:justify-center items-center">
           <picture className="w-11/12 md:w-6/12">
             <img
               src="/images/draw2.webp"
