@@ -11,5 +11,7 @@ export class CreateQuestDto {
   @IsString()
   readonly myth: string;
   @IsArray()
-  readonly toDoList: [];
+  readonly toDo: [];
+  @IsString()
+  readonly province: string;
 }

@@ -16,7 +16,9 @@ export class Quest {
   @Prop()
   myth: string;
   @Prop()
-  toDoList: [];
+  toDo: [];
+  @Prop()
+  province: string;
 }
 
 export const QuestSchema = SchemaFactory.createForClass(Quest);

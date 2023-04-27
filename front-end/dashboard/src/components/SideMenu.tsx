@@ -16,7 +16,7 @@ export default function SideMenu(): JSX.Element {
   return (
     <>
       <div className="w-3/12 h-screen flex justify-center bg-slate-200">
-        <ul className="flex flex-col rounded-2xl  bg-slate-50 h-2/3 w-4/6  shadow-xl shadow-cyan-500">
+        <ul className="flex flex-col rounded-2xl  bg-slate-50 h-2/3 w-4/6  shadow-lg shadow-cyan-100">
           <Link
             className={
               route.route === "/orders"

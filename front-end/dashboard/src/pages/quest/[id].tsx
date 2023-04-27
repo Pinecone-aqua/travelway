@@ -2,11 +2,13 @@ import { questType } from "../../util/types";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Suggest from "@/components/mainComponent/Suggest";
 
 export default function QuestID(): JSX.Element {
   const { query } = useRouter();
   const [data, setData] = useState<questType | null>(null);
-  const toDo = data?.toDoList;
+  const toDo = data?.toDo;
+
   useEffect(() => {
     if (query.id) {
       fetch(`http://localhost:3009/quests/${query.id}`)
@@ -14,6 +16,7 @@ export default function QuestID(): JSX.Element {
         .then((res) => setData(res));
     }
   }, [query.id]);
+  console.log("toDo", toDo);
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-explicit-any
   function editHandler(e: any): void {
@@ -23,9 +26,16 @@ export default function QuestID(): JSX.Element {
       title: e.target.title.value,
       description: e.target.description.value,
       myth: e.target.myth.value,
-      toDo: e.target.activity.value,
+      province: e.target.province.value,
+      toDo: toDo,
     });
   }
+
+  // function handleChangeTodo(e) {
+  //   e.preventDefault();
+
+  //   // setToDoList([...toDo, ])
+  // }
 
   return (
     <form action="" onSubmit={editHandler}>
@@ -37,6 +47,14 @@ export default function QuestID(): JSX.Element {
               className="text-2xl w-full text-slate-500 rounded-2xl p-2"
               name="title"
               defaultValue={data?.title}
+            />
+          </div>
+          <div className="w-96">
+            <div className="text-3xl"> province</div>
+            <textarea
+              className="text-2xl w-full text-slate-500 rounded-2xl p-2"
+              name="province"
+              defaultValue={data?.province}
             />
           </div>
 
@@ -58,15 +76,7 @@ export default function QuestID(): JSX.Element {
           </div>
           <div className="w-96">
             <div>Хийж болох зүйлс</div>
-            {toDo?.map((unit: string, index: number) => (
-              <div key={index}>
-                <textarea
-                  className="my-2 text-slate-500  w-full rounded-2xl p-2"
-                  name="activity"
-                  defaultValue={unit}
-                />
-              </div>
-            ))}
+            <Suggest toDo={toDo} />
           </div>
         </div>
         <div className="w-1/2">
@@ -98,3 +108,23 @@ export default function QuestID(): JSX.Element {
     </form>
   );
 }
+
+// function Test(todos) {
+//   const [currentTodos, setCurrentTodos] = useState(todos);
+//   function todoChangeHandler(newVal, i) {
+//     currentTodos[i] = newVal;
+//     setCurrentTodos([...currentTodos]);
+//   }
+//   return (
+//     <>
+//       {currentTodos.map((todo,index) => (
+//         <input
+//           onChange={(e) => todoChangeHandler(e.target.value, index)}
+//           className="my-2 text-slate-500  w-full rounded-2xl p-2"
+//           name={`activity-${index}`}
+//           defaultValue={todo}
+//         />
+//       ))}
+//     </>
+//   );
+// }

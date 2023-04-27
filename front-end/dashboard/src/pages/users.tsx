@@ -31,7 +31,7 @@ export default function Users(): JSX.Element {
           />
         </div>
       ) : (
-        <table className="table-auto bg-gray-200 w-full h-100 rounded-2xl shadow-xl shadow-cyan-700">
+        <table className="table-auto bg-gray-200 w-full h-100 rounded-2xl shadow-lg shadow-cyan-100">
           <thead className="h-24 text-left p-5">
             <tr className="ml-5">
               <th scope="col" className="p-5">

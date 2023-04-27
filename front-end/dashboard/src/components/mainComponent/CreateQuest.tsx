@@ -12,6 +12,7 @@ export default function CreateQuest(): JSX.Element {
     axios.post(`http://localhost:3009/quests/create`, {
       title: e.target.title.value,
       description: e.target.description.value,
+      province: e.target.province.value,
       myth: e.target.myth.value,
       toDo: addIndicator,
     });
@@ -41,6 +42,14 @@ export default function CreateQuest(): JSX.Element {
             type="text"
             name="myth"
             className="disabled:opacity-75 py-2 rounded-xl w-full"
+          />
+        </div>
+        <div className="text-l w-96">
+          <div className="">province</div>
+          <input
+            type="text"
+            name="province"
+            className="block w-auto text-slate-500 h-36 file:rounded-full py-2 rounded-xl w-full"
           />
         </div>
         <div>

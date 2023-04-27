@@ -42,13 +42,14 @@ export class QuestService {
         `Аяллын мэдээлэл дундаас ${id} ID-тай аялал олдсонгүй`,
       );
     }
+
     return updatedQuest;
   }
 
   async create(newQuest: CreateQuestDto) {
-    const { title, description, myth, toDoList } = newQuest;
+    const { title, description, myth, toDo, province } = newQuest;
 
-    if (!title && !description && !myth && !toDoList) {
+    if (!title && !description && !myth && !toDo && !province) {
       throw new BadRequestException('Аяллын мэдээлэл дутуу байна');
     }
     console.log(newQuest);

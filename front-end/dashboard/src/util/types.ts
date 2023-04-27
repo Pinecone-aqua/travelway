@@ -14,7 +14,7 @@ export interface questType {
   image: string;
   myth: string;
   coord: object;
-  toDoList: [];
+  toDo: [];
 }
 export interface travelType {
   _id: string;

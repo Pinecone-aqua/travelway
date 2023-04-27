@@ -54,7 +54,7 @@ export default function Orders(): JSX.Element {
               >
                 create
               </button>
-              <table className="table-auto w-full h-100 bg-gray-200 rounded-2xl mt-5 shadow-xl shadow-cyan-700">
+              <table className="table-auto w-full h-100 bg-gray-200 rounded-2xl mt-5 shadow-lg shadow-cyan-100">
                 <thead className="h-24 text-left p-5">
                   <tr className="p-5">
                     <th scope="col" className="p-5">
