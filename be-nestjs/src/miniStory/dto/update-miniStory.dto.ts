@@ -6,7 +6,7 @@ export class UpdateMiniStorylDto extends PartialType(CreateMiniStoryDto) {
   @IsString()
   readonly image: string;
 
-  @IsNotEmpty()
+  @IsString()
   readonly title: string;
   readonly sentence: string;
 }

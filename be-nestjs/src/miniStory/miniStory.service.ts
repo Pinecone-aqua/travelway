@@ -5,20 +5,21 @@ import {
 } from '@nestjs/common';
 import mongoose, { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
-import { miniStory } from './schemas/miniStory.schema';
+import { MiniStory } from './schemas/miniStory.schema';
 import { CreateMiniStoryDto } from './dto/create-miniStory.dto';
 import { UpdateMiniStorylDto } from './dto/update-miniStory.dto';
 
 @Injectable()
 export class MiniStoryService {
   constructor(
-    @InjectModel('miniStory') private readonly miniStoryModel: Model<miniStory>,
+    @InjectModel('miniStory') private readonly miniStoryModel: Model<MiniStory>,
   ) {}
 
-  async create(createMiniStoryDto: CreateMiniStoryDto): Promise<miniStory> {
-    const { title, sentence } = createMiniStoryDto;
+  async create(createMiniStoryDto: CreateMiniStoryDto): Promise<MiniStory> {
+    const { title, image, sentence } = createMiniStoryDto;
+    console.log(title, sentence);
 
-    if (!(title  && sentence)) {
+    if (!(title && image && sentence)) {
       throw new BadRequestException('MiniStory мэдээлэл дутуу байна');
     }
 
@@ -27,7 +28,7 @@ export class MiniStoryService {
     return result;
   }
 
-  async findAll(): Promise<miniStory[]> {
+  async findAll(): Promise<MiniStory[]> {
     const result = await this.miniStoryModel.find();
     return result;
   }
@@ -37,7 +38,7 @@ export class MiniStoryService {
   //   return result;
   // }
 
-  async findOne(id: string): Promise<miniStory> {
+  async findOne(id: string): Promise<MiniStory> {
     try {
       const result = await this.miniStoryModel.findOne({
         _id: new mongoose.Types.ObjectId(id),
@@ -51,7 +52,7 @@ export class MiniStoryService {
   async update(
     id: string,
     updateTravelDto: UpdateMiniStorylDto,
-  ): Promise<miniStory> {
+  ): Promise<MiniStory> {
     const updatedtravels = await this.miniStoryModel.findOneAndUpdate(
       { _id: id },
       updateTravelDto,
@@ -66,7 +67,7 @@ export class MiniStoryService {
     return updatedtravels;
   }
 
-  async remove(id: string): Promise<miniStory> {
+  async remove(id: string): Promise<MiniStory> {
     const deletedTravels = await this.miniStoryModel.findByIdAndRemove({
       _id: id,
     });

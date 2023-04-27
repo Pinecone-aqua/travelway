@@ -3,17 +3,24 @@ import React, { useState } from "react";
 import { Dialog } from "primereact/dialog";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
-import "primeicons/primeicons.css";
 import { AiOutlineHeart } from "react-icons/ai";
+import "primeicons/primeicons.css";
 import { BiBookmark } from "react-icons/bi";
+import { miniStoryType } from "../../../util/miniStoryType";
 
-export default function MiniStory(): JSX.Element {
+export default function MiniStory(props: {
+  storyType: miniStoryType;
+}): JSX.Element {
   const [visible, setVisible] = useState<boolean>(false);
+  const data = props.storyType;
+  console.log("zurag:", data.image);
+
+  console.log("data title", data.title);
 
   return (
     <>
-      <div className="card flex justify-content-center">
-        <button onClick={() => setVisible(true)} className="w-[33%]">
+      <div className="card flex">
+        <button onClick={() => setVisible(true)} className="">
           <img src="./images/fuji.webp" alt="pic" />
         </button>
         <Dialog
@@ -52,16 +59,8 @@ export default function MiniStory(): JSX.Element {
                 />
                 <label className="text-gray-400">by Robert Harrisont</label>
               </div>
-              <p className="font-semibold text-[21px] py-4">Hallo</p>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </p>
+              <p className="font-semibold text-[21px] py-4">{data.title}</p>
+              <p>{data.sentence}</p>
               <div className="h-[70px]" />
               <div className="absolute flex justify-between pb-2 bottom-0 w-[100%] ">
                 <div className="flex gap-4">
