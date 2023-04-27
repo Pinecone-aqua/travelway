@@ -45,6 +45,9 @@ export default function Login(): JSX.Element {
       const response = await axios.post(endpoint, data);
 
       if (response.status === 200 || response.status === 201) {
+        console.log("Response Data ============>");
+        console.log(response);
+
         router.push("/travelJourney");
 
         return;

@@ -44,7 +44,7 @@ export class AuthService {
     return { token };
   }
 
-  async login(loginDto: LoginDto): Promise<{ token: string }> {
+  async login(loginDto: LoginDto): Promise<{ token: string; userid: string }> {
     const { email, password } = loginDto;
 
     // console.log('Request irsen: ====> ', loginDto);
@@ -57,8 +57,8 @@ export class AuthService {
     }
 
     const isPasswordMatched = await bcrypt.compare(password, user.password);
-    console.log('iS Password Matched');
-    console.log(isPasswordMatched);
+    // console.log('iS Password Matched');
+    // console.log(isPasswordMatched);
 
     if (!isPasswordMatched) {
       throw new UnauthorizedException('И-мейл хаяг эсвэл нууц үг буруу байна!');
@@ -66,6 +66,6 @@ export class AuthService {
 
     const token = this.jwtService.sign({ id: user._id });
 
-    return { token };
+    return { token, userid: JSON.stringify(user._id) };
   }
 }
