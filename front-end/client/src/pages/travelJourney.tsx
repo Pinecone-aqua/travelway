@@ -26,7 +26,7 @@ export default function TravelJourney(): JSX.Element {
           />
         </picture>
         <Header />
-        <div className="flex justify-center  h-[84px] max-h-[125px] w-full  absolute bottom-0 -bottom-10">
+        <div className="flex justify-center  h-[84px] max-h-[125px] w-full  absolute bottom-0 bottom-[-40px]">
           <div className="flex rounded-[10px] p-3 gap-10 bg-gray-500 h-[84px] items-center  justify-center drop-shadow-2xl">
             <button
               className={

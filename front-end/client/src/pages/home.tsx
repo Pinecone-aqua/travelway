@@ -5,7 +5,9 @@ export default function Home() {
     <>
       <div>
         <ContainerPages />
-        <p>Home</p>
+        <div className=" flex justify-center">
+          <img src="./images/work.webp" alt="pic" />
+        </div>
       </div>
     </>
   );
