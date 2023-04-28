@@ -1,12 +1,8 @@
 import { PartialType } from '@nestjs/mapped-types';
 import { CreateTravelDto } from './create-travel.dto';
-import { isObjectIdOrHexString } from 'mongoose';
 import { IsNotEmpty, IsString } from 'class-validator';
 
 export class UpdateTravelDto extends PartialType(CreateTravelDto) {
-  @IsNotEmpty()
-  readonly _id: string;
-
   @IsString()
   readonly title: string;
 
@@ -26,7 +22,4 @@ export class UpdateTravelDto extends PartialType(CreateTravelDto) {
 
   @IsString()
   readonly season: string;
-
-  @IsString()
-  readonly tags_id: string;
 }

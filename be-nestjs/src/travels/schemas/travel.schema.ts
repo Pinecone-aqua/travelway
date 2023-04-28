@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import mongoose, { HydratedDocument } from 'mongoose';
+import { HydratedDocument } from 'mongoose';
 
 export type TravelDocument = HydratedDocument<Travel>;
 
@@ -13,8 +13,6 @@ export class Travel {
   @Prop()
   description: string;
 
-  @Prop([Object])
-  day: object[];
   @Prop([])
   day: [];
 
@@ -26,6 +24,3 @@ export class Travel {
 }
 
 export const TravelSchema = SchemaFactory.createForClass(Travel);
-
-// @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'TrTags' }] })
-// tags_id: TrTags[];
