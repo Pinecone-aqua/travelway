@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction } from "react";
 
 export default function ModalInput(props: {
   setAddIndicator: Dispatch<SetStateAction<never[]>>;
-  addIndicator: string[];
+  addIndicator: string[] | never;
 }): JSX.Element {
   const { setAddIndicator } = props;
   const { addIndicator } = props;
