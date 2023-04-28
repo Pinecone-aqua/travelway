@@ -18,7 +18,7 @@
 
 ### ✨ Community
 
-<a href="https://docs.travelway.io/docs/intro"> **travelway documentation**</a> contains instructions for everything you need to know about travelway.
+**travelway documentation**
 
 Хэрэв танд асуулт байгаа бол бидэнтэй холбоо барина уу! Бид туслахдаа баяртай байна :)
 
