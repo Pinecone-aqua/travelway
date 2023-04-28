@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unnecessary-condition */
 /* eslint-disable @next/next/no-img-element */
 import React, { useState } from "react";
 import { Dialog } from "primereact/dialog";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
-import { AiOutlineHeart } from "react-icons/ai";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import { BsFillBookmarkFill } from "react-icons/bs";
 import "primeicons/primeicons.css";
 import { BiBookmark } from "react-icons/bi";
 import { miniStoryType } from "../../../util/miniStoryType";
@@ -12,23 +14,22 @@ export default function MiniStory(props: {
   storyType: miniStoryType;
 }): JSX.Element {
   const [visible, setVisible] = useState<boolean>(false);
+  const [heart, setHeart] = useState<boolean>(false);
+  const [mark, setMark] = useState<boolean>(false);
   const data = props.storyType;
-  console.log("zurag:", data.image);
-
-  console.log("data title", data.title);
 
   return (
     <>
-      <div className="card flex">
+      <div className="card flex w-[31%]">
         <button onClick={() => setVisible(true)} className="">
-          <img src="./images/fuji.webp" alt="pic" />
+          <img src={data.image} alt="pic" />
         </button>
         <Dialog
           header={
             <>
               <div className="m-0 flex items-center gap-2 ">
                 <img
-                  src="./images/fuji.webp"
+                  src={data.image}
                   alt="pic"
                   className="w-[2rem]  rounded-full h-[2rem]"
                 />
@@ -45,9 +46,9 @@ export default function MiniStory(props: {
         >
           <div className=" gap-4 md:flex ">
             <img
-              src="./images/fuji.webp"
+              src={data.image}
               alt="pic"
-              className="md:w-[60%] object-cover "
+              className="md:w-[60%] object-cover h-[40rem]"
             />
             <div className="m-0 md:w-[50%] px-5 relative">
               <div className="m-0 flex items-center gap-2 hidden md:visible ">
@@ -63,12 +64,26 @@ export default function MiniStory(props: {
               <div className="h-[70px]" />
               <div className="absolute flex justify-between pb-2 bottom-0 w-[100%] ">
                 <div className="flex gap-4">
-                  <p>
-                    <AiOutlineHeart size={"2em"} />
-                  </p>
+                  {heart == false ? (
+                    <button onClick={() => setHeart(true)}>
+                      <AiOutlineHeart size={"2em"} />
+                    </button>
+                  ) : (
+                    <button onClick={() => setHeart(false)}>
+                      <AiFillHeart size={"2em"} />
+                    </button>
+                  )}
                 </div>
                 <div className="pr-5">
-                  <BiBookmark size={"2em"} />
+                  {mark == false ? (
+                    <button onClick={() => setMark(true)}>
+                      <BiBookmark size={"2em"} />
+                    </button>
+                  ) : (
+                    <button onClick={() => setMark(false)}>
+                      <BsFillBookmarkFill size={"2em"} />
+                    </button>
+                  )}
                 </div>
               </div>
             </div>

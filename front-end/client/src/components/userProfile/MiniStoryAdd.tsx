@@ -35,7 +35,7 @@ export default function MiniStoryAdd(): JSX.Element {
             >
               <div>
                 <input
-                  type="file"
+                  type="text"
                   placeholder="image"
                   className="border"
                   name="image"

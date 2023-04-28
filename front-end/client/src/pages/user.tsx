@@ -10,6 +10,7 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 import MiniStory from "@/components/userProfile/MiniStory";
+import Link from "next/link";
 
 export default function User(): JSX.Element {
   const [change, setChange] = useState();
@@ -37,8 +38,13 @@ export default function User(): JSX.Element {
         />
         {/* <Header /> */}
         <div className="flex justify-center absolute bottom-[-80px] ">
+          <Link href="/">
+            <button className="relative bg-green-500 rounded-full text-white">
+              back
+            </button>
+          </Link>
           <img
-            src="./images/fuji.webp"
+            src="https://res.cloudinary.com/dhirtao9q/image/upload/v1682515771/6250a072ad55de0012784a93_pwfvzd.webp"
             alt="pic"
             className="rounded-full w-[150px] h-[150px] bg-black border border-[3px] "
           />
@@ -106,11 +112,9 @@ export default function User(): JSX.Element {
                   <div>
                     <MiniStoryAdd />
                   </div>
-                  <div className="flex gap-3 ">
+                  <div className="flex gap-3 flex-wrap place-content-center ">
                     {story?.map((storyType: miniStoryType, index: number) => (
-                      <div key={index} className="flex flex-wrap">
-                        <MiniStory storyType={storyType} />
-                      </div>
+                      <MiniStory storyType={storyType} key={index} />
                     ))}
                   </div>
                 </div>
