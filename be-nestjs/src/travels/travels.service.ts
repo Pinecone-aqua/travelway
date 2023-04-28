@@ -3,7 +3,7 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import mongoose, { Model } from 'mongoose';
+import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { Travel } from './schemas/travel.schema';
 import { CreateTravelDto } from './dto/create-travel.dto';
@@ -16,9 +16,9 @@ export class TravelsService {
   ) {}
 
   async create(createTravelDto: CreateTravelDto): Promise<Travel> {
-    const { title, description, day, season, tags_id } = createTravelDto;
+    const { title, description, day, season } = createTravelDto;
 
-    if (!(title && description && day && season && tags_id)) {
+    if (!title && !description && !day && !season) {
       throw new BadRequestException('Аяллын мэдээлэл дутуу байна');
     }
 
@@ -32,20 +32,10 @@ export class TravelsService {
     return result;
   }
 
-  // async findIdAll(): Promise<any[]> {
-  //   const result = await this.travelModel.find({}, { _id: 1 });
-  //   return result;
-  // }
-
   async findOne(id: string): Promise<Travel> {
-    try {
-      const result = await this.travelModel.findOne({
-        _id: new mongoose.Types.ObjectId(id),
-      });
-      return result;
-    } catch (error) {
-      console.log(error);
-    }
+    const result = await this.travelModel.findOne({ _id: id });
+
+    return result;
   }
 
   async update(id: string, updateTravelDto: UpdateTravelDto): Promise<Travel> {

@@ -13,6 +13,8 @@ export class Travel {
   @Prop()
   description: string;
 
+  @Prop([Object])
+  day: object[];
   @Prop([])
   day: [];
 

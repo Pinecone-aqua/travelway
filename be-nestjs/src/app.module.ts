@@ -7,6 +7,7 @@ import { jwtConstants } from './constants';
 import { TrtagsModule } from './trtags/trtags.module';
 import { TravelsModule } from './travels/travels.module';
 import { UsersModule } from './user/user.module';
+import { QuestModule } from './quest/quest.module';
 import { MiniStoryModule } from './miniStory/miniStory.module';
 
 @Module({
@@ -16,6 +17,7 @@ import { MiniStoryModule } from './miniStory/miniStory.module';
     UsersModule,
     TrtagsModule,
     TravelsModule,
+    QuestModule,
     MiniStoryModule,
   ],
   controllers: [AppController],

@@ -8,11 +8,11 @@ export default function User(props: { unit: userType }): JSX.Element {
     axios.delete(`http://localhost:3009/users/${userId}`);
   }
   return (
-    <tr>
-      <td>{data._id.slice(0, 5)}...</td>
-      <td>{data.lastName}</td>
-      <td>{data.firstName}</td>
-      <td>{data.eMail}</td>
+    <tr className="border-t-2 border-cyan-500 ml-10">
+      <td className="p-5">{data._id.slice(0, 5)}...</td>
+      <td>{data.nickname}</td>
+      <td>{data.username}</td>
+      <td>{data.email}</td>
       <td>{data.phone}</td>
       <td>a</td>
       <td>{data.created_date}</td>
