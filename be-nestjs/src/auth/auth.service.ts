@@ -16,23 +16,38 @@ export class AuthService {
   ) {}
 
   async signUp(signUpDto: SignUpDto): Promise<{ token: string }> {
-    const { name, email, password } = signUpDto;
+    const {
+      username,
+      nickname,
+      email,
+      password,
+      phone,
+      biography,
+      image,
+      role,
+    } = signUpDto;
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const user = await this.userModel.create({
-      name: name,
+      username: username,
+      nickname: nickname,
       email: email,
       password: hashedPassword,
+      phone: phone,
+      biography: biography,
+      image: image,
+      role: role,
     });
 
     const token = this.jwtService.sign({ id: user._id });
-
     return { token };
   }
 
-  async login(loginDto: LoginDto): Promise<{ token: string }> {
+  async login(loginDto: LoginDto): Promise<{ token: string; userid: string }> {
     const { email, password } = loginDto;
+
+    // console.log('Request irsen: ====> ', loginDto);
 
     const user = await this.userModel.findOne({ email: email });
 
@@ -42,6 +57,8 @@ export class AuthService {
     }
 
     const isPasswordMatched = await bcrypt.compare(password, user.password);
+    // console.log('iS Password Matched');
+    // console.log(isPasswordMatched);
 
     if (!isPasswordMatched) {
       throw new UnauthorizedException('И-мейл хаяг эсвэл нууц үг буруу байна!');
@@ -49,6 +66,6 @@ export class AuthService {
 
     const token = this.jwtService.sign({ id: user._id });
 
-    return { token };
+    return { token, userid: JSON.stringify(user._id) };
   }
 }

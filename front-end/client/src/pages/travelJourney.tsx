@@ -4,7 +4,10 @@ import Header from "@/components/Header";
 import Description from "@/components/travel/Description";
 import TravelPlan from "@/components/travel/TravelPlan";
 import { useState } from "react";
+import React from "react";
 // import ContainerPages from "./containerPages";
+
+export const userloginContext = React.createContext(null);
 
 export default function TravelJourney(): JSX.Element {
   const [color, setColor] = useState();

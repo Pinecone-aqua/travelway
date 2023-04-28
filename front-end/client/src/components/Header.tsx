@@ -62,7 +62,7 @@ export default function Header(): JSX.Element {
               Gadget
             </button>
           </Link>
-          <Link href="/contuctUs">
+          <Link href="/login">
             <button
               className={
                 nav == "Contact us"
@@ -71,7 +71,7 @@ export default function Header(): JSX.Element {
               }
               onClick={changeNav}
             >
-              Contact
+              Login
             </button>
           </Link>
         </div>

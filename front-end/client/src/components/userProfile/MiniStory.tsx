@@ -49,7 +49,6 @@ export default function MiniStory(props: {
               alt="pic"
               className="md:w-[60%] object-cover "
             />
-
             <div className="m-0 md:w-[50%] px-5 relative">
               <div className="m-0 flex items-center gap-2 hidden md:visible ">
                 <img
