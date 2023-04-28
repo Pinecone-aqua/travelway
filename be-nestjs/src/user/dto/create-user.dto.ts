@@ -1,15 +1,13 @@
 import {
-  IsArray,
   IsEmail,
-  IsEnum,
   IsNotEmpty,
+  IsNumber,
   IsString,
   MinLength,
 } from 'class-validator';
-import { Role } from '../role.enum';
-import { STATUS_CODES } from 'http';
 
 export class CreateUserDto {
+  @IsNotEmpty()
   @IsString()
   readonly username: string;
 
@@ -25,6 +23,7 @@ export class CreateUserDto {
   @MinLength(6)
   readonly password: string;
 
+  @IsNumber()
   @MinLength(8)
   readonly phone: number;
 
@@ -34,7 +33,6 @@ export class CreateUserDto {
   @IsString()
   readonly image: string;
 
-  @IsEnum(Role)
   @IsString()
   readonly role: string;
 }

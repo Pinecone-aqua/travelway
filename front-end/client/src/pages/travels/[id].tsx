@@ -1,67 +1,123 @@
-import Layout from "@/components/Layout";
+import React, { useEffect, useState } from "react";
+import Layout from "../../components/Layout";
 import Head from "next/head";
-import { getAllTravelIDs, getTravelData } from "../../../lib/travels";
-import { TravelType } from "../../../lib/TravelType";
-import { GetStaticProps } from "next";
-import Header from "@/components/Header";
+import Header from "../../components/Header";
+import axios from "axios";
+import { TravelType } from "../../../util/types";
 
-interface TravelTypeID {
-  id: string;
-  travel: TravelType;
-}
+export async function getStaticProps({ params }: { params: { id: string } }) {
+  try {
+    const id = params.id;
+    if (id == "") {
+      console.log("Amjilttgui");
+      return;
+    }
+    // console.log("Params id:===> " + id);
+    // console.log(typeof params.id);
 
-interface TravelData {
-  travelData: TravelTypeID;
+    const travelData = await axios.get(`http://localhost:3009/travels/${id}`);
+    const result = travelData.data;
+
+    // console.log("TravelData => ", travelData);
+    // console.log("Result in PROPS==> ");
+    // console.log(result);
+
+    return {
+      props: {
+        result: result,
+      },
+    };
+  } catch (error) {
+    console.error(error);
+    return {};
+  }
 }
 
 export async function getStaticPaths() {
-  const paths = await getAllTravelIDs();
-  return {
-    paths,
-    fallback: false,
-  };
+  try {
+    const result = await axios.get("http://localhost:3009/travels/get");
+    const { data } = result;
+
+    const path = data.map((el: TravelType) => ({
+      params: {
+        id: String(el._id),
+      },
+    }));
+
+    // console.log("Get static Paths====>  ");
+    // console.log(path);
+
+    return {
+      paths: path,
+      fallback: false,
+    };
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
 }
 
-export const getStaticProps: GetStaticProps<TravelData> = async ({
-  params,
-}) => {
-  const id = params?.id ?? "";
-  const travelData: TravelTypeID = await getTravelData(id as string);
+export default function Travel({ result }: { result: TravelType }) {
+  // console.log(JSON.stringify(result, null, 2));
+  // console.log(await result);
 
-  return {
-    props: {
-      travelData,
-    },
-  };
-};
+  const [travelData, setTravelData] = useState<TravelType | null>(null);
 
-export default function Travel({ travelData }: { travelData: TravelTypeID }) {
- 
-  let { id } = travelData;
-  let { travel } = travelData;
+  useEffect(() => {
+    setTravelData(result);
+  }, [result]);
+
+  console.log(travelData);
 
   return (
     <Layout>
       <Head>
         <title>Аялал</title>
       </Head>
-      <div className="bg-slate-800">
-        <Header />
-      </div>
+      <Header />
       <article>
         <div className="flex gap-2 justify-center items-center bg-white w-[90vw] mx-auto m-4 rounded-sm shadow-md">
           <div className="max-h-60 w-full overflow-hidden rounded-md bg-blue-500">
-            <img src={travel.image} alt="profile image 1" className="w-full shadow-lg" />
+            {result.title}
           </div>
           <div className="px-2 py-4 flex flex-col gap-y-2">
-            <p className="text-slate-800"><span className="text-sm font-bold text-gray-900">Аймаг: </span>{travel.destination}</p>
-            <p className="text-slate-800"><span className="text-sm font-bold text-gray-900">Сум, газрын нэр: </span>{travel.subDest}</p>
-            <p className="text-slate-800"><span className="text-sm font-bold text-gray-900 text-justify">Товч мэдээлэл: </span>{travel.description}</p>
-            <p><span className="text-sm font-bold text-gray-900">Тохиромжтой улирал: </span>
-            /{travel.season.map(elem => (<span>{elem}, </span>))}/
+            <p className="text-slate-800">
+              <span className="text-sm font-bold text-gray-900">
+                Товч мэдээлэл:{" "}
+              </span>
+              {result.description}
             </p>
-            <p><span className="text-sm font-bold text-gray-900">Tags: </span>
-            [{travel.tags.map(item => (<span>{item.name},{" "}</span>))}]
+            <p className="text-slate-800">
+              <span className="text-sm font-bold text-gray-900">
+                Тохиромжтой улирал:{" "}
+              </span>
+              {result.season}
+            </p>
+            <p className="text-slate-800">
+              <span className="text-sm font-bold text-gray-900 text-justify">
+                {/* {result.createdAt.toISOString().substring(0, 9)} */}
+              </span>
+            </p>
+            <p>
+              <span className="text-sm font-bold text-gray-900">Title: </span>/
+              {
+                JSON.stringify(result.season, null, 2)
+
+                // .map((elem, index) => (
+                // <span key={index}>{elem}, </span>
+                // ))
+              }
+              /
+            </p>
+            <p>
+              <span className="text-sm font-bold text-gray-900">Day: </span>
+              {
+                JSON.stringify(result.day, null, 2)
+
+                // .map((item, index) => (
+                //   <span key={index}>{item.title}</span>
+                // ))
+              }
             </p>
           </div>
         </div>

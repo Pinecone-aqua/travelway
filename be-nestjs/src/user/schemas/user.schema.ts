@@ -1,7 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import mongoose, { HydratedDocument } from 'mongoose';
-import { Travel } from 'src/travels/schemas/travel.schema';
-import { Role } from '../role.enum';
+import { HydratedDocument } from 'mongoose';
 
 export type UserDocument = HydratedDocument<User>;
 
@@ -15,7 +13,7 @@ export class User {
   @Prop()
   nickname: string;
 
-  @Prop()
+  @Prop({ unique: [true, 'Хэрэглэгч бүртгэлтэй байна.'] })
   email: string;
 
   @Prop()

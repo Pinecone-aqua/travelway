@@ -8,6 +8,7 @@ import { TrtagsModule } from './trtags/trtags.module';
 import { TravelsModule } from './travels/travels.module';
 import { UsersModule } from './user/user.module';
 import { QuestModule } from './quest/quest.module';
+import { MiniStoryModule } from './miniStory/miniStory.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { QuestModule } from './quest/quest.module';
     TrtagsModule,
     TravelsModule,
     QuestModule,
+    MiniStoryModule,
   ],
   controllers: [AppController],
   providers: [AppService],
