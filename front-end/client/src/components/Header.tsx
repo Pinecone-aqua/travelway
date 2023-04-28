@@ -9,7 +9,7 @@ export default function Header(): JSX.Element {
     setNav(e.target.innerText);
   }
   return (
-    <div className="absolute sticky top-0  ">
+    <div className="relative sticky top-0">
       <div className="flex gap-3 justify-center content-center text-center  text-white  ">
         <div className="flex  h-7">
           <Link href="/travelJourney">

@@ -1,16 +1,32 @@
-/* eslint-disable @next/next/no-img-element */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unnecessary-condition */
-import MiniStory from "@/components/userProfile/MiniStory";
+/* eslint-disable @next/next/no-img-element */
+import MiniStoryAdd from "@/components/userProfile/MiniStoryAdd";
 import TravelGuide from "@/components/userProfile/TravelGuide";
 import TravelWay from "@/components/userProfile/TravelWay";
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { miniStoryType } from "../../util/miniStoryType";
+import "primereact/resources/themes/lara-light-indigo/theme.css";
+import "primereact/resources/primereact.min.css";
+import "primeicons/primeicons.css";
+import MiniStory from "@/components/userProfile/MiniStory";
 
-export default function User() {
+export default function User(): JSX.Element {
   const [change, setChange] = useState();
+  const [story, setStory] = useState<miniStoryType[]>();
+
   function changer(e: any) {
     setChange(e.target.innerText);
   }
+  useEffect(() => {
+    const getFetchdata = async () => {
+      const travels = await axios.get("http://localhost:3009/miniStory/get");
+      const { data } = travels;
+
+      setStory(data);
+    };
+    getFetchdata();
+  }, []);
   return (
     <>
       <div className="w-full justify-center flex xxl:h-[500px] xl:h-[400px] lg:h-[300px] md:h-[200px]  drop-shadow-2xl relative bg-black">
@@ -29,7 +45,7 @@ export default function User() {
         </div>
       </div>
       <div className="h-[8rem]" />
-      <div className="items-center justify-center flex flex-col gap-10 ">
+      <div className="items-center justify-center flex flex-col gap-10 relative ">
         <p className="font-bold text-[26px]">Robert Harrison</p>
         <div className="w-[80%] grid gap-10">
           <div className="flex justify-center gap-5 font-semibold">
@@ -83,9 +99,22 @@ export default function User() {
               TravelGuide
             </button>
           </div>
-          <div>
+          <div className="relative">
             {change == "Mini story" ? (
-              <MiniStory />
+              <>
+                <div className="gap-3 grid">
+                  <div>
+                    <MiniStoryAdd />
+                  </div>
+                  <div className="flex gap-3 ">
+                    {story?.map((storyType: miniStoryType, index: number) => (
+                      <div key={index} className="flex flex-wrap">
+                        <MiniStory storyType={storyType} />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </>
             ) : change == "TravelWay" ? (
               <TravelWay />
             ) : (
