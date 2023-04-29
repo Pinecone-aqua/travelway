@@ -3,6 +3,7 @@ import axios from "axios";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { FormEvent, useState } from "react";
+import { FaGoogle } from "react-icons/fa";
 
 interface LoginForm {
   email: string;
@@ -57,6 +58,12 @@ export default function Login(): JSX.Element {
     }
   };
 
+  function googleLoginHandler() {
+    axios.get("http://localhost:3009/google-login").then((response) => {
+      router.push(response.data);
+    });
+  }
+
   return (
     <Layout>
       <div className="h-[100vh] flex flex-col items-center justify-center">
@@ -108,17 +115,32 @@ export default function Login(): JSX.Element {
                 <br />
                 <button
                   type="submit"
-                  className="inline-block rounded bg-blue-500 px-5 py-2 text-sm
+                  className="inline-block rounded-lg bg-blue-500 px-5 py-2 text-sm
                 font-medium uppercase leading-normal text-white w-full"
                 >
                   нэвтрэх
                 </button>
+
+                <div
+                  onClick={googleLoginHandler}
+                  className="rounded-lg text-sm bg-cyan-500 px-5 py-2 mt-5 flex justify-between align-center text-white cursor-pointer"
+                >
+                  <div className="flex items-center">
+                    <FaGoogle className="my-auto text-white absolute" />
+                  </div>
+                  <span className="mx-auto text-white">Google-р НЭВТРЭХ</span>
+                </div>
+
                 <div className="text-sm font-normal text-slate-400 text-center mt-4 uppercase">
                   Шинэ хэрэглэгч бүртгүүлэх бол
-                  <span className="cursor-pointer text-blue-700" onClick={() => {
-                    router.push('/register');
-                  }} >
-                    Энд дарж
+                  <span
+                    className="cursor-pointer text-blue-700"
+                    onClick={() => {
+                      router.push("/register");
+                    }}
+                  >
+                    {" "}
+                    Энд дарж{" "}
                   </span>
                   бүртгүүлнэ.
                 </div>

@@ -82,7 +82,7 @@ export default function Register(): JSX.Element {
           />
         </picture>
 
-        <div className="mx-auto md:mx-0 md:flex-1 flex-1 border rounded-r-md pt-5 pb-5">
+        <div className="mx-auto md:mx-0 md:flex-1 flex-1 pt-5 pb-5">
           <form onSubmit={handleSubmit}>
             <h3 className="uppercase text-center">БҮРТГҮҮЛЭХ</h3>
             <div className="flex justify-center md:flex-row">
