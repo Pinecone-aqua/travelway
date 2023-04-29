@@ -1,7 +1,6 @@
 import Layout from "@/components/Layout";
 import axios from "axios";
 import Head from "next/head";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { FormEvent, useState } from "react";
 
@@ -115,7 +114,13 @@ export default function Login(): JSX.Element {
                   нэвтрэх
                 </button>
                 <div className="text-sm font-normal text-slate-400 text-center mt-4 uppercase">
-                  <Link href="/register">Шинэ хэрэглэгч бүртгүүлэх?</Link>
+                  Шинэ хэрэглэгч бүртгүүлэх бол
+                  <span className="cursor-pointer text-blue-700" onClick={() => {
+                    router.push('/register');
+                  }} >
+                    Энд дарж
+                  </span>
+                  бүртгүүлнэ.
                 </div>
               </form>
             </div>

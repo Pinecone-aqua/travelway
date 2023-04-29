@@ -1,4 +1,11 @@
-import { createContext, ReactNode, useContext, useEffect } from "react";
+import Cookies from "js-cookie";
+import {
+  ReactNode,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
 interface UserContextType {
   currentUser: string;
@@ -19,7 +26,14 @@ export default function UserProvider({ children }: UserProviderType) {
 
   useEffect(() => {
     const token = Cookies.get("token");
-  });
-}
+    if (token) {
+      setCurrentUser(token);
+    }
+  }, []);
 
-export default UserContext;
+  return (
+    <UserContext.Provider value={{ currentUser }}>
+      {children}
+    </UserContext.Provider>
+  );
+}
