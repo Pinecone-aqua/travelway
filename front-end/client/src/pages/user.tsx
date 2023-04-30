@@ -11,6 +11,7 @@ import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 import MiniStory from "@/components/userProfile/MiniStory";
 import Link from "next/link";
+import TravelWayAdd from "@/components/userProfile/TravelWayAdd";
 
 export default function User(): JSX.Element {
   const [change, setChange] = useState();
@@ -120,7 +121,16 @@ export default function User(): JSX.Element {
                 </div>
               </>
             ) : change == "TravelWay" ? (
-              <TravelWay />
+              <>
+                <div>
+                  <div className="relative">
+                    <TravelWayAdd />
+                    <div className="absolute place-content-center ">
+                      <TravelWay />
+                    </div>
+                  </div>
+                </div>
+              </>
             ) : (
               <TravelGuide />
             )}
