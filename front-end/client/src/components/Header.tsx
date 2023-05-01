@@ -33,8 +33,8 @@ export default function Header(): JSX.Element {
             <button
               className={
                 nav == "Travel"
-                  ? "text-[30px] w-[15rem] md:w-[10rem] sm:w-[8rem] mt-1"
-                  : "w-[15rem] md:w-[10rem] sm:w-[5rem] opacity-50 mt-3"
+                  ? "text-[30px] w-[15rem] md:w-[10rem] sm:w-[8rem] mt-1 ease-in duration-300"
+                  : "w-[15rem] md:w-[10rem] sm:w-[5rem] opacity-50 mt-3 ease-in duration-300"
               }
               onClick={changeNav}
             >
@@ -45,8 +45,8 @@ export default function Header(): JSX.Element {
             <button
               className={
                 nav == "About"
-                  ? "sm:text-[15px] text-[30px] xl:w-[15rem] md:w-[10rem] sm:w-[8rem] mt-3"
-                  : "sm:text-[12.5px] w-[15rem] md:w-[10rem] sm:w-[5rem] opacity-50 mt-4"
+                  ? "sm:text-[15px] text-[30px] xl:w-[15rem] md:w-[10rem] sm:w-[8rem] mt-3 ease-out duration-300"
+                  : "sm:text-[12.5px] w-[15rem] md:w-[10rem] sm:w-[5rem] opacity-50 mt-4 ease-out duration-300"
               }
               onClick={changeNav}
             >
@@ -58,8 +58,8 @@ export default function Header(): JSX.Element {
           <button
             className={
               nav == "Home"
-                ? "text-[30px] w-[15rem] md:w-[10rem] sm:w-[8rem] "
-                : "w-[15rem] md:w-[10rem] sm:w-[5rem] opacity-50 mt-3"
+                ? "text-[30px] w-[15rem] md:w-[10rem] sm:w-[8rem] ease-in-out duration-300"
+                : "w-[15rem] md:w-[10rem] sm:w-[5rem] opacity-50 mt-3 ease-in-out duration-300"
             }
             onClick={changeNav}
           >
@@ -71,8 +71,8 @@ export default function Header(): JSX.Element {
             <button
               className={
                 nav == "Gadget"
-                  ? "text-[30px] w-[15rem] md:w-[10rem] sm:w-[8rem] mt-1"
-                  : "w-[15rem] md:w-[10rem] sm:w-[5rem] opacity-50 mt-3"
+                  ? "text-[30px] w-[15rem] md:w-[10rem] sm:w-[8rem] mt-1 ease-out duration-300"
+                  : "w-[15rem] md:w-[10rem] sm:w-[5rem] opacity-50 mt-3 ease-out duration-300"
               }
               onClick={changeNav}
             >
@@ -83,8 +83,8 @@ export default function Header(): JSX.Element {
             <button
               className={
                 nav == "Contact us"
-                  ? "text-[30px] sm:text-[20px] xl:w-[15rem] md:w-[10rem] sm:w-[2rem] mt-1"
-                  : "w-[15rem] md:w-[10rem] sm:w-[5rem] opacity-50 mt-3"
+                  ? "text-[30px] sm:text-[20px] xl:w-[15rem] md:w-[10rem] sm:w-[2rem] mt-1 ease-in duration-300"
+                  : "w-[15rem] md:w-[10rem] sm:w-[5rem] opacity-50 mt-3 ease-in duration-300"
               }
               onClick={changeNav}
             >
@@ -121,9 +121,13 @@ export default function Header(): JSX.Element {
           <div className="absolute right-0 mr-[1rem] flex items-center mt-4">
             {/* <input type="text" className="relative right-0 items-center" /> */}
             <Link href="/user">
-              <button className="bg-pink-500 w-8 h-6">
+              <button className="bg-pink-500 w-8 h-6 ease-in duration-300">
                 <picture>
-                  <img src="../../images/white.svg" alt="pic" className="w-5" />
+                  <img
+                    src="../../images/white.svg"
+                    alt="pic"
+                    className="w-5 ease-in"
+                  />
                 </picture>
               </button>
             </Link>

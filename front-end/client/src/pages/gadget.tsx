@@ -8,7 +8,9 @@ export default function Gadget() {
       <div>
         {/* <Header /> */}
         <ContainerPages />
-        <p>Gadget</p>
+        <div className=" flex justify-center">
+          <img src="./images/work.webp" alt="pic" />
+        </div>
       </div>
     </>
   );
