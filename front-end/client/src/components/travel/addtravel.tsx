@@ -12,12 +12,19 @@ interface DayType {
 }
 
 const AddTravelPage: React.FC = () => {
-  // const [text, setText] = useState("");
+
   const [travelData, setTravelData] = useState({
     title: "",
     description: "",
   });
-  const [dayData, setDayData] = useState<DayType[]>([]);
+  const [addDay, setAddDay] = useState<DayType>({
+    subTitle: "",
+    describe: "",
+    considerations: "",
+    destination: "",
+    image: "",
+  });
+  const [dayDataList, setDayDataList] = useState<DayType[]>([]);
 
   const router = useRouter();
 
@@ -31,7 +38,7 @@ const AddTravelPage: React.FC = () => {
       const nwData = {
         title: travelData.title,
         description: travelData.description,
-        day: [...dayData],
+        day: [...dayDataList],
       };
 
       const response = await axios.post("/travels/add", nwData);
@@ -48,10 +55,10 @@ const AddTravelPage: React.FC = () => {
     setTravelData((prevState) => ({ ...prevState, [name]: value }));
   };
 
-  const handleDayAdd = (data: DayType): void => {
-    const arr = dayData;
-    arr.push(data);
-    setDayData([...arr, data]);
+  const handleDayAdd = (): void => {
+    const arr = dayDataList;
+    arr.push(addDay);
+    setDayDataList([...arr]);
   };
 
   return (
@@ -75,7 +82,7 @@ const AddTravelPage: React.FC = () => {
 
         {/* <TextEditor value={text} onChange={handleTextChange} /> */}
 
-        <AddDay handleDayAdd={handleDayAdd} />
+        <AddDay setAddDay={setAddDay} handleDayAdd={handleDayAdd} />
 
         <button
           className="mt-4 nline-block w-full border bg-blue-600 py-2 px-8 text-white rounded"

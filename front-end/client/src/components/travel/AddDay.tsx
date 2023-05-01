@@ -1,18 +1,24 @@
-import React, { ChangeEvent, FormEvent, useState } from "react";
+import React, { ChangeEvent, Dispatch, FormEvent, SetStateAction } from "react";
 
-export default function AddDay({}) {
-  const [newDayArray, setNewDayArray] = useState({
-    subTitle: "",
-    describe: "",
-    considerations: "",
-    destination: "",
-    image: "",
-  });
+interface DayType {
+  subTitle: "";
+  describe: "";
+  considerations: "";
+  destination: "";
+  image: "";
+}
+
+export default function AddDay(props: {
+  setAddDay: Dispatch<SetStateAction<DayType>>;
+  handleDayAdd: Dispatch<SetStateAction<FormEvent>>;
+}): JSX.Element {
+  const { setAddDay } = props;
+  const { handleDayAdd } = props;
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     e.preventDefault();
     const { name, value } = e.target;
-    setNewDayArray((prev) => ({ ...prev, [name]: value }));
+    setAddDay((prev) => ({ ...prev, [name]: value }));
   }
 
   return (
@@ -57,7 +63,7 @@ export default function AddDay({}) {
         onChange={handleChange}
       />
 
-      <input type="button" className="bg-yellow-700 text-white py-2 px-4">
+      <input type="button" onClick={handleDayAdd} className="bg-yellow-700 text-white py-2 px-4">
         БАТАЛГААЖУУЛАХ
       </input>
     </div>
