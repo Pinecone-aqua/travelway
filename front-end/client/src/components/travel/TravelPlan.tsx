@@ -2,7 +2,7 @@ import axios from "axios";
 import { FormEvent, useEffect, useState } from "react";
 import { TravelType } from "../../../util/types";
 import Image from "next/image";
-import Date from "../date";
+
 
 export default function TravelPlan(): JSX.Element {
   const [travels, setTravels] = useState<TravelType[]>([]);
@@ -73,14 +73,14 @@ export default function TravelPlan(): JSX.Element {
                               <h2 className="font-bold text-slate-700 text-4xl mt-4 mb-2">
                                 Day {lindex + 1}
                               </h2>
-                              <p className="text-xl text-orange-500 font-normal">
+                              {/* <p className="text-xl text-orange-500 font-normal">
                                 {Date(page.updatedAt)}
-                              </p>
+                              </p> */}
                               <h3 className="font-bold mb-2 text-lg">
-                                {oneday.title}
+                                {oneday.subTitle}
                               </h3>
                               <p className="my-4 text-xl text-justify">
-                                {oneday.description}
+                                {oneday.describe}
                               </p>
                               <h3 className="font-bold mt-2">
                                 Очих газар: {oneday.destination}
@@ -107,14 +107,14 @@ export default function TravelPlan(): JSX.Element {
                                 <h2 className="font-bold text-4xl mt-4 mb-2">
                                   Day {lindex + 1}
                                 </h2>
-                                <p className="text-xl text-orange-500 font-normal">
+                                {/* <p className="text-xl text-orange-500 font-normal">
                                   {Date(page.updatedAt)}
-                                </p>
+                                </p> */}
                                 <h3 className="font-bold mb-2 text-lg">
-                                  {oneday.title}
+                                  {oneday.subTitle}
                                 </h3>
                                 <p className="my-4 text-xl text-justify">
-                                  {oneday.description}
+                                  {oneday.describe}
                                 </p>
                                 <h3 className="font-bold mt-2">
                                   Очих газар: {oneday.destination}
@@ -133,14 +133,14 @@ export default function TravelPlan(): JSX.Element {
                                 <h2 className="font-bold text-4xl mt-4 mb-2">
                                   Day {lindex + 1}
                                 </h2>
-                                <p className="text-xl text-orange-500 font-normal">
+                                {/* <p className="text-xl text-orange-500 font-normal">
                                   {Date(page.updatedAt)}
-                                </p>
+                                </p> */}
                                 <h3 className="font-bold mb-2 text-lg">
-                                  {oneday.title}
+                                  {oneday.subTitle}
                                 </h3>
                                 <p className="my-4 text-xl text-justify">
-                                  {oneday.description}
+                                  {oneday.describe}
                                 </p>
                                 <h3 className="font-bold mt-2">
                                   Очих газар: {oneday.destination}

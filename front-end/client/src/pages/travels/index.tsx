@@ -2,21 +2,62 @@ import Layout from "@/components/Layout";
 import Head from "next/head";
 import axios from "axios";
 import Link from "next/link";
-import { TravelType } from "../../../util/types";
-import HeaderWhiteBlack from "@/components/headerbw";
+import AddTravelPage from "@/components/travel/addtravel";
+import { useState } from "react";
+
+interface TravelType {
+  _id: string;
+  title: string;
+  description: string;
+  day: [
+    {
+      subTitle: string;
+      describe: string;
+      image: string;
+      considerations: string;
+      destination: string;
+    }
+  ];
+}
 
 interface TravelProps {
   travels: TravelType[];
 }
 
 export default function Travel({ travels }: TravelProps) {
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <Layout>
       <Head>
         <title>Travel Name here</title>
       </Head>
-      <HeaderWhiteBlack />
+
       <div>
+        <div className="w-full bg-slate-100 flex flex-col py-2 px-4">
+          {isOpen ? (
+            <>
+              <button
+                type="button"
+                name="closeTravel"
+                onClick={() => setIsOpen(!isOpen)}
+                className="ms-auto"
+              >
+                Close
+              </button>
+              <AddTravelPage />
+            </>
+          ) : (
+            <button
+              type="button"
+              name="openTravel"
+              onClick={() => setIsOpen(!isOpen)}
+              className="ms-auto"
+            >
+              Open
+            </button>
+          )}
+        </div>
+        <div className="border-b-2"> </div>
         <section className="flex flex-wrap gap-4 my-8 container mx-auto">
           {travels.map((travel: TravelType, index: number) => (
             <Link href={`/travels/${travel._id}`} key={index}>
@@ -37,10 +78,6 @@ export default function Travel({ travels }: TravelProps) {
                   <p className="text-slate-600 text-justify">
                     <span className="font-bold text-teal-800">TITLE:</span>{" "}
                     {travel.title}
-                  </p>
-                  <p className="text-slate-600 text-justify">
-                    <span className="font-bold text-teal-800">SEASON:</span>{" "}
-                    {travel.season}
                   </p>
                 </div>
               </div>

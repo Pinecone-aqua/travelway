@@ -3,7 +3,21 @@ import Layout from "../../components/Layout";
 import Head from "next/head";
 import Header from "../../components/Header";
 import axios from "axios";
-import { TravelType } from "../../../util/types";
+
+interface TravelType {
+  _id: string;
+  title: string;
+  description: string;
+  day: [
+    {
+      subTitle: string;
+      describe: string;
+      image: string;
+      considerations: string;
+      destination: string;
+    }
+  ];
+}
 
 export async function getStaticProps({ params }: { params: { id: string } }) {
   try {
@@ -75,19 +89,6 @@ export default function Travel({ result }: { result: TravelType }) {
                 Товч мэдээлэл:{" "}
               </span>
               {result.description}
-            </p>
-            <p className="text-slate-800">
-              <span className="text-sm font-bold text-gray-900">
-                Тохиромжтой улирал:{" "}
-              </span>
-              {result.season}
-            </p>
-            <p>
-              <span className="text-sm font-bold text-gray-900">Title: </span>/
-              {
-                JSON.stringify(result.season, null, 2)
-              }
-              /
             </p>
             <p>
               <span className="text-sm font-bold text-gray-900">Day: </span>

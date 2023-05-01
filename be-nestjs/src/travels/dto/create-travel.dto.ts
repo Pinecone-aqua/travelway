@@ -10,14 +10,11 @@ export class CreateTravelDto {
   @IsNotEmpty()
   readonly day: [
     {
-      readonly title: string;
-      readonly description: string;
+      readonly subTitle: string;
+      readonly describe: string;
       readonly image: string;
       readonly considerations: string;
       readonly destination: string;
     },
   ];
-
-  @IsString()
-  readonly season: string;
 }

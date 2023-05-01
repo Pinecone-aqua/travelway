@@ -1,9 +1,26 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Cookies from "js-cookie";
+import jwtDecode from "jwt-decode";
+import { useRouter } from "next/router";
+
+interface HeaderType {
+  user: any;
+  setUser: (arg: any) => void;
+}
 
 export default function Header(): JSX.Element {
   const [nav, setNav] = useState<null | string>();
+  const [user, setUser] = useState<HeaderType | undefined>();
+  const router = useRouter();
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const token: any = Cookies.get("token");
+
+  useEffect(() => {
+    if (token) setUser(jwtDecode(token));
+  }, [token]);
 
   function changeNav(e: any) {
     setNav(e.target.innerText);
@@ -62,7 +79,7 @@ export default function Header(): JSX.Element {
               Gadget
             </button>
           </Link>
-          <Link href="/login">
+          <Link href="/contuctUs">
             <button
               className={
                 nav == "Contact us"
@@ -71,9 +88,34 @@ export default function Header(): JSX.Element {
               }
               onClick={changeNav}
             >
-              Login
+              Contact us
             </button>
           </Link>
+        </div>
+        <div>
+          {user ? (
+            <div className="flex gap-5">
+              <div>hello {user.user}</div>
+              <div
+                className="cursor-pointer"
+                onClick={() => {
+                  Cookies.remove("token");
+                  setUser(undefined);
+                }}
+              >
+                Logout
+              </div>
+            </div>
+          ) : (
+            <div
+              className="cursor-pointer flex items-center"
+              onClick={() => {
+                router.push("/login");
+              }}
+            >
+              Login
+            </div>
+          )}
         </div>
         <div>
           <div className="absolute right-0 mr-[1rem] flex items-center mt-4">

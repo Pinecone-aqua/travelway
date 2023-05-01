@@ -7,4 +7,5 @@ export class CreateMiniStoryDto {
   @IsString()
   readonly title: string;
   readonly sentence: string;
+  readonly userId: string;
 }
