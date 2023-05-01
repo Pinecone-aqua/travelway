@@ -32,3 +32,10 @@ export interface dayType {
 export interface toDoType {
   activity: string;
 }
+
+export interface miniStoryType {
+  image: string;
+  title: string;
+  description: string;
+  sentence: string;
+}

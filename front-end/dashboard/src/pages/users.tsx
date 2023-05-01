@@ -18,7 +18,6 @@ export default function Users(): JSX.Element {
         console.error(error), setLoading(false);
       });
   }, []);
-  console.log(users);
 
   return (
     <div className="bg-white rounded-2xl h-full p-20">
@@ -41,8 +40,7 @@ export default function Users(): JSX.Element {
               <th scope="col">Нэр</th>
               <th scope="col">И-мэйл хаяг</th>
               <th scope="col">Утас</th>
-              <th scope="col">Аялал</th>
-              <th scope="col">Огноо</th>
+
               <th>:</th>
             </tr>
           </thead>
