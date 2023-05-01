@@ -1,9 +1,9 @@
 import axios from "axios";
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import { useRouter } from "next/router";
-import AddDay from "./AddDay";
+import AddDay from "../components/travel/AddDay";
 
-interface DayType {
+export interface DayType {
   subTitle: "";
   describe: "";
   considerations: "";
@@ -11,26 +11,15 @@ interface DayType {
   image: "";
 }
 
-const AddTravelPage: React.FC = () => {
-
+const AddTravelPage = () => {
   const [travelData, setTravelData] = useState({
     title: "",
     description: "",
   });
-  const [addDay, setAddDay] = useState<DayType>({
-    subTitle: "",
-    describe: "",
-    considerations: "",
-    destination: "",
-    image: "",
-  });
+
   const [dayDataList, setDayDataList] = useState<DayType[]>([]);
 
   const router = useRouter();
-
-  // const handleTextChange = (newText: string) => {
-  //   setText(newText);
-  // };
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -55,10 +44,13 @@ const AddTravelPage: React.FC = () => {
     setTravelData((prevState) => ({ ...prevState, [name]: value }));
   };
 
-  const handleDayAdd = (): void => {
-    const arr = dayDataList;
-    arr.push(addDay);
-    setDayDataList([...arr]);
+  const handleDayAdd = (data: DayType): void => {
+    setDayDataList([...dayDataList, data]);
+  };
+
+  const handleClear = (event: FormEvent<HTMLInputElement>) => {
+    event.preventDefault();
+    router.push("addtravel");
   };
 
   return (
@@ -80,16 +72,23 @@ const AddTravelPage: React.FC = () => {
           onChange={handleChange}
         />
 
-        {/* <TextEditor value={text} onChange={handleTextChange} /> */}
+        <AddDay handleDayAdd={handleDayAdd} />
 
-        <AddDay setAddDay={setAddDay} handleDayAdd={handleDayAdd} />
-
-        <button
-          className="mt-4 nline-block w-full border bg-blue-600 py-2 px-8 text-white rounded"
-          type="submit"
-        >
-          Submit
-        </button>
+        <div className="flex justify-between items-center">
+          <input
+            type="button"
+            name="clearBtn"
+            value="ЦЭВЭРЛЭХ"
+            onClick={handleClear}
+            className="mt-4 nline-block w-3/12 border bg-red-600 py-2 px-8 text-white rounded"
+          />
+          <button
+            className="mt-4 nline-block w-4/12 border bg-blue-600 py-2 px-8 text-white rounded"
+            type="submit"
+          >
+            Submit
+          </button>
+        </div>
       </form>
     </div>
   );

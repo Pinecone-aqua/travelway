@@ -1,29 +1,30 @@
-import React, { ChangeEvent, Dispatch, FormEvent, SetStateAction } from "react";
+import React, { ChangeEvent, useState } from "react";
+import { DayType } from "../../pages/addtravel";
 
-interface DayType {
-  subTitle: "";
-  describe: "";
-  considerations: "";
-  destination: "";
-  image: "";
+export interface AddDayProps {
+  handleDayAdd: (data: DayType) => void;
 }
 
-export default function AddDay(props: {
-  setAddDay: Dispatch<SetStateAction<DayType>>;
-  handleDayAdd: Dispatch<SetStateAction<FormEvent>>;
-}): JSX.Element {
-  const { setAddDay } = props;
+const AddDay = (props: AddDayProps): JSX.Element => {
   const { handleDayAdd } = props;
+
+  const [formData, setFormData] = useState<DayType>({
+    subTitle: "",
+    describe: "",
+    considerations: "",
+    destination: "",
+    image: "",
+  });
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     e.preventDefault();
     const { name, value } = e.target;
-    setAddDay((prev) => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   }
 
   return (
-    <div className="flex grid-cols-1">
-      <label htmlFor="subTitle">Тухайн өдрийн гарчиг/Sub Title:</label>
+    <div className="flex flex-col border rounded-lg py-4 px-8 mt-8">
+      <label className="mt-4" htmlFor="subTitle">Тухайн өдрийн гарчиг/Sub Title:</label>
       <input
         className="inline-block p-2 rounded w-full border border-slate-600"
         type="text"
@@ -31,7 +32,7 @@ export default function AddDay(props: {
         onChange={handleChange}
       />
 
-      <label htmlFor="describe">Аялалаар хийх зүйлс/Describe a day:</label>
+      <label className="mt-4" htmlFor="describe">Аялалаар хийх зүйлс/Describe a day:</label>
       <input
         className="inline-block p-2 rounded w-full border border-slate-600"
         type="text"
@@ -39,7 +40,7 @@ export default function AddDay(props: {
         onChange={handleChange}
       />
 
-      <label htmlFor="considerations">Нэмэлт мэдээлэл/Considerations:</label>
+      <label className="mt-4" htmlFor="considerations">Нэмэлт мэдээлэл/Considerations:</label>
       <input
         className="inline-block p-2 rounded w-full border border-slate-600"
         type="text"
@@ -47,7 +48,7 @@ export default function AddDay(props: {
         onChange={handleChange}
       />
 
-      <label htmlFor="destination">Үзэх газрууд/Destination:</label>
+      <label className="mt-4" htmlFor="destination">Үзэх газрууд/Destination:</label>
       <input
         className="inline-block p-2 rounded w-full border border-slate-600"
         type="text"
@@ -55,7 +56,7 @@ export default function AddDay(props: {
         onChange={handleChange}
       />
 
-      <label htmlFor="image">Зураг/Image:</label>
+      <label className="mt-4" htmlFor="image">Зураг/Image:</label>
       <input
         className="inline-block p-2 rounded w-full border border-slate-600"
         type="file"
@@ -63,9 +64,13 @@ export default function AddDay(props: {
         onChange={handleChange}
       />
 
-      <input type="button" onClick={handleDayAdd} className="bg-yellow-700 text-white py-2 px-4">
-        БАТАЛГААЖУУЛАХ
-      </input>
+      <input
+        type="button"
+        onClick={() => handleDayAdd(formData)}
+        className="bg-yellow-600 text-white py-2 px-4 w-4/12 ms-auto mt-4 rounded"
+        value="БАТАЛГААЖУУЛАХ"
+      />
     </div>
   );
-}
+};
+export default AddDay;
