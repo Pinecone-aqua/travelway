@@ -15,12 +15,6 @@ export class Travel {
 
   @Prop([])
   day: [];
-
-  @Prop()
-  season: string;
-
-  @Prop()
-  tags_id: string;
 }
 
 export const TravelSchema = SchemaFactory.createForClass(Travel);
