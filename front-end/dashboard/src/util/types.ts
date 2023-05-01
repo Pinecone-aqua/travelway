@@ -34,6 +34,7 @@ export interface toDoType {
 }
 
 export interface miniStoryType {
+  _id: string;
   image: string;
   title: string;
   description: string;

@@ -1,5 +1,5 @@
 import { miniStoryType } from "@/util/types";
-//import axios from "axios";
+import axios from "axios";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
@@ -13,6 +13,9 @@ export default function UserId(): JSX.Element {
         .then((res) => setMiniStory(res));
     }
   }, [query.id]);
+  function deleteHandler(_id: string) {
+    axios.delete(`http://localhost:3009/miniStory/${_id}`);
+  }
 
   console.log("mini story", miniStory);
 
@@ -34,6 +37,12 @@ export default function UserId(): JSX.Element {
           <div className="">
             <div>{story.title}</div>
             <div>{story.sentence}</div>
+            <button
+              className="p-2 bg-white rounded-xl"
+              onClick={() => deleteHandler(story._id)}
+            >
+              delete
+            </button>
           </div>
         </div>
       ))}
