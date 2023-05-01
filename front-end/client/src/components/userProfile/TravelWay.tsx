@@ -11,7 +11,7 @@ export default function TravelWay() {
           <div>
             <button onClick={() => setPopup(false)}>X</button>
           </div>
-          <div className=""></div>
+          <div className="">{" "}</div>
         </div>
       ) : (
         <button onClick={() => setPopup(true)}>

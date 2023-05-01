@@ -2,7 +2,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { GrAddCircle } from "react-icons/gr";
 import axios from "axios";
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 
 import { Editor, EditorTextChangeEvent } from "primereact/editor";
 
