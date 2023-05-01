@@ -18,6 +18,8 @@
     "eslint": "8.38.0",
     "eslint-config-next": "13.3.0",
     "flowbite": "^1.6.5",
+    "js-cookie": "^3.0.5",
+    "jwt-decode": "^3.1.2",
     "moment": "^2.29.4",
     "next": "13.3.0",
     "postcss": "8.4.21",
@@ -28,11 +30,16 @@
     "react-dom": "18.2.0",
     "react-draft-wysiwyg": "^1.15.0",
     "react-icons": "^4.8.0",
+
+    "react-quill": "^2.0.0",
+
     "slate-react": "^0.94.0",
+
     "tw-elements": "^1.0.0-beta2",
     "typescript": "5.0.4"
   },
   "devDependencies": {
+    "@types/js-cookie": "^3.0.3",
     "@types/react-draft-wysiwyg": "^1.13.4",
     "@typescript-eslint/eslint-plugin": "^5.57.0",
     "@typescript-eslint/parser": "^5.57.0",

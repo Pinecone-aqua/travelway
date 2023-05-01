@@ -3,26 +3,16 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
-import { User } from './schemas/user.schema';
+import { User, UpdateUserDto } from './schemas/user.schema';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 
 @Injectable()
 export class UsersService {
-  constructor(@InjectModel('User') private readonly userModel: Model<User>) {}
+  constructor(@InjectModel('User') private userModel: Model<User>) {}
 
-  async create(createUserDto: CreateUserDto): Promise<User> {
-    const { username, nickname, email, password } = createUserDto;
-
-    if (!username && !nickname && !email && !password) {
-      throw new BadRequestException(
-        'User email and password and, username required',
-      );
-    }
-
-    const newUser = new this.userModel(createUserDto);
+  async create(user: User) {
+    const newUser = new this.userModel(user);
     const result = await newUser.save();
     return result;
   }
@@ -30,6 +20,10 @@ export class UsersService {
   async findAll(): Promise<User[]> {
     const result = await this.userModel.find({});
     return result;
+  }
+
+  async findByEmail(email: string) {
+    return await this.userModel.findOne({ email });
   }
 
   async findOne(id: string): Promise<User> {

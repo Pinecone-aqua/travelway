@@ -7,7 +7,7 @@ export type UserDocument = HydratedDocument<User>;
   timestamps: true,
 })
 export class User {
-  @Prop()
+  @Prop({ required: true })
   username: string;
 
   @Prop()
@@ -16,7 +16,7 @@ export class User {
   @Prop({ unique: [true, 'Хэрэглэгч бүртгэлтэй байна.'] })
   email: string;
 
-  @Prop()
+  @Prop({ required: true })
   password: string;
 
   @Prop()
@@ -28,8 +28,12 @@ export class User {
   @Prop()
   image: string;
 
-  @Prop()
-  role: string;
+  @Prop({ default: 'user' })
+  role: 'user' | 'admin' | 'moderator';
+}
+
+export class UpdateUserDto extends User {
+  _id: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
