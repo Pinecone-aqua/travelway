@@ -46,4 +46,10 @@ export class MiniStoryController {
   remove(@Param('id') id: string): Promise<MiniStory> {
     return this.travelService.remove(id);
   }
+  // sharavaa nemev
+  @Get('user/:id')
+  find(@Param('id') id: string): Promise<MiniStory[]> {
+    console.log(id);
+    return this.travelService.findMinstory(id);
+  }
 }

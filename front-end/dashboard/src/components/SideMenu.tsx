@@ -52,6 +52,16 @@ export default function SideMenu(): JSX.Element {
             {" "}
             <UserIcon /> Users
           </Link>
+          <Link
+            className={
+              route.route === "/miniStory"
+                ? "text-white bg-cyan-500 shadow-2xl shadow-cyan-900   text-2xl font-serif flex justify-center items-center  rounded-2xl w-9/12 h-16 m-7"
+                : "flex justify-center items-center  rounded-2xl w-9/12 h-16 m-7"
+            }
+            href={"/miniStory"}
+          >
+            Mini Story
+          </Link>
         </ul>
       </div>
     </>

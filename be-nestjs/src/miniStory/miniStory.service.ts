@@ -33,11 +33,6 @@ export class MiniStoryService {
     return result;
   }
 
-  // async findIdAll(): Promise<any[]> {
-  //   const result = await this.travelModel.find({}, { _id: 1 });
-  //   return result;
-  // }
-
   async findOne(id: string): Promise<MiniStory> {
     try {
       const result = await this.miniStoryModel.findOne({
@@ -76,5 +71,11 @@ export class MiniStoryService {
       throw new NotFoundException(`Аяллын ${id} ID-тай аялал олдсонгүй`);
     }
     return deletedTravels;
+  }
+
+  // sharavaaa ym nemlee
+  async findMinstory(id: string): Promise<MiniStory[]> {
+    const result = await this.miniStoryModel.find({ userId: id });
+    return result;
   }
 }
