@@ -15,6 +15,8 @@ export class MiniStory {
 
   @Prop()
   sentence: string;
+  @Prop()
+  userId: string;
 }
 
 export const miniStorySchema = SchemaFactory.createForClass(MiniStory);
