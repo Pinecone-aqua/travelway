@@ -108,7 +108,7 @@ export default function Header(): JSX.Element {
             </div>
           ) : (
             <div
-              className="cursor-pointer flex items-center"
+              className="cursor-pointer flex items-center mt-3 opacity-50"
               onClick={() => {
                 router.push("/login");
               }}

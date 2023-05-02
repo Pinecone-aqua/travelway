@@ -2,8 +2,6 @@ import Layout from "@/components/Layout";
 import Head from "next/head";
 import axios from "axios";
 import Link from "next/link";
-import AddTravelPage from "@/components/travel/addtravel";
-import { useState } from "react";
 
 interface TravelType {
   _id: string;
@@ -25,7 +23,7 @@ interface TravelProps {
 }
 
 export default function Travel({ travels }: TravelProps) {
-  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <Layout>
       <Head>
@@ -33,30 +31,6 @@ export default function Travel({ travels }: TravelProps) {
       </Head>
 
       <div>
-        <div className="w-full bg-slate-100 flex flex-col py-2 px-4">
-          {isOpen ? (
-            <>
-              <button
-                type="button"
-                name="closeTravel"
-                onClick={() => setIsOpen(!isOpen)}
-                className="ms-auto"
-              >
-                Close
-              </button>
-              <AddTravelPage />
-            </>
-          ) : (
-            <button
-              type="button"
-              name="openTravel"
-              onClick={() => setIsOpen(!isOpen)}
-              className="ms-auto"
-            >
-              Open
-            </button>
-          )}
-        </div>
         <div className="border-b-2"> </div>
         <section className="flex flex-wrap gap-4 my-8 container mx-auto">
           {travels.map((travel: TravelType, index: number) => (
