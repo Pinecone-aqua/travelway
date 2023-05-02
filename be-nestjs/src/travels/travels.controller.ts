@@ -18,6 +18,8 @@ export class TravelsController {
 
   @Post('add')
   create(@Body() createTravelDto: CreateTravelDto): Promise<Travel> {
+    console.log(createTravelDto);
+
     return this.travelService.create(createTravelDto);
   }
 
