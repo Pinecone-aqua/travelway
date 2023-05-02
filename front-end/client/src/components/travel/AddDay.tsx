@@ -1,12 +1,8 @@
 import React, { SetStateAction } from "react";
 import { DayType } from "../../pages/addtravel";
 
-export interface AddDayProps {
-  handleDayAdd: () => void;
-}
-
 const AddDay = (props: {
-  setFormData: React.Dispatch<SetStateAction<DayType>>;
+  setFormData: React.Dispatch<SetStateAction<DayType[]>>;
 }): JSX.Element => {
   const { setFormData } = props;
 
@@ -15,13 +11,25 @@ const AddDay = (props: {
 
   function handleChange(e: any) {
     e.preventDefault();
-    setFormData({
-      subTitle: e.target.subTitle.value,
-      describe: e.target.describe.value,
-      considerations: e.target.considerations.value,
-      destination: e.target.destination.value,
-      image: e.target.image.value,
-    });
+    // const formDataArray: DayType[];
+    // formDataArray.push({
+    //   subTitle: e.target.subTitle.value,
+    //     describe: e.target.describe.value,
+    //     considerations: e.target.considerations.value,
+    //     destination: e.target.destination.value,
+    //     image: e.target.image.value,
+    // })
+
+    setFormData((prev) => [
+      ...prev,
+      {
+        subTitle: e.target.subTitle.value,
+        describe: e.target.describe.value,
+        considerations: e.target.considerations.value,
+        destination: e.target.destination.value,
+        image: e.target.image.value,
+      },
+    ]);
   }
 
   return (
@@ -83,6 +91,11 @@ const AddDay = (props: {
         >
           БАТАЛГААЖУУЛАХ
         </button>
+        <input
+          type="reset"
+          className="bg-cyan-500 p-2 my-2 mx-5 rounded-xl"
+          value="Дараагийн өдөр"
+        />
       </form>
     </div>
   );

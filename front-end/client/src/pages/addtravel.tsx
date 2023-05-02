@@ -1,8 +1,8 @@
-import axios from "axios";
-import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
-import { useRouter } from "next/router";
+import React, { ChangeEvent, FormEvent, useState } from "react";
 import AddDay from "../components/travel/AddDay";
 import Header from "@/components/Header";
+import axios from "axios";
+import { useRouter } from "next/router";
 
 export interface DayType {
   subTitle: "";
@@ -13,6 +13,8 @@ export interface DayType {
 }
 
 const AddTravelPage = () => {
+  const router = useRouter();
+  const [activeClass, setActiveClass] = useState(-1);
   const [color, setColor] = useState<string>();
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function changeColor(e: any): void {
@@ -24,51 +26,39 @@ const AddTravelPage = () => {
     description: "",
   });
 
-  const [formData, setFormData] = useState<DayType>({
-    subTitle: "",
-    describe: "",
-    considerations: "",
-    destination: "",
-    image: "",
-  });
+  const [formData, setFormData] = useState<DayType[]>([]);
 
-  // console.log(travelData);
-  // console.clear();
-  // console.log("Form Data ===>");
-  // console.log(formData);
-  const [dayDataList, setDayDataList] = useState<DayType[]>([]);
+  const handleSubmit = async (event: any) => {
+    event.preventDefault();
+    try {
+      const nwData = {
+        title: travelData.title,
+        description: travelData.description,
+        day: [...formData],
+      };
 
-  const router = useRouter();
+      console.log("NEW DAta ----> ");
+      console.log(formData);
 
-  // const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-  //   event.preventDefault();
-  //   try {
-  //     const nwData = {
-  //       title: travelData.title,
-  //       description: travelData.description,
-  //       day: [...dayDataList],
-  //     };
+      const response = await axios.post(
+        "http://localhost:3009/travels/add",
+        nwData
+      );
+      console.log(response.data);
 
-  //     const response = await axios.post("/travels/add", nwData);
-  //     console.log(response.data);
-
-  //     router.push("/travelJourney");
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
+      router.push("/addtravel");
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setTravelData((prevState) => ({ ...prevState, [name]: value }));
   };
-  const dataArray = [];
-  useEffect(() => {
-    dataArray.push(formData);
-  }, [formData]);
 
-  // console.log("Data list:===>");
-  // console.log(dayDataList);
+  console.log("Data list:===>");
+  console.log(formData);
 
   const handleClear = (event: FormEvent<HTMLInputElement>) => {
     event.preventDefault();
@@ -114,7 +104,7 @@ const AddTravelPage = () => {
       </div>
       <div className="w-6/12 mx-auto mt-16 mb-8">
         <div className="flex flex-col gap-y-2">
-          <form>
+          <>
             <label htmlFor="title">Аяллын гарчиг/Title:</label>
             <input
               className="inline-block p-2 rounded w-full border border-slate-600"
@@ -130,24 +120,55 @@ const AddTravelPage = () => {
               name="description"
               onChange={handleChange}
             />
-
-            <button
-              className="mt-4 nline-block w-4/12 border bg-blue-600 py-2 px-8 text-white rounded"
-              type="submit"
-            >
-              Submit
-            </button>
-          </form>
-
-          <AddDay setFormData={setFormData} />
+          </>
+          <div className="flex">
+            {formData.length < 1 ? (
+              <div key={0}>
+                <button
+                  key={0}
+                  onClick={() => setActiveClass(0)}
+                  className={`p-2 bg-cyan-500 rounded-xl `}
+                >
+                  1 udriin aylal
+                </button>
+                <div className="block">
+                  <AddDay setFormData={setFormData} />
+                </div>
+              </div>
+            ) : (
+              formData.map((elem: DayType, index: number) => (
+                <div key={index}>
+                  <button
+                    key={index}
+                    onClick={() => setActiveClass(index)}
+                    className={`p-2 bg-cyan-500 rounded-xl `}
+                  >
+                    {index + 1}udriin aylal
+                  </button>
+                  <div
+                    key={index}
+                    className={`${index != activeClass ? "hidden" : "block"}`}
+                  >
+                    <AddDay setFormData={setFormData} />
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
 
           <div className="flex justify-between items-center">
             <input
-              type="button"
+              type="reset"
               name="clearBtn"
               value="ЦЭВЭРЛЭХ"
               onClick={handleClear}
               className="mt-4 nline-block w-3/12 border bg-red-600 py-2 px-8 text-white rounded"
+            />
+            <input
+              onClick={handleSubmit}
+              type="button"
+              value="ХАДГАЛАХ"
+              className="mt-4 nline-block w-4/12 border bg-blue-600 py-2 px-8 text-white rounded"
             />
           </div>
         </div>
