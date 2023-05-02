@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Link from "next/link";
+<<<<<<< Updated upstream
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import jwtDecode from "jwt-decode";
@@ -9,6 +10,10 @@ interface HeaderType {
   user: any;
   setUser: (arg: any) => void;
 }
+=======
+import { useState } from "react";
+import "primereact/resources/primereact.min.css";
+>>>>>>> Stashed changes
 
 export default function Header(): JSX.Element {
   const [nav, setNav] = useState<null | string>();

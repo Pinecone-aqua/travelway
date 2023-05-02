@@ -12,7 +12,7 @@ import { CreateMiniStoryDto } from './dto/create-miniStory.dto';
 import { MiniStory } from './schemas/miniStory.schema';
 import { UpdateMiniStorylDto } from './dto/update-miniStory.dto';
 
-@Controller('miniStory')
+@Controller('MiniStory')
 export class MiniStoryController {
   constructor(private readonly travelService: MiniStoryService) {}
 

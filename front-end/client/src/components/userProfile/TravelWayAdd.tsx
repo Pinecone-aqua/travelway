@@ -1,14 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react-hooks/rules-of-hooks */
 import { GrAddCircle } from "react-icons/gr";
-import axios from "axios";
+// import axios from "axios";
 import React, { useState, useRef } from "react";
-
 import { Editor, EditorTextChangeEvent } from "primereact/editor";
+import "quill/dist/quill.snow.css";
 
 export default function TravelWayAdd(): JSX.Element {
   const [popup, setPopup] = useState(false);
   const [text, setText] = useState<string>("");
+  const textEditorRef = useRef(null);
 
   function popUpHandler() {
     setPopup(true);
@@ -17,15 +18,41 @@ export default function TravelWayAdd(): JSX.Element {
     setPopup(false);
   }
 
-  function miniStoryHandler(e: any) {
+  // function miniStoryHandler(e: any) {
+  //   e.preventDefault();
+  //   console.log(text);
+  //   axios.post(`http://localhost:3009/travelways/add`, {
+  //     title: text,
+  //     sentence: e.target.sentence.value,
+  //   });
+  // }
+
+  async function handleSubmit(e: any) {
     e.preventDefault();
-    axios.post(`http://localhost:3009/ministories/add`, {
-      image: e.target.image.value,
-      title: e.target.title.value,
-      sentence: e.target.sentence.value,
-    });
-    console.log("e.target.title.innerText :", e.target.title.value);
-    console.log("e.target.sentence.innerText :", e.target.sentence.value);
+    const quill = textEditorRef.current.getQuill();
+    if (quill) {
+      const html = quill.root.innerHTML;
+      console.log(html);
+
+      const response = await fetch("http://localhost:3009/travelways/add", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title: html,
+          sentence: e.target.sentence.value,
+        }),
+      });
+      const message = response.json();
+      console.log(message);
+
+      if (response.ok) {
+        console.log("response", response.ok);
+      } else {
+        console.log("response error :", response.ok);
+      }
+    }
   }
 
   return (
@@ -35,27 +62,19 @@ export default function TravelWayAdd(): JSX.Element {
           <div className="w-[100%] border relative bg-white p-5 ">
             <form
               className="flex grid place-content-center gap-5 "
-              onSubmit={miniStoryHandler}
+              onSubmit={handleSubmit}
             >
-              <div className="bg-gray-100">
+              <div className="bg-gray-100 card">
                 <Editor
                   value={text}
-                  onTextChange={(e: EditorTextChangeEvent) =>
-                    setText(e.textValue)
-                  }
+                  onTextChange={(e) => setText(e.htmlValue)}
+                  ref={textEditorRef}
                   style={{ height: "320px" }}
-                  name=""
+                  name="title"
                 />
               </div>
 
               <div>
-                <input
-                  name="title"
-                  type="text"
-                  placeholder="Title"
-                  className="border w-full"
-                />
-
                 <textarea
                   name="sentence"
                   placeholder="sentence"

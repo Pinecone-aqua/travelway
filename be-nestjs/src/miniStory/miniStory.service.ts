@@ -30,6 +30,7 @@ export class MiniStoryService {
 
   async findAll(): Promise<MiniStory[]> {
     const result = await this.miniStoryModel.find();
+    console.log('result :', result);
     return result;
   }
 
