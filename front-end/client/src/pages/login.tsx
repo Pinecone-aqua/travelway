@@ -47,7 +47,7 @@ export default function Login(): JSX.Element {
       if (response.status === 200 || response.status === 201) {
         const userID = JSON.parse(response.data.userid);
         localStorage.setItem("userId", userID);
-        router.push("/travelJourney");
+        router.push("/profile");
         return;
       }
     } catch (error) {
