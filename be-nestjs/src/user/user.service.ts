@@ -22,14 +22,30 @@ export class UsersService {
     return result;
   }
 
-  async findByEmail(email: string) {
-    return await this.userModel.findOne({ email });
+  async findProInfo(): Promise<any> {
+    try {
+      const result = await this.userModel.find({}, { username: 1, image: 1 });
+      return result;
+    } catch (error) {
+      throw new Error(`Error finding user profiles: ${error}`);
+    }
   }
 
+  async findByEmail(email: string) {
+    try {
+      return await this.userModel.findOne({ email });
+    } catch (error) {
+      throw new Error(`Error finding email address: ${error}`);
+    }
+  }
+  
   async findOne(id: string): Promise<User> {
-    const result = await this.userModel.findOne({ _id: id });
-
-    return result;
+    try {
+      const result = await this.userModel.findOne({ _id: id });
+      return result;
+    } catch (error) {
+      throw new Error(`Error finding one user: ${error}`);
+    }
   }
 
   async update(id: string, updateUserDto: UpdateUserDto): Promise<User> {
