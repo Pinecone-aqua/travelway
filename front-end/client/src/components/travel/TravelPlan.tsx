@@ -3,7 +3,6 @@ import { FormEvent, useEffect, useState } from "react";
 import { TravelType } from "../../../util/types";
 import Image from "next/image";
 
-
 export default function TravelPlan(): JSX.Element {
   const [travels, setTravels] = useState<TravelType[]>([]);
   const [currentPage, setCurrentPage] = useState(0);
@@ -29,7 +28,7 @@ export default function TravelPlan(): JSX.Element {
     <div>
       <div>
         <section className="flex flex-col gap-2 my-8 container mx-auto">
-          <div className="w-full flex gap-2 justify-center items-center">
+          <div className="w-full flex flex-wrap gap-2 justify-center items-center">
             {travels.map((item, index) => (
               <button
                 key={index}
