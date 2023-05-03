@@ -4,6 +4,7 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 import Link from "next/link";
+import Image from "next/image";
 
 interface StoryType {
   _id: string;
@@ -98,7 +99,7 @@ export default function User(): JSX.Element {
               story.userId === logUser ? (
                 <div key={index} className="relative w-3/12 h-4/12 mx-4 my-4">
                   <div className="relative bg-slate-100 h-80 w-full text-black rounded-t-md">
-                    <img
+                    <Image
                       src={story.image}
                       alt={story.title}
                       width={100}
