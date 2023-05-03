@@ -15,13 +15,12 @@ export default function MiniStoryAdd(): JSX.Element {
 
   function miniStoryHandler(e: any) {
     e.preventDefault();
-    axios.post(`http://localhost:3009/ministories/add`, {
+    axios.post(`http://localhost:3009/miniStory/add`, {
       image: e.target.image.value,
       title: e.target.title.value,
       sentence: e.target.sentence.value,
     });
-    console.log("e.target.title.innerText :", e.target.title.value);
-    console.log("e.target.sentence.innerText :", e.target.sentence.value);
+    console.log(e.target.sentence.value);
   }
 
   return (

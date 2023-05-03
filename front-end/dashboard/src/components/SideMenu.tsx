@@ -12,29 +12,27 @@ export default function SideMenu(): JSX.Element {
   //   // setColor(e.target.innerText);
   // }
   const route = useRouter();
+  console.log(route.route);
+  const activeClass =
+    "text-white bg-cyan-500 shadow-2xl shadow-cyan-900 text-2xl font-serif flex justify-center items-center  rounded-2xl w-9/12 h-16 m-7";
+
+  const inActiveClass =
+    "flex justify-center items-center  rounded-2xl w-9/12 h-16 m-7";
 
   return (
     <>
       <div className="w-3/12 h-screen flex justify-center bg-slate-200">
         <ul className="flex flex-col rounded-2xl  bg-slate-50 h-2/3 w-4/6  shadow-lg shadow-cyan-100">
           <Link
-            className={
-              route.route === "/orders"
-                ? " text-white bg-cyan-500 shadow-2xl shadow-cyan-900 text-2xl font-serif flex justify-center items-center  rounded-2xl w-9/12 h-16 m-7"
-                : "flex justify-center items-center  rounded-2xl w-9/12 h-16 m-7"
-            }
-            href={"/orders"}
+            className={route.route === "/stories" ? activeClass : inActiveClass}
+            href={"/stories"}
           >
             {" "}
             <OrderIcon />
-            Orders
+            Stories
           </Link>
           <Link
-            className={
-              route.route === "/travels"
-                ? "text-white bg-cyan-500 shadow-xl shadow-cyan-900  text-2xl font-serif flex justify-center items-center  rounded-2xl w-9/12 h-16 m-7"
-                : "flex justify-center items-center rounded-2xl w-9/12 h-16 m-7"
-            }
+            className={route.route === "/travels" ? activeClass : inActiveClass}
             href={"/travels"}
           >
             {" "}
@@ -42,11 +40,7 @@ export default function SideMenu(): JSX.Element {
             Travels
           </Link>
           <Link
-            className={
-              route.route === "/users"
-                ? "text-white bg-cyan-500 shadow-2xl shadow-cyan-900   text-2xl font-serif flex justify-center items-center  rounded-2xl w-9/12 h-16 m-7"
-                : "flex justify-center items-center  rounded-2xl w-9/12 h-16 m-7"
-            }
+            className={route.route === "/users" ? activeClass : inActiveClass}
             href={"/users"}
           >
             {" "}
@@ -54,9 +48,7 @@ export default function SideMenu(): JSX.Element {
           </Link>
           <Link
             className={
-              route.route === "/miniStory"
-                ? "text-white bg-cyan-500 shadow-2xl shadow-cyan-900   text-2xl font-serif flex justify-center items-center  rounded-2xl w-9/12 h-16 m-7"
-                : "flex justify-center items-center  rounded-2xl w-9/12 h-16 m-7"
+              route.route === "/miniStory" ? activeClass : inActiveClass
             }
             href={"/miniStory"}
           >

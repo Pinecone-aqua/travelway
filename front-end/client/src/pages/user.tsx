@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unnecessary-condition */
 /* eslint-disable @next/next/no-img-element */
 import MiniStoryAdd from "@/components/userProfile/MiniStoryAdd";
@@ -9,6 +10,7 @@ import { miniStoryType } from "../../util/mini-story-type";
 import MiniStory from "@/components/userProfile/MiniStory";
 import Link from "next/link";
 import TravelWayAdd from "@/components/userProfile/TravelWayAdd";
+import { travelWayType } from "../../util/travelWayType";
 
 export default function User(): JSX.Element {
   const [change, setChange] = useState();
@@ -17,6 +19,9 @@ export default function User(): JSX.Element {
   const activatedStyle = "border-black  py-[3px] font-semibold  border-b-2 ";
   const topBtnStyle =
     "border border-black rounded-[13px] px-[15px] md:px-[29.5px] active:text-gray-200 py-[3px]";
+
+  const [travelWay, setTravelWay] = useState<travelWayType[]>();
+
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function changer(e: any) {
@@ -30,6 +35,32 @@ export default function User(): JSX.Element {
     };
     getFetchdata();
   }, []);
+
+  useEffect(() => {
+    const getFetchdata = async () => {
+      const travelWay = await axios.get(`http://localhost:3009/travelways/get`);
+      const { data } = travelWay;
+      setTravelWay(data);
+    };
+    getFetchdata();
+  }, []);
+
+  // useEffect(() => {
+  //   const getFetchdata = async () => {
+  //     const travelWay = await fetch(`http://localhost:3009/travelways/get`, {
+  //       method: "GET",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.parse({}),
+  //     });
+  //     const { data } = travelWay;
+  //     console.log("data :", data);
+
+  //     setTravelWay(data);
+  //   };
+  //   getFetchdata();
+  // }, []);
   return (
     <>
       <div className="w-full justify-center flex xxl:h-[500px] xl:h-[400px] lg:h-[300px] md:h-[200px]  drop-shadow-2xl relative bg-black">
@@ -112,10 +143,21 @@ export default function User(): JSX.Element {
                 </div>
               </>
             ) : change == "TravelWay" ? (
-              <div className="relative">
-                <TravelWayAdd />
-                <div className="absolute place-content-center ">
-                  <TravelWay />
+              <>
+                <div>
+                  <div className="relative">
+                    <TravelWayAdd />
+                    <div className="absolute place-content-center ">
+                      {travelWay?.map(
+                        (travelWayData: travelWayType, index: number) => (
+                          <TravelWay
+                            travelWayData={travelWayData}
+                            key={index}
+                          />
+                        )
+                      )}
+                    </div>
+                  </div>
                 </div>
               </div>
             ) : (

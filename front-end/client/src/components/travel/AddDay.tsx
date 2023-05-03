@@ -1,4 +1,4 @@
-import { DayType } from "@/pages/addtravel";
+import { DayType } from "../../../util/types";
 import React, { ChangeEvent } from "react";
 
 const AddDay = (props: {

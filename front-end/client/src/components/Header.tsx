@@ -1,9 +1,9 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import jwtDecode from "jwt-decode";
 import { useRouter } from "next/router";
+import "primereact/resources/primereact.min.css";
 
 interface HeaderType {
   user: any;
@@ -20,12 +20,14 @@ export default function Header(): JSX.Element {
   const defaultStyle =
     "w-[15rem] ease-in duration-300 md:w-[10rem] sm:w-[8rem] opacity-50 mt-3 sm:w-[5rem]";
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
   const token: any = Cookies.get("token");
 
   useEffect(() => {
     if (token) setUser(jwtDecode(token));
   }, [token]);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function changeNav(e: any) {
     setNav(e.target.innerText);
   }
@@ -39,6 +41,7 @@ export default function Header(): JSX.Element {
                 nav == "Travel"
                   ? ` w-[15rem]  mt-1 ${activatedStyle}`
                   : ` ${defaultStyle}`
+
               }
               onClick={changeNav}
             >
@@ -49,6 +52,7 @@ export default function Header(): JSX.Element {
             <button
               className={
                 nav == "About"
+
                   ? `xl:w-[15rem] sm:text-[15px] w-[15rem] mt-1 ${activatedStyle}`
                   : `sm:text-[12.5px]  mt-4 ${defaultStyle}`
               }
@@ -62,6 +66,7 @@ export default function Header(): JSX.Element {
           <button
             className={
               nav == "Home" ? `w-[15rem]  ${activatedStyle}` : `${defaultStyle}`
+
             }
             onClick={changeNav}
           >
@@ -73,6 +78,7 @@ export default function Header(): JSX.Element {
             <button
               className={
                 nav == "Gadget"
+
                   ? `w-[15rem] mt-1 ${activatedStyle}`
                   : `${defaultStyle}`
               }
@@ -87,6 +93,7 @@ export default function Header(): JSX.Element {
                 nav == "Contact us"
                   ? `sm:text-[20px] xl:w-[15rem] sm:w-[2rem] mt-1 ${activatedStyle}`
                   : `${defaultStyle}`
+
               }
               onClick={changeNav}
             >

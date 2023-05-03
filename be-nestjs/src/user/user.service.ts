@@ -38,7 +38,7 @@ export class UsersService {
       throw new Error(`Error finding email address: ${error}`);
     }
   }
-  
+
   async findOne(id: string): Promise<User> {
     try {
       const result = await this.userModel.findOne({ _id: id });

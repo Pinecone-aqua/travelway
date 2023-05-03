@@ -6,7 +6,7 @@ export interface userType {
   phone: number;
   created_date: number;
 }
-export interface questType {
+export interface StoryType {
   _id: string;
   title: string;
   province: string;

@@ -1,12 +1,12 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
 
-export type QuestDocument = HydratedDocument<Quest>;
+export type StoryDocument = HydratedDocument<Story>;
 
 @Schema({
   timestamps: true,
 })
-export class Quest {
+export class Story {
   @Prop()
   title: string;
   @Prop()
@@ -21,4 +21,4 @@ export class Quest {
   province: string;
 }
 
-export const QuestSchema = SchemaFactory.createForClass(Quest);
+export const StorySchema = SchemaFactory.createForClass(Story);

@@ -1,25 +1,14 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import AddDay from "../components/travel/AddDay";
 import Header from "@/components/Header";
 import axios from "axios";
-// import axios from "axios";
-// import { useRouter } from "next/router";
-
-export interface DayType {
-  subTitle: "";
-  describe: "";
-  considerations: "";
-  destination: "";
-  image: "";
-}
+import { DayType } from "../../util/types";
 
 const AddTravelPage = () => {
   // const router = useRouter();
   const [activeClass, setActiveClass] = useState(0);
   const [color, setColor] = useState<string>();
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function changeColor(e: any): void {
     setColor(e.target.innerText);
   }
@@ -30,7 +19,7 @@ const AddTravelPage = () => {
   });
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [formData, setFormData] = useState<any>([
+  const [dayFormData, setDayFormData] = useState<any>([
     {
       subTitle: "",
       describe: "",
@@ -43,17 +32,13 @@ const AddTravelPage = () => {
   const handleSubmit = async (event: any) => {
     event.preventDefault();
 
-    // console.log("Form Data");
-    // console.log(formData);
     try {
       const nwData = {
         title: travelData.title,
         description: travelData.description,
-        day: [...formData],
+        day: [...dayFormData],
       };
-      // console.log(nwData);
-      //   console.log("NEW DAta ----> ");
-      //   console.log(formData);
+
       const response = await axios.post(
         "http://localhost:3009/travels/add",
         nwData
@@ -74,13 +59,13 @@ const AddTravelPage = () => {
     event: ChangeEvent<HTMLInputElement>,
     index: number
   ) => {
-    const data = [...formData];
+    const data = [...dayFormData];
     data[index][event.target.name] = event.target.value;
-    setFormData(data);
+    setDayFormData(data);
   };
 
   const handleAddDay = () => {
-    console.log(formData);
+    console.log(dayFormData);
 
     const object = {
       subTitle: "",
@@ -89,7 +74,7 @@ const AddTravelPage = () => {
       destination: "",
       image: "",
     };
-    setFormData([...formData, object]);
+    setDayFormData([...dayFormData, object]);
   };
 
   const handleCurrentDisplay = (e: FormEvent, index: number) => {
@@ -102,7 +87,7 @@ const AddTravelPage = () => {
       title: "",
       description: "",
     });
-    setFormData([
+    setDayFormData([
       {
         subTitle: "",
         describe: "",
@@ -177,7 +162,7 @@ const AddTravelPage = () => {
 
             <div>
               <div className="flex flex-wrap">
-                {formData.map((elem: DayType, index: number) => (
+                {dayFormData.map((elem: DayType, index: number) => (
                   <button
                     key={index + "b"}
                     onClick={(e) => handleCurrentDisplay(e, index)}
@@ -189,7 +174,7 @@ const AddTravelPage = () => {
                   </button>
                 ))}
               </div>
-              {formData.map((elem: DayType, index: number) => (
+              {dayFormData.map((elem: DayType, index: number) => (
                 <div key={index + "di"} className="flex flex-col">
                   <div
                     key={index + 1}
