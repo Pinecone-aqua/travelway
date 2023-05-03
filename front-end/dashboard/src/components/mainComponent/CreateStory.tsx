@@ -2,14 +2,14 @@ import axios from "axios";
 import { useState } from "react";
 import ModalInput from "./ModaInput";
 
-export default function CreateQuest(): JSX.Element {
+export default function CreateStory(): JSX.Element {
   const [addIndicator, setAddIndicator] = useState([]);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function createHandler(e: any): void {
     e.preventDefault();
 
-    axios.post(`http://localhost:3009/quests/create`, {
+    axios.post(`http://localhost:3009/stories/create`, {
       title: e.target.title.value,
       description: e.target.description.value,
       province: e.target.province.value,

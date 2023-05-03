@@ -1,19 +1,19 @@
-import CreateQuest from "@/components/mainComponent/CreateQuest";
-import Quest from "@/components/mainComponent/Quest";
-import { questType } from "@/util/types";
+import CreateStory from "@/components/mainComponent/CreateStory";
+import Story from "@/components/mainComponent/Story";
 
+import { StoryType } from "@/util/types";
 import { useEffect, useState } from "react";
 import { ClockLoader } from "react-spinners";
 
 export default function Orders(): JSX.Element {
-  const [quest, setQuest] = useState<questType[] | null>(null);
+  const [story, setStory] = useState<StoryType[] | null>(null);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     setLoading(true);
-    fetch("http://localhost:3009/quests/get")
+    fetch("http://localhost:3009/stories/get")
       .then((response) => response.json())
       .then((res) => {
-        setQuest(res);
+        setStory(res);
         setLoading(false);
       })
       .catch((error) => {
@@ -22,6 +22,8 @@ export default function Orders(): JSX.Element {
       });
   }, []);
   const [create, setCreate] = useState(false);
+
+  console.log(story);
 
   return (
     <div className="bg-white rounded-2xl h-full px-20 py-10 shadow-xl shadow-cyan-500">
@@ -44,7 +46,7 @@ export default function Orders(): JSX.Element {
               >
                 back
               </button>
-              <CreateQuest />
+              <CreateStory />
             </div>
           ) : (
             <div className="">
@@ -58,7 +60,7 @@ export default function Orders(): JSX.Element {
                 <thead className="h-24 text-left p-5">
                   <tr className="p-5">
                     <th scope="col" className="p-5">
-                      quest id
+                      story id
                     </th>
                     <th scope="col">Title</th>
                     <th scope="col">province</th>
@@ -67,8 +69,8 @@ export default function Orders(): JSX.Element {
                   </tr>
                 </thead>
                 <tbody className="h-32 ">
-                  {quest?.map((unit: questType, index: number) => (
-                    <Quest key={index} unit={unit} />
+                  {story?.map((unit: StoryType, index: number) => (
+                    <Story key={index} unit={unit} />
                   ))}
                 </tbody>
               </table>
