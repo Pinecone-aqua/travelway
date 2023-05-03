@@ -63,7 +63,6 @@ export async function getStaticPaths() {
 }
 
 export default function Travel({ result }: { result: TravelType }) {
-
   const [travelData, setTravelData] = useState<TravelType | null>(null);
 
   useEffect(() => {
@@ -92,9 +91,7 @@ export default function Travel({ result }: { result: TravelType }) {
             </p>
             <p>
               <span className="text-sm font-bold text-gray-900">Day: </span>
-              {
-                JSON.stringify(result.day, null, 2)
-              }
+              {JSON.stringify(result.day, null, 2)}
             </p>
           </div>
         </div>
