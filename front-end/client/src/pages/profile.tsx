@@ -5,26 +5,11 @@ import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 import Link from "next/link";
 import Image from "next/image";
-
-interface StoryType {
-  _id: string;
-  userId: string;
-  title: string;
-  image: string;
-  sentence: string;
-}
+import { StoryType } from "../../util/types";
 
 export default function User(): JSX.Element {
   const logUser = localStorage.getItem("userId");
-  const [stories, setStories] = useState<StoryType[]>([
-    {
-      _id: "",
-      userId: "",
-      title: "",
-      image: "",
-      sentence: "",
-    },
-  ]);
+  const [stories, setStories] = useState<StoryType[]>([]);
   const [userData, setUserData] = useState([]);
   let userName = "";
   let userImage = "";
