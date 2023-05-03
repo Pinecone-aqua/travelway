@@ -10,13 +10,12 @@ export default function Home(): JSX.Element {
       .then((response) => response.json())
       .then((res) => setTravels(res));
   }, []);
-  console.log("aylaluud", travels);
 
   return (
     <>
       <div>
         <ContainerPages />
-        <div className=" flex justify-around m-5 flex-wrap">
+        <div className=" flex justify-start  mx-auoto flex-wrap">
           {travels &&
             travels.map((data: TravelType, index: number) => (
               <TravelCard data={data} key={index} />

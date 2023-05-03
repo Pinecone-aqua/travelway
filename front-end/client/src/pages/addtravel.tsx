@@ -5,7 +5,7 @@ import axios from "axios";
 // import axios from "axios";
 // import { useRouter } from "next/router";
 
-export interface DayType {
+interface DayType {
   subTitle: "";
   describe: "";
   considerations: "";

@@ -6,7 +6,7 @@ export interface TravelType {
   day: [];
 }
 
-export interface dayType {
+export interface DayType {
   subTitle: string;
   describe: string;
   image: string;
