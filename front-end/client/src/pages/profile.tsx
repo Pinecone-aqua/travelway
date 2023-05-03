@@ -1,5 +1,5 @@
 import axios from "axios";
-import { SetStateAction, useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
@@ -47,7 +47,7 @@ export default function User(): JSX.Element {
     }, []);
 
     if (logUser) {
-      const foundUsers = userData
+      userData
         .filter(
           (user: { _id: string; username: string; image: string }) =>
             user._id === logUser
@@ -93,11 +93,13 @@ export default function User(): JSX.Element {
         <p className="font-bold text-[26px]">{userName}</p>
         <div className="w-[80%] grid gap-10">
           <hr className=" border-black  drop-shadow-xl" />
-          <div>MINI STORY HERE</div>
           <div className="flex flex-wrap justify-center items-start">
             {stories.map((story, index) =>
               story.userId === logUser ? (
-                <div key={index} className="bg-slate-50 w-3/12 mx-4 my-4 mx-auto">
+                <div
+                  key={index}
+                  className="bg-slate-50 w-3/12 mx-4 my-4 mx-auto"
+                >
                   <picture>
                     <img
                       src={story.image}
@@ -108,7 +110,9 @@ export default function User(): JSX.Element {
                     />
                   </picture>
                   <h3 className="py-0 px-4 text-lg font-bold">{story.title}</h3>
-                  <p className="py-4 px-2 text-sm text-justify font-normal">{story.sentence}</p>
+                  <p className="py-4 px-2 text-sm text-justify font-normal">
+                    {story.sentence}
+                  </p>
                 </div>
               ) : null
             )}
