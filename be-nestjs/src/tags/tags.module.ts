@@ -5,9 +5,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { TagsSchema } from './schemas/tags.schema';
 
 @Module({
-  imports: [
-    MongooseModule.forFeature([{ name: 'TrTags', schema: TagsSchema }]),
-  ],
+  imports: [MongooseModule.forFeature([{ name: 'Tags', schema: TagsSchema }])],
   controllers: [TagsController],
   providers: [TagsService],
 })
