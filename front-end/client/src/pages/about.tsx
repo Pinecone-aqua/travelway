@@ -6,7 +6,11 @@ export default function about() {
       <div>
         <ContainerPages />
         <div className=" flex justify-center">
-          <img src="./images/work.webp" alt="pic" />
+          <picture>
+            <source media="(min-width:650px)" srcSet="./images/work.webp" />
+            <source media="(min-width:450px)" srcSet="./images/work.webp" />
+            <img src="./images/work.webp" alt="pic" width="width:auto" />
+          </picture>
         </div>
       </div>
     </>

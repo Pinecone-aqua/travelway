@@ -1,19 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Link from "next/link";
-<<<<<<< Updated upstream
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import jwtDecode from "jwt-decode";
 import { useRouter } from "next/router";
+import "primereact/resources/primereact.min.css";
 
 interface HeaderType {
   user: any;
   setUser: (arg: any) => void;
 }
-=======
-import { useState } from "react";
-import "primereact/resources/primereact.min.css";
->>>>>>> Stashed changes
 
 export default function Header(): JSX.Element {
   const [nav, setNav] = useState<null | string>();
@@ -113,7 +109,7 @@ export default function Header(): JSX.Element {
             </div>
           ) : (
             <div
-              className="cursor-pointer flex items-center"
+              className="cursor-pointer flex items-center mt-3 opacity-50"
               onClick={() => {
                 router.push("/login");
               }}
