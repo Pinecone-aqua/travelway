@@ -36,6 +36,7 @@ export class TagsService {
     return result;
   }
 
+  // Yalalt commented here, argument new: true is to return updated tag document
   async update(id: string, updateTagsDto: UpdateTagsDto): Promise<Tags> {
     const updatedTagNames = await this.tagsModel.findOneAndUpdate(
       { _id: id },
