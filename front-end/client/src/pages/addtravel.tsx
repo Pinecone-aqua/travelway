@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import AddDay from "../components/travel/AddDay";
 import Header from "@/components/Header";
@@ -17,6 +18,7 @@ const AddTravelPage = () => {
   // const router = useRouter();
   const [activeClass, setActiveClass] = useState(0);
   const [color, setColor] = useState<string>();
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function changeColor(e: any): void {
     setColor(e.target.innerText);
@@ -27,6 +29,7 @@ const AddTravelPage = () => {
     description: "",
   });
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [formData, setFormData] = useState<any>([
     {
       subTitle: "",
