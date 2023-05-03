@@ -4,7 +4,7 @@ import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { jwtConstants } from './constants';
-import { TrtagsModule } from './trtags/trtags.module';
+import { TagsModule } from './tags/tags.module';
 import { TravelsModule } from './travels/travels.module';
 import { UsersModule } from './user/user.module';
 import { QuestModule } from './quest/quest.module';
@@ -16,7 +16,7 @@ import { TravelWayModule } from './travelWay/miniStory.module';
     MongooseModule.forRoot(jwtConstants.db_uri),
     AuthModule,
     UsersModule,
-    TrtagsModule,
+    TagsModule,
     TravelsModule,
     QuestModule,
     MiniStoryModule,

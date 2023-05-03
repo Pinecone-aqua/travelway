@@ -5,17 +5,15 @@ import {
 } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
-import { TrTags } from './schemas/tags.schema';
+import { Tags } from './schemas/tags.schema';
 import { CreateTagsDto } from './dto/create-tags.dto';
 import { UpdateTagsDto } from './dto/update-tags.dto';
 
 @Injectable()
-export class TrtagsService {
-  constructor(
-    @InjectModel('TrTags') private readonly tagsModel: Model<TrTags>,
-  ) {}
+export class TagsService {
+  constructor(@InjectModel('Tags') private readonly tagsModel: Model<Tags>) {}
 
-  async create(createTagsDto: CreateTagsDto): Promise<TrTags> {
+  async create(createTagsDto: CreateTagsDto): Promise<Tags> {
     const { name } = createTagsDto;
 
     if (!name) {
@@ -27,18 +25,18 @@ export class TrtagsService {
     return result;
   }
 
-  async findAll(): Promise<TrTags[]> {
+  async findAll(): Promise<Tags[]> {
     const result = await this.tagsModel.find();
     return result;
   }
 
-  async findOne(id: string): Promise<TrTags> {
+  async findOne(id: string): Promise<Tags> {
     const result = await this.tagsModel.findOne({ _id: id });
 
     return result;
   }
 
-  async update(id: string, updateTagsDto: UpdateTagsDto): Promise<TrTags> {
+  async update(id: string, updateTagsDto: UpdateTagsDto): Promise<Tags> {
     const updatedTagNames = await this.tagsModel.findOneAndUpdate(
       { _id: id },
       updateTagsDto,
@@ -51,7 +49,7 @@ export class TrtagsService {
     return updatedTagNames;
   }
 
-  async remove(id: string): Promise<TrTags> {
+  async remove(id: string): Promise<Tags> {
     const deleteTag = await this.tagsModel.findByIdAndRemove({ _id: id });
 
     if (!deleteTag) {
