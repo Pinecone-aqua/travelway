@@ -7,27 +7,27 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
-import { TrTags } from './schemas/tags.schema';
-import { TrtagsService } from './trtags.service';
+import { Tags } from './schemas/tags.schema';
+import { TagsService } from './tags.service';
 import { CreateTagsDto } from './dto/create-tags.dto';
 import { UpdateTagsDto } from './dto/update-tags.dto';
 
-@Controller('trtags')
-export class TrtagsController {
-  constructor(private readonly tagsService: TrtagsService) {}
+@Controller('tags')
+export class TagsController {
+  constructor(private readonly tagsService: TagsService) {}
 
   @Post('add')
-  async create(@Body() createTagsDto: CreateTagsDto): Promise<TrTags> {
+  async create(@Body() createTagsDto: CreateTagsDto): Promise<Tags> {
     return this.tagsService.create(createTagsDto);
   }
 
   @Get('get')
-  async findAll(): Promise<TrTags[]> {
+  async findAll(): Promise<Tags[]> {
     return this.tagsService.findAll();
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: string): Promise<TrTags> {
+  async findOne(@Param('id') id: string): Promise<Tags> {
     return this.tagsService.findOne(id);
   }
 
@@ -35,12 +35,12 @@ export class TrtagsController {
   async update(
     @Param('id') id: string,
     @Body() updateTagsDto: UpdateTagsDto,
-  ): Promise<TrTags> {
+  ): Promise<Tags> {
     return this.tagsService.update(id, updateTagsDto);
   }
 
   @Delete(':id')
-  async remove(@Param('id') id: string): Promise<TrTags> {
+  async remove(@Param('id') id: string): Promise<Tags> {
     const result = this.tagsService.remove(id);
     return result;
   }
