@@ -5,10 +5,7 @@ import TravelGuide from "@/components/userProfile/TravelGuide";
 import TravelWay from "@/components/userProfile/TravelWay";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { miniStoryType } from "../../util/miniStoryType";
-import "primereact/resources/themes/lara-light-indigo/theme.css";
-import "primereact/resources/primereact.min.css";
-import "primeicons/primeicons.css";
+import { miniStoryType } from "../../util/mini-story-type";
 import MiniStory from "@/components/userProfile/MiniStory";
 import Link from "next/link";
 import TravelWayAdd from "@/components/userProfile/TravelWayAdd";
@@ -16,7 +13,12 @@ import TravelWayAdd from "@/components/userProfile/TravelWayAdd";
 export default function User(): JSX.Element {
   const [change, setChange] = useState();
   const [story, setStory] = useState<miniStoryType[]>();
+  const defaultStyle = "border-black  py-[3px] font-semibold ";
+  const activatedStyle = "border-black  py-[3px] font-semibold  border-b-2 ";
+  const topBtnStyle =
+    "border border-black rounded-[13px] px-[15px] md:px-[29.5px] active:text-gray-200 py-[3px]";
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function changer(e: any) {
     setChange(e.target.innerText);
   }
@@ -24,7 +26,6 @@ export default function User(): JSX.Element {
     const getFetchdata = async () => {
       const travels = await axios.get("http://localhost:3009/miniStory/get");
       const { data } = travels;
-
       setStory(data);
     };
     getFetchdata();
@@ -56,15 +57,9 @@ export default function User(): JSX.Element {
         <p className="font-bold text-[26px]">Robert Harrison</p>
         <div className="w-[80%] grid gap-10">
           <div className="flex justify-center gap-5 font-semibold">
-            <button className="border border-black rounded-[13px] px-[15px] md:px-[29.5px] active:text-gray-200 ">
-              Follow
-            </button>
-            <button className="border border-black rounded-[13px] px-[15px] md:px-[29.5px] py-[3px] active:text-gray-200">
-              Edit Profile
-            </button>
-            <button className="border border-black rounded-[13px] px-[15px] md:px-[29.5px] py-[3px] active:text-gray-200">
-              Message
-            </button>
+            <button className={`${topBtnStyle}`}>Follow</button>
+            <button className={`${topBtnStyle}`}>Edit Profile</button>
+            <button className={`${topBtnStyle}`}>Message</button>
           </div>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa
@@ -77,9 +72,7 @@ export default function User(): JSX.Element {
           <div className="flex justify-evenly">
             <button
               className={
-                change == "Mini story"
-                  ? "border-black  py-[3px] font-semibold  border-b-2 "
-                  : "border-black  py-[3px] font-semibold "
+                change == "Mini story" ? `${activatedStyle}` : `${defaultStyle}`
               }
               onClick={changer}
             >
@@ -87,9 +80,7 @@ export default function User(): JSX.Element {
             </button>
             <button
               className={
-                change == "TravelWay"
-                  ? "border-black  py-[3px] font-semibold  border-b-2 "
-                  : "border-black  py-[3px] font-semibold "
+                change == "TravelWay" ? `${activatedStyle}` : `${defaultStyle}`
               }
               onClick={changer}
             >
@@ -98,8 +89,8 @@ export default function User(): JSX.Element {
             <button
               className={
                 change == "TravelGuide"
-                  ? "border-black  py-[3px] font-semibold  border-b-2 "
-                  : "border-black  py-[3px] font-semibold "
+                  ? `${activatedStyle}`
+                  : `${defaultStyle}`
               }
               onClick={changer}
             >
@@ -121,16 +112,12 @@ export default function User(): JSX.Element {
                 </div>
               </>
             ) : change == "TravelWay" ? (
-              <>
-                <div>
-                  <div className="relative">
-                    <TravelWayAdd />
-                    <div className="absolute place-content-center ">
-                      <TravelWay />
-                    </div>
-                  </div>
+              <div className="relative">
+                <TravelWayAdd />
+                <div className="absolute place-content-center ">
+                  <TravelWay />
                 </div>
-              </>
+              </div>
             ) : (
               <TravelGuide />
             )}
