@@ -4,7 +4,6 @@ import Head from "next/head";
 import Header from "../../components/Header";
 import axios from "axios";
 
-
 interface TravelType {
   _id: string;
   title: string;
@@ -33,9 +32,9 @@ export async function getStaticProps({ params }: { params: { id: string } }) {
     const travelData = await axios.get(`http://localhost:3009/travels/${id}`);
     const result = travelData.data;
 
-    // console.log("TravelData => ", travelData);
-    // console.log("Result in PROPS==> ");
-    // console.log(result);
+    console.log("TravelData => ", travelData);
+    console.log("Result in PROPS==> ");
+    console.log(result);
 
     return {
       props: {
@@ -102,13 +101,13 @@ export default function Travel({ result }: { result: TravelType }) {
               </span>
               {result.description}
             </p>
-            
+
             <p className="text-slate-800">
               <span className="text-sm font-bold text-gray-900 text-justify">
                 {/* {result.createdAt.toISOString().substring(0, 9)} */}
               </span>
             </p>
-            
+
             <p>
               <span className="text-sm font-bold text-gray-900">Day: </span>
               {
