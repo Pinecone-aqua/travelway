@@ -1,15 +1,18 @@
-import { questType } from "@/util/types";
+import { StoryType } from "@/util/types";
 import axios from "axios";
 import Link from "next/link";
 import { useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
+interface PropsType {
+  unit: StoryType;
+}
 
-export default function Quest(props: { unit: questType }): JSX.Element {
+export default function Story(props: PropsType): JSX.Element {
   const data = props.unit;
   const [isOpen, setIsOpen] = useState(false);
-  function deleteHandler(questId: string) {
+  function deleteHandler(storyId: string) {
     // fetch(`http://localhost:3009/quests/${questId}`);
-    axios.delete(`http://localhost:3009/quests/${questId}`);
+    axios.delete(`http://localhost:3009/stories/${storyId}`);
   }
   return (
     <tr className="border-t-2 border-cyan-500">
@@ -26,7 +29,7 @@ export default function Quest(props: { unit: questType }): JSX.Element {
         {isOpen && (
           <div className="flex flex-col rounded-2xl h-36 justify-around w-32 absolute bg-cyan-100 items-center">
             <button className="flex h-10 bg-cyan-500 w-24 shadow-lg shadow-gray-500/100 rounded-xl">
-              <Link href={`quest/${data._id}`}>засварлах</Link>
+              <Link href={`story/${data._id}`}>засварлах</Link>
             </button>
 
             <button

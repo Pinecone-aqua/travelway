@@ -1,17 +1,17 @@
-import { questType } from "../../util/types";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Suggest from "@/components/mainComponent/Suggest";
+import { StoryType } from "@/util/types";
 
-export default function QuestID(): JSX.Element {
+export default function StoryID(): JSX.Element {
   const { query } = useRouter();
-  const [data, setData] = useState<questType | null>(null);
+  const [data, setData] = useState<StoryType | null>(null);
   const toDo = data?.toDo;
 
   useEffect(() => {
     if (query.id) {
-      fetch(`http://localhost:3009/quests/${query.id}`)
+      fetch(`http://localhost:3009/stories/${query.id}`)
         .then((response) => response.json())
         .then((res) => setData(res));
     }
@@ -22,7 +22,7 @@ export default function QuestID(): JSX.Element {
   function editHandler(e: any): void {
     e.preventDefault();
 
-    axios.patch(`http://localhost:3009/quests/${query.id}`, {
+    axios.patch(`http://localhost:3009/stories/${query.id}`, {
       title: e.target.title.value,
       description: e.target.description.value,
       myth: e.target.myth.value,

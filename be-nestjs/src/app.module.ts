@@ -7,9 +7,9 @@ import { jwtConstants } from './constants';
 import { TagsModule } from './tags/tags.module';
 import { TravelsModule } from './travels/travels.module';
 import { UsersModule } from './user/user.module';
-import { QuestModule } from './quest/quest.module';
 import { MiniStoryModule } from './miniStory/miniStory.module';
 import { TravelWayModule } from './travelWay/miniStory.module';
+import { StoryModule } from './story/story.module';
 
 @Module({
   imports: [
@@ -18,7 +18,7 @@ import { TravelWayModule } from './travelWay/miniStory.module';
     UsersModule,
     TagsModule,
     TravelsModule,
-    QuestModule,
+    StoryModule,
     MiniStoryModule,
     TravelWayModule,
   ],
