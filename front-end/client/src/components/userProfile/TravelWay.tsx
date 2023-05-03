@@ -1,17 +1,35 @@
 /* eslint-disable @next/next/no-img-element */
 
 import { useState } from "react";
+import { Editor } from "primereact/editor";
+import { travelWayType } from "../../../util/travelWayType";
 
-export default function TravelWay() {
+export default function TravelWay(props: { travelWayData: travelWayType }) {
   const [popup, setPopup] = useState(false);
+  // const [text, setText] = useState<string>("");
+  const data = props.travelWayData;
+
   return (
     <>
       {popup ? (
         <div>
           <div>
-            <button onClick={() => setPopup(false)}>X</button>
+            <button
+              onClick={() => setPopup(false)}
+              className="rounded-full bg-green-500 w-[50px]"
+            >
+              X
+            </button>
           </div>
-          <div className="">{" "}</div>
+          <div className="">
+            <Editor
+              value={data.title}
+              // onTextChange={(e: EditorTextChangeEvent) => setText(e.htmlValue)}
+              style={{ height: "320px" }}
+              name="title"
+            />
+            <div>{data.title}</div>
+          </div>
         </div>
       ) : (
         <button onClick={() => setPopup(true)}>
@@ -23,7 +41,9 @@ export default function TravelWay() {
                 className="object-cover w-[280%]  "
               />
               <div className="p-5 place-content-center grid h-[100%] container  rounded-r-xl border border-black">
-                <p className="text-[20px] font-semibold">Halloo</p>
+                <p className="text-[20px] font-semibold overflow-hidden">
+                  {data.title}
+                </p>
                 <p className="container text-ellipsis overflow-hidden">
                   Lorem, ipsum dolor sit amet consectetur adipisicing elit.
                   Illum culpa, odio beatae tenetur ducimus vel reiciendis a hic

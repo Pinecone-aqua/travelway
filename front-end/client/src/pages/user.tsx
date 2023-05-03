@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unnecessary-condition */
 /* eslint-disable @next/next/no-img-element */
 import MiniStoryAdd from "@/components/userProfile/MiniStoryAdd";
@@ -12,10 +13,12 @@ import "primeicons/primeicons.css";
 import MiniStory from "@/components/userProfile/MiniStory";
 import Link from "next/link";
 import TravelWayAdd from "@/components/userProfile/TravelWayAdd";
+import { travelWayType } from "../../util/travelWayType";
 
 export default function User(): JSX.Element {
   const [change, setChange] = useState();
   const [story, setStory] = useState<miniStoryType[]>();
+  const [travelWay, setTravelWay] = useState<travelWayType[]>();
 
   function changer(e: any) {
     setChange(e.target.innerText);
@@ -29,6 +32,32 @@ export default function User(): JSX.Element {
     };
     getFetchdata();
   }, []);
+
+  useEffect(() => {
+    const getFetchdata = async () => {
+      const travelWay = await axios.get(`http://localhost:3009/travelways/get`);
+      const { data } = travelWay;
+      setTravelWay(data);
+    };
+    getFetchdata();
+  }, []);
+
+  // useEffect(() => {
+  //   const getFetchdata = async () => {
+  //     const travelWay = await fetch(`http://localhost:3009/travelways/get`, {
+  //       method: "GET",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.parse({}),
+  //     });
+  //     const { data } = travelWay;
+  //     console.log("data :", data);
+
+  //     setTravelWay(data);
+  //   };
+  //   getFetchdata();
+  // }, []);
   return (
     <>
       <div className="w-full justify-center flex xxl:h-[500px] xl:h-[400px] lg:h-[300px] md:h-[200px]  drop-shadow-2xl relative bg-black">
@@ -126,7 +155,14 @@ export default function User(): JSX.Element {
                   <div className="relative">
                     <TravelWayAdd />
                     <div className="absolute place-content-center ">
-                      <TravelWay />
+                      {travelWay?.map(
+                        (travelWayData: travelWayType, index: number) => (
+                          <TravelWay
+                            travelWayData={travelWayData}
+                            key={index}
+                          />
+                        )
+                      )}
                     </div>
                   </div>
                 </div>

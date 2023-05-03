@@ -1,9 +1,9 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import jwtDecode from "jwt-decode";
 import { useRouter } from "next/router";
+import "primereact/resources/primereact.min.css";
 
 interface HeaderType {
   user: any;
@@ -15,13 +15,16 @@ export default function Header(): JSX.Element {
   const [user, setUser] = useState<HeaderType | undefined>();
   const router = useRouter();
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const activatedStyle = "ease-in-out duration-300";
+  const defaultStyle = "ease-in-out duration-300";
+
   const token: any = Cookies.get("token");
 
   useEffect(() => {
     if (token) setUser(jwtDecode(token));
   }, [token]);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function changeNav(e: any) {
     setNav(e.target.innerText);
   }
@@ -33,8 +36,8 @@ export default function Header(): JSX.Element {
             <button
               className={
                 nav == "Travel"
-                  ? "text-[30px] w-[15rem] md:w-[10rem] sm:w-[8rem] mt-1 ease-in duration-300"
-                  : "w-[15rem] md:w-[10rem] sm:w-[5rem] opacity-50 mt-3 ease-in duration-300"
+                  ? `text-[30px] w-[15rem] md:w-[10rem] sm:w-[8rem] mt-1 ${activatedStyle}`
+                  : `w-[15rem] md:w-[10rem] sm:w-[5rem] opacity-50 mt-3 ${defaultStyle}`
               }
               onClick={changeNav}
             >
@@ -45,8 +48,8 @@ export default function Header(): JSX.Element {
             <button
               className={
                 nav == "About"
-                  ? "sm:text-[15px] text-[30px] xl:w-[15rem] md:w-[10rem] sm:w-[8rem] mt-3 ease-out duration-300"
-                  : "sm:text-[12.5px] w-[15rem] md:w-[10rem] sm:w-[5rem] opacity-50 mt-4 ease-out duration-300"
+                  ? `sm:text-[15px] text-[30px] xl:w-[15rem] md:w-[10rem] sm:w-[8rem] mt-3 ${activatedStyle}`
+                  : `sm:text-[12.5px] w-[15rem] md:w-[10rem] sm:w-[5rem] opacity-50 mt-4 ${defaultStyle}`
               }
               onClick={changeNav}
             >
@@ -58,8 +61,8 @@ export default function Header(): JSX.Element {
           <button
             className={
               nav == "Home"
-                ? "text-[30px] w-[15rem] md:w-[10rem] sm:w-[8rem] ease-in-out duration-300"
-                : "w-[15rem] md:w-[10rem] sm:w-[5rem] opacity-50 mt-3 ease-in-out duration-300"
+                ? `text-[30px] w-[15rem] md:w-[10rem] sm:w-[8rem] ${activatedStyle}`
+                : `w-[15rem] md:w-[10rem] sm:w-[5rem] opacity-50 mt-3 ${defaultStyle}`
             }
             onClick={changeNav}
           >
@@ -71,8 +74,8 @@ export default function Header(): JSX.Element {
             <button
               className={
                 nav == "Gadget"
-                  ? "text-[30px] w-[15rem] md:w-[10rem] sm:w-[8rem] mt-1 ease-out duration-300"
-                  : "w-[15rem] md:w-[10rem] sm:w-[5rem] opacity-50 mt-3 ease-out duration-300"
+                  ? `text-[30px] w-[15rem] md:w-[10rem] sm:w-[8rem] mt-1 ${activatedStyle}`
+                  : `w-[15rem] md:w-[10rem] sm:w-[5rem] opacity-50 mt-3 ${defaultStyle}`
               }
               onClick={changeNav}
             >
@@ -83,8 +86,8 @@ export default function Header(): JSX.Element {
             <button
               className={
                 nav == "Contact us"
-                  ? "text-[30px] sm:text-[20px] xl:w-[15rem] md:w-[10rem] sm:w-[2rem] mt-1 ease-in duration-300"
-                  : "w-[15rem] md:w-[10rem] sm:w-[5rem] opacity-50 mt-3 ease-in duration-300"
+                  ? `text-[30px] sm:text-[20px] xl:w-[15rem] md:w-[10rem] sm:w-[2rem] mt-1 ${activatedStyle}`
+                  : `w-[15rem] md:w-[10rem] sm:w-[5rem] opacity-50 mt-3 ${defaultStyle}`
               }
               onClick={changeNav}
             >
