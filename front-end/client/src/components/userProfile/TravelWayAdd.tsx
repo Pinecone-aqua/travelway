@@ -2,7 +2,7 @@ import { GrAddCircle } from "react-icons/gr";
 // import axios from "axios";
 import React, { useState } from "react";
 // import { Editor } from "primereact/editor";
-// import TextEditor from "../TextEditor";
+import TextEditor from "../TextEditor";
 
 export default function TravelWayAdd(): JSX.Element {
   const [popup, setPopup] = useState(false);
@@ -72,9 +72,9 @@ export default function TravelWayAdd(): JSX.Element {
                 />
               </div> */}
 
-              {/* <div className="bg-gray-500 h-[320px]">
+              <div className="bg-gray-500 h-[320px]">
                 <TextEditor />
-              </div> */}
+              </div>
 
               <div>
                 <textarea

@@ -5,9 +5,9 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { BsFillBookmarkFill } from "react-icons/bs";
-// import "primeicons/primeicons.css";
 import { BiBookmark } from "react-icons/bi";
 import { miniStoryType } from "../../../util/mini-story-type";
+// import Dropdown from "react-bootstrap/Dropdown";
 
 export default function MiniStory(props: {
   storyType: miniStoryType;
@@ -23,13 +23,24 @@ export default function MiniStory(props: {
       <div className="card flex w-[31%] ">
         <div>
           <button className={`absolute bg-white ${hover}`}>botton</button>
+          {/* <Dropdown>
+            <Dropdown.Toggle variant="success" id="dropdown-basic">
+              Dropdown Button
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu>
+              <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+              <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+              <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown> */}
           <img
             src={data.image}
             alt="pic"
-            className="w-[100%]  object-cover "
+            className="w-[100%]  object-cover rounded-xl"
             onClick={() => setVisible(true)}
-            onMouseEnter={() => setHover("bg-red-500")}
-            onMouseLeave={() => setHover("")}
+            onMouseEnter={() => setHover("bg-red-700 visible opacity")}
+            onMouseLeave={() => setHover("invisible")}
           />
         </div>
 

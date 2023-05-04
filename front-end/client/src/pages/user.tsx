@@ -62,23 +62,18 @@ export default function User(): JSX.Element {
   // }, []);
   return (
     <>
-      <div className="w-full justify-center flex xxl:h-[500px] xl:h-[400px] lg:h-[300px] md:h-[200px]  drop-shadow-2xl relative bg-black">
-        <img
-          src="./images/fuji.webp"
-          alt="pic"
-          className="w-full object-cover h-[500px] h-full "
-        />
+      <div className="w-full justify-center flex   drop-shadow-2xl  ">
         {/* <Header /> */}
         <div className="flex justify-center absolute bottom-[-80px] ">
           <Link href="/">
-            <button className="absolute bg-green-500 rounded-full text-white top-0 w-[20px] h-[20px]">
-              .
+            <button className="absolute bg-green-500 rounded-full text-white top-0 w-[20px] h-[20px] -top-[100px] relative">
+              8
             </button>
           </Link>
           <img
-            src="https://res.cloudinary.com/dhirtao9q/image/upload/v1682515771/6250a072ad55de0012784a93_pwfvzd.webp"
+            src="../images/efil.webp"
             alt="pic"
-            className="rounded-full w-[150px] h-[150px] bg-black border border-[3px] "
+            className=" rounded-full w-[150px] h-[150px] bg-black   outline outline-green-500 drop-shadow-2xl"
           />
         </div>
       </div>

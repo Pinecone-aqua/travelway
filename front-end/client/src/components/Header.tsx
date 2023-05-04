@@ -61,12 +61,12 @@ export default function Header(): JSX.Element {
           <div className="absolute right-0 mr-[1rem] flex items-center mt-4">
             {/* <input type="text" className="relative right-0 items-center" /> */}
             <Link href="/user">
-              <button className="bg-pink-500 w-8 h-6 ease-in duration-300">
+              <button className=" w-8 h-8 ease-in duration-300">
                 <picture>
                   <img
-                    src="../../images/white.svg"
+                    src="../../images/efil.webp"
                     alt="pic"
-                    className="w-5 ease-in"
+                    className="w-8 h-8 ease-in rounded-full border border-[2px]"
                   />
                 </picture>
               </button>

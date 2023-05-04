@@ -4,13 +4,12 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
 export default function TextEditor(): JSX.Element {
-  const [value, setValue] = useState();
+  const [value, setValue] = useState("");
   const module = {
     toolbar: [
       [{ header: [1, 2, 3, 4, false] }],
       [{ font: [] }],
-      [{ font: [] }],
-      ["bold, italic"],
+      ["bold,italic"],
       [{ list: "ordered" }, { list: "ordered" }],
       ,
     ],
@@ -21,11 +20,10 @@ export default function TextEditor(): JSX.Element {
         <ReactQuill
           theme="snow"
           modules={module}
-          //   onChange={(e) => setValue(e.target.value)}
           onChange={setValue}
+          className="bg-white "
         />
-        <div dangerouslySetInnerHTML={{ __html: value }} />
-        {/* <div>{value}</div> */}
+        <div dangerouslySetInnerHTML={{ __html: value }} className="bg-white" />
       </div>
     </>
   );
