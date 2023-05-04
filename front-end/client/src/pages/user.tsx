@@ -22,7 +22,6 @@ export default function User(): JSX.Element {
 
   const [travelWay, setTravelWay] = useState<travelWayType[]>();
 
-
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function changer(e: any) {
     setChange(e.target.innerText);
@@ -72,8 +71,8 @@ export default function User(): JSX.Element {
         {/* <Header /> */}
         <div className="flex justify-center absolute bottom-[-80px] ">
           <Link href="/">
-            <button className="relative bg-green-500 rounded-full text-white">
-              back
+            <button className="absolute bg-green-500 rounded-full text-white top-0 w-[20px] h-[20px]">
+              .
             </button>
           </Link>
           <img
@@ -159,7 +158,7 @@ export default function User(): JSX.Element {
                     </div>
                   </div>
                 </div>
-              </div>
+              </>
             ) : (
               <TravelGuide />
             )}

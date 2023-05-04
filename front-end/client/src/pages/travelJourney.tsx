@@ -1,8 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unnecessary-condition */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import Header from "@/components/Header";
 import Description from "@/components/travel/Description";
-import TravelPlan from "@/components/travel/TravelPlan";
+import TravelPlan from "@/components/travel/Travel";
 import { useState } from "react";
 import React from "react";
 // import ContainerPages from "./containerPages";
@@ -10,7 +8,9 @@ import React from "react";
 export const userloginContext = React.createContext(null);
 
 export default function TravelJourney(): JSX.Element {
-  const [color, setColor] = useState();
+  const [color, setColor] = useState("");
+  const defaultStyle =
+    "transition ease-in-out  delay-100 active:scale-110 text-black w-full h-[54px] bg-orange-500 rounded-2xl drop-shadow-2xl ";
   function changeColor(e: any) {
     setColor(e.target.innerText);
   }
@@ -30,8 +30,8 @@ export default function TravelJourney(): JSX.Element {
           <div className="flex rounded-[10px] p-3 gap-10 bg-gray-500 h-[84px] items-center  justify-center drop-shadow-2xl">
             <button
               className={
-                color === "Description"
-                  ? "transition ease-in-out  delay-100 active:scale-110 text-black w-full h-[54px] bg-orange-500 rounded-2xl drop-shadow-2xl "
+                color == "Description"
+                  ? defaultStyle
                   : "text-white w-[250px] h-[54px]"
               }
               onClick={changeColor}
@@ -42,7 +42,7 @@ export default function TravelJourney(): JSX.Element {
             <button
               className={
                 color === "Travel Plan"
-                  ? "transition ease-in-out  delay-100 active:scale-110 text-black w-full h-[54px] bg-orange-500 rounded-2xl drop-shadow-2xl"
+                  ? defaultStyle
                   : "text-white w-[250px] h-[54px]"
               }
               onClick={changeColor}

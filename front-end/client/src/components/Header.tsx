@@ -19,7 +19,6 @@ export default function Header(): JSX.Element {
     "text-[30px] ease-in duration-300 md:w-[10rem] sm:w-[8rem] ";
   const defaultStyle =
     "w-[15rem] ease-in duration-300 md:w-[10rem] sm:w-[8rem] opacity-50 mt-3 sm:w-[5rem]";
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
 
   const token: any = Cookies.get("token");
 
@@ -41,7 +40,6 @@ export default function Header(): JSX.Element {
                 nav == "Travel"
                   ? ` w-[15rem]  mt-1 ${activatedStyle}`
                   : ` ${defaultStyle}`
-
               }
               onClick={changeNav}
             >
@@ -52,7 +50,6 @@ export default function Header(): JSX.Element {
             <button
               className={
                 nav == "About"
-
                   ? `xl:w-[15rem] sm:text-[15px] w-[15rem] mt-1 ${activatedStyle}`
                   : `sm:text-[12.5px]  mt-4 ${defaultStyle}`
               }
@@ -66,7 +63,6 @@ export default function Header(): JSX.Element {
           <button
             className={
               nav == "Home" ? `w-[15rem]  ${activatedStyle}` : `${defaultStyle}`
-
             }
             onClick={changeNav}
           >
@@ -78,7 +74,6 @@ export default function Header(): JSX.Element {
             <button
               className={
                 nav == "Gadget"
-
                   ? `w-[15rem] mt-1 ${activatedStyle}`
                   : `${defaultStyle}`
               }
@@ -93,7 +88,6 @@ export default function Header(): JSX.Element {
                 nav == "Contact us"
                   ? `sm:text-[20px] xl:w-[15rem] sm:w-[2rem] mt-1 ${activatedStyle}`
                   : `${defaultStyle}`
-
               }
               onClick={changeNav}
             >

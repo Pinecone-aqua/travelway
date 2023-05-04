@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 
 import { useState } from "react";
-import { Editor } from "primereact/editor";
+// import { Editor } from "primereact/editor";
 import { travelWayType } from "../../../util/travelWayType";
 
 export default function TravelWay(props: { travelWayData: travelWayType }) {
@@ -21,15 +21,15 @@ export default function TravelWay(props: { travelWayData: travelWayType }) {
               X
             </button>
           </div>
-          <div className="">
+          {/* <div>
             <Editor
               value={data.title}
-              // onTextChange={(e: EditorTextChangeEvent) => setText(e.htmlValue)}
+              onTextChange={(e: EditorTextChangeEvent) => setText(e.htmlValue)}
               style={{ height: "320px" }}
               name="title"
             />
-            <div>{data.title}</div>
-          </div>
+            <div dangerouslySetInnerHTML={{ __html: data.title }} />
+          </div> */}
         </div>
       ) : (
         <button onClick={() => setPopup(true)}>

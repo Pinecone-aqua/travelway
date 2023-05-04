@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unnecessary-condition */
 /* eslint-disable @next/next/no-img-element */
 import React, { useState } from "react";
 import { Dialog } from "primereact/dialog";
@@ -6,7 +5,7 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { BsFillBookmarkFill } from "react-icons/bs";
-import "primeicons/primeicons.css";
+// import "primeicons/primeicons.css";
 import { BiBookmark } from "react-icons/bi";
 import { miniStoryType } from "../../../util/mini-story-type";
 
@@ -17,13 +16,23 @@ export default function MiniStory(props: {
   const [heart, setHeart] = useState<boolean>(false);
   const [mark, setMark] = useState<boolean>(false);
   const data = props.storyType;
+  const [hover, setHover] = useState("");
 
   return (
     <>
-      <div className="card flex w-[31%]">
-        <button onClick={() => setVisible(true)} className="">
-          <img src={data.image} alt="pic" />
-        </button>
+      <div className="card flex w-[31%] ">
+        <div>
+          <button className={`absolute bg-white ${hover}`}>botton</button>
+          <img
+            src={data.image}
+            alt="pic"
+            className="w-[100%]  object-cover "
+            onClick={() => setVisible(true)}
+            onMouseEnter={() => setHover("bg-red-500")}
+            onMouseLeave={() => setHover("")}
+          />
+        </div>
+
         <Dialog
           header={
             <>

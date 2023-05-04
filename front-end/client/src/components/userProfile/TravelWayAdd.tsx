@@ -1,10 +1,8 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable react-hooks/rules-of-hooks */
 import { GrAddCircle } from "react-icons/gr";
 // import axios from "axios";
 import React, { useState } from "react";
 // import { Editor } from "primereact/editor";
-import TextEditor from "../textEditor";
+// import TextEditor from "../TextEditor";
 
 export default function TravelWayAdd(): JSX.Element {
   const [popup, setPopup] = useState(false);
@@ -67,15 +65,16 @@ export default function TravelWayAdd(): JSX.Element {
                 <Editor
                   value={text}
                   onTextChange={(e) => setText(e.htmlValue)}
-                  // ref={textEditorRef}
+                  ref={textEditorRef}
                   style={{ height: "320px" }}
                   name="title"
+                  modules={modules}
                 />
               </div> */}
 
-              <div className="bg-gray-500">
+              {/* <div className="bg-gray-500 h-[320px]">
                 <TextEditor />
-              </div>
+              </div> */}
 
               <div>
                 <textarea
