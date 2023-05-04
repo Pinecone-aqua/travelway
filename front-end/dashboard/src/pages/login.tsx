@@ -1,22 +1,24 @@
-import { AdminContext } from "@/components/context/AdminProvider";
+import { AdminContext } from "@/context/AdminProvider";
 import { useContext } from "react";
 
 export default function Login(): JSX.Element {
-  const { handleSubmit, admin } = useContext(AdminContext);
+  const {} = useContext(AdminContext);
   return (
     <div className="flex flex-col md:flex-row container mx-auto rounded-md p-6 md:2 justify-normal md:justify-around items-center">
       <div className="w-11/12 md:w-6/12">
-        <img
-          src="/images/draw2.webp"
-          style={{ width: 400 }}
-          alt="Left side login image"
-        />
+        <picture>
+          <img
+            src="/images/draw2.webp"
+            style={{ width: 400 }}
+            alt="Left side login image"
+          />
+        </picture>
       </div>
 
       <div className="flex flex-col w-11/12 md:w-6/12">
         <div>
           {/* {error && <p>{error}</p>} */}
-          <form onSubmit={handleSubmit}>
+          <form>
             <label htmlFor="username" className="block text-md">
               Хэрэглэгч нэр
             </label>
@@ -54,10 +56,6 @@ export default function Login(): JSX.Element {
             >
               нэвтрэх
             </button>
-            <span className="ms-4 text-sm text-slate-400">
-              {" "}
-              {/* | <Link href="/register">Шинээр бүртгүүлэх?</Link> */}
-            </span>
           </form>
         </div>
       </div>

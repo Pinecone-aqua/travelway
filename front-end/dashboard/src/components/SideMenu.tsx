@@ -1,15 +1,15 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-//import { useState } from "react";
+//import {  useState } from "react";
 import OrderIcon from "../../public/icons/OrderIcon";
 import TravelIcon from "../../public/icons/TravelIcon";
 import UserIcon from "../../public/icons/UserIcon";
 
 export default function SideMenu(): JSX.Element {
-  // const [color, setColor] = useState("Orders");
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  // function hadleClick(e: any): void {
-  //   // setColor(e.target.innerText);
+  //const [color, setColor] = useState("Orders");
+
+  // function hadleClick(e: { target: { innerText: SetStateAction<string>; }; }): void {
+  //   setColor(e.target.innerText);
   // }
   const route = useRouter();
   console.log(route.route);
