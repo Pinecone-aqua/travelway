@@ -1,9 +1,9 @@
 import axios from "axios";
 import { FormEvent, useEffect, useState } from "react";
-import { DayType, TravelType } from "../../../util/types";
-import Image from "next/image";
+import { TravelType } from "../../../util/types";
 
-export default function TravelPlan(): JSX.Element {
+
+export default function TravelProgram(): JSX.Element {
   const [travels, setTravels] = useState<TravelType[]>([]);
   const [currentPage, setCurrentPage] = useState(0);
 

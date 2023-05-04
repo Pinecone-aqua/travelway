@@ -62,15 +62,15 @@ export default function Header(): JSX.Element {
             </button>
           </Link>
         </div>
-        <Link href="/home">
+        <Link href="/tour">
           <button
             className={
-              nav == "Home" ? `w-[15rem]  ${activatedStyle}` : `${defaultStyle}`
+              nav == "tour" ? `w-[15rem]  ${activatedStyle}` : `${defaultStyle}`
 
             }
             onClick={changeNav}
           >
-            Home
+            Travel Program
           </button>
         </Link>
         <div className="flex  h-7 ">
