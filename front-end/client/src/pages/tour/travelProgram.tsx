@@ -1,29 +1,20 @@
 import axios from "axios";
-import { FormEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { TravelType } from "../../../util/types";
 
 export default function TravelProgram(): JSX.Element {
   const [travels, setTravels] = useState<TravelType[]>([]);
-  const [currentPage, setCurrentPage] = useState(0);
 
   useEffect(() => {
     const getFetchdata = async () => {
-      const travels = await axios.get("http://localhost:3009/travels/get");
-      const { data } = travels;
+      const alltravels = await axios.get("http://localhost:3009/travels/get");
+      const { data } = alltravels;
 
       setTravels(data);
     };
     getFetchdata();
   }, []);
 
-  
-  const handleChangePage = (e: FormEvent, index: number) => {
-    e.preventDefault();
-    setCurrentPage(index);
-  };
-  
-  const pageNumber = currentPage;
-  console.log("Data-page ===>", pageNumber);
   console.log("Data===> ", travels);
 
   return (
@@ -33,7 +24,14 @@ export default function TravelProgram(): JSX.Element {
           <div className="w-full bg-slate-50 p-2 text-start">
             {travels.map((travel: TravelType, index) => (
               <div key={index}>
-                <img src={travel.image} alt={travel.title} width={200} height={(200 * (9 / 16))} />
+                <picture>
+                  <img
+                    src={travel.image}
+                    alt={travel.title}
+                    width={200}
+                    height={200 * (9 / 16)}
+                  />
+                </picture>
                 <div
                   className="max-full mt-4 px-4 text-slate-800 flex flex-col"
                   key={index}
@@ -44,9 +42,7 @@ export default function TravelProgram(): JSX.Element {
                   <p className="w-full text-justify text-lg mt-4 mb-10">
                     {travel.description}
                   </p>
-                  <div>
-                    {/* <Travel daysOfTravel={travel.day} /> */}
-                  </div>
+                  <div>{/* <Travel daysOfTravel={travel.day} /> */}</div>
                 </div>
               </div>
             ))}
