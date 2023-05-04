@@ -3,7 +3,7 @@ export default function Suggest(props: {
 }): JSX.Element {
   const { toDo } = props;
   function suggestChangeHandler(newVal: string, i: number) {
-    toDo[i] = newVal;
+    if (toDo) toDo[i] = newVal;
   }
   //   function deleteInput(i: number) {
   //     console.log("asda", i);
@@ -14,10 +14,7 @@ export default function Suggest(props: {
       {toDo?.map((unit: string, index: number) => (
         <div key={index}>
           <input
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            onChange={(e: any): void =>
-              suggestChangeHandler(e.target.value, index)
-            }
+            onChange={(e): void => suggestChangeHandler(e.target.value, index)}
             className="my-2 text-slate-500  w-full rounded-2xl p-2"
             name={`activity-${index}`}
             defaultValue={unit}
@@ -30,8 +27,7 @@ export default function Suggest(props: {
         className="rounded-2xl p-2"
         type="text"
         name="addSuggest"
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        onChange={(e: any): void => {
+        onChange={(e): void => {
           e.target.value;
         }}
       />

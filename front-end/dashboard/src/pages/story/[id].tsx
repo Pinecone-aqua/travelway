@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Suggest from "@/components/mainComponent/Suggest";
+import Suggest from "@/components/story/Suggest";
 import { StoryType } from "@/util/types";
 
 export default function StoryID(): JSX.Element {
@@ -16,7 +16,6 @@ export default function StoryID(): JSX.Element {
         .then((res) => setData(res));
     }
   }, [query.id]);
-  console.log("toDo", toDo);
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-explicit-any
   function editHandler(e: any): void {
@@ -30,16 +29,8 @@ export default function StoryID(): JSX.Element {
       toDo: toDo,
     });
   }
-
-  // function handleChangeTodo(e) {
-  //   e.preventDefault();
-
-  //   // setToDoList([...toDo, ])
-  // }
-
   return (
     <>
-      <button onClick={() => console.log(toDo)}>ghj</button>
       <form action="" onSubmit={editHandler}>
         <div className="flex justify-around">
           <div className=" flex flex-col bg-gray-300 rounded-2xl w-1/2 h-100 items-center shadow-xl shadow-cyan-700">
@@ -111,23 +102,3 @@ export default function StoryID(): JSX.Element {
     </>
   );
 }
-
-// function Test(todos) {
-//   const [currentTodos, setCurrentTodos] = useState(todos);
-//   function todoChangeHandler(newVal, i) {
-//     currentTodos[i] = newVal;
-//     setCurrentTodos([...currentTodos]);
-//   }
-//   return (
-//     <>
-//       {currentTodos.map((todo,index) => (
-//         <input
-//           onChange={(e) => todoChangeHandler(e.target.value, index)}
-//           className="my-2 text-slate-500  w-full rounded-2xl p-2"
-//           name={`activity-${index}`}
-//           defaultValue={todo}
-//         />
-//       ))}
-//     </>
-//   );
-// }

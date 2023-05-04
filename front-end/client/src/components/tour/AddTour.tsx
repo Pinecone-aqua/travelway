@@ -1,5 +1,4 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
-import Header from "@/components/Header";
 import axios from "axios";
 import { DayType } from "../../../util/types";
 import TourDetails from "./TourDetails";
@@ -7,12 +6,6 @@ import TourDetails from "./TourDetails";
 const AddTour = () => {
   // const router = useRouter();
   const [activeClass, setActiveClass] = useState(0);
-  const [color, setColor] = useState<string>();
-
-  function changeColor(e: any): void {
-    setColor(e.target.innerText);
-  }
-
   const [travelData, setTravelData] = useState({
     title: "",
     description: "",
@@ -29,7 +22,7 @@ const AddTour = () => {
     },
   ]);
 
-  const handleSubmit = async (event: any) => {
+  const handleSubmit = async (event: FormEvent): Promise<void> => {
     event.preventDefault();
 
     try {
@@ -44,7 +37,7 @@ const AddTour = () => {
         nwData
       );
       console.log(response.data);
-      //   router.push("/addtravel");
+      // router.push("/addtravel");
     } catch (error) {
       console.error(error);
     }
@@ -102,7 +95,7 @@ const AddTour = () => {
     <>
       <div className="w-6/12 mx-auto mt-16 mb-8">
         <div className="flex flex-col gap-y-2">
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={() => handleSubmit}>
             <>
               <label htmlFor="title">Аяллын гарчиг/Title:</label>
               <input

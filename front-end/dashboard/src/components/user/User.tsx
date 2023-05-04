@@ -4,7 +4,10 @@ import Link from "next/link";
 import { useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 
-export default function User(props: { unit: userType }): JSX.Element {
+interface PropType {
+  unit: userType;
+}
+export default function User(props: PropType): JSX.Element {
   const data = props.unit;
   const [details, setDetails] = useState(false);
   const [allow, setAllow] = useState(false);
@@ -68,5 +71,3 @@ export default function User(props: { unit: userType }): JSX.Element {
     </>
   );
 }
-//
-//

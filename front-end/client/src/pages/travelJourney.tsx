@@ -1,8 +1,8 @@
 import Header from "@/components/Header";
 import Description from "@/components/travel/Description";
-import TravelPlan from "@/components/travel/Travel";
 import { useState } from "react";
 import React from "react";
+import TravelPlan from "@/components/travelPlan";
 // import ContainerPages from "./containerPages";
 
 export const userloginContext = React.createContext(null);

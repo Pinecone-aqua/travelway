@@ -51,29 +51,21 @@ export default function User(): JSX.Element {
 
   return (
     <>
-      <div className="w-full justify-center flex xxl:h-[500px] xl:h-[400px] lg:h-[300px] md:h-[200px]  drop-shadow-2xl relative bg-black">
-        <picture className="w-full relative">
+      <Link href="/login">
+        <button className="top-5 right-10 absolute rounded-full text-white uppercase text-sm font-thin">
+          LOGOUT
+        </button>
+      </Link>
+      <div className="flex justify-center absolute bottom-[-80px]">
+        <picture>
           <img
-            src="./images/fuji.webp"
+            src={userImage}
             alt="pic"
-            className="w-full object-cover h-[500px] h-full "
+            className="rounded-full w-[150px] h-[150px] bg-black border border-[3px] "
           />
         </picture>
-        <Link href="/login">
-          <button className="top-5 right-10 absolute rounded-full text-white uppercase text-sm font-thin">
-            LOGOUT
-          </button>
-        </Link>
-        <div className="flex justify-center absolute bottom-[-80px]">
-          <picture>
-            <img
-              src={userImage}
-              alt="pic"
-              className="rounded-full w-[150px] h-[150px] bg-black border border-[3px] "
-            />
-          </picture>
-        </div>
       </div>
+
       <div className="h-[8rem]" />
       <div className="items-center justify-center flex flex-col gap-10 relative ">
         <p className="font-bold text-[26px]">{userName}</p>
