@@ -5,7 +5,7 @@ import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 import Link from "next/link";
 import Image from "next/image";
-import { StoryType } from "../../util/types";
+import { StoryType } from "../../../util/types";
 
 export default function User(): JSX.Element {
   const logUser = localStorage.getItem("userId");

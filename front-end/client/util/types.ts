@@ -13,3 +13,11 @@ export interface DayType {
   considerations: string;
   destination: string;
 }
+
+export interface StoryType {
+  _id: string;
+  userId: string;
+  title: string;
+  image: string;
+  sentence: string;
+}

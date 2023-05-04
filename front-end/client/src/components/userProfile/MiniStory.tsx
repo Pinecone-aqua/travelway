@@ -8,7 +8,7 @@ import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { BsFillBookmarkFill } from "react-icons/bs";
 import "primeicons/primeicons.css";
 import { BiBookmark } from "react-icons/bi";
-import { miniStoryType } from "../../../util/miniStoryType";
+import { miniStoryType } from "../../../util/mini-story-type";
 
 export default function MiniStory(props: {
   storyType: miniStoryType;

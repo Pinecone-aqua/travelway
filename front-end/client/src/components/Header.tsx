@@ -15,8 +15,11 @@ export default function Header(): JSX.Element {
   const [user, setUser] = useState<HeaderType | undefined>();
   const router = useRouter();
 
-  const activatedStyle = "ease-in-out duration-300";
-  const defaultStyle = "ease-in-out duration-300";
+  const activatedStyle =
+    "text-[30px] ease-in duration-300 md:w-[10rem] sm:w-[8rem] ";
+  const defaultStyle =
+    "w-[15rem] ease-in duration-300 md:w-[10rem] sm:w-[8rem] opacity-50 mt-3 sm:w-[5rem]";
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
 
   const token: any = Cookies.get("token");
 
@@ -36,8 +39,9 @@ export default function Header(): JSX.Element {
             <button
               className={
                 nav == "Travel"
-                  ? `text-[30px] w-[15rem] md:w-[10rem] sm:w-[8rem] mt-1 ${activatedStyle}`
-                  : `w-[15rem] md:w-[10rem] sm:w-[5rem] opacity-50 mt-3 ${defaultStyle}`
+                  ? ` w-[15rem]  mt-1 ${activatedStyle}`
+                  : ` ${defaultStyle}`
+
               }
               onClick={changeNav}
             >
@@ -48,8 +52,9 @@ export default function Header(): JSX.Element {
             <button
               className={
                 nav == "About"
-                  ? `sm:text-[15px] text-[30px] xl:w-[15rem] md:w-[10rem] sm:w-[8rem] mt-3 ${activatedStyle}`
-                  : `sm:text-[12.5px] w-[15rem] md:w-[10rem] sm:w-[5rem] opacity-50 mt-4 ${defaultStyle}`
+
+                  ? `xl:w-[15rem] sm:text-[15px] w-[15rem] mt-1 ${activatedStyle}`
+                  : `sm:text-[12.5px]  mt-4 ${defaultStyle}`
               }
               onClick={changeNav}
             >
@@ -60,9 +65,8 @@ export default function Header(): JSX.Element {
         <Link href="/home">
           <button
             className={
-              nav == "Home"
-                ? `text-[30px] w-[15rem] md:w-[10rem] sm:w-[8rem] ${activatedStyle}`
-                : `w-[15rem] md:w-[10rem] sm:w-[5rem] opacity-50 mt-3 ${defaultStyle}`
+              nav == "Home" ? `w-[15rem]  ${activatedStyle}` : `${defaultStyle}`
+
             }
             onClick={changeNav}
           >
@@ -74,8 +78,9 @@ export default function Header(): JSX.Element {
             <button
               className={
                 nav == "Gadget"
-                  ? `text-[30px] w-[15rem] md:w-[10rem] sm:w-[8rem] mt-1 ${activatedStyle}`
-                  : `w-[15rem] md:w-[10rem] sm:w-[5rem] opacity-50 mt-3 ${defaultStyle}`
+
+                  ? `w-[15rem] mt-1 ${activatedStyle}`
+                  : `${defaultStyle}`
               }
               onClick={changeNav}
             >
@@ -86,8 +91,9 @@ export default function Header(): JSX.Element {
             <button
               className={
                 nav == "Contact us"
-                  ? `text-[30px] sm:text-[20px] xl:w-[15rem] md:w-[10rem] sm:w-[2rem] mt-1 ${activatedStyle}`
-                  : `w-[15rem] md:w-[10rem] sm:w-[5rem] opacity-50 mt-3 ${defaultStyle}`
+                  ? `sm:text-[20px] xl:w-[15rem] sm:w-[2rem] mt-1 ${activatedStyle}`
+                  : `${defaultStyle}`
+
               }
               onClick={changeNav}
             >
