@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { userType } from "@/util/types";
-import User from "@/components/mainComponent/User";
+import User from "@/components/user/User";
 import { ClimbingBoxLoader } from "react-spinners";
 
 export default function Users(): JSX.Element {

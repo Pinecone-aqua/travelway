@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { travelType } from "@/util/types";
-import Travel from "@/components/mainComponent/Travel";
+import Travel from "@/components/travel/Travel";
 import { RingLoader } from "react-spinners";
 export default function Travels(): JSX.Element {
   const [travels, setTravels] = useState<travelType[] | null>(null);
