@@ -1,10 +1,8 @@
-import ContainerPages from "./containerPages";
 
 export default function about() {
   return (
     <>
       <div>
-        <ContainerPages />
         <div className=" flex justify-center">
           <picture>
             <source media="(min-width:650px)" srcSet="./images/work.webp" />
