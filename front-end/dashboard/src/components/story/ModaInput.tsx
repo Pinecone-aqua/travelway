@@ -1,9 +1,10 @@
 import { Dispatch, SetStateAction } from "react";
 
-export default function ModalInput(props: {
-  setAddIndicator: Dispatch<SetStateAction<never[]>>;
+interface PropType {
+  setAddIndicator: Dispatch<SetStateAction<string[]>>;
   addIndicator: string[] | never;
-}): JSX.Element {
+}
+export default function ModalInput(props: PropType): JSX.Element {
   const { setAddIndicator } = props;
   const { addIndicator } = props;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

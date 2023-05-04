@@ -3,7 +3,7 @@ import { useState } from "react";
 import ModalInput from "./ModaInput";
 
 export default function CreateStory(): JSX.Element {
-  const [addIndicator, setAddIndicator] = useState([]);
+  const [addIndicator, setAddIndicator] = useState<string[]>([]);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function createHandler(e: any): void {

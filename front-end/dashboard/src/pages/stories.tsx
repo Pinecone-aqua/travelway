@@ -1,5 +1,5 @@
-import CreateStory from "@/components/mainComponent/CreateStory";
-import Story from "@/components/mainComponent/Story";
+import CreateStory from "@/components/story/CreateStory";
+import Story from "@/components/story/Story";
 
 import { StoryType } from "@/util/types";
 import { useEffect, useState } from "react";
