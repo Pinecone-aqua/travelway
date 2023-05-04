@@ -1,5 +1,6 @@
 import { dayType, travelType } from "@/util/types";
 import axios from "axios";
+import Image from "next/image";
 
 export default function Travel(props: { unit: travelType }): JSX.Element {
   const data = props.unit;
@@ -15,9 +16,11 @@ export default function Travel(props: { unit: travelType }): JSX.Element {
       <h2>
         {plan.map((unit: dayType, index: number) => (
           <div key={index} className="flex my-3">
-            <picture>
-              <img className="h-16 w-16 rounded-2xl" src={unit.image} alt="" />
-            </picture>
+            <Image
+              src={unit.image}
+              className="h-16 w-16 rounded-2xl"
+              alt={""}
+            />
 
             <div>
               <h1>{unit.title}</h1>
