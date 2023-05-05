@@ -1,71 +1,51 @@
 import axios from "axios";
-import { FormEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { TravelType } from "../../../util/types";
-
 
 export default function TravelProgram(): JSX.Element {
   const [travels, setTravels] = useState<TravelType[]>([]);
-  const [currentPage, setCurrentPage] = useState(0);
 
   useEffect(() => {
     const getFetchdata = async () => {
-      const travels = await axios.get("http://localhost:3009/travels/get");
-      const { data } = travels;
+      const alltravels = await axios.get("http://localhost:3009/travels/get");
+      const { data } = alltravels;
 
       setTravels(data);
     };
     getFetchdata();
   }, []);
 
-  const pageNumber = currentPage;
-
-  const handleChangePage = (e: FormEvent, index: number) => {
-    e.preventDefault();
-    setCurrentPage(index);
-  };
-
-  console.log("Data-page ===>" , pageNumber);
   console.log("Data===> ", travels);
 
   return (
     <div>
       <div>
         <section className="flex flex-col gap-2 my-8 container mx-auto">
-          <div className="w-full flex flex-wrap gap-2 justify-center items-center">
-            {travels.map((item, index) => (
-              <button
-                key={index}
-                name="btnpage"
-                type="button"
-                value={index}
-                onClick={(e) => handleChangePage(e, index)}
-                className="border rounded-md bg-slate-100 text-black px-16 py-2 hover:bg-slate-400"
-              >
-                {1 + Number(index)}
-              </button>
-            ))}
-          </div>
           <div className="w-full bg-slate-50 p-2 text-start">
-            {/* {travels.map(({ title, description, day }: TravelType, index) =>
-              pageNumber === index ? (
-                <div key={index}>
-                  <div
-                    className="max-full mt-4 px-4 text-slate-800 flex flex-col"
-                    key={index}
-                  >
-                    <h1 className="text-3xl text-start p-2 mb-6 text-orange-700">
-                      {travel.title}
-                    </h1>
-                    <p className="w-full text-justify text-lg mt-4 mb-10">
-                      {travel.description}
-                    </p>
-                    <div>
-                      <Travel daysOfTravel={travel.day} />
-                    </div>
-                  </div>
+            {travels.map((travel: TravelType, index) => (
+              <div key={index}>
+                <picture>
+                  <img
+                    src={travel.image}
+                    alt={travel.title}
+                    width={200}
+                    height={200 * (9 / 16)}
+                  />
+                </picture>
+                <div
+                  className="max-full mt-4 px-4 text-slate-800 flex flex-col"
+                  key={index}
+                >
+                  <h1 className="text-3xl text-start p-2 mb-6 text-orange-700">
+                    {travel.title}
+                  </h1>
+                  <p className="w-full text-justify text-lg mt-4 mb-10">
+                    {travel.description}
+                  </p>
+                  <div>{/* <Travel daysOfTravel={travel.day} /> */}</div>
                 </div>
-              ) : null
-            )} */}
+              </div>
+            ))}
           </div>
         </section>
       </div>
