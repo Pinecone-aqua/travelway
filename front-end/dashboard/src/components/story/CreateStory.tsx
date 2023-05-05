@@ -20,7 +20,7 @@ export default function CreateStory(): JSX.Element {
   console.log("addIndicator", addIndicator);
 
   return (
-    <div className=" flex flex-col bg-gray-200 rounded-2xl w-full items-center text-2xl mt-5 shadow-xl shadow-cyan-700">
+    <div className=" flex flex-col bg-gray-200 rounded-2xl w-full items-center text-2xl mt-5 ">
       <form onSubmit={createHandler}>
         <div className="w-96">
           <div className=""> title</div>
@@ -41,7 +41,7 @@ export default function CreateStory(): JSX.Element {
           <input
             type="text"
             name="myth"
-            className="disabled:opacity-75 py-2 rounded-xl w-full"
+            className="disabled:opacity-75 py-2 rounded-xl w-full text-slate-500 h-36"
           />
         </div>
         <div className="text-l w-96">
@@ -49,7 +49,7 @@ export default function CreateStory(): JSX.Element {
           <input
             type="text"
             name="province"
-            className="block w-auto text-slate-500 h-36 file:rounded-full py-2 rounded-xl w-full"
+            className="block w-auto  file:rounded-full py-2 rounded-xl w-full"
           />
         </div>
         <div>
@@ -71,7 +71,7 @@ export default function CreateStory(): JSX.Element {
         </div>
 
         <button
-          className="bg-cyan-500 shadow-lg shadow-cyan-500/100 px-4 py-2 rounded-xl border-2 w-96"
+          className="bg-cyan-500  px-4 py-2 rounded-xl border-2 w-96"
           type="submit"
         >
           creates
