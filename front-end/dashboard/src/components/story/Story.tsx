@@ -28,7 +28,7 @@ export default function Story(props: PropsType): JSX.Element {
         <BsThreeDotsVertical onClick={() => setIsOpen((prev) => !prev)} />{" "}
         {isOpen && (
           <div className="flex flex-col rounded-2xl h-36 justify-around w-32 absolute bg-cyan-100 items-center">
-            <button className="flex h-10 bg-cyan-500 w-24  rounded-xl">
+            <button className="flex h-10 bg-cyan-500 w-24 shadow-lg shadow-gray-500/100 rounded-xl">
               <Link href={`story/${data._id}`}>засварлах</Link>
             </button>
 
@@ -36,7 +36,7 @@ export default function Story(props: PropsType): JSX.Element {
               onClick={() => {
                 deleteHandler(data._id), setIsOpen(false);
               }}
-              className="h-10 bg-cyan-500 w-24  rounded-xl"
+              className="h-10 bg-cyan-500 w-24 shadow-lg shadow-gray-500/100 rounded-xl"
             >
               устгах
             </button>

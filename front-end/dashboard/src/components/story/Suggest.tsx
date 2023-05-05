@@ -1,8 +1,6 @@
-interface PropsType {
+export default function Suggest(props: {
   toDo?: string[] | undefined;
-}
-
-export default function Suggest(props: PropsType): JSX.Element {
+}): JSX.Element {
   const { toDo } = props;
   function suggestChangeHandler(newVal: string, i: number) {
     if (toDo) toDo[i] = newVal;
