@@ -21,25 +21,22 @@ export default function MiniStory(props: {
   return (
     <>
       <div className="card flex w-[31%] ">
-        <div>
-          <button className={`absolute bg-white ${hover}`}>botton</button>
-          {/* <Dropdown>
-            <Dropdown.Toggle variant="success" id="dropdown-basic">
-              Dropdown Button
-            </Dropdown.Toggle>
-
-            <Dropdown.Menu>
-              <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-              <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-              <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown> */}
+        <div className="w-full inline-block bg-green-500 inline-block h-auto">
+          <button
+            className={`absolute bg-white rounded-full w-[20px] h-[20px] flex text-center justify-center drop-shadow-2xl  m-2 ${hover}`}
+          >
+            1
+          </button>
           <img
             src={data.image}
             alt="pic"
-            className="w-[100%]  object-cover rounded-xl"
+            className="w-[100%] h-auto  object-cover rounded-xl"
             onClick={() => setVisible(true)}
-            onMouseEnter={() => setHover("bg-red-700 visible opacity")}
+            onMouseEnter={() =>
+              setHover(
+                "visible absolute bg-white rounded-full w-[20px] h-[20px] flex text-center justify-center drop-shadow-2xl  m-2 "
+              )
+            }
             onMouseLeave={() => setHover("invisible")}
           />
         </div>

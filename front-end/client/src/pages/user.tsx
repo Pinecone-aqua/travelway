@@ -8,19 +8,18 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { miniStoryType } from "../../util/mini-story-type";
 import MiniStory from "@/components/userProfile/MiniStory";
-import Link from "next/link";
 import TravelWayAdd from "@/components/userProfile/TravelWayAdd";
 import { travelWayType } from "../../util/travelWayType";
 
 export default function User(): JSX.Element {
   const [change, setChange] = useState();
   const [story, setStory] = useState<miniStoryType[]>();
+
+  const [travelWay, setTravelWay] = useState<travelWayType[]>();
   const defaultStyle = "border-black  py-[3px] font-semibold ";
   const activatedStyle = "border-black  py-[3px] font-semibold  border-b-2 ";
   const topBtnStyle =
     "border border-black rounded-[13px] px-[15px] md:px-[29.5px] active:text-gray-200 py-[3px]";
-
-  const [travelWay, setTravelWay] = useState<travelWayType[]>();
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function changer(e: any) {
@@ -61,23 +60,18 @@ export default function User(): JSX.Element {
   //   getFetchdata();
   // }, []);
   return (
-    <>
+    <div>
       <div className="w-full justify-center flex   drop-shadow-2xl  ">
         {/* <Header /> */}
-        <div className="flex justify-center absolute bottom-[-80px] ">
-          <Link href="/">
-            <button className="absolute bg-green-500 rounded-full text-white top-0 w-[20px] h-[20px] -top-[100px] relative">
-              8
-            </button>
-          </Link>
+        <div className="flex justify-center bottom-[-80px] ">
           <img
             src="../images/efil.webp"
             alt="pic"
-            className=" rounded-full w-[150px] h-[150px] bg-black   outline outline-green-500 drop-shadow-2xl"
+            className=" rounded-full w-[150px] h-[150px] bg-black   outline outline-green-500 drop-shadow-2xl place-content-center"
           />
         </div>
       </div>
-      <div className="h-[8rem]" />
+      <div className="h-[3rem]" />
       <div className="items-center justify-center flex flex-col gap-10 relative ">
         <p className="font-bold text-[26px]">Robert Harrison</p>
         <div className="w-[80%] grid gap-10">
@@ -123,25 +117,12 @@ export default function User(): JSX.Element {
             </button>
           </div>
           <div className="relative">
-            {change == "Mini story" ? (
-              <>
-                <div className="gap-3 grid">
-                  <div>
-                    <MiniStoryAdd />
-                  </div>
-                  <div className="flex gap-3 flex-wrap place-content-center ">
-                    {story?.map((storyType: miniStoryType, index: number) => (
-                      <MiniStory storyType={storyType} key={index} />
-                    ))}
-                  </div>
-                </div>
-              </>
-            ) : change == "TravelWay" ? (
+            {change == "TravelWay" ? (
               <>
                 <div>
                   <div className="relative">
                     <TravelWayAdd />
-                    <div className="absolute place-content-center ">
+                    <div className=" place-content-center ">
                       {travelWay?.map(
                         (travelWayData: travelWayType, index: number) => (
                           <TravelWay
@@ -154,12 +135,27 @@ export default function User(): JSX.Element {
                   </div>
                 </div>
               </>
+            ) : change == "TravelGuide" ? (
+              <>
+                <TravelGuide />
+              </>
             ) : (
-              <TravelGuide />
+              <>
+                <div className="gap-3 grid">
+                  <div>
+                    <MiniStoryAdd />
+                  </div>
+                  <div className="flex gap-3 flex-wrap place-content-center ">
+                    {story?.map((storyType: miniStoryType, index: number) => (
+                      <MiniStory storyType={storyType} key={index} />
+                    ))}
+                  </div>
+                </div>
+              </>
             )}
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

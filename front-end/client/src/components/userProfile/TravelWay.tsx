@@ -1,12 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
 
+import { Editor, EditorTextChangeEvent } from "primereact/editor";
 import { useState } from "react";
 // import { Editor } from "primereact/editor";
 import { travelWayType } from "../../../util/travelWayType";
 
 export default function TravelWay(props: { travelWayData: travelWayType }) {
   const [popup, setPopup] = useState(false);
-  // const [text, setText] = useState<string>("");
+  const [text, setText] = useState<string>("");
   const data = props.travelWayData;
 
   return (
@@ -16,20 +17,20 @@ export default function TravelWay(props: { travelWayData: travelWayType }) {
           <div>
             <button
               onClick={() => setPopup(false)}
-              className="rounded-full bg-green-500 w-[50px]"
+              className="rounded-full bg-gray-200 m-2 w-[50px] h-[50px] "
             >
               X
             </button>
           </div>
-          {/* <div>
+          <div>
             <Editor
               value={data.title}
               onTextChange={(e: EditorTextChangeEvent) => setText(e.htmlValue)}
               style={{ height: "320px" }}
               name="title"
             />
-            <div dangerouslySetInnerHTML={{ __html: data.title }} />
-          </div> */}
+            {/* <div dangerouslySetInnerHTML={{ __html: data.title }} /> */}
+          </div>
         </div>
       ) : (
         <button onClick={() => setPopup(true)}>
@@ -42,7 +43,7 @@ export default function TravelWay(props: { travelWayData: travelWayType }) {
               />
               <div className="p-5 place-content-center grid h-[100%] container  rounded-r-xl border border-black">
                 <p className="text-[20px] font-semibold overflow-hidden">
-                  {data.title}
+                  <div dangerouslySetInnerHTML={{ __html: data.title }} />
                 </p>
                 <p className="container text-ellipsis overflow-hidden">
                   Lorem, ipsum dolor sit amet consectetur adipisicing elit.
