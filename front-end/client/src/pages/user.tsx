@@ -8,20 +8,18 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { miniStoryType } from "../../util/mini-story-type";
 import MiniStory from "@/components/userProfile/MiniStory";
-import Link from "next/link";
 import TravelWayAdd from "@/components/userProfile/TravelWayAdd";
 import { travelWayType } from "../../util/travelWayType";
 
 export default function User(): JSX.Element {
   const [change, setChange] = useState();
   const [story, setStory] = useState<miniStoryType[]>();
+
+  const [travelWay, setTravelWay] = useState<travelWayType[]>();
   const defaultStyle = "border-black  py-[3px] font-semibold ";
   const activatedStyle = "border-black  py-[3px] font-semibold  border-b-2 ";
   const topBtnStyle =
     "border border-black rounded-[13px] px-[15px] md:px-[29.5px] active:text-gray-200 py-[3px]";
-
-  const [travelWay, setTravelWay] = useState<travelWayType[]>();
-
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function changer(e: any) {
@@ -62,28 +60,18 @@ export default function User(): JSX.Element {
   //   getFetchdata();
   // }, []);
   return (
-    <>
-      <div className="w-full justify-center flex xxl:h-[500px] xl:h-[400px] lg:h-[300px] md:h-[200px]  drop-shadow-2xl relative bg-black">
-        <img
-          src="./images/fuji.webp"
-          alt="pic"
-          className="w-full object-cover h-[500px] h-full "
-        />
+    <div>
+      <div className="w-full justify-center flex   drop-shadow-2xl  ">
         {/* <Header /> */}
-        <div className="flex justify-center absolute bottom-[-80px] ">
-          <Link href="/">
-            <button className="relative bg-green-500 rounded-full text-white">
-              back
-            </button>
-          </Link>
+        <div className="flex justify-center bottom-[-80px] ">
           <img
-            src="https://res.cloudinary.com/dhirtao9q/image/upload/v1682515771/6250a072ad55de0012784a93_pwfvzd.webp"
+            src="../images/efil.webp"
             alt="pic"
-            className="rounded-full w-[150px] h-[150px] bg-black border border-[3px] "
+            className=" rounded-full w-[150px] h-[150px] bg-black   outline outline-green-500 drop-shadow-2xl place-content-center"
           />
         </div>
       </div>
-      <div className="h-[8rem]" />
+      <div className="h-[3rem]" />
       <div className="items-center justify-center flex flex-col gap-10 relative ">
         <p className="font-bold text-[26px]">Robert Harrison</p>
         <div className="w-[80%] grid gap-10">
@@ -129,7 +117,29 @@ export default function User(): JSX.Element {
             </button>
           </div>
           <div className="relative">
-            {change == "Mini story" ? (
+            {change == "TravelWay" ? (
+              <>
+                <div>
+                  <div className="relative">
+                    <TravelWayAdd />
+                    <div className=" place-content-center ">
+                      {travelWay?.map(
+                        (travelWayData: travelWayType, index: number) => (
+                          <TravelWay
+                            travelWayData={travelWayData}
+                            key={index}
+                          />
+                        )
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </>
+            ) : change == "TravelGuide" ? (
+              <>
+                <TravelGuide />
+              </>
+            ) : (
               <>
                 <div className="gap-3 grid">
                   <div>
@@ -142,30 +152,10 @@ export default function User(): JSX.Element {
                   </div>
                 </div>
               </>
-            ) : change == "TravelWay" ? (
-              <>
-                <div>
-                  <div className="relative">
-                    <TravelWayAdd />
-                    <div className="absolute place-content-center ">
-                      {travelWay?.map(
-                        (travelWayData: travelWayType, index: number) => (
-                          <TravelWay
-                            travelWayData={travelWayData}
-                            key={index}
-                          />
-                        )
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <TravelGuide />
             )}
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

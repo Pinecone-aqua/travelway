@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unnecessary-condition */
 /* eslint-disable @next/next/no-img-element */
 import React, { useState } from "react";
 import { Dialog } from "primereact/dialog";
@@ -6,9 +5,9 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { BsFillBookmarkFill } from "react-icons/bs";
-import "primeicons/primeicons.css";
 import { BiBookmark } from "react-icons/bi";
 import { miniStoryType } from "../../../util/mini-story-type";
+// import Dropdown from "react-bootstrap/Dropdown";
 
 export default function MiniStory(props: {
   storyType: miniStoryType;
@@ -17,13 +16,31 @@ export default function MiniStory(props: {
   const [heart, setHeart] = useState<boolean>(false);
   const [mark, setMark] = useState<boolean>(false);
   const data = props.storyType;
+  const [hover, setHover] = useState("");
 
   return (
     <>
-      <div className="card flex w-[31%]">
-        <button onClick={() => setVisible(true)} className="">
-          <img src={data.image} alt="pic" />
-        </button>
+      <div className="card flex w-[31%] ">
+        <div className="w-full inline-block bg-green-500 inline-block h-auto">
+          <button
+            className={`absolute bg-white rounded-full w-[20px] h-[20px] flex text-center justify-center drop-shadow-2xl  m-2 ${hover}`}
+          >
+            1
+          </button>
+          <img
+            src={data.image}
+            alt="pic"
+            className="w-[100%] h-auto  object-cover rounded-xl"
+            onClick={() => setVisible(true)}
+            onMouseEnter={() =>
+              setHover(
+                "visible absolute bg-white rounded-full w-[20px] h-[20px] flex text-center justify-center drop-shadow-2xl  m-2 "
+              )
+            }
+            onMouseLeave={() => setHover("invisible")}
+          />
+        </div>
+
         <Dialog
           header={
             <>

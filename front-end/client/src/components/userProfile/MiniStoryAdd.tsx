@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable react-hooks/rules-of-hooks */
 import { GrAddCircle } from "react-icons/gr";
 import React, { useState } from "react";
 import axios from "axios";
@@ -13,6 +11,7 @@ export default function MiniStoryAdd(): JSX.Element {
     setPopup(false);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function miniStoryHandler(e: any) {
     e.preventDefault();
     axios.post(`http://localhost:3009/miniStory/add`, {
@@ -32,35 +31,34 @@ export default function MiniStoryAdd(): JSX.Element {
               className="flex grid place-content-center gap-5 "
               onSubmit={miniStoryHandler}
             >
-              <div>
+              <div className="gap-2 grid w-[800px]">
                 <input
                   type="text"
                   placeholder="image"
-                  className="border"
+                  className="border w-full p-2 rounded-xl"
                   name="image"
                 />
-              </div>
-              <div>
+
                 <input
                   name="title"
                   type="text"
                   placeholder="Title"
-                  className="border w-full"
+                  className="border w-full w-full p-2 rounded-xl"
                 />
 
                 <textarea
                   name="sentence"
                   placeholder="sentence"
-                  className="border w-full h-[100%]"
+                  className="border w-full h-[100%] p-2 rounded-xl"
                 />
               </div>
-              <button type="submit" className="border p-2">
+              <button type="submit" className="border p-2 drop-shadow-xl">
                 Submit
               </button>
             </form>
             <button
               onClick={popUpCloseHandler}
-              className="p-2 bg-green-500 rounded-full"
+              className="rounded-full bg-gray-200 m-2 w-[50px] h-[50px]"
             >
               back
             </button>
