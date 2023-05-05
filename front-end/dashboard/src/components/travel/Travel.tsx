@@ -13,7 +13,7 @@ export default function Travel(props: PropType): JSX.Element {
   }
 
   return (
-    <div className="flex flex-col min-h-96 h-100 w-full bg-gray-200 rounded-2xl p-10 mb-10 ">
+    <div className="flex flex-col min-h-96 h-100 w-full bg-gray-200 rounded-2xl p-10 mb-10 shadow-lg shadow-cyan-100">
       <h1>{data._id}</h1>
       <p>{data.description}</p>
       <h2>
@@ -32,7 +32,7 @@ export default function Travel(props: PropType): JSX.Element {
 
       <button
         onClick={() => deleteHandler(data._id)}
-        className="h-12 w-32 bg-cyan-500 p-3 m-3  rounded-xl text-white self-end"
+        className="h-12 w-32 bg-cyan-500 p-3 m-3 shadow-lg shadow-gray-500/100 rounded-xl text-white self-end"
       >
         delete
       </button>

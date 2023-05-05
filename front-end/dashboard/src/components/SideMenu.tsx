@@ -14,7 +14,7 @@ export default function SideMenu(): JSX.Element {
   const route = useRouter();
   console.log(route.route);
   const activeClass =
-    "text-white bg-cyan-500 shadow-lg shadow-cyan-600 text-2xl font-serif flex justify-center items-center  rounded-2xl w-9/12 h-16 m-7";
+    "text-white bg-cyan-500 shadow-2xl shadow-cyan-900 text-2xl font-serif flex justify-center items-center  rounded-2xl w-9/12 h-16 m-7";
 
   const inActiveClass =
     "flex justify-center items-center  rounded-2xl w-9/12 h-16 m-7";
@@ -22,7 +22,7 @@ export default function SideMenu(): JSX.Element {
   return (
     <>
       <div className="w-3/12 h-screen flex justify-center bg-slate-200">
-        <ul className="flex flex-col rounded-2xl  bg-slate-50 h-2/3 w-4/6  ">
+        <ul className="flex flex-col rounded-2xl  bg-slate-50 h-2/3 w-4/6  shadow-lg shadow-cyan-100">
           <Link
             className={route.route === "/stories" ? activeClass : inActiveClass}
             href={"/stories"}

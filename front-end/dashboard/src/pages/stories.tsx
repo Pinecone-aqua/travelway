@@ -26,7 +26,7 @@ export default function Orders(): JSX.Element {
   console.log(story);
 
   return (
-    <div className="bg-white rounded-2xl h-full px-20 py-10">
+    <div className="bg-white rounded-2xl h-full px-20 py-10 shadow-xl shadow-cyan-500">
       {loading === true ? (
         <div className="flex justify-center">
           <ClockLoader
@@ -56,7 +56,7 @@ export default function Orders(): JSX.Element {
               >
                 create
               </button>
-              <table className="table-auto w-full h-100 bg-gray-200 rounded-2xl mt-5">
+              <table className="table-auto w-full h-100 bg-gray-200 rounded-2xl mt-5 shadow-lg shadow-cyan-100">
                 <thead className="h-24 text-left p-5">
                   <tr className="p-5">
                     <th scope="col" className="p-5">
