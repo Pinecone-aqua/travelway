@@ -5,7 +5,7 @@ export default function Pagination(): JSX.Element {
   const [currentPage, setCurrentPage] = useState<number>(10);
   return (
     <>
-      <Link>
+      <Link href="">
         <PageButton />
       </Link>
     </>
