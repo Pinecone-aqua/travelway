@@ -3,23 +3,26 @@ import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import jwtDecode from "jwt-decode";
 import "primereact/resources/primereact.min.css";
+import { useRouter } from "next/router";
 
 interface HeaderType {
-  user: string;
-  setUser: (arg: string) => void;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  user: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  setUser: (arg: any) => void;
 }
 
 const MENULIST = [
   { name: "Home", uri: "/" },
   { name: "MiniStories", uri: "/stories" },
-  { name: "Аяллын хөтөлбөр", uri: "/tour" },
+  { name: "Аялал", uri: "/tour" },
   { name: "Travel Blog", uri: "/gadget" },
   { name: "About us", uri: "/about" },
 ];
 
 export default function Header(): JSX.Element {
-  const [nav, setNav] = useState<null | string>();
-  const [user, setUser] = useState<HeaderType | undefined>();
+  const [nav, setNav] = useState<string | null>();
+  const [user, setUser] = useState<HeaderType>();
 
   const activatedStyle =
     "opacity-100 text-xl mt-3 ease-out duration-300 md:w-[192px] sm:w-[142px] w-[96px]";
@@ -37,6 +40,7 @@ export default function Header(): JSX.Element {
   function changeNav(e: any) {
     setNav(e.target.innerText);
   }
+
   return (
     <div className="sticky top-0">
       <div className="flex gap-3 justify-center content-center text-center text-white">
@@ -58,52 +62,62 @@ export default function Header(): JSX.Element {
         </div>
 
         <div>
-          <div className="absolute right-0 mr-[1rem] flex items-center mt-4">
-            {/* <input type="text" className="relative right-0 items-center" /> */}
-            <Link href="/user">
-              <button className=" w-8 h-8 ease-in duration-300">
-                <picture>
-                  <img
-                    src="../../images/efil.webp"
-                    alt="pic"
-                    className="w-8 h-8 ease-in rounded-full border border-[2px]"
-                  />
-                </picture>
-              </button>
-            </Link>
-          </div>
+          <LoginAuthentication user={user} setUser={setUser} />
         </div>
       </div>
     </div>
   );
 }
 
-const LoginAuthentication = () => (
-  <>
-    {/* <div>
-          {user ? (
-            <div className="flex gap-5">
-              <div>hello {user.user}</div>
-              <div
-                className="cursor-pointer"
-                onClick={() => {
-                  Cookies.remove("token");
-                  setUser(undefined);
-                }}
-              >
-                Logout
-              </div>
-            </div>
-          ) : (
+const LoginAuthentication = ({ user, setUser }: HeaderType) => {
+  const router = useRouter();
+  function loginCheckAuth() {
+    console.log("User autnentication here:-----> ");
+    console.log(user);
+    if (user) {
+      router.push("/user");
+    } else {
+      router.push("/auth/login");
+    }
+  }
+
+  return (
+    <>
+      <div className="absolute right-0 mr-[1rem] flex items-center">
+        {user ? (
+          <div className="flex gap-5 cursor-pointer">
+            <div>hello {user.user}</div>
             <div
-              className="cursor-pointer flex items-center mt-3 opacity-50"
+              className="cursor-pointer"
               onClick={() => {
-                router.push("/login");
+                Cookies.remove("token");
+                setUser(undefined);
               }}
             >
-              Login
+              <LoginButton />
             </div>
-          )}
-        </div>  */}
-  </>
+          </div>
+        ) : (
+          <div
+            className="cursor-pointer flex items-center mt-3 opacity-100"
+            onClick={loginCheckAuth}
+          >
+            <LoginButton />
+          </div>
+        )}
+      </div>
+    </>
+  );
+};
+
+const LoginButton = () => (
+  <button className="w-8 h-8 ease-in duration-300">
+    <picture>
+      <img
+        src="../../images/efil.webp"
+        alt="pic"
+        className="w-8 h-8 ease-in rounded-full border border-[2px]"
+      />
+    </picture>
+  </button>
 );
