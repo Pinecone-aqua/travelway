@@ -51,7 +51,7 @@ export default function User(): JSX.Element {
 
   return (
     <>
-      <Link href="/login">
+      <Link href="/stories">
         <button className="top-5 right-10 absolute rounded-full text-white uppercase text-sm font-thin">
           LOGOUT
         </button>
