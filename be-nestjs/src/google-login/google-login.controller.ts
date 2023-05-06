@@ -14,7 +14,6 @@ import { UsersService } from '../user/user.service';
 import { User } from '../user/schemas/user.schema';
 import queryString from 'query-string';
 
-
 @Controller()
 export class GoogleLoginController {
   constructor(
