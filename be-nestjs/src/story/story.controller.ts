@@ -15,13 +15,22 @@ import { Story } from './schemas/story.schema';
 export class StoryController {
   constructor(private readonly storyService: StoryService) {}
 
-  @Get('get')
+  @Get('get/1')
   findAll(): Promise<Story[]> {
     return this.storyService.findAll();
   }
+  @Get('pageNum')
+  countNum(): Promise<number> {
+    return this.storyService.countNum();
+  }
+  // page number
+  @Get('page/:id')
+  findPage(@Param('id') pageNum: number): Promise<Story> {
+    return this.storyService.findPage(pageNum);
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string): Promise<Story> {
-    console.log(id);
     return this.storyService.findOne(id);
   }
   @Delete(':id')

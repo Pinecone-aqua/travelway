@@ -19,8 +19,20 @@ export class StoryService {
     const result = await this.storyModel.find();
     return result;
   }
+
+  async countNum(): Promise<number> {
+    const result = await this.storyModel.count();
+    return result;
+  }
   async findOne(id: string): Promise<Story> {
     const result = await this.storyModel.findOne({ _id: id });
+    return result;
+  }
+  async findPage(pageNum: number): Promise<any> {
+    const result = await this.storyModel
+      .find({})
+      .skip((pageNum - 1) * 8)
+      .limit(8);
     return result;
   }
   async remove(id: string): Promise<Story> {
