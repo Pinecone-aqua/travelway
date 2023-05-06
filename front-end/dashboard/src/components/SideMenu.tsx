@@ -24,8 +24,10 @@ export default function SideMenu(): JSX.Element {
       <div className="w-3/12 h-screen flex justify-center bg-slate-200">
         <ul className="flex flex-col rounded-2xl  bg-slate-50 h-2/3 w-4/6  shadow-lg shadow-cyan-100">
           <Link
-            className={route.route === "/stories" ? activeClass : inActiveClass}
-            href={"/stories"}
+            className={
+              route.route === "/allStories/1" ? activeClass : inActiveClass
+            }
+            href={"/allStories/1"}
           >
             {" "}
             <OrderIcon />
