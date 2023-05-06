@@ -24,7 +24,7 @@ export default function Login(): JSX.Element {
     setLoginForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  const onSubmit = async (e: FormEvent): Promise<void> => {
+  async function onSubmit(e: FormEvent): Promise<void> {
     e.preventDefault();
 
     try {
@@ -55,12 +55,16 @@ export default function Login(): JSX.Element {
       console.log("Error occure: ", error);
       setError(`Хэрэглэгчийн и-мейл, нууц үг буруу байна`);
     }
-  };
+  }
 
   function googleLoginHandler() {
     axios.get("http://localhost:3009/google-login").then((response) => {
+      console.log("Google");
+      console.log(response.data);
+      
       router.push(response.data);
     });
+
   }
 
   return (
