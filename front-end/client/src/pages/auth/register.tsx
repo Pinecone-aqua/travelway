@@ -1,4 +1,3 @@
-import Layout from "@/components/Layout";
 import axios from "axios";
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -67,7 +66,7 @@ export default function Register(): JSX.Element {
   }
 
   return (
-    <Layout>
+    <div className="absolute top-0 left-0 z-100 w-full bg-white h-[100vh]">
       <Head>
         <title>Хэрэглэгч бүртгүүлэх</title>
       </Head>
@@ -176,6 +175,6 @@ export default function Register(): JSX.Element {
           </form>
         </div>
       </div>
-    </Layout>
+    </div>
   );
 }
