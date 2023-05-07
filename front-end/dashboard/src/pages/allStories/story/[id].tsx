@@ -9,6 +9,8 @@ export default function StoryID(): JSX.Element {
   const [data, setData] = useState<StoryType | null>(null);
   const toDo = data?.toDo;
 
+  console.log(query);
+
   useEffect(() => {
     if (query.id) {
       fetch(`http://localhost:3009/stories/${query.id}`)

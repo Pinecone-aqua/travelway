@@ -1,16 +1,20 @@
+//import Pagination from "@/components/Pagination";
 import CreateStory from "@/components/story/CreateStory";
 import Story from "@/components/story/Story";
 
 import { StoryType } from "@/util/types";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { ClockLoader } from "react-spinners";
 
 export default function Orders(): JSX.Element {
   const [story, setStory] = useState<StoryType[] | null>(null);
   const [loading, setLoading] = useState(false);
+  const query = useRouter();
+
   useEffect(() => {
     setLoading(true);
-    fetch("http://localhost:3009/stories/get")
+    fetch("http://localhost:3009/stories/get/1")
       .then((response) => response.json())
       .then((res) => {
         setStory(res);
@@ -21,9 +25,10 @@ export default function Orders(): JSX.Element {
         setLoading(false);
       });
   }, []);
+
   const [create, setCreate] = useState(false);
 
-  console.log(story);
+  console.log(query);
 
   return (
     <div className="bg-white rounded-2xl h-full px-20 py-10 shadow-xl shadow-cyan-500">
