@@ -18,8 +18,6 @@ export class TravelWayController {
 
   @Post('add')
   create(@Body() createTravelDto: CreateTravelWayDto): Promise<TravelWay> {
-    console.log(createTravelDto);
-
     return this.travelWayService.create(createTravelDto);
   }
 
@@ -30,7 +28,6 @@ export class TravelWayController {
 
   @Get(':id')
   findOne(@Param() params: { id: string }): Promise<TravelWay> {
-    // console.log('Request ID orj irlee', params.id);
     return this.travelWayService.findOne(params.id);
   }
 

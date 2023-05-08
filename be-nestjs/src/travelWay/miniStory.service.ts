@@ -17,7 +17,6 @@ export class TravelWayService {
 
   async create(createTravelwayDto: CreateTravelWayDto): Promise<TravelWay> {
     const { title, sentence } = createTravelwayDto;
-    console.log(title, sentence);
 
     if (!(title && sentence)) {
       throw new BadRequestException('TravelWay мэдээлэл дутуу байна');
@@ -25,7 +24,7 @@ export class TravelWayService {
 
     const newTravelWay = new this.travelWayModel(createTravelwayDto);
     const result = await newTravelWay.save();
-    console.log('result  shuu:', result);
+    // console.log('result  shuu:', result);
 
     return result;
   }
@@ -35,11 +34,6 @@ export class TravelWayService {
     console.log(result);
     return result;
   }
-
-  // async findIdAll(): Promise<any[]> {
-  //   const result = await this.travelModel.find({}, { _id: 1 });
-  //   return result;
-  // }
 
   async findOne(id: string): Promise<TravelWay> {
     try {

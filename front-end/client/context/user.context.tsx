@@ -8,26 +8,41 @@ import {
 } from "react";
 
 interface UserContextType {
-  currentUser: string;
+  userId: string;
+  token: string;
+}
+interface UserProviderType {
+  children: ReactNode;
 }
 
-const UserContext = createContext<UserContextType>({} as UserContextType);
+export const UserContext = createContext<UserContextType>(
+  {} as UserContextType
+);
 
 export function useUser() {
   return useContext(UserContext);
 }
 
-interface UserProviderType {
-  children: ReactNode;
-}
-
 export default function UserProvider({ children }: UserProviderType) {
-  const [currentUser, setCurrentUser] = useState("");
+  const [currentUser, setCurrentUser] = useState({
+    userId: "",
+    token: "",
+  });
+
+  export const getLoginCheck = () => {
+    try {
+      
+      
+    } catch (error) {
+      
+    }
+    }
+  }
 
   useEffect(() => {
     const token = Cookies.get("token");
     if (token) {
-      setCurrentUser(token);
+      setCurrentUser((prev) => {userId: prev.userId, token});
     }
   }, []);
 

@@ -18,8 +18,6 @@ export class MiniStoryController {
 
   @Post('add')
   create(@Body() createTravelDto: CreateMiniStoryDto): Promise<MiniStory> {
-    console.log(createTravelDto);
-
     return this.travelService.create(createTravelDto);
   }
 
@@ -30,7 +28,6 @@ export class MiniStoryController {
 
   @Get(':id')
   findOne(@Param() params: { id: string }): Promise<MiniStory> {
-    // console.log('Request ID orj irlee', params.id);
     return this.travelService.findOne(params.id);
   }
 

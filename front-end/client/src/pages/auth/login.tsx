@@ -1,8 +1,9 @@
 import axios from "axios";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import React, { FormEvent, useState } from "react";
+import React, { useState } from "react";
 import { FaGoogle } from "react-icons/fa";
+import { useUser } from "../../../context/user.context";
 
 interface LoginForm {
   email: string;
@@ -18,13 +19,14 @@ export default function Login(): JSX.Element {
   });
   const [error, setError] = useState<string>("");
   const router = useRouter();
+  const userContext = useUser();
 
   const handleChange = (e: DataInput) => {
     const { name, value } = e.target;
     setLoginForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  async function onSubmit(e: FormEvent): Promise<void> {
+  async function onSubmit(e: React.SyntheticEvent): Promise<void> {
     e.preventDefault();
 
     try {
@@ -33,8 +35,6 @@ export default function Login(): JSX.Element {
         password: loginForm.password,
       };
 
-      console.log("User form name");
-      console.log(data);
       // Validate email or password here gehdee barag ajillahgvi
       if (!data.email || !data.password) {
         setError("Нэр болон нууц үгээ бүрэн оруулна уу");
@@ -48,9 +48,12 @@ export default function Login(): JSX.Element {
       if (response.status === 200 || response.status === 201) {
         const userID = JSON.parse(response.data.userid);
         localStorage.setItem("userId", userID);
-        router.push("/user");
-        return;
       }
+
+      console.log();
+
+      router.push("/user");
+      return;
     } catch (error) {
       console.log("Error occure: ", error);
       setError(`Хэрэглэгчийн и-мейл, нууц үг буруу байна`);
@@ -61,10 +64,9 @@ export default function Login(): JSX.Element {
     axios.get("http://localhost:3009/google-login").then((response) => {
       console.log("Google");
       console.log(response.data);
-      
+
       router.push(response.data);
     });
-
   }
 
   return (
