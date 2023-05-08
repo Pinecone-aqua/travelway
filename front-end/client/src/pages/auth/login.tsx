@@ -21,10 +21,7 @@ export default function Login(): JSX.Element {
   const router = useRouter();
   const userContext = useUser();
 
-  const handleChange = (e: DataInput) => {
-    const { name, value } = e.target;
-    setLoginForm((prev) => ({ ...prev, [name]: value }));
-  };
+  
 
   async function onSubmit(e: React.SyntheticEvent): Promise<void> {
     e.preventDefault();
@@ -42,7 +39,6 @@ export default function Login(): JSX.Element {
       }
 
       const endpoint = "http://localhost:3009/auth/login";
-
       const response = await axios.post(endpoint, data);
 
       if (response.status === 200 || response.status === 201) {

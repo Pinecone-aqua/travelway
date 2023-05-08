@@ -1,3 +1,4 @@
+import { get } from "http";
 import Cookies from "js-cookie";
 import {
   ReactNode,
@@ -6,6 +7,7 @@ import {
   useEffect,
   useState,
 } from "react";
+import { Nav } from "react-bootstrap";
 
 interface UserContextType {
   userId: string;
@@ -23,31 +25,36 @@ export function useUser() {
   return useContext(UserContext);
 }
 
+// const handleChange = (e: DataInput) => {
+//   const { name, value } = e.target;
+//   setLoginForm((prev) => ({ ...prev, [name]: value }));
+// };
+
 export default function UserProvider({ children }: UserProviderType) {
+  navigate useNavigate()
   const [currentUser, setCurrentUser] = useState({
     userId: "",
     token: "",
   });
 
-  export const getLoginCheck = () => {
-    try {
-      
-      
-    } catch (error) {
-      
-    }
-    }
-  }
-
   useEffect(() => {
     const token = Cookies.get("token");
-    if (token) {
-      setCurrentUser((prev) => {userId: prev.userId, token});
+    if (localStorage.getItem("userId") && token) {
+      setCurrentUser((prev) => ({...prev, userId: localStorage?.getItem("userId"), token}));
     }
   }, []);
 
+  function loginHandler(e) {
+    e.
+    axios get
+
+    setCurrentUser
+    Nav
+    localStorage
+  }
+
   return (
-    <UserContext.Provider value={{ currentUser }}>
+    <UserContext.Provider value={{ currentUser, setCurrentUser }}>
       {children}
     </UserContext.Provider>
   );
