@@ -21,6 +21,5 @@ export async function getAccessTokenFromCode(code: any) {
       body: postData,
     },
   ).then((response) => response.json());
-
   return access_token;
 }
