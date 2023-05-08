@@ -1,5 +1,5 @@
-**Төслийн ERD**
------
+## **Төслийн ERD**
+
 <a href="https://www.travelway.com/" target="_blank"><img src="https://res.cloudinary.com/dhirtao9q/image/upload/v1682643047/travelwayERDdiagram_mbin5d.png" width="100%" alt="travelway: Free and open fair-code licensed experience operating system (XOS)">
 </a>
 
@@ -20,13 +20,25 @@
 ### ✨ Community
 
 ### MVP - Minimium Valuable Product
-1. 
-- Хэрэглэгч аяллын мэдээлэл харах боломжтой байх
-- 
 
+1.
 
-2. 
+- Хэрэглэгч товч түүхээ оруулдаг
+- Хэрэглэгчийн товч түүхийг хардаг
+-
 
+2.
+
+- Аяллын хөтөлбөр харна
+- Аялахад тохиромжтой газруудын мэдээлэл харж болно
+- Dashboard дээр хайлт хийдэг болгох
+
+3.
+
+- Хэрэглэгчийн Context үүсгэх
+- Хэрэглэгч Google-ээр нэвтэрч ордог болгох
+- Хэрэглэгч эсвэл агент хөтөлбөрийн мэдээллээ оруулдаг болгох
+- Аяллын товч түүхийг харуулах хэсгийг хийх
 
 **travelway documentation**
 
