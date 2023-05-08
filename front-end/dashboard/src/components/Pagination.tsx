@@ -1,72 +1,80 @@
 import Link from "next/link";
-import { Dispatch, SetStateAction } from "react";
-
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import PageBtn from "./subComponent/PageBtn";
 interface PropType {
   currentPage: number;
   setCurrentPage: Dispatch<SetStateAction<number>>;
-  lastPage: number | undefined;
+  path: string;
 }
-export default function Pagination(props: PropType): JSX.Element {
-  const { currentPage, setCurrentPage, lastPage } = props;
 
+export default function Pagination(props: PropType): JSX.Element {
+  const { currentPage, setCurrentPage, path } = props;
   const active = "bg-cyan-500 p-3 rounded-xl m-2";
   const inActive = " p-3 rounded-xl m-2 border-2";
-  console;
+  const [pageNum, setPageNum] = useState<number>(1);
+  useEffect(() => {
+    fetch(`http://localhost:3009/${path}/pageNum`)
+      .then((response) => response.json())
+      .then((res) => setPageNum(res));
+  }, []);
+  const lastPage = pageNum && Math.ceil(pageNum / 8);
 
   return (
     <>
-      {currentPage !== 1 && (
-        <Link
-          href={`/allStories/${currentPage - 1}`}
-          onClick={() => setCurrentPage(currentPage - 1)}
-        >
-          <PageBtn btnName={"Өмнөх"} btnClass={inActive} />
-        </Link>
-      )}
-      {currentPage > 2 && (
-        <Link href={`/allStories/1`} onClick={() => setCurrentPage(1)}>
-          <PageBtn btnName={1} btnClass={inActive} />
-        </Link>
-      )}
-      {currentPage > 3 && "..."}
-      {currentPage > 1 && (
-        <Link
-          href={`/allStories/${currentPage - 1}`}
-          onClick={() => setCurrentPage(currentPage - 1)}
-        >
-          <PageBtn btnName={currentPage - 1} btnClass={inActive} />
-        </Link>
-      )}
+      {lastPage === 1 ? (
+        <></>
+      ) : (
+        <>
+          {currentPage !== 1 && (
+            <Link
+              href={`${currentPage - 1}`}
+              onClick={() => setCurrentPage(currentPage - 1)}
+            >
+              <PageBtn btnName={"Өмнөх"} btnClass={inActive} />
+            </Link>
+          )}
+          {currentPage > 2 && (
+            <Link href={`1`} onClick={() => setCurrentPage(1)}>
+              <PageBtn btnName={1} btnClass={inActive} />
+            </Link>
+          )}
+          {currentPage > 3 && "..."}
+          {currentPage > 1 && (
+            <Link
+              href={`${currentPage - 1}`}
+              onClick={() => setCurrentPage(currentPage - 1)}
+            >
+              <PageBtn btnName={currentPage - 1} btnClass={inActive} />
+            </Link>
+          )}
 
-      <Link href={`/allStories/${currentPage}`}>
-        <PageBtn btnName={currentPage} btnClass={active} />
-      </Link>
+          <Link href={`${currentPage}`}>
+            <PageBtn btnName={currentPage} btnClass={active} />
+          </Link>
 
-      {lastPage && lastPage > currentPage && (
-        <Link
-          href={`/allStories/${currentPage + 1}`}
-          onClick={() => setCurrentPage(currentPage + 1)}
-        >
-          <PageBtn btnName={currentPage + 1} btnClass={inActive} />
-        </Link>
-      )}
-      {lastPage && lastPage - 2 > currentPage && "..."}
-      {lastPage && lastPage - 1 > currentPage && (
-        <Link
-          href={`/allStories/${lastPage}`}
-          onClick={() => setCurrentPage(lastPage)}
-        >
-          <PageBtn btnName={lastPage} btnClass={inActive} />
-        </Link>
-      )}
-      {currentPage !== lastPage && (
-        <Link
-          href={`/allStories/${currentPage + 1}`}
-          onClick={() => setCurrentPage(currentPage + 1)}
-        >
-          <PageBtn btnName={"Дараахи"} btnClass={inActive} />
-        </Link>
+          {lastPage && lastPage > currentPage && (
+            <Link
+              href={`${currentPage + 1}`}
+              onClick={() => setCurrentPage(currentPage + 1)}
+            >
+              <PageBtn btnName={currentPage + 1} btnClass={inActive} />
+            </Link>
+          )}
+          {lastPage && lastPage - 2 > currentPage && "..."}
+          {lastPage && lastPage - 1 > currentPage && (
+            <Link href={`${lastPage}`} onClick={() => setCurrentPage(lastPage)}>
+              <PageBtn btnName={lastPage} btnClass={inActive} />
+            </Link>
+          )}
+          {currentPage !== lastPage && (
+            <Link
+              href={`${currentPage + 1}`}
+              onClick={() => setCurrentPage(currentPage + 1)}
+            >
+              <PageBtn btnName={"Дараахи"} btnClass={inActive} />
+            </Link>
+          )}
+        </>
       )}
     </>
   );

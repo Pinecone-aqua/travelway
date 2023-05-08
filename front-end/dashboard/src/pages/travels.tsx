@@ -18,7 +18,7 @@ export default function Travels(): JSX.Element {
         setLoading(false);
       });
   }, []);
-  console.log("aylaluud", travels);
+
   return (
     <div className="bg-white rounded-2xl min-h-full h-100 p-20">
       {loading === true ? (

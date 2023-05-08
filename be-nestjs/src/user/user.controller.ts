@@ -10,18 +10,16 @@ import {
 import { UsersService } from './user.service';
 import { User, UpdateUserDto } from './schemas/user.schema';
 
-@Controller('users')
+@Controller('allUsers')
 export class UsersController {
   constructor(private readonly userService: UsersService) {}
-
+  @Get('/pageNum')
+  countNum(): Promise<any> {
+    return this.userService.countNum();
+  }
   @Post()
   create(@Body() user: User): Promise<User> {
     return this.userService.create(user);
-  }
-
-  @Get('get')
-  findAll() {
-    return this.userService.findAll();
   }
 
   @Get('profile')
@@ -42,5 +40,10 @@ export class UsersController {
   @Delete(':id')
   remove(@Param('id') id: string): Promise<User> {
     return this.userService.remove(id);
+  }
+
+  @Get('page/:id')
+  findPage(@Param('id') pageNum: number): Promise<User> {
+    return this.userService.findPage(pageNum);
   }
 }

@@ -13,7 +13,7 @@ export default function StoryID(): JSX.Element {
 
   useEffect(() => {
     if (query.id) {
-      fetch(`http://localhost:3009/stories/${query.id}`)
+      fetch(`http://localhost:3009/allStories/${query.id}`)
         .then((response) => response.json())
         .then((res) => setData(res));
     }
@@ -23,7 +23,7 @@ export default function StoryID(): JSX.Element {
   function editHandler(e: any): void {
     e.preventDefault();
 
-    axios.patch(`http://localhost:3009/stories/${query.id}`, {
+    axios.patch(`http://localhost:3009/allStories/${query.id}`, {
       title: e.target.title.value,
       description: e.target.description.value,
       myth: e.target.myth.value,

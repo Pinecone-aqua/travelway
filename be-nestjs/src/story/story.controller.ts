@@ -11,24 +11,17 @@ import { CreateStoryDto } from './dto/create-story.dto';
 import { UpdateStoryDto } from './dto/update-story.dto';
 import { StoryService } from './story.service';
 import { Story } from './schemas/story.schema';
-@Controller('stories')
+@Controller('allStories')
 export class StoryController {
   constructor(private readonly storyService: StoryService) {}
-
-  @Get('get/1')
-  findAll(): Promise<Story[]> {
-    return this.storyService.findAll();
-  }
   @Get('pageNum')
   countNum(): Promise<number> {
     return this.storyService.countNum();
   }
-  // page number
-  @Get('page/:id')
+  @Get('page:id')
   findPage(@Param('id') pageNum: number): Promise<Story> {
     return this.storyService.findPage(pageNum);
   }
-
   @Get(':id')
   findOne(@Param('id') id: string): Promise<Story> {
     return this.storyService.findOne(id);
@@ -48,4 +41,6 @@ export class StoryController {
   ): Promise<Story> {
     return this.storyService.update(id, updateStoryDto);
   }
+
+  // page number
 }
