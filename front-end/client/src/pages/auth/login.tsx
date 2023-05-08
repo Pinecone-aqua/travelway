@@ -61,10 +61,9 @@ export default function Login(): JSX.Element {
     axios.get("http://localhost:3009/google-login").then((response) => {
       console.log("Google");
       console.log(response.data);
-      
+
       router.push(response.data);
     });
-
   }
 
   return (

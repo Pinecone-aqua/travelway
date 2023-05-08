@@ -21,3 +21,10 @@ export interface StoryType {
   image: string;
   sentence: string;
 }
+
+export interface miniStoryType {
+  _id: string;
+  image: string;
+  title: string;
+  sentence: string;
+}

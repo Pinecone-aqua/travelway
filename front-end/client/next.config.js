@@ -9,6 +9,24 @@ const nextConfig = {
         port: "",
         pathname: "/dpgxpnhtt/**",
       },
+      {
+        protocol: "http",
+        hostname: "undesten.mn",
+        port: "",
+        pathname: "**",
+      },
+      {
+        protocol: "https",
+        hostname: "*.unsplash.com",
+        port: "",
+        pathname: "**",
+      },
+      {
+        protocol: "https",
+        hostname: "*.davestravelpages.com",
+        port: "",
+        pathname: "**",
+      },
     ],
   },
 };

@@ -6,7 +6,7 @@ import TravelGuide from "@/components/userProfile/TravelGuide";
 import TravelWay from "@/components/userProfile/TravelWay";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { miniStoryType } from "../../util/mini-story-type";
+import { miniStoryType } from "../../util/types";
 import MiniStory from "@/components/userProfile/MiniStory";
 import TravelWayAdd from "@/components/userProfile/TravelWayAdd";
 import { travelWayType } from "../../util/travelWayType";
@@ -145,7 +145,7 @@ export default function User(): JSX.Element {
                   <div>
                     <MiniStoryAdd />
                   </div>
-                  <div className="flex gap-3 flex-wrap place-content-center ">
+                  <div className="gap-3 grid grid-cols-4 relative  ">
                     {story?.map((storyType: miniStoryType, index: number) => (
                       <MiniStory storyType={storyType} key={index} />
                     ))}

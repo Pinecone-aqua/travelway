@@ -26,7 +26,11 @@ export default function MiniStoryAdd(): JSX.Element {
     <>
       {popup ? (
         <div>
-          <div className="w-[100%] border absolute bg-white p-5 ">
+          <div className="w-[100%] border absolute bg-white p-5 z-20">
+            <details>
+              <summary>sum</summary>
+              <p>3123</p>
+            </details>
             <form
               className="flex grid place-content-center gap-5 "
               onSubmit={miniStoryHandler}
