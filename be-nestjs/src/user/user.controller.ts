@@ -10,10 +10,13 @@ import {
 import { UsersService } from './user.service';
 import { User, UpdateUserDto } from './schemas/user.schema';
 
-@Controller('users')
+@Controller('allUsers')
 export class UsersController {
   constructor(private readonly userService: UsersService) {}
-
+  @Get('/pageNum')
+  countNum(): Promise<any> {
+    return this.userService.countNum();
+  }
   @Post()
   create(@Body() user: User): Promise<User> {
     return this.userService.create(user);
@@ -39,10 +42,6 @@ export class UsersController {
     return this.userService.remove(id);
   }
 
-  @Get('pageNum')
-  countNum(): Promise<any> {
-    return this.userService.countNum();
-  }
   @Get('page/:id')
   findPage(@Param('id') pageNum: number): Promise<User> {
     return this.userService.findPage(pageNum);

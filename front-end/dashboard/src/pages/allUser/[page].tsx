@@ -11,32 +11,21 @@ export default function AllUser(): JSX.Element {
   const pageQuery = query.query.page;
   const [users, setUsers] = useState<userType[] | null>(null);
 
-  const [pageNum, setPageNum] = useState<number>(1);
-  const [currentPage, setCurrentPage] = useState<number | undefined>(1);
+  const [currentPage, setCurrentPage] = useState<number>(1);
   const [loading, setLoading] = useState(false);
-  const lastPage = pageNum && Math.ceil(pageNum / 8);
-  const path = "allUser";
 
-  useEffect(() => {
-    fetch("http://localhost:3009/users/pageNum")
-      .then((response) => response.json())
-      .then((res) => setPageNum(res));
-  }, []);
-  console.log("pageNum", pageNum);
+  const path = "allUsers";
 
   useEffect(() => {
     if (pageQuery) {
       setLoading(true);
-      fetch(`http://localhost:3009/users/page/${pageQuery}`)
+      fetch(`http://localhost:3009/${path}/page/${pageQuery}`)
         .then((response) => response.json())
         .then((res) => {
           setUsers(res), setLoading(false);
         });
     }
   }, [pageQuery]);
-
-  console.log("pageQuery", pageQuery);
-  console.log("users", users);
 
   return (
     <div className="bg-white rounded-2xl h-full p-20">
@@ -66,14 +55,13 @@ export default function AllUser(): JSX.Element {
               <User key={index} unit={unit} />
             ))}
           </tbody>
-          <Pagination
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
-            lastPage={lastPage}
-            path={path}
-          />
         </table>
-      )}
+      )}{" "}
+      <Pagination
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        path={path}
+      />
     </div>
   );
 }
