@@ -4,6 +4,7 @@ import Cookies from "js-cookie";
 import jwtDecode from "jwt-decode";
 import "primereact/resources/primereact.min.css";
 import { useRouter } from "next/router";
+import { useUser } from "../../context/user.context";
 
 interface HeaderType {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { GrAddCircle } from "react-icons/gr";
 // import axios from "axios";
-import React, { useRef, useState } from "react";
+import React, { SyntheticEvent, useRef, useState } from "react";
 import { Editor } from "primereact/editor";
 // import TextEditor from "../TextEditor";
 
@@ -65,7 +65,7 @@ export default function TravelWayAdd(): JSX.Element {
               <div className="bg-gray-100 card">
                 <Editor
                   value={text}
-                  onTextChange={(e) => setText(e.htmlValue)}
+                  onTextChange={(e) => setText(e.textValue)}
                   ref={textEditorRef}
                   style={{ height: "320px" }}
                   name="title"

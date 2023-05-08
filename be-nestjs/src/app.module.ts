@@ -22,7 +22,6 @@ import { GoogleLoginModule } from './google-login/google-login.module';
     StoryModule,
     MiniStoryModule,
     TravelWayModule,
-    GoogleLoginModule,
   ],
   controllers: [AppController],
   providers: [AppService],

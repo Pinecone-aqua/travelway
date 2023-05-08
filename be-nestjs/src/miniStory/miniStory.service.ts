@@ -17,7 +17,6 @@ export class MiniStoryService {
 
   async create(createMiniStoryDto: CreateMiniStoryDto): Promise<MiniStory> {
     const { title, image, sentence } = createMiniStoryDto;
-    console.log(title, sentence);
 
     if (!(title && image && sentence)) {
       throw new BadRequestException('MiniStory мэдээлэл дутуу байна');
@@ -30,7 +29,7 @@ export class MiniStoryService {
 
   async findAll(): Promise<MiniStory[]> {
     const result = await this.miniStoryModel.find();
-    console.log('result :', result);
+    // console.log('result :', result);
     return result;
   }
 
