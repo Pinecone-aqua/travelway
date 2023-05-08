@@ -10,6 +10,7 @@ import { UsersModule } from './user/user.module';
 import { MiniStoryModule } from './miniStory/miniStory.module';
 import { TravelWayModule } from './travelWay/miniStory.module';
 import { StoryModule } from './story/story.module';
+import { GoogleLoginModule } from './google-login/google-login.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { StoryModule } from './story/story.module';
     StoryModule,
     MiniStoryModule,
     TravelWayModule,
+    GoogleLoginModule,
   ],
   controllers: [AppController],
   providers: [AppService],
