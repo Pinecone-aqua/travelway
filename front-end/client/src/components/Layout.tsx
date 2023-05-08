@@ -1,7 +1,11 @@
 import React, { ReactNode } from "react";
 import Header from "./Header";
 
-const Layout = ({ children }: { children: ReactNode }): JSX.Element => (
+interface PropType {
+  children: ReactNode;
+}
+
+const Layout = ({ children }: PropType ): JSX.Element => (
   <>
     <div className="w-full xxl:h-[500px] xl:h-[400px] lg:h-[300px] md:h-[200px]  drop-shadow-2xl relative">
       <picture>
