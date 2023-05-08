@@ -15,11 +15,6 @@ export class StoryService {
     @InjectModel('Story') private readonly storyModel: Model<Story>,
   ) {}
 
-  async findAll(): Promise<Story[]> {
-    const result = await this.storyModel.find();
-    return result;
-  }
-
   async countNum(): Promise<number> {
     const result = await this.storyModel.count();
     return result;

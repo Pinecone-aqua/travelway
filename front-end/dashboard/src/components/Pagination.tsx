@@ -6,9 +6,10 @@ interface PropType {
   currentPage: number;
   setCurrentPage: Dispatch<SetStateAction<number>>;
   lastPage: number | undefined;
+  path: string;
 }
 export default function Pagination(props: PropType): JSX.Element {
-  const { currentPage, setCurrentPage, lastPage } = props;
+  const { currentPage, setCurrentPage, lastPage, path } = props;
 
   const active = "bg-cyan-500 p-3 rounded-xl m-2";
   const inActive = " p-3 rounded-xl m-2 border-2";
@@ -18,34 +19,34 @@ export default function Pagination(props: PropType): JSX.Element {
     <>
       {currentPage !== 1 && (
         <Link
-          href={`/allStories/${currentPage - 1}`}
+          href={`/${path}/${currentPage - 1}`}
           onClick={() => setCurrentPage(currentPage - 1)}
         >
           <PageBtn btnName={"Өмнөх"} btnClass={inActive} />
         </Link>
       )}
       {currentPage > 2 && (
-        <Link href={`/allStories/1`} onClick={() => setCurrentPage(1)}>
+        <Link href={`/${path}/1`} onClick={() => setCurrentPage(1)}>
           <PageBtn btnName={1} btnClass={inActive} />
         </Link>
       )}
       {currentPage > 3 && "..."}
       {currentPage > 1 && (
         <Link
-          href={`/allStories/${currentPage - 1}`}
+          href={`/${path}/${currentPage - 1}`}
           onClick={() => setCurrentPage(currentPage - 1)}
         >
           <PageBtn btnName={currentPage - 1} btnClass={inActive} />
         </Link>
       )}
 
-      <Link href={`/allStories/${currentPage}`}>
+      <Link href={`/${path}/${currentPage}`}>
         <PageBtn btnName={currentPage} btnClass={active} />
       </Link>
 
       {lastPage && lastPage > currentPage && (
         <Link
-          href={`/allStories/${currentPage + 1}`}
+          href={`/${path}/${currentPage + 1}`}
           onClick={() => setCurrentPage(currentPage + 1)}
         >
           <PageBtn btnName={currentPage + 1} btnClass={inActive} />
@@ -54,7 +55,7 @@ export default function Pagination(props: PropType): JSX.Element {
       {lastPage && lastPage - 2 > currentPage && "..."}
       {lastPage && lastPage - 1 > currentPage && (
         <Link
-          href={`/allStories/${lastPage}`}
+          href={`/${path}/${lastPage}`}
           onClick={() => setCurrentPage(lastPage)}
         >
           <PageBtn btnName={lastPage} btnClass={inActive} />
@@ -62,7 +63,7 @@ export default function Pagination(props: PropType): JSX.Element {
       )}
       {currentPage !== lastPage && (
         <Link
-          href={`/allStories/${currentPage + 1}`}
+          href={`/${path}/${currentPage + 1}`}
           onClick={() => setCurrentPage(currentPage + 1)}
         >
           <PageBtn btnName={"Дараахи"} btnClass={inActive} />

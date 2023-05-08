@@ -17,9 +17,11 @@ export default function StoryPage(): JSX.Element {
   const [loading, setLoading] = useState(false);
   const lastPage = pageNum && Math.ceil(pageNum / 8);
   const [create, setCreate] = useState(false);
+  const path = "allStories";
   // useEffect(() => {
   //   setCurrentPage(pageQuery&&Number(pageQuery));
   // }, [pageQuery]);
+  console.log("lastPage", pageNum);
 
   useEffect(() => {
     fetch("http://localhost:3009/stories/pageNum")
@@ -100,6 +102,7 @@ export default function StoryPage(): JSX.Element {
               lastPage={lastPage}
               currentPage={currentPage}
               setCurrentPage={setCurrentPage}
+              path={path}
             />
           </div>
         </div>

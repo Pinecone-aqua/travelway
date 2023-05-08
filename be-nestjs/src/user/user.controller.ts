@@ -19,11 +19,6 @@ export class UsersController {
     return this.userService.create(user);
   }
 
-  @Get('get')
-  findAll() {
-    return this.userService.findAll();
-  }
-
   @Get('profile')
   findProfile() {
     return this.userService.findProInfo();
@@ -42,5 +37,14 @@ export class UsersController {
   @Delete(':id')
   remove(@Param('id') id: string): Promise<User> {
     return this.userService.remove(id);
+  }
+
+  @Get('pageNum')
+  countNum(): Promise<any> {
+    return this.userService.countNum();
+  }
+  @Get('page/:id')
+  findPage(@Param('id') pageNum: number): Promise<User> {
+    return this.userService.findPage(pageNum);
   }
 }

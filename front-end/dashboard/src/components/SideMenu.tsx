@@ -25,7 +25,7 @@ export default function SideMenu(): JSX.Element {
         <ul className="flex flex-col rounded-2xl  bg-slate-50 h-2/3 w-4/6  shadow-lg shadow-cyan-100">
           <Link
             className={
-              route.route === "/allStories/1" ? activeClass : inActiveClass
+              route.route === "/allStories" ? activeClass : inActiveClass
             }
             href={"/allStories/1"}
           >
@@ -42,8 +42,10 @@ export default function SideMenu(): JSX.Element {
             Travels
           </Link>
           <Link
-            className={route.route === "/users" ? activeClass : inActiveClass}
-            href={"/users"}
+            className={
+              route.route === "/allUser/1" ? activeClass : inActiveClass
+            }
+            href={"/allUser/1"}
           >
             {" "}
             <UserIcon /> Users

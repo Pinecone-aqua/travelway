@@ -17,10 +17,10 @@ export class UsersService {
     return result;
   }
 
-  async findAll(): Promise<User[]> {
-    const result = await this.userModel.find({});
-    return result;
-  }
+  // async findAll(): Promise<User[]> {
+  //   const result = await this.userModel.find({});
+  //   return result;
+  // }
 
   async findProInfo(): Promise<any> {
     try {
@@ -72,5 +72,16 @@ export class UsersService {
       throw new NotFoundException(`Хэрэглэгч ${id} ID-тай олдсонгүй`);
     }
     return deletedUserLocal;
+  }
+  async countNum(): Promise<any> {
+    const result = await this.userModel.count();
+    return result;
+  }
+  async findPage(pageNum: number): Promise<any> {
+    const result = await this.userModel
+      .find({})
+      .skip((pageNum - 1) * 8)
+      .limit(8);
+    return result;
   }
 }

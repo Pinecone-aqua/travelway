@@ -15,20 +15,6 @@ import { Story } from './schemas/story.schema';
 export class StoryController {
   constructor(private readonly storyService: StoryService) {}
 
-  @Get('get/1')
-  findAll(): Promise<Story[]> {
-    return this.storyService.findAll();
-  }
-  @Get('pageNum')
-  countNum(): Promise<number> {
-    return this.storyService.countNum();
-  }
-  // page number
-  @Get('page/:id')
-  findPage(@Param('id') pageNum: number): Promise<Story> {
-    return this.storyService.findPage(pageNum);
-  }
-
   @Get(':id')
   findOne(@Param('id') id: string): Promise<Story> {
     return this.storyService.findOne(id);
@@ -47,5 +33,14 @@ export class StoryController {
     @Body() updateStoryDto: UpdateStoryDto,
   ): Promise<Story> {
     return this.storyService.update(id, updateStoryDto);
+  }
+  @Get('pageNum')
+  countNum(): Promise<number> {
+    return this.storyService.countNum();
+  }
+  // page number
+  @Get('page/:id')
+  findPage(@Param('id') pageNum: number): Promise<Story> {
+    return this.storyService.findPage(pageNum);
   }
 }
