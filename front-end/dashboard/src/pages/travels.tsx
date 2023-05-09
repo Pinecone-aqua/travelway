@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { travelType } from "@/util/types";
+import { TravelType } from "@/util/types";
 import Travel from "@/components/travel/Travel";
 import { RingLoader } from "react-spinners";
 export default function Travels(): JSX.Element {
-  const [travels, setTravels] = useState<travelType[] | null>(null);
+  const [travels, setTravels] = useState<TravelType[] | null>(null);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     setLoading(true);
@@ -31,7 +31,7 @@ export default function Travels(): JSX.Element {
         </div>
       ) : (
         <div className=" h-2/3 rounded-2xl min-h-screen h-100  h-2/3 ">
-          {travels?.map((unit: travelType, index: number) => (
+          {travels?.map((unit: TravelType, index: number) => (
             <Travel key={index} unit={unit} />
           ))}
         </div>

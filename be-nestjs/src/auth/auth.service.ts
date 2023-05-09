@@ -68,4 +68,35 @@ export class AuthService {
 
     return { token, userid: JSON.stringify(user._id) };
   }
+  //admin dashboard login
+  async adminLogin(userDto: User): Promise<{ token: string }> {
+    const { username, password, role } = userDto;
+
+    // console.log('Request irsen: ====> ', loginDto);
+    const user = await this.userModel.findOne({ email: username });
+    console.log('service', username);
+
+    if (!user) {
+      // throw new BadRequestException(HttpStatus.BAD_REQUEST);
+      throw new UnauthorizedException('И-мейл хаяг  үг буруу байна!');
+    }
+
+    const isPasswordMatched = await bcrypt.compare(password, user.password);
+    // console.log('iS Password Matched');
+    // console.log(isPasswordMatched);
+
+    if (!isPasswordMatched) {
+      throw new UnauthorizedException(
+        'И-мейл хаяг эсвэл aaa нууц үг буруу байна!',
+      );
+    }
+
+    let token: string | undefined;
+    if (user.role !== role) {
+      throw new UnauthorizedException('ta admin bish baina!');
+    } else {
+      token = this.jwtService.sign({ id: user._id, userName: user.username });
+    }
+    return { token };
+  }
 }

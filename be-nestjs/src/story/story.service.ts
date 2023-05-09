@@ -5,7 +5,6 @@ import {
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { title } from 'process';
 import { CreateStoryDto } from './dto/create-story.dto';
 import { UpdateStoryDto } from './dto/update-story.dto';
 import { Story } from './schemas/story.schema';
@@ -30,6 +29,10 @@ export class StoryService {
       .select({ _id: 1, title: 1, province: 1 })
       .skip((pageNum - 1) * 8)
       .limit(8);
+    return result;
+  }
+  async findUser(userId: string): Promise<Story[]> {
+    const result = await this.storyModel.find({ userId: userId });
     return result;
   }
   async remove(id: string): Promise<Story> {

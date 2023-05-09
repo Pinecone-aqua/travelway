@@ -1,4 +1,4 @@
-import { miniStoryType } from "@/util/types";
+import { MiniStoryType } from "@/util/types";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -7,7 +7,7 @@ import { ClockLoader } from "react-spinners";
 export default function UserId(): JSX.Element {
   const { query } = useRouter();
   const [load, setLoad] = useState(false);
-  const [miniStory, setMiniStory] = useState<miniStoryType[] | null>(null);
+  const [miniStory, setMiniStory] = useState<MiniStoryType[] | null>(null);
   useEffect(() => {
     if (query.id) {
       setLoad(true);
@@ -40,7 +40,7 @@ export default function UserId(): JSX.Element {
             </div>
           ) : (
             <div className="bg-white rounded-2xl h-full p-20 ">
-              {miniStory?.map((story: miniStoryType, index: number) => (
+              {miniStory?.map((story: MiniStoryType, index: number) => (
                 <div
                   key={index}
                   className="rounded-2xl bg-cyan-500 p-2 m-5 flex gap-5 h-100"

@@ -1,10 +1,11 @@
-export interface userType {
+export interface UserType {
   _id: string;
   username: string;
   nickname: string;
   email: string;
   phone: number;
   created_date: number;
+  biography: string;
 }
 export interface StoryType {
   _id: string;
@@ -16,27 +17,34 @@ export interface StoryType {
   coord: object;
   toDo: [];
 }
-export interface travelType {
+export interface TravelType {
   _id: string;
   title: string;
   description: string;
   day: [];
 }
-export interface dayType {
+export interface DayType {
   title: string;
   description: string;
   image: string;
   considerations: string;
 }
 
-export interface toDoType {
+export interface ToDoType {
   activity: string;
 }
 
-export interface miniStoryType {
+export interface MiniStoryType {
   _id: string;
   image: string;
   title: string;
   description: string;
   sentence: string;
+}
+
+export interface AdminType {
+  id: string;
+  username: string;
+  exp: number;
+  iat: number;
 }

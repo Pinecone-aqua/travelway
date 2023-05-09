@@ -1,6 +1,6 @@
 import Pagination from "@/components/Pagination";
 import User from "@/components/user/User";
-import { userType } from "@/util/types";
+import { UserType } from "@/util/types";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { ClimbingBoxLoader } from "react-spinners";
@@ -9,11 +9,10 @@ export default function AllUser(): JSX.Element {
   //const [pageNumber, setPageNumber] = useState<number | undefined>();
   const query = useRouter();
   const pageQuery = query.query.page;
-  const [users, setUsers] = useState<userType[] | null>(null);
+  const [users, setUsers] = useState<UserType[] | null>(null);
 
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [loading, setLoading] = useState(false);
-
   const path = "allUsers";
 
   useEffect(() => {
@@ -51,7 +50,7 @@ export default function AllUser(): JSX.Element {
             </tr>
           </thead>
           <tbody className="h-32">
-            {users?.map((unit: userType, index: number) => (
+            {users?.map((unit: UserType, index: number) => (
               <User key={index} unit={unit} />
             ))}
           </tbody>

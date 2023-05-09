@@ -1,11 +1,11 @@
-import { userType } from "@/util/types";
+import { UserType } from "@/util/types";
 import axios from "axios";
 import Link from "next/link";
 import { useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 
 interface PropType {
-  unit: userType;
+  unit: UserType;
 }
 export default function User(props: PropType): JSX.Element {
   const data = props.unit;
