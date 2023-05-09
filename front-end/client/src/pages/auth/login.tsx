@@ -11,7 +11,7 @@ import { toast } from "react-toastify";
 
 export default function Login(): JSX.Element {
   const [error, setError] = useState<string>("");
-  let { setToken } = useUser();
+  const { setToken } = useUser();
   const router = useRouter();
 
   const [loginForm, setLoginForm] = useState<LoginForm>({
@@ -44,10 +44,9 @@ export default function Login(): JSX.Element {
       const secretKey = process.env.SECRET_KEY;
       const user = jwt.sign(data, secretKey);
 
-      const endpoint = `http://localhost:3009/auth/login?token=${user}`;
+      const endpoint = `${process.env.LOCAL_SERVER}:${process.env.SERVER_PORT}/auth/login?token=${user}`;
       const response = await axios.get(endpoint, {
-        method: 'GET',
-        
+        method: "GET",
       });
 
       if (response.status === 200 || response.status === 201) {

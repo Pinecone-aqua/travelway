@@ -3,18 +3,16 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { MongooseModule } from '@nestjs/mongoose';
-import { jwtConstants } from './constants';
 import { TagsModule } from './tags/tags.module';
 import { TravelsModule } from './travels/travels.module';
 import { UsersModule } from './user/user.module';
 import { MiniStoryModule } from './miniStory/miniStory.module';
 import { TravelWayModule } from './travelWay/miniStory.module';
 import { StoryModule } from './story/story.module';
-import { GoogleLoginModule } from './google-login/google-login.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot(jwtConstants.db_uri),
+    MongooseModule.forRoot(process.env.DB_URI),
     AuthModule,
     UsersModule,
     TagsModule,
@@ -22,6 +20,7 @@ import { GoogleLoginModule } from './google-login/google-login.module';
     StoryModule,
     MiniStoryModule,
     TravelWayModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
