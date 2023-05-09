@@ -1,12 +1,25 @@
-import { createContext, ReactNode, useEffect, useState } from "react";
+import {
+  createContext,
+  Dispatch,
+  ReactNode,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 import axios from "axios";
 import jwtDecode from "jwt-decode";
 import { AdminType } from "@/util/types";
-
-export const AdminContext = createContext({});
 interface PropType {
   children: ReactNode;
 }
+interface ContextType {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  handleSubmit: (e: any) => void;
+  admin: AdminType | undefined;
+  setAdmin: Dispatch<SetStateAction<AdminType | undefined>>;
+}
+
+export const AdminContext = createContext<ContextType>({} as ContextType);
 export default function AdminProvider({ children }: PropType): JSX.Element {
   const [admin, setAdmin] = useState<AdminType | undefined>(undefined);
 

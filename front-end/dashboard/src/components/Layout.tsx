@@ -1,7 +1,7 @@
 import { AdminContext } from "@/context/AdminProvider";
 import React, { ReactNode, useContext } from "react";
 import Header from "./Header";
-import Login from "./login";
+import Login from "./Login";
 import SideMenu from "./SideMenu";
 
 interface PropType {

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Suggest from "@/components/story/Suggest";
 import { StoryType } from "@/util/types";
+import { GetStaticPaths } from "next";
 
 export default function StoryID(): JSX.Element {
   const { query } = useRouter();
@@ -104,3 +105,15 @@ export default function StoryID(): JSX.Element {
     </>
   );
 }
+
+export const getStaticPaths: GetStaticPaths = async ({}) => {
+  const res = await axios.get("http://localhost:3009/allStories/allId");
+  const paths = await res.data.map((id: { _id: string }) => ({
+    params: { id: id._id },
+  }));
+  console.log("paths", params);
+  return {
+    paths,
+    fallback: "blocking",
+  };
+};

@@ -11,8 +11,7 @@ export default function Story(props: PropsType): JSX.Element {
   const data = props.unit;
   const [isOpen, setIsOpen] = useState(false);
   function deleteHandler(storyId: string) {
-    // fetch(`http://localhost:3009/quests/${questId}`);
-    axios.delete(`http://localhost:3009/stories/${storyId}`);
+    axios.delete(`http://localhost:3009/allStories/${storyId}`);
   }
   return (
     <tr className="border-t-2 border-cyan-500">

@@ -1,10 +1,8 @@
-import { AdminContext } from "@/context/AdminProvider";
 import Link from "next/link";
-import { useContext, useState } from "react";
+import { useState } from "react";
 
 export default function DropProfile(): JSX.Element {
   const [isOpen, setIsOpen] = useState(false);
-  const { setAdmin } = useContext(AdminContext);
   return (
     <div>
       {" "}

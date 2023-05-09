@@ -22,9 +22,15 @@ export class StoryController {
   findPage(@Param('id') pageNum: number): Promise<Story> {
     return this.storyService.findPage(pageNum);
   }
+
   @Get('user:id')
   findUser(@Param('id') userId: string): Promise<Story[]> {
     return this.storyService.findUser(userId);
+  }
+
+  @Get('allId')
+  findAllId(): Promise<number> {
+    return this.storyService.findAllId();
   }
 
   @Get(':id')
