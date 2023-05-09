@@ -2,6 +2,7 @@ import axios from "axios";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { FormEvent, useState } from "react";
+import { toast } from "react-toastify";
 
 interface InputStateType {
   username: string;
@@ -58,7 +59,8 @@ export default function Register(): JSX.Element {
       const resData = await axios.post(endpoint, data);
       const result = resData.data;
       console.log(result);
-      alert("Амжилттай хадгалагдлаа");
+      
+      toast.success("Амжилттай хадгалагдлаа");
       router.push("/login");
     } catch (error) {
       console.log(error);

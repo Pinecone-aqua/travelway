@@ -1,53 +1,30 @@
+import React, { createContext, useContext, useEffect, useState } from "react";
+import { LoginForm, UserContextType } from "../util/types";
 import Cookies from "js-cookie";
-import {
-  ReactNode,
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import jwtDecode from "jwt-decode";
 
-interface UserContextType {
-  userId: string;
-  token: string;
-}
 interface UserProviderType {
-  children: ReactNode;
+  children: React.ReactNode;
 }
 
-export const UserContext = createContext<UserContextType>(
-  {} as UserContextType
-);
+export const UserContext = createContext<UserContextType>({} as UserContextType);
 
 export function useUser() {
   return useContext(UserContext);
 }
 
 export default function UserProvider({ children }: UserProviderType) {
-  const [currentUser, setCurrentUser] = useState({
-    userId: "",
-    token: "",
-  });
-
-  export const getLoginCheck = () => {
-    try {
-      
-      
-    } catch (error) {
-      
-    }
-    }
-  }
+  const [user, setUser] = useState<LoginForm | null>();
+  const [token, setToken] = useState<string | undefined>(Cookies.get("token"));
 
   useEffect(() => {
-    const token = Cookies.get("token");
-    if (token) {
-      setCurrentUser((prev) => {userId: prev.userId, token});
+    if(token) {
+      setUser(jwtDecode(token));
     }
-  }, []);
+  }, [token])
 
   return (
-    <UserContext.Provider value={{ currentUser }}>
+    <UserContext.Provider value={ { user, setUser, token, setToken } }>
       {children}
     </UserContext.Provider>
   );

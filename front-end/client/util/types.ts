@@ -28,3 +28,15 @@ export interface miniStoryType {
   title: string;
   sentence: string;
 }
+
+export interface LoginForm {
+  email: string | undefined;
+  password: string;
+}
+
+export interface UserContextType {
+  user: LoginForm | null | undefined;
+  setUser: React.Dispatch<React.SetStateAction<LoginForm | null | undefined>>;
+  token: string | undefined;
+  setToken: React.Dispatch<React.SetStateAction<string | undefined>>;
+}

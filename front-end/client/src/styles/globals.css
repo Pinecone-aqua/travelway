@@ -20,3 +20,12 @@
 .css-qlig70 {
   max-width: 1200px;
 }
+
+.css-efhinx {
+  --chakra-sizes-md: 1200px;
+  max-width: 1200px;
+}
+
+summary {
+  list-style: none;
+}

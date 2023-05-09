@@ -5,7 +5,7 @@ import { useState } from "react";
 // import { Editor } from "primereact/editor";
 import { travelWayType } from "../../../util/travelWayType";
 
-export default function TravelWay(props: { travelWayData: travelWayType }) {
+export default function TravelBlog(props: { travelWayData: travelWayType }) {
   const [popup, setPopup] = useState(false);
   const [text, setText] = useState<string>("");
   const data = props.travelWayData;

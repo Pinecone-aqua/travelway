@@ -1,41 +1,39 @@
 import React, { useState } from "react";
-import "primereact/resources/themes/lara-light-indigo/theme.css";
-import "primereact/resources/primereact.min.css";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { BsFillBookmarkFill, BsThreeDots } from "react-icons/bs";
 import { MdDelete, MdModeEdit } from "react-icons/md";
 import { BiBookmark } from "react-icons/bi";
 import { miniStoryType } from "../../../util/types";
-import Dropdown from "react-bootstrap/Dropdown";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 import Image from "next/image";
+
 import {
   Modal,
   ModalOverlay,
   ModalContent,
   ModalBody,
-  ModalCloseButton,
   useDisclosure,
-  Button,
 } from "@chakra-ui/react";
 
 export default function MiniStory(props: {
   storyType: miniStoryType;
 }): JSX.Element {
-  const [visible, setVisible] = useState<boolean>(false);
   const [heart, setHeart] = useState<boolean>(false);
   const [mark, setMark] = useState<boolean>(false);
-  const [hover, setHover] = useState("");
+  const [hover, setHover] = useState("invisible");
   const { isOpen, onOpen, onClose } = useDisclosure();
   const story = props.storyType;
 
   function enter() {
     setTimeout(() => {
-      setHover(
-        "visible absolute bg-white rounded-full w-[20px] h-[20px] flex text-center justify-center drop-shadow-2xl  m-2 "
-      );
-    }, 3000);
+      setHover("visible");
+    }, 500);
+  }
+  function leave() {
+    setTimeout(() => {
+      setHover("invisible");
+    }, 500);
   }
 
   // function edit() {
@@ -53,41 +51,37 @@ export default function MiniStory(props: {
 
   return (
     <>
-      <div className=" ">
-        <Button className="bg-green-500 inline-block h-auto p-0  z-20">
-          <Dropdown className={`${hover} absolute`}>
-            <Dropdown.Toggle
-              id="dropdown-basic"
-              className="rounded-full w-[20px]"
-            >
+      <div>
+        <div className="relative ">
+          <details
+            className={`absolute p-1 right-0 ${hover}`}
+            onMouseEnter={enter}
+          >
+            <summary className="p-1 rounded-full border opacity-60">
               <BsThreeDots />
-            </Dropdown.Toggle>
+            </summary>
+            <div className=" grid gap-2 pt-2  border rounded-full p-1 opacity-80">
+              <button className="">
+                <MdModeEdit />
+              </button>
+              <button>
+                <MdDelete onClick={remover} />
+              </button>
+            </div>
+          </details>
+          <Image
+            onClick={onOpen}
+            src={story.image}
+            width={500}
+            height={500}
+            quality={10}
+            alt="pic"
+            className="w-[100%] h-[auto] object-cover rounded-xl disable-text-selection border "
+            onMouseEnter={enter}
+            onMouseLeave={leave}
+          />
+        </div>
 
-            <Dropdown.Menu className="w-[25px]">
-              <Dropdown.Item href="#/action-1" className="pr-0">
-                <MdModeEdit
-                  className="w-[20px]"
-                  // onClick={edit}
-                />
-              </Dropdown.Item>
-              <Dropdown.Item href="#/action-2">
-                <MdDelete className="w-[20px]" onClick={remover} />
-              </Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-        </Button>
-
-        <Image
-          onClick={onOpen}
-          src={story.image}
-          width={500}
-          height={500}
-          quality={10}
-          alt="pic"
-          className="w-[100%] h-auto  object-cover rounded-xl relative"
-          // onClick={() => setVisible(true)}
-          onMouseEnter={enter}
-        />
         <Modal
           isCentered
           onClose={onClose}
@@ -96,8 +90,6 @@ export default function MiniStory(props: {
         >
           <ModalOverlay />
           <ModalContent className="bg-green-500">
-            {/* <ModalHeader>Modal Title</ModalHeader> */}
-            <ModalCloseButton />
             <ModalBody className="p-0 ">
               <div className="gap-4 md:flex ">
                 <Image
@@ -108,41 +100,55 @@ export default function MiniStory(props: {
                   className="md:w-[60%] h-auto object-cover w-full"
                 />
                 <div className="m-0 md:w-[50%] relative">
-                  <div className="m-0 flex items-center gap-2 hidden md:visible ">
+                  <div className="m-0 flex items-center gap-2 pt-5 ">
                     <Image
                       width={500}
                       height={500}
                       src={`${story.image}`}
                       alt="pic"
-                      className="w-[3rem]  rounded-full h-[3rem]"
+                      className="w-[2rem]  rounded-full h-[2rem]"
                     />
-                    <label className="text-gray-400">by Robert Harrisont</label>
+                    <span className="text-gray-400">by Robert Harrisont</span>
+
+                    <details className="absolute pr-5 right-0 flex h-[1px]">
+                      <summary className="p-1 rounded-full  opacity-60 ">
+                        <BsThreeDots />
+                      </summary>
+                      <div className="gap-2 pt-2  border rounded-full p-1 opacity-80">
+                        <button className="">
+                          <MdModeEdit />
+                        </button>
+                        <button>
+                          <MdDelete onClick={remover} />
+                        </button>
+                      </div>
+                    </details>
                   </div>
-                  <p className="font-semibold text-[21px] py-4">
+                  <p className="font-semibold text-[21px] pt-5 ">
                     {story.title}
                   </p>
-                  <p>{story.sentence}</p>
-                  <div className="absolute flex justify-between pb-2 bottom-0 w-[100%] ">
+                  <p className="pr-5">{story.sentence}</p>
+                  <div className="absolute flex justify-between pb-4 bottom-0 w-[100%] ">
                     <div className="flex gap-4">
                       {heart == false ? (
-                        <button onClick={() => setHeart(true)}>
+                        <div onClick={() => setHeart(true)}>
                           <AiOutlineHeart size={"2em"} />
-                        </button>
+                        </div>
                       ) : (
-                        <button onClick={() => setHeart(false)}>
+                        <div onClick={() => setHeart(false)}>
                           <AiFillHeart size={"2em"} />
-                        </button>
+                        </div>
                       )}
                     </div>
                     <div className="pr-5">
                       {mark == false ? (
-                        <button onClick={() => setMark(true)}>
+                        <div onClick={() => setMark(true)}>
                           <BiBookmark size={"2em"} />
-                        </button>
+                        </div>
                       ) : (
-                        <button onClick={() => setMark(false)}>
+                        <div onClick={() => setMark(false)}>
                           <BsFillBookmarkFill size={"2em"} />
-                        </button>
+                        </div>
                       )}
                     </div>
                   </div>
@@ -152,19 +158,6 @@ export default function MiniStory(props: {
           </ModalContent>
         </Modal>
       </div>
-
-      {/* <div className=" ">
-        <div className="bg-green-500 inline-block h-auto">
-          <img
-            src={story.image}
-            alt="pic"
-            className="w-[100%] h-auto  object-cover rounded-xl"
-            onClick={() => setVisible(true)}
-            onMouseEnter={enter}
-            // onMouseLeave={() => setHover("invisible")}
-          />
-        </div>
-      </div> */}
     </>
   );
 }
