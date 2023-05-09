@@ -1,10 +1,9 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import Cookies from "js-cookie";
 import jwtDecode from "jwt-decode";
 import "primereact/resources/primereact.min.css";
-import { useRouter } from "next/router";
-import { useUser } from "../../context/user.context";
 
 interface HeaderType {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -23,6 +22,7 @@ const MENULIST = [
 export default function Header(): JSX.Element {
   const [nav, setNav] = useState<string | null>();
   const [user, setUser] = useState<HeaderType>();
+
 
   const activatedStyle =
     "opacity-100 text-xl mt-3 ease-out duration-300 md:w-[192px] sm:w-[142px] w-[96px]";
