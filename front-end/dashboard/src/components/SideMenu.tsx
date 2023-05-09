@@ -1,20 +1,21 @@
 import Link from "next/link";
-import { useRouter } from "next/router";
-//import {  useState } from "react";
+//import { useState } from "react";
 import OrderIcon from "../../public/icons/OrderIcon";
 import TravelIcon from "../../public/icons/TravelIcon";
 import UserIcon from "../../public/icons/UserIcon";
 
 export default function SideMenu(): JSX.Element {
-  //const [color, setColor] = useState("Orders");
+  // const [color, setColor] = useState("Orders");
 
-  // function hadleClick(e: { target: { innerText: SetStateAction<string>; }; }): void {
-  //   setColor(e.target.innerText);
+  // function handleClick(e: Event): void {
+  //   e.preventDefault();
+  //   const evetTarget = e.target as HTMLElement;
+  //   setColor(evetTarget.innerText);
   // }
-  const route = useRouter();
-  console.log(route.route);
-  const activeClass =
-    "text-white bg-cyan-500 shadow-2xl shadow-cyan-900 text-2xl font-serif flex justify-center items-center  rounded-2xl w-9/12 h-16 m-7";
+
+  // const activeClass =
+  //   "text-white bg-cyan-500 shadow-2xl shadow-cyan-900 text-2xl font-serif flex justify-center items-center  rounded-2xl w-9/12 h-16 m-7";
+  //   color === "Mini Story" ? activeClass :
 
   const inActiveClass =
     "flex justify-center items-center  rounded-2xl w-9/12 h-16 m-7";
@@ -24,36 +25,32 @@ export default function SideMenu(): JSX.Element {
       <div className="w-3/12 h-screen flex justify-center bg-slate-200">
         <ul className="flex flex-col rounded-2xl  bg-slate-50 h-2/3 w-4/6  shadow-lg shadow-cyan-100">
           <Link
-            className={
-              route.route === "/allStories/1" ? activeClass : inActiveClass
-            }
+            className={inActiveClass}
             href={"/allStories/1"}
+            // onClick={handleClick}
           >
             {" "}
             <OrderIcon />
             Stories
           </Link>
           <Link
-            className={route.route === "/travels" ? activeClass : inActiveClass}
+            className={inActiveClass}
             href={"/travels"}
+            // onClick={handleClick}
           >
             {" "}
             <TravelIcon />
             Travels
           </Link>
           <Link
-            className={route.route === "/users" ? activeClass : inActiveClass}
-            href={"/users"}
+            className={inActiveClass}
+            href={"/allUser/1"}
+            // onClick={handleClick}
           >
             {" "}
             <UserIcon /> Users
           </Link>
-          <Link
-            className={
-              route.route === "/miniStory" ? activeClass : inActiveClass
-            }
-            href={"/miniStory"}
-          >
+          <Link className={inActiveClass} href={"/miniStory"}>
             Mini Story
           </Link>
         </ul>

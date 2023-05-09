@@ -5,7 +5,7 @@ interface PropType {
   children: ReactNode;
 }
 
-const Layout = ({ children }: PropType ): JSX.Element => (
+const Layout = ({ children }: PropType): JSX.Element => (
   <>
     <div className="w-full xxl:h-[500px] xl:h-[400px] lg:h-[300px] md:h-[200px]  drop-shadow-2xl relative">
       <picture>
@@ -32,10 +32,10 @@ const Layout = ({ children }: PropType ): JSX.Element => (
   </>
 );
 
-export default Layout;
-
 const Footer = () => (
   <div className="text-center text-slate-500 py-4 bg-slate-100 bottom-0 w-full">
     {"Copyright © 2023 Travelway development team."}
   </div>
 );
+
+export default Layout;

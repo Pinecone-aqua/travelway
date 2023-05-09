@@ -29,7 +29,7 @@ export default function Story(props: PropsType): JSX.Element {
         {isOpen && (
           <div className="flex flex-col rounded-2xl h-36 justify-around w-32 absolute bg-cyan-100 items-center">
             <button className="flex h-10 bg-cyan-500 w-24 shadow-lg shadow-gray-500/100 rounded-xl">
-              <Link href={`story/${data._id}`}>засварлах</Link>
+              <Link href={`/story/${data._id}`}>засварлах</Link>
             </button>
 
             <button
