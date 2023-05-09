@@ -5,8 +5,6 @@ import { useEffect, useState } from "react";
 import { miniStoryType } from "../../util/types";
 import MiniStory from "@/components/userProfile/MiniStory";
 import { travelWayType } from "../../util/travelWayType";
-import TravelBlog from "@/components/userProfile/TravelBlog";
-import TravelBlogAdd from "@/components/userProfile/TravelBlogAdd";
 
 export default function User(): JSX.Element {
   const [change, setChange] = useState("Mini story");
@@ -81,14 +79,6 @@ export default function User(): JSX.Element {
             </button>
             <button
               className={
-                change == "TravelWay" ? `${activatedStyle}` : `${defaultStyle}`
-              }
-              onClick={changer}
-            >
-              TravelBlog
-            </button>
-            <button
-              className={
                 change == "TravelGuide"
                   ? `${activatedStyle}`
                   : `${defaultStyle}`
@@ -99,25 +89,7 @@ export default function User(): JSX.Element {
             </button>
           </div>
           <div className="relative">
-            {change == "TravelBlog" ? (
-              <>
-                <div>
-                  <div className="relative">
-                    <TravelBlogAdd />
-                    <div className=" place-content-center ">
-                      {travelBlog?.map(
-                        (travelWayData: travelWayType, index: number) => (
-                          <TravelBlog
-                            travelWayData={travelWayData}
-                            key={index}
-                          />
-                        )
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </>
-            ) : change == "TravelGuide" ? (
+            {change == "TravelGuide" ? (
               <>
                 <TravelGuide />
               </>
