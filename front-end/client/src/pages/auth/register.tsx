@@ -3,9 +3,6 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { FormEvent, useState } from "react";
 import { toast } from "react-toastify";
-import * as dotenv from "dotenv";
-
-dotenv.config();
 
 interface InputStateType {
   username: string;
@@ -56,7 +53,7 @@ export default function Register(): JSX.Element {
         role: userRole,
       };
 
-      const endpoint = `${process.env.LOCAL_SERVER}:${process.env.SERVER_PORT}/auth/signup`;
+      const endpoint = `http://localhost:3009/auth/signup`;
 
       const resData = await axios.post(endpoint, data);
       const result = resData.data;

@@ -2,8 +2,6 @@ import React, { ChangeEvent, FormEvent, useState } from "react";
 import axios from "axios";
 import { DayType } from "../../../util/types";
 import TourDetails from "./TourDetails";
-import * as dotenv from "dotenv";
-dotenv.config();
 
 const AddTour = () => {
   // const router = useRouter();
@@ -35,7 +33,7 @@ const AddTour = () => {
       };
 
       const response = await axios.post(
-        `${process.env.LOCAL_SERVER}:${process.env.SERVER_PORT}/travels/add`,
+        `http://localhost:3009/travels/add`,
         nwData
       );
       console.log(response.data);

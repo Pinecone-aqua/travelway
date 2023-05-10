@@ -1,14 +1,11 @@
 import TravelCard from "@/components/travel/Travel";
 import { useEffect, useState } from "react";
 import { TravelType } from "../../util/types";
-import * as dotenv from "dotenv";
-
-dotenv.config();
 
 export default function Home(): JSX.Element {
   const [travels, setTravels] = useState<TravelType[] | null>(null);
   useEffect(() => {
-    fetch(`${process.env.LOCAL_SERVER}:${process.env.SERVER_PORT}/travels/get`)
+    fetch(`http://localhost:3009/travels/get`)
       .then((response) => response.json())
       .then((res) => setTravels(res));
   }, []);
