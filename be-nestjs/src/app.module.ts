@@ -10,10 +10,14 @@ import { MiniStoryModule } from './miniStory/miniStory.module';
 import { TravelWayModule } from './travelWay/miniStory.module';
 import { StoryModule } from './story/story.module';
 import { dbConstants } from './constants';
-
+import { ConfigModule } from '@nestjs/config';
+// import { UploadController } from './travels/uploadController';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      envFilePath: './env',
+    }),
     MongooseModule.forRoot(dbConstants.db_uri),
     AuthModule,
     UsersModule,
@@ -22,6 +26,7 @@ import { dbConstants } from './constants';
     StoryModule,
     MiniStoryModule,
     TravelWayModule,
+    // UploadController,
   ],
   controllers: [AppController],
   providers: [AppService],

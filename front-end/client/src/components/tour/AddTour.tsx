@@ -3,6 +3,7 @@ import axios from "axios";
 import { DayType } from "../../../util/types";
 import TourDetails from "./TourDetails";
 
+
 const AddTour = () => {
   // const router = useRouter();
   const [activeClass, setActiveClass] = useState(0);
@@ -22,25 +23,45 @@ const AddTour = () => {
     },
   ]);
 
+  const [imageFile, setImageFile] = useState<string | Blob>(null);
+  const [message, setMessage] = useState('');
+
   const handleSubmit = async (event: FormEvent): Promise<void> => {
     event.preventDefault();
 
-    try {
-      const nwData = {
-        title: travelData.title,
-        description: travelData.description,
-        day: [...dayFormData],
-      };
+    if (!imageFile) {
+      setMessage('Please select a file.');
+      return;
+    }
 
-      const response = await axios.post(
-        `http://localhost:3009/travels/add`,
-        nwData
-      );
-      console.log(response.data);
+    try {
+      const formData = new FormData();
+      formData.append("file", imageFile);
+
+      const response = await axios.post("/api/upload", formData);
+      console.log(response);
+
+      setMessage(`File uploaded successfully. URL: ${response.data.url}`);
+      // const nwData = {
+      //   title: travelData.title,
+      //   description: travelData.description,
+      //   day: [...dayFormData],
+      // };
+
+      // const response = await axios.post(
+      //   `http://localhost:3009/travels/add`,
+      //   nwData
+      // );
+      // console.log(response.data);
       // router.push("/addtravel");
     } catch (error) {
       console.error(error);
+      setMessage('Failed to upload file.');
     }
+  };
+
+  const handleFileChange = (e) => {
+    setImageFile(e.target.files[0]);
   };
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
@@ -95,7 +116,8 @@ const AddTour = () => {
     <>
       <div className="w-6/12 mx-auto mt-16 mb-8">
         <div className="flex flex-col gap-y-2">
-          <form onSubmit={() => handleSubmit}>
+          <p className="text-red-400 font-thin text-sm">{message}</p>
+          <form onSubmit={handleSubmit} method="POST" action="/api/upload" encType="multipart/form-data">
             <>
               <label htmlFor="title">Аяллын гарчиг/Title:</label>
               <input
@@ -142,6 +164,7 @@ const AddTour = () => {
                       index={index}
                       dayDetailOf={dayDetail}
                       handleFormChange={handleFormChange}
+                      handleFileChange={handleFileChange}
                     />
                   </div>
                 </div>
