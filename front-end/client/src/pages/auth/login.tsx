@@ -8,6 +8,9 @@ import jwt from "jsonwebtoken";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { toast } from "react-toastify";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 export default function Login(): JSX.Element {
   const [error, setError] = useState<string>("");
@@ -86,11 +89,15 @@ export default function Login(): JSX.Element {
   }
 
   function googleLoginHandler() {
-    axios.get("http://localhost:3009/google-login").then((response) => {
-      console.log("Google");
-      console.log(response.data);
-      router.push(response.data);
-    });
+    axios
+      .get(
+        `${process.env.LOCAL_SERVER}:${process.env.SERVER_PORT}/google-login`
+      )
+      .then((response) => {
+        console.log("Google");
+        console.log(response.data);
+        router.push(response.data);
+      });
   }
 
   return (

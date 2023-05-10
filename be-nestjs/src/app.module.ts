@@ -20,7 +20,6 @@ import { StoryModule } from './story/story.module';
     StoryModule,
     MiniStoryModule,
     TravelWayModule,
-    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],

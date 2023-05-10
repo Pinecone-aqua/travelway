@@ -3,6 +3,9 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { FormEvent, useState } from "react";
 import { toast } from "react-toastify";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 interface InputStateType {
   username: string;
@@ -42,7 +45,6 @@ export default function Register(): JSX.Element {
     e.preventDefault();
 
     try {
-
       const data: InputStateType = {
         username: registerForm.username,
         nickname: registerForm.nickname,
@@ -54,12 +56,12 @@ export default function Register(): JSX.Element {
         role: userRole,
       };
 
-      const endpoint = "http://localhost:3009/auth/signup";
+      const endpoint = `${process.env.LOCAL_SERVER}:${process.env.SERVER_PORT}/auth/signup`;
 
       const resData = await axios.post(endpoint, data);
       const result = resData.data;
       console.log(result);
-      
+
       toast.success("Амжилттай хадгалагдлаа");
       router.push("/login");
     } catch (error) {
