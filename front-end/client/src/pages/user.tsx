@@ -4,12 +4,10 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { miniStoryType } from "../../util/types";
 import MiniStory from "@/components/userProfile/MiniStory";
-import { travelWayType } from "../../util/travelWayType";
 
 export default function User(): JSX.Element {
   const [change, setChange] = useState("Mini story");
   const [story, setStory] = useState<miniStoryType[]>();
-  const [travelBlog, setTravelBlog] = useState<travelWayType[]>();
 
   const defaultStyle = "border-black  py-[3px] font-semibold ";
   const activatedStyle = "border-black  py-[3px] font-semibold  border-b-2 ";
@@ -24,16 +22,8 @@ export default function User(): JSX.Element {
     const getFetchdata = async () => {
       const travels = await axios.get("http://localhost:3009/miniStory/get");
       const { data } = travels;
-      setStory(data);
-    };
-    getFetchdata();
-  }, []);
 
-  useEffect(() => {
-    const getFetchdata = async () => {
-      const travelWay = await axios.get(`http://localhost:3009/travelways/get`);
-      const { data } = travelWay;
-      setTravelBlog(data);
+      setStory(data);
     };
     getFetchdata();
   }, []);

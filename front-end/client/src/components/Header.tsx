@@ -15,7 +15,6 @@ interface HeaderType {
 const MENULIST = [
   { name: "Home", uri: "/" },
   { name: "MiniStories", uri: "/stories" },
-  { name: "Travel Blog", uri: "/gadget" },
   { name: "About us", uri: "/about" },
 ];
 

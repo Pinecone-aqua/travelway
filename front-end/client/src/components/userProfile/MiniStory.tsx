@@ -23,6 +23,9 @@ export default function MiniStory(props: {
   const [mark, setMark] = useState<boolean>(false);
   const [hover, setHover] = useState("invisible");
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [seemore, setSeeMore] = useState("");
+  const [changeInput, setChangeInput] = useState(false);
+
   const story = props.storyType;
 
   function enter() {
@@ -35,12 +38,6 @@ export default function MiniStory(props: {
       setHover("invisible");
     }, 500);
   }
-
-  // function edit() {
-  //   axios
-  //     .patch(`http://localhost:3009/ministory/${story._id}`)
-  //     .then((res) => console.log("id get:", res));
-  // }
 
   function remover() {
     axios
@@ -76,7 +73,7 @@ export default function MiniStory(props: {
             height={500}
             quality={10}
             alt="pic"
-            className="w-[100%] h-[auto] object-cover rounded-xl disable-text-selection border "
+            className="w-[100%] h-[auto] object-cover rounded-xl disable-text-selection border hover:bg-black "
             onMouseEnter={enter}
             onMouseLeave={leave}
           />
@@ -97,7 +94,7 @@ export default function MiniStory(props: {
                   height={500}
                   src={story.image}
                   alt="pic"
-                  className="md:w-[60%] h-auto object-cover w-full"
+                  className={`${seemore} md:w-[60%] h-auto object-cover  `}
                 />
                 <div className="m-0 md:w-[50%] relative">
                   <div className="m-0 flex items-center gap-2 pt-5 ">
@@ -110,28 +107,56 @@ export default function MiniStory(props: {
                     />
                     <span className="text-gray-400">by Robert Harrisont</span>
 
-                    <details className="absolute pr-5 right-0 flex h-[1px]">
+                    <details
+                      className="absolute pr-5 right-0 col-1 h-[1px]"
+                      onClick={() => setChangeInput(false)}
+                    >
                       <summary className="p-1 rounded-full  opacity-60 ">
                         <BsThreeDots />
                       </summary>
                       <div className="gap-2 pt-2  border rounded-full p-1 opacity-80">
                         <button className="">
-                          <MdModeEdit />
+                          <MdModeEdit onClick={() => setChangeInput(true)} />
                         </button>
                         <button>
-                          <MdDelete onClick={remover} />
+                          <MdDelete
+                            // onClick={remover}
+                            onClick={() => setChangeInput(false)}
+                          />
                         </button>
                       </div>
                     </details>
                   </div>
-                  <p className="font-semibold text-[21px] pt-5 ">
-                    {story.title}
-                  </p>
-                  <p className="pr-5">{story.sentence}</p>
+                  <form>
+                    {changeInput == true ? (
+                      <textarea name="editedSentence" className="pr-5 w-[50%]">
+                        {story.title}
+                      </textarea>
+                    ) : (
+                      <p className="font-semibold text-[21px] pt-5 ">
+                        {story.title}
+                      </p>
+                    )}
+
+                    {changeInput == true ? (
+                      <textarea
+                        name="editedSentence"
+                        className="pr-5 w-full h-[100px] "
+                      >
+                        {story.sentence}
+                      </textarea>
+                    ) : (
+                      <p className="pr-5">{story.sentence}</p>
+                    )}
+                  </form>
+                  <button className=" border-[2px] p-2 rounded text-gray-500">
+                    see more about this story
+                  </button>
                   <div className="absolute flex justify-between pb-4 bottom-0 w-[100%] ">
                     <div className="flex gap-4">
                       {heart == false ? (
-                        <div onClick={() => setHeart(true)}>
+                        <div onClick={() => setHeart(true)} className="flex">
+                          <AiOutlineHeart size={"2em"} />
                           <AiOutlineHeart size={"2em"} />
                         </div>
                       ) : (
@@ -147,7 +172,7 @@ export default function MiniStory(props: {
                         </div>
                       ) : (
                         <div onClick={() => setMark(false)}>
-                          <BsFillBookmarkFill size={"2em"} />
+                          <BsFillBookmarkFill size={"1.75em"} />
                         </div>
                       )}
                     </div>
