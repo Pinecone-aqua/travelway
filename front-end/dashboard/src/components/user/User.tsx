@@ -1,11 +1,11 @@
-import { userType } from "@/util/types";
+import { UserType } from "@/util/types";
 import axios from "axios";
 import Link from "next/link";
 import { useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 
 interface PropType {
-  unit: userType;
+  unit: UserType;
 }
 export default function User(props: PropType): JSX.Element {
   const data = props.unit;
@@ -57,7 +57,7 @@ export default function User(props: PropType): JSX.Element {
             {details && (
               <div className="flex flex-col justify-around items-center bg-cyan-500 rounded-2xl h-24 w-32 absolute">
                 <button className="w-24 p-2 bg-cyan-100 rounded-lg">
-                  <Link href={`/miniStory/${data._id}`}>miniStory</Link>
+                  <Link href={`/miniStory/${data._id}`}>profile</Link>
                 </button>
                 <button
                   className="w-24 p-2 bg-cyan-100 rounded-lg"

@@ -17,6 +17,10 @@ export class UsersController {
   countNum(): Promise<any> {
     return this.userService.countNum();
   }
+  @Get('allId')
+  findAllId(): Promise<number> {
+    return this.userService.findAllId();
+  }
   @Post()
   create(@Body() user: User): Promise<User> {
     return this.userService.create(user);

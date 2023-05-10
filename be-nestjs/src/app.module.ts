@@ -9,10 +9,12 @@ import { UsersModule } from './user/user.module';
 import { MiniStoryModule } from './miniStory/miniStory.module';
 import { TravelWayModule } from './travelWay/miniStory.module';
 import { StoryModule } from './story/story.module';
+import { dbConstants } from './constants';
+
 
 @Module({
   imports: [
-    MongooseModule.forRoot(process.env.DB_URI),
+    MongooseModule.forRoot(dbConstants.db_uri),
     AuthModule,
     UsersModule,
     TagsModule,

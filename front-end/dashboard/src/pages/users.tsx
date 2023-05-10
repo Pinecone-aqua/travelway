@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 
-import { userType } from "@/util/types";
+import { UserType } from "@/util/types";
 import User from "@/components/user/User";
 import { ClimbingBoxLoader } from "react-spinners";
 
 export default function Users(): JSX.Element {
-  const [users, setUsers] = useState<userType[] | null>(null);
+  const [users, setUsers] = useState<UserType[] | null>(null);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     setLoading(true);
@@ -45,7 +45,7 @@ export default function Users(): JSX.Element {
             </tr>
           </thead>
           <tbody className="h-32">
-            {users?.map((unit: userType, index: number) => (
+            {users?.map((unit: UserType, index: number) => (
               <User key={index} unit={unit} />
             ))}
           </tbody>

@@ -20,7 +20,10 @@ export class MiniStoryController {
   create(@Body() createTravelDto: CreateMiniStoryDto): Promise<MiniStory> {
     return this.travelService.create(createTravelDto);
   }
-
+  @Get('allId')
+  findAllId(): Promise<number> {
+    return this.travelService.findAllId();
+  }
   @Get('get')
   findAll(): Promise<MiniStory[]> {
     return this.travelService.findAll();
@@ -46,7 +49,6 @@ export class MiniStoryController {
   // sharavaa nemev
   @Get('user/:id')
   find(@Param('id') id: string): Promise<MiniStory[]> {
-    console.log(id);
     return this.travelService.findMinstory(id);
   }
 }

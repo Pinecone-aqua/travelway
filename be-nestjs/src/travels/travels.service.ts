@@ -57,4 +57,10 @@ export class TravelsService {
     }
     return deletedTravels;
   }
+  //sharva added
+
+  async findTravels(id: string): Promise<Travel[]> {
+    const result = await this.travelModel.find({ userId: id });
+    return result;
+  }
 }

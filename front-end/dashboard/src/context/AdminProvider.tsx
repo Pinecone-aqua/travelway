@@ -1,20 +1,53 @@
-import { createContext, ReactNode, useState } from "react";
-
-export const AdminContext = createContext({});
-
-export default function AdminProvider({
-  children,
-}: {
+import {
+  createContext,
+  Dispatch,
+  ReactNode,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
+import axios from "axios";
+import jwtDecode from "jwt-decode";
+import { AdminType } from "@/util/types";
+interface PropType {
   children: ReactNode;
-}): JSX.Element {
-  const [admin, setAdmin] = useState();
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleSubmit = (e: any) => {
+}
+interface ContextType {
+  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  admin: AdminType | undefined;
+  setAdmin: Dispatch<SetStateAction<AdminType | undefined>>;
+}
+
+export const AdminContext = createContext<ContextType>({} as ContextType);
+export default function AdminProvider({ children }: PropType): JSX.Element {
+  const [admin, setAdmin] = useState<AdminType | undefined>(undefined);
+
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setAdmin(admin);
-  };
+    try {
+      const target = e.currentTarget;
+      const obj = {
+        username: target.adminName.value,
+        password: target.adminPassword.value,
+        role: "admin",
+      };
+      axios.post("http://localhost:3009/auth/loginHandler", obj).then((res) => {
+        localStorage.setItem("login", res.data.token);
+      });
+    } catch (error) {
+      console.log(" Aldaa uslee");
+    }
+  }
+
+  useEffect(() => {
+    const token = localStorage.getItem("login");
+    if (token) {
+      setAdmin(jwtDecode(token));
+    }
+  }, []);
+
   return (
-    <AdminContext.Provider value={{ handleSubmit, admin }}>
+    <AdminContext.Provider value={{ handleSubmit, admin, setAdmin }}>
       {children}
     </AdminContext.Provider>
   );

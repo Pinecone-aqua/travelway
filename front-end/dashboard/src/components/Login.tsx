@@ -2,7 +2,8 @@ import { AdminContext } from "@/context/AdminProvider";
 import { useContext } from "react";
 
 export default function Login(): JSX.Element {
-  const {} = useContext(AdminContext);
+  const { handleSubmit } = useContext(AdminContext);
+
   return (
     <div className="flex flex-col md:flex-row container mx-auto rounded-md p-6 md:2 justify-normal md:justify-around items-center">
       <div className="w-11/12 md:w-6/12">
@@ -17,17 +18,14 @@ export default function Login(): JSX.Element {
 
       <div className="flex flex-col w-11/12 md:w-6/12">
         <div>
-          {/* {error && <p>{error}</p>} */}
-          <form>
+          <form onSubmit={handleSubmit}>
             <label htmlFor="username" className="block text-md">
               Хэрэглэгч нэр
             </label>
             <input
               type="text"
-              id="username"
-              name="username"
-              // value={loginForm.username}
-              // onChange={handleChange}
+              id="userName"
+              name="adminName"
               placeholder="хэрэглэгч нэр"
               required
               className="border border-gray-500 px-4 py-1 text-md rounded"
@@ -40,9 +38,7 @@ export default function Login(): JSX.Element {
             <input
               type="text"
               id="password"
-              name="password"
-              // value={loginForm.password}
-              // onChange={handleChange}
+              name="adminPassword"
               placeholder="нууц үг"
               required
               className="border border-gray-500 px-4 py-1 text-md rounded"

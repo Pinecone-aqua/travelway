@@ -1,24 +1,13 @@
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+
 import axios from "axios";
 import Suggest from "@/components/story/Suggest";
 import { StoryType } from "@/util/types";
 
-export default function StoryID(): JSX.Element {
+export default function StoryID(props: { data: StoryType }): JSX.Element {
   const { query } = useRouter();
-  const [data, setData] = useState<StoryType | null>(null);
-  const toDo = data?.toDo;
-
-  console.log(query);
-
-  useEffect(() => {
-    if (query.id) {
-      fetch(`http://localhost:3009/allStories/${query.id}`)
-        .then((response) => response.json())
-        .then((res) => setData(res));
-    }
-  }, [query.id]);
-
+  const { data } = props;
+  const toDo = data.toDo;
   // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-explicit-any
   function editHandler(e: any): void {
     e.preventDefault();
@@ -41,7 +30,7 @@ export default function StoryID(): JSX.Element {
               <textarea
                 className="text-2xl w-full text-slate-500 rounded-2xl p-2"
                 name="title"
-                defaultValue={data?.title}
+                defaultValue={data.title}
               />
             </div>
             <div className="w-96">
@@ -49,7 +38,7 @@ export default function StoryID(): JSX.Element {
               <textarea
                 className="text-2xl w-full text-slate-500 rounded-2xl p-2"
                 name="province"
-                defaultValue={data?.province}
+                defaultValue={data.province}
               />
             </div>
 
@@ -58,7 +47,7 @@ export default function StoryID(): JSX.Element {
               <textarea
                 name="description"
                 className="block w-auto text-slate-500 h-64 file:rounded-full w-full rounded-2xl p-2"
-                defaultValue={data?.description}
+                defaultValue={data.description}
               />
             </div>
             <div className="w-96">
@@ -66,7 +55,7 @@ export default function StoryID(): JSX.Element {
               <textarea
                 name="myth"
                 className="text-slate-500 h-64 w-full rounded-2xl p-2"
-                defaultValue={data?.myth}
+                defaultValue={data.myth}
               />
             </div>
             <div className="w-96">
@@ -78,7 +67,7 @@ export default function StoryID(): JSX.Element {
             <picture>
               <img
                 className="h-96 w-full rounded-2xl shadow-xl shadow-cyan-700 mx-2"
-                src={data?.image}
+                src={data.image}
                 alt=""
               />
             </picture>
@@ -103,4 +92,29 @@ export default function StoryID(): JSX.Element {
       </form>
     </>
   );
+}
+
+export async function getStaticPaths() {
+  const res = await fetch("http://localhost:3009/allStories/allId");
+  const ids = await res.json();
+
+  const paths = await ids.map((id: { _id: string }) => ({
+    params: { id: id._id },
+  }));
+
+  return {
+    paths,
+    fallback: false,
+  };
+}
+
+export async function getStaticProps({ params }: { params: { id: string } }) {
+  const { data } = await axios.get(
+    `http://localhost:3009/allStories/${params.id}`
+  );
+  return {
+    props: {
+      data: data,
+    },
+  };
 }
