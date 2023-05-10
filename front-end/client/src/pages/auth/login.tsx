@@ -8,9 +8,6 @@ import jwt from "jsonwebtoken";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { toast } from "react-toastify";
-import * as dotenv from "dotenv";
-
-dotenv.config();
 
 export default function Login(): JSX.Element {
   const [error, setError] = useState<string>("");
@@ -47,7 +44,7 @@ export default function Login(): JSX.Element {
       const secretKey = process.env.SECRET_KEY;
       const user = jwt.sign(data, secretKey);
 
-      const endpoint = `${process.env.LOCAL_SERVER}:${process.env.SERVER_PORT}/auth/login?token=${user}`;
+      const endpoint = `http://localhost:3009/auth/login?token=${user}`;
       const response = await axios.get(endpoint, {
         method: "GET",
       });
@@ -89,15 +86,11 @@ export default function Login(): JSX.Element {
   }
 
   function googleLoginHandler() {
-    axios
-      .get(
-        `${process.env.LOCAL_SERVER}:${process.env.SERVER_PORT}/google-login`
-      )
-      .then((response) => {
-        console.log("Google");
-        console.log(response.data);
-        router.push(response.data);
-      });
+    axios.get(`http://localhost:3009/google-login`).then((response) => {
+      console.log("Google");
+      console.log(response.data);
+      router.push(response.data);
+    });
   }
 
   return (

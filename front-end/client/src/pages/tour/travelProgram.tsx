@@ -1,17 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { TravelType } from "../../../util/types";
-import * as dotenv from "dotenv";
-dotenv.config();
 
 export default function TravelProgram(): JSX.Element {
   const [travels, setTravels] = useState<TravelType[]>([]);
 
   useEffect(() => {
     const getFetchdata = async () => {
-      const alltravels = await axios.get(
-        `${process.env.LOCAL_SERVER}:${process.env.SERVER_PORT}/travels/get`
-      );
+      const alltravels = await axios.get(`http://localhost:3009/travels/get`);
       const { data } = alltravels;
 
       setTravels(data);
