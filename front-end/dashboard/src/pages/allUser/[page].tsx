@@ -67,7 +67,6 @@ export async function getStaticProps({ params }: { params: { page: string } }) {
     `http://localhost:3009/allUsers/page/${params.page}`
   );
   const data = await response.json();
-  console.log("data", data);
   if (!data) {
     return {
       notFound: true,

@@ -25,6 +25,7 @@ export interface TravelType {
   title: string;
   description: string;
   day: [];
+  image: string;
 }
 export interface DayType {
   title: string;

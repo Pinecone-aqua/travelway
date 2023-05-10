@@ -18,7 +18,6 @@ export default function Login(): JSX.Element {
 
       <div className="flex flex-col w-11/12 md:w-6/12">
         <div>
-          {/* {error && <p>{error}</p>} */}
           <form onSubmit={handleSubmit}>
             <label htmlFor="username" className="block text-md">
               Хэрэглэгч нэр
@@ -27,8 +26,6 @@ export default function Login(): JSX.Element {
               type="text"
               id="userName"
               name="adminName"
-              // value={loginForm.username}
-              // onChange={handleChange}
               placeholder="хэрэглэгч нэр"
               required
               className="border border-gray-500 px-4 py-1 text-md rounded"
@@ -42,8 +39,6 @@ export default function Login(): JSX.Element {
               type="text"
               id="password"
               name="adminPassword"
-              // value={loginForm.password}
-              // onChange={handleChange}
               placeholder="нууц үг"
               required
               className="border border-gray-500 px-4 py-1 text-md rounded"

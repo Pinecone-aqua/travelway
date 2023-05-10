@@ -47,7 +47,7 @@ export class MiniStoryController {
     return this.travelService.remove(id);
   }
   // sharavaa nemev
-  @Get('user:id')
+  @Get('user/:id')
   find(@Param('id') id: string): Promise<MiniStory[]> {
     return this.travelService.findMinstory(id);
   }

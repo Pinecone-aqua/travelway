@@ -13,8 +13,7 @@ interface PropType {
   children: ReactNode;
 }
 interface ContextType {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  handleSubmit: (e: any) => void;
+  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   admin: AdminType | undefined;
   setAdmin: Dispatch<SetStateAction<AdminType | undefined>>;
 }
@@ -23,13 +22,13 @@ export const AdminContext = createContext<ContextType>({} as ContextType);
 export default function AdminProvider({ children }: PropType): JSX.Element {
   const [admin, setAdmin] = useState<AdminType | undefined>(undefined);
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  function handleSubmit(e: any) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     try {
+      const target = e.currentTarget;
       const obj = {
-        username: e.target.adminName.value,
-        password: e.target.adminPassword.value,
+        username: target.adminName.value,
+        password: target.adminPassword.value,
         role: "admin",
       };
       axios.post("http://localhost:3009/auth/loginHandler", obj).then((res) => {
