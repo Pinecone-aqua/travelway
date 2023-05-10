@@ -1,8 +1,8 @@
-import { dayType, travelType } from "@/util/types";
+import { DayType, TravelType } from "@/util/types";
 import axios from "axios";
 
 interface PropType {
-  unit: travelType;
+  unit: TravelType;
 }
 export default function Travel(props: PropType): JSX.Element {
   const data = props.unit;
@@ -17,7 +17,7 @@ export default function Travel(props: PropType): JSX.Element {
       <h1>{data._id}</h1>
       <p>{data.description}</p>
       <h2>
-        {plan.map((unit: dayType, index: number) => (
+        {plan.map((unit: DayType, index: number) => (
           <div key={index} className="flex my-3">
             <picture>
               <img src={unit.image} alt={""} width={500} height={500} />

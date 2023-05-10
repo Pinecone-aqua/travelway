@@ -78,4 +78,8 @@ export class MiniStoryService {
     const result = await this.miniStoryModel.find({ userId: id });
     return result;
   }
+  async findAllId(): Promise<any> {
+    const result = await this.miniStoryModel.find({}).select({ id: 1 });
+    return result;
+  }
 }

@@ -16,9 +16,15 @@ export default function Pagination(props: PropType): JSX.Element {
     fetch(`http://localhost:3009/${path}/pageNum`)
       .then((response) => response.json())
       .then((res) => setPageNum(res));
-  }, []);
+  }, [path]);
   const lastPage = pageNum && Math.ceil(pageNum / 8);
 
+  const numbers = [];
+
+  for (let i = 1; i <= lastPage; i++) {
+    numbers.push(i);
+  }
+  console.log(numbers);
   return (
     <>
       {lastPage === 1 ? (

@@ -46,7 +46,7 @@ export default function AdminProvider({ children }: PropType): JSX.Element {
       setAdmin(jwtDecode(token));
     }
   }, []);
-  console.log(admin);
+
   return (
     <AdminContext.Provider value={{ handleSubmit, admin, setAdmin }}>
       {children}

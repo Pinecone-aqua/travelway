@@ -8,6 +8,9 @@ export interface UserType {
   biography: string;
 }
 export interface StoryType {
+  map(
+    arg0: (unit: StoryType, index: number) => JSX.Element
+  ): import("react").ReactNode;
   _id: string;
   title: string;
   province: string;
