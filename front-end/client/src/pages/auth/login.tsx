@@ -4,14 +4,13 @@ import React, { useState } from "react";
 import { FaGoogle } from "react-icons/fa";
 import { LoginForm } from "../../../util/types";
 import { useUser } from "../../../context/user.context";
-import jwt from "jsonwebtoken";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { toast } from "react-toastify";
 
 export default function Login(): JSX.Element {
   const [error, setError] = useState<string>("");
-  let { setToken } = useUser();
+  const { setToken } = useUser();
   const router = useRouter();
 
   const [loginForm, setLoginForm] = useState<LoginForm>({
@@ -41,18 +40,19 @@ export default function Login(): JSX.Element {
         return;
       }
 
-      const secretKey = process.env.SECRET_KEY;
-      const user = jwt.sign(data, secretKey);
+      const endpoint = `http://localhost:3009/auth/login`;
+      const response = await axios.post(endpoint, data);
 
-      const endpoint = `http://localhost:3009/auth/login?token=${user}`;
-      const response = await axios.get(endpoint, {
-        method: 'GET',
-        
-      });
+      console.log("RESPONSE ======> ");
+      console.log(response);
+      // response.data.status status
+      // response.data.msg message
+      // response.data.token token
 
-      if (response.status === 200 || response.status === 201) {
-        const userID = JSON.parse(response.data.userid);
-        localStorage.setItem("userId", userID);
+      if (response.status === 201 || response.status === 200) {
+        console.log("Token =======> ", response.data.token);
+
+        localStorage.setItem("userId", response.data.token);
         Cookies.set("token", response.data.token);
         setToken(response.data.token);
 
@@ -87,7 +87,7 @@ export default function Login(): JSX.Element {
   }
 
   function googleLoginHandler() {
-    axios.get("http://localhost:3009/google-login").then((response) => {
+    axios.get(`http://localhost:3009/google-login`).then((response) => {
       console.log("Google");
       console.log(response.data);
       router.push(response.data);

@@ -5,6 +5,7 @@ import { LoginDto } from './dto/login.dto';
 import * as dotenv from 'dotenv';
 import { Response } from 'express';
 import { JwtService } from '@nestjs/jwt';
+import { User } from 'src/user/schemas/user.schema';
 
 dotenv.config();
 
@@ -20,22 +21,22 @@ export class AuthController {
     return this.authService.signUp(signUpDto);
   }
 
-  @Get('login')
-  async getLogin(@Query('token') token: string, @Res() res: Response) {
-    const user = this.jwtService.decode(token);
-    const result = await this.authService.getLogin(user);
+  // @Get('login')
+  // async getLogin(@Query('token') token: string, @Res() res: Response) {
+  //   const user = this.jwtService.decode(token);
+  //   const result = await this.authService.getLogin(user);
 
-    if (result.status) {
-      res.status(200).send(result);
-    } else {
-      res.status(203).send(result);
-    }
-  }
+  //   if (result.status) {
+  //     res.status(200).send(result);
+  //   } else {
+  //     res.status(203).send(result);
+  //   }
+  // }
 
   @Post('login')
   login(
-    @Body() loginDto: LoginDto,
-  ): Promise<{ token: string; userid: string }> {
-    return this.authService.login(loginDto);
+    @Body() loginData: LoginDto,
+  ): Promise<{ msg: string; token: string; status: boolean }> {
+    return this.authService.login(loginData);
   }
 }

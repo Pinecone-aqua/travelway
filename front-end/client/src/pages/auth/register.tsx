@@ -42,7 +42,6 @@ export default function Register(): JSX.Element {
     e.preventDefault();
 
     try {
-
       const data: InputStateType = {
         username: registerForm.username,
         nickname: registerForm.nickname,
@@ -54,12 +53,12 @@ export default function Register(): JSX.Element {
         role: userRole,
       };
 
-      const endpoint = "http://localhost:3009/auth/signup";
+      const endpoint = `http://localhost:3009/auth/signup`;
 
       const resData = await axios.post(endpoint, data);
       const result = resData.data;
       console.log(result);
-      
+
       toast.success("Амжилттай хадгалагдлаа");
       router.push("/login");
     } catch (error) {

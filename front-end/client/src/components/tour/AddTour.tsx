@@ -33,7 +33,7 @@ const AddTour = () => {
       };
 
       const response = await axios.post(
-        "http://localhost:3009/travels/add",
+        `http://localhost:3009/travels/add`,
         nwData
       );
       console.log(response.data);

@@ -83,8 +83,8 @@ const LoginAuthentication = ({ user, setUser }: HeaderType) => {
     <>
       <div className="absolute right-0 mr-[1rem] flex items-center">
         {user ? (
-          <div className="flex gap-5 cursor-pointer">
-            <div>hello {user.user}</div>
+          <div className="flex items-center justify-center gap-5 cursor-pointer">
+            <div>Нэвтэрсэн {user.user}</div>
             <div
               className="cursor-pointer"
               onClick={() => {

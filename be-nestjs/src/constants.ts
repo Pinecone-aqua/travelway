@@ -1,4 +1,4 @@
-export const jwtConstants = {
+export const dbConstants = {
   secret:
     'private key usage Lorenzo approximation list for the secret keyvlal layers',
   testime: '2d',

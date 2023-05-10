@@ -29,7 +29,7 @@ export default function TravelBlogAdd(): JSX.Element {
     if (quill) {
       const html = quill.root.innerHTML;
       console.log(html);
-      const response = await fetch("http://localhost:3009/travelways/add", {
+      const response = await fetch(`http://localhost:3009/travelways/add`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
