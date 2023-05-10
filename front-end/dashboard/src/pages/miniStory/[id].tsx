@@ -21,7 +21,7 @@ export default function UserId(props: PropType): JSX.Element {
       <div>
         travels
         {!travels[0] ? (
-          <>oruulagui bainoo</>
+          <>oruulagui . bainoo</>
         ) : (
           <>
             {" "}
