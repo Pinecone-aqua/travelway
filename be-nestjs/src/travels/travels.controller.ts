@@ -43,4 +43,9 @@ export class TravelsController {
   remove(@Param('id') id: string): Promise<Travel> {
     return this.travelService.remove(id);
   }
+  //sharavaa added
+  @Get('user/:id')
+  find(@Param('id') id: string): Promise<Travel[]> {
+    return this.travelService.findTravels(id);
+  }
 }

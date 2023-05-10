@@ -19,6 +19,8 @@ export class Story {
   toDo: [];
   @Prop()
   province: string;
+  @Prop()
+  userId: string;
 }
 
 export const StorySchema = SchemaFactory.createForClass(Story);

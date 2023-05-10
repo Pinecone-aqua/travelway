@@ -84,4 +84,8 @@ export class UsersService {
       .limit(8);
     return result;
   }
+  async findAllId(): Promise<any> {
+    const result = await this.userModel.find({}).select({ id: 1 });
+    return result;
+  }
 }

@@ -2,12 +2,14 @@ import { Body, Controller, Get, Post, Query, Res } from '@nestjs/common';
 import { SignUpDto } from './dto/signup.dto';
 import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
+
 import * as dotenv from 'dotenv';
 import { Response } from 'express';
 import { JwtService } from '@nestjs/jwt';
 import { User } from 'src/user/schemas/user.schema';
 
 dotenv.config();
+
 
 @Controller('auth')
 export class AuthController {
@@ -38,5 +40,10 @@ export class AuthController {
     @Body() loginData: LoginDto,
   ): Promise<{ msg: string; token: string; status: boolean }> {
     return this.authService.login(loginData);
+  }
+  @Post('loginHandler')
+  adminLogin(@Body() userDto: User): Promise<{ token: string }> {
+    console.log(userDto);
+    return this.authService.adminLogin(userDto);
   }
 }

@@ -3,7 +3,6 @@ import { useState } from "react";
 
 export default function DropProfile(): JSX.Element {
   const [isOpen, setIsOpen] = useState(false);
-
   return (
     <div>
       {" "}
@@ -27,7 +26,10 @@ export default function DropProfile(): JSX.Element {
           <button className="bg-cyan-500 shadow-lg shadow-cyan-500/100  p-3 rounded-2xl w-24 my-2">
             settings
           </button>
-          <button className="bg-cyan-500 shadow-lg shadow-cyan-500/100  p-3 rounded-2xl w-24 my-2">
+          <button
+            className="bg-cyan-500 shadow-lg shadow-cyan-500/100  p-3 rounded-2xl w-24 my-2"
+            onClick={() => localStorage.removeItem("login")}
+          >
             log out
           </button>
         </div>
