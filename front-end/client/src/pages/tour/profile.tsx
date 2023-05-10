@@ -16,13 +16,13 @@ export default function User(): JSX.Element {
 
   try {
     const getFetchdata = async () => {
-      const travels = await axios.get("http://localhost:3009/miniStory/get");
+      const travels = await axios.get(`$http://localhost:3009/miniStory/get`);
       const disp = travels.data;
       setStories(disp);
     };
 
     const getUserFetch = async () => {
-      const user = await axios.get(`http://localhost:3009/users/profile`);
+      const user = await axios.get(`http://localhost:3009/allUsers/profile`);
       const currentUser = user.data;
       setUserData(currentUser);
     };

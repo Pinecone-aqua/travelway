@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { GrAddCircle } from "react-icons/gr";
 // import axios from "axios";
-import React, { SyntheticEvent, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { Editor } from "primereact/editor";
 // import TextEditor from "../TextEditor";
 
@@ -32,7 +32,7 @@ export default function TravelWayAdd(): JSX.Element {
     if (quill) {
       const html = quill.root.innerHTML;
       console.log(html);
-      const response = await fetch("http://localhost:3009/travelways/add", {
+      const response = await fetch(`http://localhost:3009/travelways/add`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

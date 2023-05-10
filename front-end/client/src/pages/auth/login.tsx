@@ -1,70 +1,95 @@
-import axios from "axios";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { FaGoogle } from "react-icons/fa";
+import { LoginForm } from "../../../util/types";
 import { useUser } from "../../../context/user.context";
-
-interface LoginForm {
-  email: string;
-  password: string;
-}
-
-type DataInput = { target: { name: string; value: string } };
+import axios from "axios";
+import Cookies from "js-cookie";
+import { toast } from "react-toastify";
 
 export default function Login(): JSX.Element {
+  const [error, setError] = useState<string>("");
+  const { setToken } = useUser();
+  const router = useRouter();
+
   const [loginForm, setLoginForm] = useState<LoginForm>({
     email: "",
     password: "",
   });
-  const [error, setError] = useState<string>("");
-  const router = useRouter();
-  const userContext = useUser();
 
-  const handleChange = (e: DataInput) => {
+  const onchangeHandle = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
     const { name, value } = e.target;
     setLoginForm((prev) => ({ ...prev, [name]: value }));
   };
 
   async function onSubmit(e: React.SyntheticEvent): Promise<void> {
     e.preventDefault();
+    const data: LoginForm = {
+      email: loginForm.email,
+      password: loginForm.password,
+    };
+
+    console.log("data=====> ");
+    console.log(data);
 
     try {
-      const data: LoginForm = {
-        email: loginForm.email,
-        password: loginForm.password,
-      };
-
-      // Validate email or password here gehdee barag ajillahgvi
       if (!data.email || !data.password) {
         setError("Нэр болон нууц үгээ бүрэн оруулна уу");
         return;
       }
 
-      const endpoint = "http://localhost:3009/auth/login";
-
+      const endpoint = `http://localhost:3009/auth/login`;
       const response = await axios.post(endpoint, data);
 
-      if (response.status === 200 || response.status === 201) {
-        const userID = JSON.parse(response.data.userid);
-        localStorage.setItem("userId", userID);
+      console.log("RESPONSE ======> ");
+      console.log(response);
+      // response.data.status status
+      // response.data.msg message
+      // response.data.token token
+
+      if (response.status === 201 || response.status === 200) {
+        console.log("Token =======> ", response.data.token);
+
+        localStorage.setItem("userId", response.data.token);
+        Cookies.set("token", response.data.token);
+        setToken(response.data.token);
+
+        toast.success("Амжилттай нэвтэрлээ", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      } else {
+        toast.warning("Нэвтрэлт амжилтгүй, И-мэйл, нууц үгээ шалгана уу", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       }
 
-      console.log();
-
       router.push("/user");
-      return;
     } catch (error) {
-      console.log("Error occure: ", error);
+      console.log("Error occurred: ", error);
       setError(`Хэрэглэгчийн и-мейл, нууц үг буруу байна`);
     }
   }
 
   function googleLoginHandler() {
-    axios.get("http://localhost:3009/google-login").then((response) => {
+    axios.get(`http://localhost:3009/google-login`).then((response) => {
       console.log("Google");
       console.log(response.data);
-
       router.push(response.data);
     });
   }
@@ -75,7 +100,7 @@ export default function Login(): JSX.Element {
         <title>Хэрэглэгч нэвтрэх</title>
       </Head>
       <div className="flex flex-col md:flex-row container mx-auto rounded-md p-6 justify-normal md:justify-center items-center">
-        <picture className="w-11/12 md:w-6/12">
+        <picture>
           <img
             src="/images/draw2.webp"
             style={{ width: 400 }}
@@ -95,7 +120,7 @@ export default function Login(): JSX.Element {
                 id="email"
                 name="email"
                 value={loginForm.email}
-                onChange={handleChange}
+                onChange={onchangeHandle}
                 placeholder="Email"
                 required
                 className="border border-gray-500 px-5 py-2 text-md rounded w-full"
@@ -110,7 +135,7 @@ export default function Login(): JSX.Element {
                 id="password"
                 name="password"
                 value={loginForm.password}
-                onChange={handleChange}
+                onChange={onchangeHandle}
                 placeholder="нууц үг"
                 required
                 className="border border-gray-500 px-5 py-2 text-md rounded w-full"

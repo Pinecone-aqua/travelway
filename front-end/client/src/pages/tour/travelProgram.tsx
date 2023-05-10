@@ -7,7 +7,7 @@ export default function TravelProgram(): JSX.Element {
 
   useEffect(() => {
     const getFetchdata = async () => {
-      const alltravels = await axios.get("http://localhost:3009/travels/get");
+      const alltravels = await axios.get(`http://localhost:3009/travels/get`);
       const { data } = alltravels;
 
       setTravels(data);
