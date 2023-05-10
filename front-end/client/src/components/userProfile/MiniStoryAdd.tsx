@@ -1,6 +1,8 @@
 import { GrAddCircle } from "react-icons/gr";
 import React, { useState } from "react";
 import axios from "axios";
+import * as dotenv from "dotenv";
+dotenv.config();
 
 export default function MiniStoryAdd(): JSX.Element {
   const [popup, setPopup] = useState(false);
@@ -14,11 +16,14 @@ export default function MiniStoryAdd(): JSX.Element {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function miniStoryHandler(e: any) {
     e.preventDefault();
-    axios.post(`http://localhost:3009/miniStory/add`, {
-      image: e.target.image.value,
-      title: e.target.title.value,
-      sentence: e.target.sentence.value,
-    });
+    axios.post(
+      `${process.env.LOCAL_SERVER}:${process.env.SERVER_PORT}/miniStory/add`,
+      {
+        image: e.target.image.value,
+        title: e.target.title.value,
+        sentence: e.target.sentence.value,
+      }
+    );
     console.log(e.target.sentence.value);
   }
 
