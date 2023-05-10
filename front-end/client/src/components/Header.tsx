@@ -23,7 +23,6 @@ export default function Header(): JSX.Element {
   const [nav, setNav] = useState<string | null>();
   const [user, setUser] = useState<HeaderType>();
 
-
   const activatedStyle =
     "opacity-100 text-xl mt-3 ease-out duration-300 md:w-[192px] sm:w-[142px] w-[96px]";
   const defaultStyle =
@@ -85,8 +84,8 @@ const LoginAuthentication = ({ user, setUser }: HeaderType) => {
     <>
       <div className="absolute right-0 mr-[1rem] flex items-center">
         {user ? (
-          <div className="flex gap-5 cursor-pointer">
-            <div>hello {user.user}</div>
+          <div className="flex items-center justify-center gap-5 cursor-pointer">
+            <div>Нэвтэрсэн {user.user}</div>
             <div
               className="cursor-pointer"
               onClick={() => {

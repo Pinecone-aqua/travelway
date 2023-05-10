@@ -44,51 +44,35 @@ export class AuthService {
     return { token };
   }
 
-  async login(loginDto: LoginDto): Promise<{ token: string; userid: string }> {
+  async login(
+    loginDto: LoginDto,
+  ): Promise<{ msg: string; token: string; status: boolean }> {
     const { email, password } = loginDto;
 
-    // console.log('Request irsen: ====> ', loginDto);
+    const users = await this.userModel.find({ email: { $eq: email } });
+    const message = { msg: 'Email wrong ', token: '', status: false };
 
-    const user = await this.userModel.findOne({ email: email });
-
-    if (!user) {
+    if (!users) {
       // throw new BadRequestException(HttpStatus.BAD_REQUEST);
       throw new UnauthorizedException('И-мейл хаяг эсвэл нууц үг буруу байна!');
     }
 
-    const isPasswordMatched = await bcrypt.compare(password, user.password);
-    // console.log('iS Password Matched');
-    // console.log(isPasswordMatched);
-
-    if (!isPasswordMatched) {
-      throw new UnauthorizedException('И-мейл хаяг эсвэл нууц үг буруу байна!');
-    }
-
-    const token = this.jwtService.sign({ id: user._id });
-
-    return { token, userid: JSON.stringify(user._id) };
-  }
-
-  async getLogin(user) {
-    const result = await this.userModel.find({ email: { $eq: user.email } });
-    const message = { data: 'email wrong ', token: '', status: false };
-
-    if (result.length != 0) {
-      const passwordCheck = await bcrypt.compare(
-        user.password,
-        result[0].password,
+    if (users.length !== 0) {
+      const isPasswordMatched = await bcrypt.compare(
+        password,
+        users[0].password,
       );
 
-      if (passwordCheck) {
-        const token = this.jwtService.sign(result[0].toJSON());
-        message.data = 'success sign in';
+      if (!isPasswordMatched) {
+        message.msg = 'Нууц үг буруу байна!';
+      } else {
+        const token = this.jwtService.sign(users[0].toJSON());
+        message.msg = 'Successfull Sign in';
         message.token = token;
         message.status = true;
         return message;
       }
-      message.data = 'password wrong';
     }
-
     return message;
   }
 }

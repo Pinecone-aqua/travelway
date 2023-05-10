@@ -1,11 +1,9 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { GrAddCircle } from "react-icons/gr";
 // import axios from "axios";
-import React, { SyntheticEvent, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { Editor } from "primereact/editor";
 // import TextEditor from "../TextEditor";
-import * as dotenv from "dotenv";
-dotenv.config();
 
 export default function TravelWayAdd(): JSX.Element {
   const [popup, setPopup] = useState(false);
@@ -34,19 +32,16 @@ export default function TravelWayAdd(): JSX.Element {
     if (quill) {
       const html = quill.root.innerHTML;
       console.log(html);
-      const response = await fetch(
-        `${process.env.LOCAL_SERVER}:${process.env.SERVER_PORT}/travelways/add`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            title: html,
-            sentence: e.target.sentence.value,
-          }),
-        }
-      );
+      const response = await fetch(`http://localhost:3009/travelways/add`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title: html,
+          sentence: e.target.sentence.value,
+        }),
+      });
       const message = response.json();
       console.log(message);
 
