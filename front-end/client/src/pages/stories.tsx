@@ -1,5 +1,6 @@
 // import { StoryType } from "../../util/types";
 import AddTour from "@/components/tour/AddTour";
+import ImageUploader from "@/components/tour/ImageUploader";
 
 export default function User(): JSX.Element {
   // const [stories, setStories] = useState<StoryType[]>([]);
@@ -52,9 +53,8 @@ export default function User(): JSX.Element {
       <div className="items-center justify-center flex flex-col gap-10 relative ">
         <p className="font-bold text-[26px]">{"userName"}</p>
         <div className="w-[80%] grid gap-10">
-          <hr className=" border-black  drop-shadow-xl" />
+          <hr className=" border-black drop-shadow-xl" />
           <div className="flex flex-wrap justify-center items-start">
-            Stories HERE
             <AddTour />
           </div>
         </div>

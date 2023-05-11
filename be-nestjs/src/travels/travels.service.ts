@@ -8,13 +8,13 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Travel } from './schemas/travel.schema';
 import { CreateTravelDto } from './dto/create-travel.dto';
 import { UpdateTravelDto } from './dto/update-travel.dto';
-import { CloudinaryService } from 'src/cloudinary/cloudinary.service';
+import { CloudinaryService as Cloudinary } from 'src/cloudinary/cloudinary.service';
 
 @Injectable()
 export class TravelsService {
   constructor(
     @InjectModel('Travel') private readonly travelModel: Model<Travel>,
-    private readonly cloudinary: CloudinaryService,
+    private readonly cloudinary: Cloudinary,
   ) {}
 
   async create(createTravelDto: CreateTravelDto): Promise<Travel> {
