@@ -91,18 +91,10 @@ export class TravelsController {
   ) {
     try {
       const req = JSON.parse(body.body);
-
-      console.log(files.image[0].buffer);
-      console.log('Body ==> ', req);
-
       const result = await this.travelService.addToCloudinary(
         files.image,
         files.image.length,
       );
-
-      console.log('Result===> ');
-      console.log(result);
-
       // if (result.length === files.image.length) console.log(result);
     } catch (error) {
       console.log(error);
