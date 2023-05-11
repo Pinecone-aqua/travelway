@@ -9,7 +9,8 @@ interface PropType {
 
 export default function Pagination(props: PropType): JSX.Element {
   const { currentPage, setCurrentPage, path } = props;
-  const active = "bg-cyan-500 p-3 rounded-xl m-2";
+  const active =
+    "bg-gradient-to-r from-tocolor to-purple-500 p-3 rounded-xl m-2";
   const inActive = " p-3 rounded-xl m-2 border-2";
   const [pageNum, setPageNum] = useState<number>(1);
   useEffect(() => {

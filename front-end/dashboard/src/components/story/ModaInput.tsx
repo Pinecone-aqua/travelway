@@ -20,7 +20,10 @@ export default function ModalInput(props: PropType): JSX.Element {
       <form onSubmit={saveInput} className="m-3">
         <div>toDoList нэмэх</div>
         <input name="activity" className="p-2 rounded-xl" type="text" />
-        <button className="bg-cyan-500 rounded-xl p-2 ml-2" type="submit">
+        <button
+          className="bg-gradient-to-r from-tocolor to-mycolor text-white  rounded-xl p-2 ml-2"
+          type="submit"
+        >
           нэмэх
         </button>
       </form>

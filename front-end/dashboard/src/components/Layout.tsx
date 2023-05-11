@@ -13,15 +13,14 @@ export default function Layout({ children }: PropType): JSX.Element {
   return (
     <>
       {admin ? (
-        <div className="bg-slate-200">
-          <div>
-            <Header />
+        <div className="flex bg-mycolor ">
+          <SideMenu />
+          <div className="w-5/6 flex flex-col bg-slate-100 rounded-l-[50px] justify-center items-center border-">
+            <div className="w-[90%]">
+              <Header />
+              <div className="min-h-screen h-100">{children}</div>
+            </div>
           </div>
-          <div className="flex mt-12">
-            <SideMenu />
-            <div className="w-9/12 mr-20">{children}</div>
-          </div>
-          <div>footer</div>
         </div>
       ) : (
         <Login />

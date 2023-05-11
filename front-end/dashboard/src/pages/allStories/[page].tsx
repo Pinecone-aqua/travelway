@@ -12,17 +12,16 @@ export default function StoryPage(props: { data: StoryType[] }): JSX.Element {
 
   const [create, setCreate] = useState(false);
   const path = "allStories";
-  console.log("aaaaa", data);
 
   return (
     <>
-      <div className="bg-white rounded-2xl h-full px-20 py-10 shadow-xl shadow-cyan-500">
+      <div className="bg-white rounded-2xl h-full px-20 py-10">
         <div>
           {" "}
           {create == true ? (
             <div className="">
               <button
-                className="bg-cyan-500 shadow-lg shadow-cyan-500/100 px-4 py-2 rounded-xl"
+                className="bg-gradient-to-r from-tocolor to-mycolor text-white shadow-lg  shadow-mycolor px-4 py-2 rounded-xl w-20 flex justify-end"
                 onClick={() => setCreate(false)}
               >
                 back
@@ -31,26 +30,33 @@ export default function StoryPage(props: { data: StoryType[] }): JSX.Element {
             </div>
           ) : (
             <div className="">
-              <button
-                className="bg-cyan-500 shadow-lg shadow-cyan-500/100 px-4 py-2  rounded-xl"
-                onClick={() => setCreate(true)}
-              >
-                create
-              </button>
+              <div className="flex justify-between">
+                <div>
+                  <Pagination
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
+                    path={path}
+                  />
+                </div>
+                <button
+                  className="bg-gradient-to-r from-tocolor to-mycolor text-white shadow-lg  shadow-mycolor px-3 py-2  rounded-xl"
+                  onClick={() => setCreate(true)}
+                >
+                  create
+                </button>
+              </div>
 
-              <table className="w-full h-[40rem] bg-slate-200 rounded-2xl mt-5 shadow-lg shadow-cyan-100">
-                <thead className="h-24 text-left p-5">
+              <table className="w-full bg-slate-100 rounded-2xl mt-5 shadow-lg shadow-gray-300">
+                <thead className="h-14 text-left p-5">
                   <tr className="p-5">
                     <th scope="col" className="p-5">
                       story id
                     </th>
                     <th scope="col">Title</th>
                     <th scope="col">province</th>
-
-                    <th>:</th>
                   </tr>
                 </thead>
-                <tbody className="h-32 ">
+                <tbody className="h-32">
                   {data.map((unit: StoryType, index: number) => (
                     <Story key={index} unit={unit} />
                   ))}
@@ -58,13 +64,6 @@ export default function StoryPage(props: { data: StoryType[] }): JSX.Element {
               </table>
             </div>
           )}
-          <div className="absolute">
-            <Pagination
-              currentPage={currentPage}
-              setCurrentPage={setCurrentPage}
-              path={path}
-            />
-          </div>
         </div>
       </div>
     </>

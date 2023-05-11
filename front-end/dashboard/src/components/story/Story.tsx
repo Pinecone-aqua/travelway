@@ -14,8 +14,8 @@ export default function Story(props: PropsType): JSX.Element {
     axios.delete(`http://localhost:3009/allStories/${storyId}`);
   }
   return (
-    <tr className="border-t-2 border-cyan-500">
-      <td className="p-5" onClick={() => setIsOpen(false)}>
+    <tr className="border-t-2 border-white">
+      <td className="p-4" onClick={() => setIsOpen(false)}>
         {data._id.slice(0, 5)}...
       </td>
       <td>{data.title}</td>
@@ -26,8 +26,8 @@ export default function Story(props: PropsType): JSX.Element {
       <td>
         <BsThreeDotsVertical onClick={() => setIsOpen((prev) => !prev)} />{" "}
         {isOpen && (
-          <div className="flex flex-col rounded-2xl h-36 justify-around w-32 absolute bg-cyan-100 items-center">
-            <button className="flex h-10 bg-cyan-500 w-24 shadow-lg shadow-gray-500/100 rounded-xl">
+          <div className="flex flex-col rounded-2xl h-36 justify-around w-32 absolute  items-center">
+            <button className="flex p-4 w-28 bg-gradient-to-r from-tocolor to-mycolor text-white shadow-lg  shadow-mycolor rounded-xl">
               <Link href={`/story/${data._id}`}>засварлах</Link>
             </button>
 
@@ -35,7 +35,7 @@ export default function Story(props: PropsType): JSX.Element {
               onClick={() => {
                 deleteHandler(data._id), setIsOpen(false);
               }}
-              className="h-10 bg-cyan-500 w-24 shadow-lg shadow-gray-500/100 rounded-xl"
+              className="flex p-4 w-28  bg-gradient-to-r from-tocolor to-mycolor text-white shadow-lg  shadow-mycolor rounded-xl"
             >
               устгах
             </button>

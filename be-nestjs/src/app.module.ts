@@ -12,7 +12,9 @@ import { StoryModule } from './story/story.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot(process.env.DB_URI),
+    MongooseModule.forRoot(
+      'mongodb+srv://aqua2022yalaltgandush:t7Zg4gQrdwhd75BG@cluster0.uqiga9k.mongodb.net/travelway?retryWrites=true&w=majority',
+    ),
     AuthModule,
     UsersModule,
     TagsModule,

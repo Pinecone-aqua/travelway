@@ -20,7 +20,7 @@ export default function CreateStory(): JSX.Element {
   console.log("addIndicator", addIndicator);
 
   return (
-    <div className=" flex flex-col bg-gray-200 rounded-2xl w-full items-center text-2xl mt-5 shadow-xl shadow-cyan-700">
+    <div className=" flex flex-col bg-gray-100 rounded-2xl w-full items-center text-2xl mt-5 shadow-xl shadow-cyan-700">
       <form onSubmit={createHandler}>
         <div className="w-96">
           <div className=""> title</div>
@@ -71,7 +71,7 @@ export default function CreateStory(): JSX.Element {
         </div>
 
         <button
-          className="bg-cyan-500 shadow-lg shadow-cyan-500/100 px-4 py-2 rounded-xl border-2 w-96"
+          className="bg-gradient-to-r from-tocolor to-mycolor text-white shadow-lg shadow-mycolor px-4 py-2 rounded-xl border-2 w-96"
           type="submit"
         >
           creates
