@@ -89,9 +89,11 @@ export default function User(): JSX.Element {
                   <div>
                     <MiniStoryAdd />
                   </div>
-                  <div className="gap-3 grid sm:grid-cols-2 md:grid-cols-3 xxl:grid-cols-4 relative  ">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     {story?.map((storyType: miniStoryType, index: number) => (
-                      <MiniStory storyType={storyType} key={index} />
+                      <div className="relative" key={index}>
+                        <MiniStory storyType={storyType} />
+                      </div>
                     ))}
                   </div>
                 </div>

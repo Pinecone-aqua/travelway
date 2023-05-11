@@ -11,7 +11,6 @@ import { TravelWayModule } from './travelWay/miniStory.module';
 import { StoryModule } from './story/story.module';
 import { dbConstants } from './constants';
 
-
 @Module({
   imports: [
     MongooseModule.forRoot(dbConstants.db_uri),

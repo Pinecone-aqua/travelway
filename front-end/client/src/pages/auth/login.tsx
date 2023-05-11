@@ -43,8 +43,7 @@ export default function Login(): JSX.Element {
       const endpoint = `http://localhost:3009/auth/login`;
       const response = await axios.post(endpoint, data);
 
-      console.log("RESPONSE ======> ");
-      console.log(response);
+      console.log("RESPONSE ======> ", response);
       // response.data.status status
       // response.data.msg message
       // response.data.token token

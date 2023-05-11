@@ -34,6 +34,10 @@ export interface LoginForm {
   password: string;
 }
 
+export interface travelWayType {
+  title: string;
+}
+
 export interface UserContextType {
   user: LoginForm | null | undefined;
   setUser: React.Dispatch<React.SetStateAction<LoginForm | null | undefined>>;
