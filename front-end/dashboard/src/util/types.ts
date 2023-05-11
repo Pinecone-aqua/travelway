@@ -4,8 +4,9 @@ export interface UserType {
   nickname: string;
   email: string;
   phone: number;
-  created_date: number;
+  createdAt: string;
   biography: string;
+  role: string;
 }
 export interface StoryType {
   map(
@@ -26,6 +27,7 @@ export interface TravelType {
   description: string;
   day: [];
   image: string;
+  createdAt: string;
 }
 export interface DayType {
   title: string;

@@ -17,15 +17,17 @@ export default function ModalInput(props: PropType): JSX.Element {
 
   return (
     <>
-      <form onSubmit={saveInput} className="m-3">
+      <form onSubmit={saveInput} className="bg-mycolor [w-400px]">
         <div>toDoList нэмэх</div>
-        <input name="activity" className="p-2 rounded-xl" type="text" />
-        <button
-          className="bg-gradient-to-r from-tocolor to-mycolor text-white  rounded-xl p-2 ml-2"
-          type="submit"
-        >
-          нэмэх
-        </button>
+        <div className="w-full">
+          <input name="activity" className="p-2 rounded-xl" type="text" />
+          <button
+            className="bg-gradient-to-r from-tocolor to-mycolor text-white  rounded-xl p-2 ml-2"
+            type="submit"
+          >
+            нэмэх
+          </button>
+        </div>
       </form>
     </>
   );

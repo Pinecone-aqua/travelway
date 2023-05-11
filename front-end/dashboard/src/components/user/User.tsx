@@ -53,7 +53,7 @@ export default function User(props: PropType): JSX.Element {
         <td>{data.username}</td>
         <td>{data.email.slice(0, 5)}...</td>
         <td>{data.phone}</td>
-        <td>{data.created_date}</td>
+        <td>{data.createdAt}</td>
         <td className="z-40">
           <div onClick={() => setDetails((prev) => !prev)} className="z-50">
             <BsThreeDotsVertical />

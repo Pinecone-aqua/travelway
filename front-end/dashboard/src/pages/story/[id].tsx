@@ -50,6 +50,7 @@ export default function StoryID(props: { data: StoryType }): JSX.Element {
                 defaultValue={data.description}
               />
             </div>
+
             <div className="w-[80%]">
               <div>myth</div>
               <textarea

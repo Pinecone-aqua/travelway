@@ -26,7 +26,6 @@ export default function StoryPage(props: { data: StoryType[] }): JSX.Element {
               >
                 back
               </button>
-              <CreateStory />
             </div>
           ) : (
             <div className="">
@@ -38,12 +37,9 @@ export default function StoryPage(props: { data: StoryType[] }): JSX.Element {
                     path={path}
                   />
                 </div>
-                <button
-                  className="bg-gradient-to-r from-tocolor to-mycolor text-white shadow-lg  shadow-mycolor px-3 py-2  rounded-xl"
-                  onClick={() => setCreate(true)}
-                >
-                  create
-                </button>
+                <div className="bg-gradient-to-r from-tocolor to-mycolor text-white shadow-lg  shadow-mycolor px-3 py-2  rounded-xl">
+                  <CreateStory />
+                </div>
               </div>
 
               <table className="w-full bg-slate-100 rounded-2xl mt-5 shadow-lg shadow-gray-300">

@@ -34,38 +34,35 @@ export default function SideMenu(): JSX.Element {
   const activeTop = "bg-mycolor h-8 w-8 rounded-br-full text-mycolor";
   const inActive = "bg-mycolor h-8 w-8  text-mycolor";
   const activeBottom = "bg-mycolor h-8 w-8 rounded-tr-full text-mycolor";
-
   return (
     <div className="w-1/6 h-screen flex bg-mycolor flex-col justify-center place-items-end">
-      <ul className=" h-2/3 w-full flex flex-col content-end self-end place-items-end -mr-[28px]">
-        {buttons.map((unit: ButtonType, index: number) => (
-          <>
-            <div
-              key={index}
-              className="rounded-none bg-slate-100 overflow-hidden -mb-[28px] mr-[28px]"
-            >
-              <div className={color === unit.name ? activeTop : inActive}>
-                .
-              </div>
-            </div>
+      {/* <ul className=" h-2/3 w-full flex flex-col content-end self-end place-items-end -mr-[28px]"> */}
+      {buttons.map((unit: ButtonType, index: number) => (
+        <div
+          className="h-1/6 w-full flex flex-col content-end self-end place-items-end -mr-[28px]"
+          key={index}
+        >
+          <div className="rounded-none bg-slate-100 overflow-hidden -mb-[28px] mr-[28px]">
+            <div className={color === unit.name ? activeTop : inActive}>.</div>
+          </div>
 
-            <Link
-              className={color === unit.name ? activeClass : inActiveClass}
-              href={unit.path}
-              onClick={handleClick}
-            >
-              {" "}
-              {unit.icon}
-              {unit.name}
-            </Link>
-            <div className="rounded-none bg-slate-100 overflow-hidden -mt-[28px] mr-[28px]">
-              <div className={color === unit.name ? activeBottom : inActive}>
-                .
-              </div>
+          <Link
+            className={color === unit.name ? activeClass : inActiveClass}
+            href={unit.path}
+            onClick={handleClick}
+          >
+            {" "}
+            {unit.icon}
+            {unit.name}
+          </Link>
+          <div className="rounded-none bg-slate-100 overflow-hidden -mt-[28px] mr-[28px]">
+            <div className={color === unit.name ? activeBottom : inActive}>
+              .
             </div>
-          </>
-        ))}
-      </ul>
+          </div>
+        </div>
+      ))}
+      {/* </ul> */}
     </div>
   );
 }
