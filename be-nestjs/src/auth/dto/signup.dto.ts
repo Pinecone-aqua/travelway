@@ -8,30 +8,30 @@ import {
 
 export class SignUpDto {
   @IsString()
-  readonly username: string;
+  username: string;
 
   @IsString()
-  readonly nickname: string;
+  nickname: string;
 
   @IsNotEmpty()
   @IsEmail({}, { message: 'Зөв И-мейл хаяг оруулна уу' })
-  readonly email: string;
+  email: string;
 
   @IsNotEmpty()
   @IsString()
   @MinLength(6)
-  readonly password: string;
+  password: string;
 
   @IsNumber()
   @MinLength(8)
-  readonly phone: number;
+  phone: number;
 
   @IsString()
-  readonly biography: string;
+  biography: string;
 
   @IsString()
-  readonly image: string;
+  image: string;
 
   @IsString()
-  readonly role: string;
+  role: string;
 }

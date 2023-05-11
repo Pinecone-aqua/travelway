@@ -2,19 +2,19 @@ import { IsNotEmpty, IsString } from 'class-validator';
 
 export class CreateTravelDto {
   @IsString()
-  readonly title: string;
+  title: string;
 
   @IsString()
-  readonly description: string;
+  description: string;
 
   @IsNotEmpty()
-  readonly day: [
+  day: [
     {
-      readonly subTitle: string;
-      readonly describe: string;
-      readonly image: string;
-      readonly considerations: string;
-      readonly destination: string;
+      subTitle: string;
+      describe: string;
+      image: string;
+      considerations: string;
+      destination: string;
     },
   ];
 }

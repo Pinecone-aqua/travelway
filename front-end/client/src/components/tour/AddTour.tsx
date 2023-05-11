@@ -3,7 +3,6 @@ import axios from "axios";
 import { DayType } from "../../../util/types";
 import TourDetails from "./TourDetails";
 
-
 const AddTour = () => {
   // const router = useRouter();
   const [activeClass, setActiveClass] = useState(0);
@@ -23,45 +22,68 @@ const AddTour = () => {
     },
   ]);
 
-  const [imageFile, setImageFile] = useState<string | Blob>(null);
-  const [message, setMessage] = useState('');
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [message, setMessage] = useState("");
 
   const handleSubmit = async (event: FormEvent): Promise<void> => {
     event.preventDefault();
 
     if (!imageFile) {
-      setMessage('Please select a file.');
+      setMessage("Please select a file.");
       return;
     }
 
     try {
-      const formData = new FormData();
-      formData.append("file", imageFile);
+      const formInputData = new FormData();
+      const imageRef: File = imageFile;
+      const imageDetails = {
+        title: "Image title here",
+        description: "Image description details",
+      };
 
-      const response = await axios.post("/api/upload", formData);
+      formInputData.append("image", imageRef);
+      formInputData.append("body", JSON.stringify(imageDetails));
+
+      console.log("Form Data here ====> ");
+      console.log(formInputData);
+
+      console.log("\nResponse Data here ====> ");
+      const response = await axios
+        .post("http://localhost:3009/travels/uploadimg", formInputData)
+        .then((res) => console.log(res))
+        .catch((error) => console.error(error));
+
+      console.log("After response here");
       console.log(response);
+      setMessage(`File uploaded successfully. URL: ${response}`);
 
-      setMessage(`File uploaded successfully. URL: ${response.data.url}`);
       // const nwData = {
       //   title: travelData.title,
       //   description: travelData.description,
-      //   day: [...dayFormData],
+      //   image: "image url here",
       // };
 
-      // const response = await axios.post(
+      // const responseAll = await axios.post(
       //   `http://localhost:3009/travels/add`,
       //   nwData
       // );
-      // console.log(response.data);
+      // console.log(responseAll.data);
       // router.push("/addtravel");
     } catch (error) {
       console.error(error);
-      setMessage('Failed to upload file.');
+      setMessage("Failed to upload file.");
     }
   };
 
-  const handleFileChange = (e) => {
-    setImageFile(e.target.files[0]);
+  // const runAllFetch = (data: FormData, formData: FormData) => {
+    
+  // }
+
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      const files: FileList = e.target.files;
+      setImageFile(files[0]);
+    }
   };
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
@@ -117,7 +139,7 @@ const AddTour = () => {
       <div className="w-6/12 mx-auto mt-16 mb-8">
         <div className="flex flex-col gap-y-2">
           <p className="text-red-400 font-thin text-sm">{message}</p>
-          <form onSubmit={handleSubmit} method="POST" action="/api/upload" encType="multipart/form-data">
+          <form onSubmit={handleSubmit}>
             <>
               <label htmlFor="title">Аяллын гарчиг/Title:</label>
               <input

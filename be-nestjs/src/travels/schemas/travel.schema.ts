@@ -7,14 +7,22 @@ export type TravelDocument = HydratedDocument<Travel>;
   timestamps: true,
 })
 export class Travel {
-  @Prop()
+  @Prop({ type: String })
   title: string;
 
-  @Prop()
+  @Prop({ type: String })
   description: string;
 
-  @Prop([])
-  day: [];
+  @Prop({ type: Array })
+  day: [
+    {
+      subTitle: string;
+      describe: string;
+      image: string;
+      considerations: string;
+      destination: string;
+    },
+  ];
 }
 
 export const TravelSchema = SchemaFactory.createForClass(Travel);

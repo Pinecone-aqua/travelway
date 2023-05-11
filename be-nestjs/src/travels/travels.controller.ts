@@ -4,13 +4,20 @@ import {
   Delete,
   Get,
   Param,
+  ParseFilePipe,
   Patch,
   Post,
+  UploadedFiles,
+  UseInterceptors,
 } from '@nestjs/common';
 import { TravelsService } from './travels.service';
 import { CreateTravelDto } from './dto/create-travel.dto';
 import { Travel } from './schemas/travel.schema';
 import { UpdateTravelDto } from './dto/update-travel.dto';
+import {
+  FileFieldsInterceptor,
+  FileInterceptor,
+} from '@nestjs/platform-express';
 
 @Controller('travels')
 export class TravelsController {
@@ -47,5 +54,58 @@ export class TravelsController {
   @Get('user/:id')
   find(@Param('id') id: string): Promise<Travel[]> {
     return this.travelService.findTravels(id);
+  }
+
+  // Add Image to Cloudinary
+  @Post('uploadimg')
+  @UseInterceptors(FileInterceptor('image'))
+  async fileUpload(
+    @Body() body: { body: string },
+    @UploadedFiles(new ParseFilePipe())
+    file: Express.Multer.File,
+  ) {
+    try {
+      const req = JSON.parse(body.body);
+
+      console.log(file.buffer);
+      console.log('Body ==> ', req);
+
+      const result = await this.travelService.addOneImageToCld(file);
+
+      console.log('Result');
+      console.log(result);
+      return result;
+    } catch (error) {
+      console.log('eRRor==> ', error);
+    }
+  }
+
+  @Post('uploadimages')
+  @UseInterceptors(FileFieldsInterceptor([{ name: 'image' }]))
+  async filesUploads(
+    @Body() body: { body: string },
+    @UploadedFiles(new ParseFilePipe())
+    files: {
+      image?: Express.Multer.File[];
+    },
+  ) {
+    try {
+      const req = JSON.parse(body.body);
+
+      console.log(files.image[0].buffer);
+      console.log('Body ==> ', req);
+
+      const result = await this.travelService.addToCloudinary(
+        files.image,
+        files.image.length,
+      );
+
+      console.log('Result===> ');
+      console.log(result);
+
+      // if (result.length === files.image.length) console.log(result);
+    } catch (error) {
+      console.log(error);
+    }
   }
 }

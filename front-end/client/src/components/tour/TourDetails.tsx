@@ -1,6 +1,6 @@
 import { DayType } from "../../../util/types";
 import React, { ChangeEvent } from "react";
-import { CldUploadWidget } from "next-cloudinary";
+
 
 const TourDetails = (props: {
   index: number;
@@ -8,7 +8,7 @@ const TourDetails = (props: {
   handleFormChange(e: ChangeEvent<HTMLInputElement>, index: number): void;
   handleFileChange(e: ChangeEvent<HTMLInputElement>): void;
 }): JSX.Element => {
-  const { index, dayDetailOf, handleFormChange } = props;
+  const { index, dayDetailOf, handleFormChange, handleFileChange } = props;
 
   return (
     <div key={index} className="flex flex-col border rounded-lg py-4 px-8 mt-8">
@@ -63,26 +63,12 @@ const TourDetails = (props: {
       <label className="mt-4" htmlFor="image">
         Зураг/Image:
       </label>
-      {/* <input
+      <input
         className="inline-block p-2 rounded w-full border border-slate-600"
         type="file"
         name="image"
         onChange={(e) => handleFileChange(e)}
-      /> */}
-
-      <CldUploadWidget uploadPreset="<Upload Preset>">
-        {({ open }) => {
-          function handleOnClick(e) {
-            e.preventDefault();
-            open();
-          }
-          return (
-            <button className="button" onClick={handleOnClick}>
-              Upload an Image
-            </button>
-          );
-        }}
-      </CldUploadWidget>
+      />
     </div>
   );
 };
