@@ -7,11 +7,13 @@ import { useUser } from "../../../context/user.context";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { toast } from "react-toastify";
+import { signIn, useSession } from "next-auth/client";
 
 export default function Login(): JSX.Element {
   const [error, setError] = useState<string>("");
   const { setToken } = useUser();
   const router = useRouter();
+  const [session, loading] = useSession();
 
   const [loginForm, setLoginForm] = useState<LoginForm>({
     email: "",
@@ -86,13 +88,13 @@ export default function Login(): JSX.Element {
     }
   }
 
-  function googleLoginHandler() {
-    axios.get(`http://localhost:3009/google-login`).then((response) => {
-      console.log("Google");
-      console.log(response.data);
-      router.push(response.data);
-    });
-  }
+  // function googleLoginHandler() {
+  //   axios.get(`http://localhost:3009/google-login`).then((response) => {
+  //     console.log("Google");
+  //     console.log(response.data);
+  //     router.push(response.data);
+  //   });
+  // }
 
   return (
     <div className="absolute top-0 z-100 bg-white w-full h-[100vh] flex flex-col items-center justify-center">
@@ -150,14 +152,13 @@ export default function Login(): JSX.Element {
                 нэвтрэх
               </button>
 
-              <div
-                onClick={googleLoginHandler}
-                className="rounded-lg text-sm bg-cyan-500 px-5 py-2 mt-5 flex justify-between align-center text-white cursor-pointer"
-              >
+              <div className="rounded-lg text-sm bg-cyan-500 px-5 py-2 mt-5 flex justify-between align-center text-white cursor-pointer">
                 <div className="flex items-center">
-                  <FaGoogle className="my-auto text-white absolute" />
+                  <button type="button" onClick={() => signIn("google")}>
+                    <FaGoogle className="my-auto text-white absolute" />
+                    <span className="mx-auto text-white">Google-р НЭВТРЭХ</span>
+                  </button>
                 </div>
-                <span className="mx-auto text-white">Google-р НЭВТРЭХ</span>
               </div>
 
               <div className="text-sm font-normal text-slate-400 text-center mt-4 uppercase">
