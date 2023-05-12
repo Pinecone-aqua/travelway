@@ -71,7 +71,7 @@ export class TravelsService {
     return secure_url;
   }
 
-  async addToCloudinary(files: any, i: number): Promise<any> {
+  async addToCloudinary(files: any): Promise<any> {
     const arrImage = [];
     await Promise.all(
       await files?.map(async (file) => {

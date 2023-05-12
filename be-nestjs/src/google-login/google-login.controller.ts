@@ -1,10 +1,4 @@
-import {
-  Controller,
-  Get,
-  Query,
-  Request as Req,
-  Response as Res,
-} from '@nestjs/common';
+import { Controller, Get, Query, Response as Res } from '@nestjs/common';
 import { Response } from 'express';
 import { JwtService } from '@nestjs/jwt';
 import * as dotenv from 'dotenv';
