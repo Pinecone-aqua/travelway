@@ -17,7 +17,7 @@ export default function CreateStory(): JSX.Element {
   function createHandler(e: any): void {
     e.preventDefault();
 
-    axios.post(`http://localhost:3009/stories/create`, {
+    axios.post(`http://localhost:3009/allStories/create`, {
       title: e.target.title.value,
       description: e.target.description.value,
       province: e.target.province.value,
