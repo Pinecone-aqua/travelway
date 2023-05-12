@@ -10,7 +10,7 @@ import { MiniStoryModule } from './miniStory/miniStory.module';
 import { TravelWayModule } from './travelWay/miniStory.module';
 import { StoryModule } from './story/story.module';
 import { dbConstants } from './constants';
-
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
@@ -22,6 +22,9 @@ import { dbConstants } from './constants';
     StoryModule,
     MiniStoryModule,
     TravelWayModule,
+    ConfigModule.forRoot({
+      envFilePath: './env',
+    }),
   ],
   controllers: [AppController],
   providers: [AppService],

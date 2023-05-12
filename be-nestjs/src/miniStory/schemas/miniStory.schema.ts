@@ -7,15 +7,15 @@ export type miniStoryDocument = HydratedDocument<MiniStory>;
   timestamps: true,
 })
 export class MiniStory {
-  @Prop()
+  @Prop({ type: String })
   image: string;
 
-  @Prop()
+  @Prop({ type: String })
   title: string;
 
-  @Prop()
+  @Prop({ type: String })
   sentence: string;
-  @Prop()
+  @Prop({ type: String })
   userId: string;
 }
 
