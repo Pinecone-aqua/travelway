@@ -11,6 +11,7 @@ import { TravelWayModule } from './travelWay/miniStory.module';
 import { StoryModule } from './story/story.module';
 import { dbConstants } from './constants';
 import { GoogleLoginModule } from './google-login/google-login.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
@@ -23,6 +24,9 @@ import { GoogleLoginModule } from './google-login/google-login.module';
     MiniStoryModule,
     TravelWayModule,
     GoogleLoginModule,
+    ConfigModule.forRoot({
+      envFilePath: './env',
+    }),
   ],
   controllers: [AppController],
   providers: [AppService],

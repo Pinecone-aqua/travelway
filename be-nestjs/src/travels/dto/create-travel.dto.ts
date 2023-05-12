@@ -1,20 +1,32 @@
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsNotEmpty, IsString, ValidateNested } from 'class-validator';
+import { Type } from 'class-transformer';
 
 export class CreateTravelDto {
   @IsString()
-  readonly title: string;
+  title: string;
 
   @IsString()
-  readonly description: string;
+  description: string;
 
   @IsNotEmpty()
-  readonly day: [
-    {
-      readonly subTitle: string;
-      readonly describe: string;
-      readonly image: string;
-      readonly considerations: string;
-      readonly destination: string;
-    },
-  ];
+  @ValidateNested({ each: true })
+  @Type(() => DayDto)
+  day: DayDto[];
+}
+
+export class DayDto {
+  @IsString()
+  subTitle: string;
+
+  @IsString()
+  describe: string;
+
+  @IsString()
+  image: string;
+
+  @IsString()
+  considerations: string;
+
+  @IsString()
+  destination: string;
 }

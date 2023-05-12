@@ -2,7 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
 @Schema()
 export class Tags {
-  @Prop()
+  @Prop({ type: String })
   name: string;
 }
 

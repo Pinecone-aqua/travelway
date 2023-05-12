@@ -4,5 +4,5 @@ import { IsString } from 'class-validator';
 
 export class UpdateTravelDto extends PartialType(CreateTravelDto) {
   @IsString()
-  readonly _id: string;
+  _id: string;
 }
