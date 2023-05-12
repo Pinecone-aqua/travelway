@@ -1,10 +1,23 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
-import axios from "axios";
 import { DayType } from "../../../util/types";
 import TourDetails from "./TourDetails";
+import axios from "axios";
 
 const AddTour = () => {
   // const router = useRouter();
+  const [allData, setAllData] = useState({
+    title: "",
+    description: "",
+    day: [
+      {
+        subTitle: "",
+        describe: "",
+        considerations: "",
+        destination: "",
+        image: "",
+      },
+    ],
+  });
   const [activeClass, setActiveClass] = useState(0);
   const [travelData, setTravelData] = useState({
     title: "",
@@ -12,7 +25,7 @@ const AddTour = () => {
   });
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [dayFormData, setDayFormData] = useState<any>([
+  const [dayFormData, setDayFormData] = useState<DayType[]>([
     {
       subTitle: "",
       describe: "",
@@ -22,24 +35,40 @@ const AddTour = () => {
     },
   ]);
 
+  const [message, setMessage] = useState("");
+
   const handleSubmit = async (event: FormEvent): Promise<void> => {
     event.preventDefault();
 
     try {
-      const nwData = {
-        title: travelData.title,
-        description: travelData.description,
-        day: [...dayFormData],
-      };
+      if (dayFormData[0].image) {
+        const newDataObj = {
+          title: travelData.title,
+          description: travelData.description,
+          day: [...dayFormData],
+          userId: "644947267fbc2625e4543407",
+        };
+        // setAllData((prevAllData) => ({
+        //   ...prevAllData,
+        //   title: travelData.title,
+        //   description: travelData.description,
+        //   day: [...dayFormData],
+        // }));
 
-      const response = await axios.post(
-        `http://localhost:3009/travels/add`,
-        nwData
-      );
-      console.log(response.data);
+        const responseAll = await axios.post(
+          `http://localhost:3009/travels/add`,
+          newDataObj
+        );
+        console.log("ALL data =======> ");
+        console.log(responseAll);
+      } else {
+        setMessage("Error: Complete form and image upload button click");
+      }
+
       // router.push("/addtravel");
     } catch (error) {
       console.error(error);
+      setMessage("Failed to upload file.");
     }
   };
 
@@ -48,26 +77,67 @@ const AddTour = () => {
     setTravelData((prevState) => ({ ...prevState, [name]: value }));
   };
 
+  const handleImageUrl = (imageUrl: string, index: number) => {
+    // setDayFormData((prevData) => {
+    //   const newImage = [...prevData];
+    //   newImage[index] = {
+    //     ...newImage[index],
+    //     image: imageUrl,
+    //   };
+    //   return newImage;
+    // });
+
+    setDayFormData((prevData) => {
+      const updatedData = prevData.map((day, i) => {
+        if (i === index) {
+          return {
+            ...day,
+            image: imageUrl,
+          };
+        }
+        return day;
+      });
+      return updatedData;
+    });
+  };
+
   const handleFormChange = (
     event: ChangeEvent<HTMLInputElement>,
     index: number
   ) => {
-    const data = [...dayFormData];
-    data[index][event.target.name] = event.target.value;
-    setDayFormData(data);
+    // setDayFormData((prevData) => {
+    //   const newData = [...prevData];
+    //   newData[index] = {
+    //     ...newData[index],
+    //     [event.target.name]: event.target.value,
+    //   };
+    //   return newData;
+    // });
+
+    const { name, value } = event.target;
+    setDayFormData((prevData) => {
+      const updateData = prevData.map((day, i) => {
+        if (i === index) {
+          return {
+            ...day,
+            [name]: value,
+          };
+        }
+        return day;
+      });
+      return updateData;
+    });
   };
 
   const handleAddDay = () => {
-    console.log(dayFormData);
-
-    const object = {
+    const newDay = {
       subTitle: "",
       describe: "",
       considerations: "",
       destination: "",
       image: "",
     };
-    setDayFormData([...dayFormData, object]);
+    setDayFormData((prevData) => [...prevData, newDay]);
   };
 
   const handleCurrentDisplay = (e: FormEvent, index: number) => {
@@ -95,7 +165,8 @@ const AddTour = () => {
     <>
       <div className="w-6/12 mx-auto mt-16 mb-8">
         <div className="flex flex-col gap-y-2">
-          <form onSubmit={() => handleSubmit}>
+          <p className="text-red-400 font-normal text-sm">{message}</p>
+          <form onSubmit={handleSubmit}>
             <>
               <label htmlFor="title">Аяллын гарчиг/Title:</label>
               <input
@@ -142,6 +213,7 @@ const AddTour = () => {
                       index={index}
                       dayDetailOf={dayDetail}
                       handleFormChange={handleFormChange}
+                      handleImageUrl={handleImageUrl}
                     />
                   </div>
                 </div>

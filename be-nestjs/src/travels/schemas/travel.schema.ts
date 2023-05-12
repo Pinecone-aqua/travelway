@@ -1,20 +1,32 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { HydratedDocument } from 'mongoose';
+import { Document } from 'mongoose';
 
-export type TravelDocument = HydratedDocument<Travel>;
+export interface Day {
+  subTitle: string;
+  describe: string;
+  image: string;
+  considerations: string;
+  destination: string;
+}
+
+export type TravelDocument = Document & {
+  title: string;
+  description: string;
+  day: Day[];
+};
 
 @Schema({
   timestamps: true,
 })
 export class Travel {
-  @Prop()
+  @Prop({ required: true })
   title: string;
 
-  @Prop()
+  @Prop({ required: true })
   description: string;
 
-  @Prop([])
-  day: [];
+  @Prop({ type: [{ type: Object }] })
+  day: Day[];
 }
 
 export const TravelSchema = SchemaFactory.createForClass(Travel);

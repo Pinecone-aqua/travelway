@@ -1,12 +1,15 @@
 import { DayType } from "../../../util/types";
 import React, { ChangeEvent } from "react";
+import ImageUploader from "./ImageUploader";
+
 
 const TourDetails = (props: {
   index: number;
   dayDetailOf: DayType;
   handleFormChange(e: ChangeEvent<HTMLInputElement>, index: number): void;
+  handleImageUrl: (imageUrl: string, index: number) => void;
 }): JSX.Element => {
-  const { index, dayDetailOf, handleFormChange } = props;
+  const { index, dayDetailOf, handleFormChange, handleImageUrl } = props;
 
   return (
     <div key={index} className="flex flex-col border rounded-lg py-4 px-8 mt-8">
@@ -61,13 +64,7 @@ const TourDetails = (props: {
       <label className="mt-4" htmlFor="image">
         Зураг/Image:
       </label>
-      <input
-        className="inline-block p-2 rounded w-full border border-slate-600"
-        type="file"
-        name="image"
-        defaultValue={dayDetailOf.image}
-        onChange={(e) => handleFormChange(e, index)}
-      />
+      <ImageUploader index={index} handleImageUrl={handleImageUrl} />
     </div>
   );
 };

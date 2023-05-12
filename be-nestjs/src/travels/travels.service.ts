@@ -8,11 +8,13 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Travel } from './schemas/travel.schema';
 import { CreateTravelDto } from './dto/create-travel.dto';
 import { UpdateTravelDto } from './dto/update-travel.dto';
+import { CloudinaryService as Cloudinary } from 'src/cloudinary/cloudinary.service';
 
 @Injectable()
 export class TravelsService {
   constructor(
     @InjectModel('Travel') private readonly travelModel: Model<Travel>,
+    private readonly cloudinary: Cloudinary,
   ) {}
 
   async create(createTravelDto: CreateTravelDto): Promise<Travel> {
@@ -62,5 +64,20 @@ export class TravelsService {
   async findTravels(id: string): Promise<Travel[]> {
     const result = await this.travelModel.find({ userId: id });
     return result;
+  }
+
+  async addOneImageToCld(file: any): Promise<any> {
+    const { secure_url } = await this.cloudinary.uploadImage(file);
+    return secure_url;
+  }
+
+  async addToCloudinary(files: any, i: number): Promise<any> {
+    const arrImage = [];
+    await Promise.all(
+      await files?.map(async (file) => {
+        const { secure_url } = await this.cloudinary.uploadImage(file);
+        return arrImage.push(secure_url);
+      }),
+    );
   }
 }

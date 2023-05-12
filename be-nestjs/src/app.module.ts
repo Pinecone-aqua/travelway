@@ -9,12 +9,12 @@ import { UsersModule } from './user/user.module';
 import { MiniStoryModule } from './miniStory/miniStory.module';
 import { TravelWayModule } from './travelWay/miniStory.module';
 import { StoryModule } from './story/story.module';
+import { dbConstants } from './constants';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
-    MongooseModule.forRoot(
-      'mongodb+srv://aqua2022yalaltgandush:t7Zg4gQrdwhd75BG@cluster0.uqiga9k.mongodb.net/travelway?retryWrites=true&w=majority',
-    ),
+    MongooseModule.forRoot(dbConstants.db_uri),
     AuthModule,
     UsersModule,
     TagsModule,
@@ -22,6 +22,9 @@ import { StoryModule } from './story/story.module';
     StoryModule,
     MiniStoryModule,
     TravelWayModule,
+    ConfigModule.forRoot({
+      envFilePath: './env',
+    }),
   ],
   controllers: [AppController],
   providers: [AppService],
