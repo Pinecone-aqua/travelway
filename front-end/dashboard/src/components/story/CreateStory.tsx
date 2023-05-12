@@ -10,7 +10,6 @@ export default function CreateStory(): JSX.Element {
   const [addIndicator, setAddIndicator] = useState<string[]>([]);
 
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -30,7 +29,7 @@ export default function CreateStory(): JSX.Element {
 
   return (
     <>
-      <Button className="bg-mycolor" onClick={handleShow}>
+      <Button className="button" onClick={handleShow}>
         Launch
       </Button>
 

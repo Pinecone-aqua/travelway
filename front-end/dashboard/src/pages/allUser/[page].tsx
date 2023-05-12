@@ -30,6 +30,7 @@ export default function AllUser(props: { users: UserType[] }): JSX.Element {
             <th scope="col">Нэр</th>
             <th scope="col">И-мэйл хаяг</th>
             <th scope="col">Утас</th>
+            <th scope="col">бидэнтэй нэгдсэн огноо</th>
           </tr>
         </thead>
         <tbody className="h-32">

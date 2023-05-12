@@ -9,57 +9,42 @@ export default function StoryPage(props: { data: StoryType[] }): JSX.Element {
   const { data } = props;
 
   const [currentPage, setCurrentPage] = useState<number>(1);
-
-  const [create, setCreate] = useState(false);
   const path = "allStories";
 
   return (
     <>
       <div className="bg-white rounded-2xl h-full px-20 py-10">
         <div>
-          {" "}
-          {create == true ? (
-            <div className="">
-              <button
-                className="bg-gradient-to-r from-tocolor to-mycolor text-white shadow-lg  shadow-mycolor px-4 py-2 rounded-xl w-20 flex justify-end"
-                onClick={() => setCreate(false)}
-              >
-                back
-              </button>
-            </div>
-          ) : (
-            <div className="">
-              <div className="flex justify-between">
-                <div>
-                  <Pagination
-                    currentPage={currentPage}
-                    setCurrentPage={setCurrentPage}
-                    path={path}
-                  />
-                </div>
-                <div className="bg-gradient-to-r from-tocolor to-mycolor text-white shadow-lg  shadow-mycolor px-3 py-2  rounded-xl">
-                  <CreateStory />
-                </div>
+          <div className="">
+            <div className="flex justify-between h-12">
+              <div className="h-12">
+                <Pagination
+                  currentPage={currentPage}
+                  setCurrentPage={setCurrentPage}
+                  path={path}
+                />
               </div>
 
-              <table className="w-full bg-slate-100 rounded-2xl mt-5 shadow-lg shadow-gray-300">
-                <thead className="h-14 text-left p-5">
-                  <tr className="p-5">
-                    <th scope="col" className="p-5">
-                      story id
-                    </th>
-                    <th scope="col">Title</th>
-                    <th scope="col">province</th>
-                  </tr>
-                </thead>
-                <tbody className="h-32">
-                  {data.map((unit: StoryType, index: number) => (
-                    <Story key={index} unit={unit} />
-                  ))}
-                </tbody>
-              </table>
+              <CreateStory />
             </div>
-          )}
+
+            <table className="w-full bg-slate-100 rounded-2xl mt-5 shadow-lg shadow-gray-300">
+              <thead className="h-14 text-left p-5">
+                <tr className="p-5">
+                  <th scope="col" className="p-5">
+                    story id
+                  </th>
+                  <th scope="col">Title</th>
+                  <th scope="col">province</th>
+                </tr>
+              </thead>
+              <tbody className="h-32">
+                {data.map((unit: StoryType, index: number) => (
+                  <Story key={index} unit={unit} />
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </>

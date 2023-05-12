@@ -1,52 +1,19 @@
 import { UserType } from "@/util/types";
-import axios from "axios";
-import Link from "next/link";
-import { useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
+import DeleteModalUser from "./UserDeleteModal";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Dropdown from "react-bootstrap/Dropdown";
+import { Button } from "react-bootstrap";
+// import UserDeleteModal from "./UserDeleteModal";
 
 interface PropType {
   unit: UserType;
 }
 export default function User(props: PropType): JSX.Element {
   const data = props.unit;
-  const [details, setDetails] = useState(false);
-  const [allow, setAllow] = useState(false);
-  function deleteHandler(userId: string) {
-    axios.delete(`http://localhost:3009/allUsers/${userId}`);
-  }
 
   return (
     <>
-      {allow === true ? (
-        <div
-          className="absolute flex flex-col justify-around items-center  rounded-2xl h-32 w-76 bg-gradient-to-r from-tocolor to-mycolor text-white shadow-xl shadow-cyan-900 ms-32 "
-          onClick={() => {
-            setAllow(false);
-          }}
-        >
-          <p className="p-2 text-xl">
-            ta {data.username}-iig ustgahdaa itgeltei baina uu
-          </p>
-          <div>
-            <button
-              className="w-24 p-2 bg-white text-mycolor text-xl rounded-lg m-4"
-              onClick={() => setAllow(false)}
-            >
-              ugui
-            </button>
-            <button
-              className="w-24 p-2 bg-white text-mycolor text-xl rounded-lg m-4"
-              onClick={() => {
-                deleteHandler(data._id), setAllow(false);
-              }}
-            >
-              tiim
-            </button>
-          </div>
-        </div>
-      ) : (
-        <></>
-      )}
       <tr className="border-t-2 border-white">
         <td className="p-4">{data._id.slice(0, 5)}...</td>
         <td>{data.nickname}</td>
@@ -55,24 +22,33 @@ export default function User(props: PropType): JSX.Element {
         <td>{data.phone}</td>
         <td>{data.createdAt}</td>
         <td className="z-40">
-          <div onClick={() => setDetails((prev) => !prev)} className="z-50">
-            <BsThreeDotsVertical />
-            {details && (
-              <div className="flex flex-col justify-around items-center rounded-2xl h-32 w-32 absolute bg-gradient-to-r from-tocolor to-mycolor">
-                <button className="w-24 p-2 bg-white text-mycolor text-xl rounded-lg">
-                  <Link href={`/miniStory/${data._id}`}>profile</Link>
-                </button>
-                <button
-                  className="w-24 p-2  bg-white text-mycolor text-xl rounded-lg"
-                  onClick={() => setAllow(true)}
-                >
-                  delete
-                </button>
-              </div>
-            )}
+          <div className="z-50">
+            <Dropdown>
+              <Dropdown.Toggle className="toggle">
+                <BsThreeDotsVertical />
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu>
+                <Dropdown.Item href={`/miniStory/${data._id}`}>
+                  <Button className="button">Profile</Button>
+                </Dropdown.Item>
+                <Dropdown.Item href="#/action-2">
+                  <DeleteModalUser username={data.username} id={data._id} />
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
           </div>
         </td>
       </tr>
     </>
   );
 }
+
+// {details && (
+//   <div className="flex flex-col justify-around items-center rounded-2xl h-32 w-32 absolute bg-gradient-to-r from-tocolor to-mycolor">
+//     <button className="w-24 p-2 bg-white text-mycolor text-xl rounded-lg">
+//       <Link href={`/miniStory/${data._id}`}>profile</Link>
+//     </button>
+//     {/* <UserDeleteModal username={data.username} id={data._id} /> */}
+//   </div>
+// )}

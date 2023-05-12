@@ -3,5 +3,23 @@
 @tailwind utilities;
 
 .offcanvas {
-  width: 700px !important;
+  width: 550px !important;
+}
+.button {
+  width: 100px;
+  background: linear-gradient(
+    to right,
+    rgb(75, 55, 218),
+    rgb(58, 27, 151)
+  ) !important;
+}
+.inActiveButton {
+  width: 100px;
+  color: rgb(58, 27, 151) !important;
+  background-color: rgb(243, 245, 249) !important;
+}
+.toggle {
+  background-color: rgb(243, 245, 249) !important ;
+  color: purple !important;
+  border: none !important;
 }
