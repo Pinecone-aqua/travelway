@@ -12,3 +12,20 @@
 #pr_id_2_content {
   padding: 0;
 } */
+
+.css-1ik4h6n {
+  visibility: hidden;
+}
+
+.css-qlig70 {
+  max-width: 1200px;
+}
+
+.css-efhinx {
+  --chakra-sizes-md: 1200px;
+  max-width: 600px;
+}
+
+summary {
+  list-style: none;
+}

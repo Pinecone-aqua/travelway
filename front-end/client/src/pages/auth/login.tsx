@@ -24,7 +24,8 @@ export default function Login(): JSX.Element {
     setLoginForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  async function onSubmit(e: React.SyntheticEvent): Promise<void> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  async function onSubmit(e: any): Promise<void> {
     e.preventDefault();
     const data: LoginForm = {
       email: loginForm.email,
@@ -43,8 +44,7 @@ export default function Login(): JSX.Element {
       const endpoint = `http://localhost:3009/auth/login`;
       const response = await axios.post(endpoint, data);
 
-      console.log("RESPONSE ======> ");
-      console.log(response);
+      console.log("RESPONSE ======> ", response);
       // response.data.status status
       // response.data.msg message
       // response.data.token token
@@ -87,10 +87,9 @@ export default function Login(): JSX.Element {
   }
 
   function googleLoginHandler() {
-    axios.get(`http://localhost:3009/google-login`).then((response) => {
-      console.log("Google");
-      console.log(response.data);
-      router.push(response.data);
+    axios.get(`http://localhost:3009/google-login`).then((res) => {
+      console.log("google data", res.data);
+      router.push(res.data);
     });
   }
 
