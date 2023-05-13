@@ -9,12 +9,12 @@ export default function User(): JSX.Element {
   // let userImage = "";
 
   // try {
-    // useEffect(() => {
-    //   if (!localStorage.getItem("userId")) return;
+  // useEffect(() => {
+  //   if (!localStorage.getItem("userId")) return;
 
-    //   getFetchdata();
-    //   getUserFetch();
-    // }, []);
+  //   getFetchdata();
+  //   getUserFetch();
+  // }, []);
 
   //   const logUser = localStorage.getItem("userId");
 

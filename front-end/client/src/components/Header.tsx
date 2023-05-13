@@ -14,8 +14,8 @@ interface HeaderType {
 
 const MENULIST = [
   { name: "Home", uri: "/" },
-  { name: "Stories", uri: "/stories" },
-  { name: "Travel Blog", uri: "/gadget" },
+  { name: "stories", uri: "/stories" },
+  { name: "TravelBlog", uri: "/travelBlog" },
   { name: "About us", uri: "/about" },
 ];
 
@@ -110,12 +110,12 @@ const LoginAuthentication = ({ user, setUser }: HeaderType) => {
 };
 
 const LoginButton = () => (
-  <button className="w-8 h-8 ease-in duration-300">
+  <button className="w-8 h-8">
     <picture>
       <img
         src="../../images/efil.webp"
         alt="pic"
-        className="w-8 h-8 ease-in rounded-full border border-[2px]"
+        className="w-8 h-8 ease-in rounded-full border "
       />
     </picture>
   </button>

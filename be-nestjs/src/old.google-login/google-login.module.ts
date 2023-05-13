@@ -2,8 +2,7 @@ import { Module } from '@nestjs/common';
 import { GoogleLoginController } from './google-login.controller';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { UsersModule } from '../user/user.module';
-import { GoogleLoginService } from './google.service';
+import { UsersModule } from 'src/user/user.module';
 
 @Module({
   imports: [
@@ -18,6 +17,6 @@ import { GoogleLoginService } from './google.service';
     UsersModule,
   ],
   controllers: [GoogleLoginController],
-  providers: [GoogleLoginService],
+  providers: [],
 })
 export class GoogleLoginModule {}

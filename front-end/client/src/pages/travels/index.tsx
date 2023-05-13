@@ -23,7 +23,6 @@ interface TravelProps {
 }
 
 export default function Travel({ travels }: TravelProps) {
-
   return (
     <Layout>
       <Head>

@@ -22,9 +22,20 @@ export interface StoryType {
   sentence: string;
 }
 
+export interface miniStoryType {
+  _id: string;
+  image: string;
+  title: string;
+  sentence: string;
+}
+
 export interface LoginForm {
   email: string | undefined;
   password: string;
+}
+
+export interface travelWayType {
+  title: string;
 }
 
 export interface UserContextType {

@@ -1,21 +1,14 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unnecessary-condition */
-/* eslint-disable @next/next/no-img-element */
 import MiniStoryAdd from "@/components/userProfile/MiniStoryAdd";
 import TravelGuide from "@/components/userProfile/TravelGuide";
-import TravelWay from "@/components/userProfile/TravelWay";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { miniStoryType } from "../../util/mini-story-type";
+import { miniStoryType } from "../../util/types";
 import MiniStory from "@/components/userProfile/MiniStory";
-import TravelWayAdd from "@/components/userProfile/TravelWayAdd";
-import { travelWayType } from "../../util/travelWayType";
 
 export default function User(): JSX.Element {
-  const [change, setChange] = useState();
+  const [change, setChange] = useState("Mini story");
   const [story, setStory] = useState<miniStoryType[]>();
 
-  const [travelWay, setTravelWay] = useState<travelWayType[]>();
   const defaultStyle = "border-black  py-[3px] font-semibold ";
   const activatedStyle = "border-black  py-[3px] font-semibold  border-b-2 ";
   const topBtnStyle =
@@ -29,41 +22,16 @@ export default function User(): JSX.Element {
     const getFetchdata = async () => {
       const travels = await axios.get("http://localhost:3009/miniStory/get");
       const { data } = travels;
+
       setStory(data);
     };
     getFetchdata();
   }, []);
 
-  useEffect(() => {
-    const getFetchdata = async () => {
-      const travelWay = await axios.get(`http://localhost:3009/travelways/get`);
-      const { data } = travelWay;
-      setTravelWay(data);
-    };
-    getFetchdata();
-  }, []);
-
-  // useEffect(() => {
-  //   const getFetchdata = async () => {
-  //     const travelWay = await fetch(`http://localhost:3009/travelways/get`, {
-  //       method: "GET",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.parse({}),
-  //     });
-  //     const { data } = travelWay;
-  //     console.log("data :", data);
-
-  //     setTravelWay(data);
-  //   };
-  //   getFetchdata();
-  // }, []);
   return (
     <div>
       <div className="w-full justify-center flex   drop-shadow-2xl  ">
-        {/* <Header /> */}
-        <div className="flex justify-center bottom-[-80px] ">
+        <div className="flex justify-center pt-5">
           <img
             src="../images/efil.webp"
             alt="pic"
@@ -73,7 +41,9 @@ export default function User(): JSX.Element {
       </div>
       <div className="h-[3rem]" />
       <div className="items-center justify-center flex flex-col gap-10 relative ">
-        <p className="font-bold text-[26px]">Robert Harrison</p>
+        <p className="font-bold text-[26px] border p-2 rounded-xl">
+          Robert Harrison
+        </p>
         <div className="w-[80%] grid gap-10">
           <div className="flex justify-center gap-5 font-semibold">
             <button className={`${topBtnStyle}`}>Follow</button>
@@ -99,14 +69,6 @@ export default function User(): JSX.Element {
             </button>
             <button
               className={
-                change == "TravelWay" ? `${activatedStyle}` : `${defaultStyle}`
-              }
-              onClick={changer}
-            >
-              TravelWay
-            </button>
-            <button
-              className={
                 change == "TravelGuide"
                   ? `${activatedStyle}`
                   : `${defaultStyle}`
@@ -117,25 +79,7 @@ export default function User(): JSX.Element {
             </button>
           </div>
           <div className="relative">
-            {change == "TravelWay" ? (
-              <>
-                <div>
-                  <div className="relative">
-                    <TravelWayAdd />
-                    <div className=" place-content-center ">
-                      {travelWay?.map(
-                        (travelWayData: travelWayType, index: number) => (
-                          <TravelWay
-                            travelWayData={travelWayData}
-                            key={index}
-                          />
-                        )
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </>
-            ) : change == "TravelGuide" ? (
+            {change == "TravelGuide" ? (
               <>
                 <TravelGuide />
               </>
@@ -145,9 +89,11 @@ export default function User(): JSX.Element {
                   <div>
                     <MiniStoryAdd />
                   </div>
-                  <div className="flex gap-3 flex-wrap place-content-center ">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     {story?.map((storyType: miniStoryType, index: number) => (
-                      <MiniStory storyType={storyType} key={index} />
+                      <div className="relative" key={index}>
+                        <MiniStory storyType={storyType} />
+                      </div>
                     ))}
                   </div>
                 </div>

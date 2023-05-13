@@ -26,16 +26,22 @@ export default function MiniStoryAdd(): JSX.Element {
     <>
       {popup ? (
         <div>
-          <div className="w-[100%] border absolute bg-white p-5 ">
+          <div className="w-[100%] border absolute bg-white p-5 z-50">
+            <button
+              onClick={popUpCloseHandler}
+              className="rounded-full bg-gray-200 m-2 w-[50px] h-[50px]"
+            >
+              back
+            </button>
             <form
-              className="flex grid place-content-center gap-5 "
+              className=" place-content-center gap-5 w-[100%]"
               onSubmit={miniStoryHandler}
             >
-              <div className="gap-2 grid w-[800px]">
+              <div className="gap-2 grid w-[100%]">
                 <input
                   type="text"
                   placeholder="image"
-                  className="border w-full p-2 rounded-xl"
+                  className="border  p-2 rounded-xl"
                   name="image"
                 />
 
@@ -43,25 +49,19 @@ export default function MiniStoryAdd(): JSX.Element {
                   name="title"
                   type="text"
                   placeholder="Title"
-                  className="border w-full w-full p-2 rounded-xl"
+                  className="border  p-2 rounded-xl"
                 />
 
                 <textarea
                   name="sentence"
                   placeholder="sentence"
-                  className="border w-full h-[100%] p-2 rounded-xl"
+                  className="border h-auto p-2 rounded-xl"
                 />
               </div>
               <button type="submit" className="border p-2 drop-shadow-xl">
                 Submit
               </button>
             </form>
-            <button
-              onClick={popUpCloseHandler}
-              className="rounded-full bg-gray-200 m-2 w-[50px] h-[50px]"
-            >
-              back
-            </button>
           </div>
         </div>
       ) : (

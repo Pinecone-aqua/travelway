@@ -1,11 +1,8 @@
-/* eslint-disable @typescript-eslint/no-misused-promises */
 import { GrAddCircle } from "react-icons/gr";
-// import axios from "axios";
 import React, { useRef, useState } from "react";
 import { Editor } from "primereact/editor";
-// import TextEditor from "../TextEditor";
 
-export default function TravelWayAdd(): JSX.Element {
+export default function TravelBlogAdd(): JSX.Element {
   const [popup, setPopup] = useState(false);
   const [text, setText] = useState<string>("");
   const textEditorRef = useRef(null);
@@ -57,9 +54,9 @@ export default function TravelWayAdd(): JSX.Element {
     <>
       {popup ? (
         <div>
-          <div className="w-[100%] border relative bg-white p-5 ">
+          <div className="w-[100%] border relative bg-white p-5 z-100">
             <form
-              className="flex grid place-content-center gap-5 "
+              className="flex grid place-content-center gap-5 z-100"
               onSubmit={handleSubmit}
             >
               <div className="bg-gray-100 card">
