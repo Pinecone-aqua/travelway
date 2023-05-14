@@ -24,9 +24,9 @@ export default function Header(): JSX.Element {
   const [user, setUser] = useState<HeaderType>();
 
   const activatedStyle =
-    "opacity-100 text-xl mt-3 ease-out duration-300 md:w-[192px] sm:w-[142px] w-[96px]";
+    "opacity-100 text-xl hover:text-black  text-black ease-out duration-300 md:w-[192px] sm:w-[142px] w-[96px] border-b-4 border-gray-400";
   const defaultStyle =
-    "opacity-70 text-lg mt-3 ease-out duration-300 md:w-[160px] sm:w-[128px] w-[80px]";
+    "opacity-70 text-lg hover:text-black ease-out duration-300 md:w-[160px] sm:w-[128px] w-[80px]";
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const token: any = Cookies.get("token");
@@ -41,9 +41,9 @@ export default function Header(): JSX.Element {
   }
 
   return (
-    <div className="sticky top-0">
-      <div className="flex gap-3 justify-center content-center text-center text-white">
-        <div className="flex items-center justify-center h-7 w-full scroll-m-2">
+    <div className="sticky ">
+      <div className="flex gap-3 justify-center content-center text-center ">
+        <div className="flex h-7 w-full scroll-m-2 ">
           {MENULIST.map((menuItem, index) => (
             <Link key={index} href={menuItem.uri}>
               <button
@@ -97,10 +97,7 @@ const LoginAuthentication = ({ user, setUser }: HeaderType) => {
             </div>
           </div>
         ) : (
-          <div
-            className="cursor-pointer flex items-center mt-3 opacity-100"
-            onClick={loginCheckAuth}
-          >
+          <div className="cursor-pointer" onClick={loginCheckAuth}>
             <LoginButton />
           </div>
         )}
@@ -115,7 +112,7 @@ const LoginButton = () => (
       <img
         src="../../images/efil.webp"
         alt="pic"
-        className="w-8 h-8 ease-in rounded-full border "
+        className="w-10 h-[33px] ease-in rounded-full border object-cover "
       />
     </picture>
   </button>

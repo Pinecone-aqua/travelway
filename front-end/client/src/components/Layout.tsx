@@ -1,5 +1,6 @@
 import React, { ReactNode } from "react";
 import Header from "./Header";
+import Image from "next/image";
 
 interface PropType {
   children: ReactNode;
@@ -7,27 +8,37 @@ interface PropType {
 
 const Layout = ({ children }: PropType): JSX.Element => (
   <>
-    <div className=" w-full xxl:h-[500px] xl:h-[400px] lg:h-[300px] md:h-[200px]  drop-shadow-2xl relative">
-      <picture>
-        <img
-          src="./images/sdcfvgbhnjik8765432wdfghjkio87654.webp"
-          alt="pic"
-          className="w-full object-cover absolute h-full"
-        />
-      </picture>
+    <div className=" drop-shadow-2xl  p-3">
       <Header />
-      <div className="box-border relative ms-5 h-full">
-        <h2 className="text-white  xxl:text-[10rem] xl:text-[8rem] md:text-[5rem] sm:text-[3rem]">
-          Mongolia
-        </h2>
-        <p className="inline-block bg-white bg-opacity-50 rounded-lg right-0 text-center py-1 px-4">
-          <span className="opacity-100 text-white text-3xl font-bold">
-            {new Date().toISOString().substring(0, 10)}
-          </span>
-        </p>
+      <div className=" drop-shadow-xl border rounded-xl mt-4 flex justify-center p-4 w-[100%]">
+        <div className=" flex justify-center grid place-content-center p-2 gap-5">
+          <div className="flex justify-center">
+            <h2 className="font-bold text-[35px]">
+              The Informed Retailer Blog
+            </h2>
+          </div>
+          <p className="flex justify-center ">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem dolor
+            sit amet consectetur architecto dolorum fuga pariatur?
+          </p>
+          <div className="box-border h-full">
+            <div className="flex gap-3 justify-center ">
+              <button className="rounded-full p-2 px-5  text-[20px] bg-black text-white">
+                Get start
+              </button>
+            </div>
+          </div>
+        </div>
+        <img
+          width={500}
+          height={500}
+          src={`../../images/tokyofuji.webp`}
+          alt=""
+          className="border rounded-xl h-[500px]  object-cover w-[100%]"
+        />
       </div>
     </div>
-    <div className="">{children}</div>
+    <div>{children}</div>
     <Footer />
   </>
 );

@@ -3,44 +3,36 @@ import { useEffect, useState } from "react";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
-import Image from "next/image";
-import { StoryType } from "../../util/types";
+import { StoryType, TravelType } from "../../util/types";
+import { Flex, Avatar, Heading, CardBody, Box, Card } from "@chakra-ui/react";
+import React from "react";
+import { useDisclosure } from "@chakra-ui/react";
+import TravelblogCard from "@/components/travelBlog/TravelblogCard";
 
-import {
-  CardHeader,
-  Flex,
-  Avatar,
-  Heading,
-  IconButton,
-  CardBody,
-  CardFooter,
-  Box,
-  Button,
-  Card,
-} from "@chakra-ui/react";
-import { BsThreeDotsVertical } from "react-icons/bs";
-import { MdModeEdit } from "react-icons/md";
+const BlogOffCanvas = React.lazy(
+  () => import("../components/travelBlog/BlogOffCanvas")
+);
+
+interface UserType {
+  _id: string;
+  username: string;
+  image: string;
+}
 
 export default function TravelBlog(): JSX.Element {
   const [stories, setStories] = useState<StoryType[]>([]);
-  const [userData, setUserData] = useState([]);
+  const [userData, setUserData] = useState<UserType[]>([]);
+  const [isOpen, setIsOpen] = useState(false);
+  const [changeInput, setChangeInput] = useState(false);
   let userName = "";
   let userImage = "";
 
-  try {
-    useEffect(() => {
-      // if (!localStorage.getItem("userId")) return;
-
-      getFetchdata();
-      getUserFetch();
-    }, []);
-
+  useEffect(() => {
     const logUser = localStorage.getItem("userId");
 
     const getFetchdata = async (): Promise<void> => {
       const travels = await axios.get("http://localhost:3009/ministory/get");
       const disp = travels.data;
-
       setStories(disp);
     };
 
@@ -51,81 +43,45 @@ export default function TravelBlog(): JSX.Element {
     };
 
     if (logUser) {
-      userData
-        .filter(
-          (user: { _id: string; username: string; image: string }) =>
-            user._id === logUser
-        )
-        .map((user: { username: string; image: string }) => {
-          userName = user.username;
-          userImage = user.image;
-        });
+      getFetchdata();
+      getUserFetch();
+      setUserData((prevUserData) => {
+        const currentUser = prevUserData.find(
+          (user: UserType) => user._id === logUser
+        );
+        userName = currentUser?.username || "";
+        userImage = currentUser?.image || "";
+        return prevUserData;
+      });
     } else {
       console.log("Error user not found");
     }
-  } catch (error) {
-    console.log(error);
-  }
+  }, []);
+
+  const handleOpen = (story: StoryType) => {
+    setIsOpen(true);
+    setChangeInput(false);
+  };
+
+  const handleClose = () => {
+    setIsOpen(false);
+  };
 
   return (
     <>
       <div className="flex justify-center content-center p-5">
         <div className="gap-3 grid">
           <div className="gap-3 grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 xxl:grid-cols-4 relative ">
-            {stories.map((story) => (
-              <div key={story._id}>
-                <Card maxW="md">
-                  <CardHeader>
-                    <Flex>
-                      <Flex
-                        flex="1"
-                        gap="4"
-                        alignItems="center"
-                        flexWrap="wrap"
-                      >
-                        <Avatar name="Segun Adebayo" src={story.title} />
-
-                        <Box>
-                          <Heading size="sm">{story.title}</Heading>
-                          <text>Creator,</text>
-                        </Box>
-                      </Flex>
-                      <IconButton
-                        variant="ghost"
-                        colorScheme="gray"
-                        aria-label="See menu"
-                        icon={<BsThreeDotsVertical />}
-                      />
-                    </Flex>
-                  </CardHeader>
-                  <CardBody>
-                    <text>{story.sentence.slice(0, 50)}...</text>
-                  </CardBody>
-                  <Image
-                    objectFit="cover"
-                    src={story.image}
-                    width={500}
-                    height={500}
-                    alt="Chakra UI"
-                  />
-
-                  <CardFooter
-                    justify="space-between"
-                    flexWrap="wrap"
-                    sx={{
-                      "& > button": {
-                        minW: "136px",
-                      },
-                    }}
-                  >
-                    <Button flex="1" variant="ghost" leftIcon={<MdModeEdit />}>
-                      Like
-                    </Button>
-                    <Button flex="1" variant="ghost" leftIcon={<MdModeEdit />}>
-                      Share
-                    </Button>
-                  </CardFooter>
-                </Card>
+            {stories?.slice(0, 8).map((story: StoryType, index: number) => (
+              <div key={index}>
+                <TravelblogCard
+                  story={story}
+                  isOpen={isOpen}
+                  onClose={handleClose}
+                  changeInput={changeInput}
+                  setChangeInput={setChangeInput}
+                  onOpen={() => handleOpen(story)}
+                />
               </div>
             ))}
           </div>
@@ -134,7 +90,3 @@ export default function TravelBlog(): JSX.Element {
     </>
   );
 }
-
-/**
- * Stories to link profile component
- */

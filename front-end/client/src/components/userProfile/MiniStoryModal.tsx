@@ -26,13 +26,9 @@ type Props = {
 
 export default function MiniStoryModal(props: Props): JSX.Element {
   const { isOpen, onClose, story, changeInput, setChangeInput, edit } = props;
-  //   const [selectedImage, setSelectedImage] = useState<string>(story.image);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-  //   const handleImageUpload = (image: string) => {
-  //     setSelectedImage(image);
-  //     setChangeInput(true);
-  //   };
+  console.log(story);
 
   function handleChange() {
     const textarea = textareaRef.current;
