@@ -4,7 +4,6 @@ import { Document } from 'mongoose';
 export interface Day {
   subTitle: string;
   describe: string;
-  image: string;
   considerations: string;
   destination: string;
 }
@@ -12,6 +11,8 @@ export interface Day {
 export type TravelDocument = Document & {
   title: string;
   description: string;
+  userId: string;
+  images: string[];
   day: Day[];
 };
 
@@ -24,6 +25,12 @@ export class Travel {
 
   @Prop({ required: true })
   description: string;
+
+  @Prop()
+  userId: string;
+
+  @Prop()
+  images: string[];
 
   @Prop({ type: [{ type: Object }] })
   day: Day[];
