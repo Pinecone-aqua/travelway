@@ -29,7 +29,7 @@ export default function User(props: PropType): JSX.Element {
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
-                <Dropdown.Item href={`/miniStory/${data._id}`}>
+                <Dropdown.Item href={`/users/userprofile/${data._id}`}>
                   <Button className="button">Profile</Button>
                 </Dropdown.Item>
                 <Dropdown.Item href="#/action-2">

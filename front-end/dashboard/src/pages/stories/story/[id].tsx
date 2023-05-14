@@ -12,7 +12,7 @@ export default function StoryID(props: { data: StoryType }): JSX.Element {
   function editHandler(e: any): void {
     e.preventDefault();
 
-    axios.patch(`http://localhost:3009/allStories/${query.id}`, {
+    axios.patch(`http://localhost:3009/stories/${query.id}`, {
       title: e.target.title.value,
       description: e.target.description.value,
       myth: e.target.myth.value,
@@ -65,21 +65,15 @@ export default function StoryID(props: { data: StoryType }): JSX.Element {
             </div>
           </div>
           <div className="w-1/2">
-            <picture>
-              <img
-                className="h-96 w-full rounded-2xl shadow-xl shadow-cyan-700 mx-2"
-                src={data.image}
-                alt=""
-              />
-            </picture>
-            <div className="flex justify-around p-2 ">
-              <picture className="bg-gray-300 w-1/2 h-64 rounded-2xl m-2 shadow-xl shadow-cyan-700">
-                <img src="" alt="" />
+            {data.image.map((img: string, index: number) => (
+              <picture key={index} className="flex flex-wrap">
+                <img
+                  className="h-64 w-[49%] rounded-2xl shadow-xl  shadow-cyan-700 mx-2"
+                  src={img}
+                  alt=""
+                />
               </picture>
-              <picture className="bg-gray-300 w-1/2 h-64 rounded-2xl m-2 shadow-xl shadow-cyan-700">
-                <img src="" alt="" />
-              </picture>
-            </div>
+            ))}
             <p>зураг нэмэх</p>
             <input type="file" />
           </div>
@@ -96,7 +90,7 @@ export default function StoryID(props: { data: StoryType }): JSX.Element {
 }
 
 export async function getStaticPaths() {
-  const res = await fetch("http://localhost:3009/allStories/allId");
+  const res = await fetch("http://localhost:3009/stories/allId");
   const ids = await res.json();
 
   const paths = await ids.map((id: { _id: string }) => ({
@@ -111,7 +105,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }: { params: { id: string } }) {
   const { data } = await axios.get(
-    `http://localhost:3009/allStories/${params.id}`
+    `http://localhost:3009/stories/${params.id}`
   );
   return {
     props: {

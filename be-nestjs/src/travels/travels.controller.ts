@@ -23,12 +23,23 @@ export class TravelsController {
   create(@Body() createTravelDto: CreateTravelDto): Promise<Travel> {
     return this.travelService.create(createTravelDto);
   }
-
+  @Get('pageNum')
+  countNum(): Promise<number> {
+    return this.travelService.countNum();
+  }
+  @Get('allId')
+  findAllId(): Promise<number> {
+    return this.travelService.findAllId();
+  }
   @Get('get')
   findAll(): Promise<Travel[]> {
     return this.travelService.findAll();
   }
 
+  @Get('page:id')
+  findPage(@Param('id') pageNum: number): Promise<Travel> {
+    return this.travelService.findPage(pageNum);
+  }
   @Get(':id')
   findOne(@Param() params: { id: string }): Promise<Travel> {
     return this.travelService.findOne(params.id);

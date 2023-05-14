@@ -12,7 +12,7 @@ export class Story {
   @Prop()
   description: string;
   @Prop()
-  image: string;
+  image: string[];
   @Prop()
   myth: string;
   @Prop()

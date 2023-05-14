@@ -60,6 +60,10 @@ export class TravelsService {
     return deletedTravels;
   }
   //sharva added
+  async countNum(): Promise<number> {
+    const result = await this.travelModel.count();
+    return result;
+  }
 
   async findTravels(id: string): Promise<Travel[]> {
     const result = await this.travelModel.find({ userId: id });
@@ -79,5 +83,18 @@ export class TravelsService {
         return arrImage.push(secure_url);
       }),
     );
+  }
+  // sharava added
+  async findAllId(): Promise<any> {
+    const result = await this.travelModel.find({}).select({ id: 1 });
+    return result;
+  }
+  async findPage(pageNum: number): Promise<any> {
+    const result = await this.travelModel
+      .find({})
+      .select({ _id: 1, title: 1, province: 1 })
+      .skip((pageNum - 1) * 8)
+      .limit(8);
+    return result;
   }
 }

@@ -15,19 +15,19 @@ export default function DropProfile(): JSX.Element {
       {isOpen && (
         <div
           onClick={() => setIsOpen(false)}
-          className="flex h-64 text-white justify-center flex-col w-32  absolute items-center mr-60 rounded-2xl bg-gradient-to-r from-tocolor to-mycolor text-white shadow-lg text-xl shadow-mycolor text-tocolor"
+          className="flex h-64 text-white justify-center flex-col w-32  absolute items-center -ml-10 mt-10 rounded-2xl bg-gradient-to-r from-tocolor to-mycolor text-white shadow-lg text-xl shadow-mycolor text-tocolor"
         >
           <Link
             href={"/profile"}
-            className="bg-white  p-3 rounded-2xl w-24 my-2 "
+            className="bg-white  p-3 rounded-2xl text-mycolor w-24 my-2 "
           >
             profile
           </Link>
-          <button className="bg-white p-3 rounded-2xl w-24 my-2 ">
+          <button className="bg-white text-mycolor p-3 rounded-2xl w-24 my-2 ">
             settings
           </button>
           <button
-            className="bg-white text- p-3 rounded-2xl w-24 my-2 "
+            className="bg-white text-mycolor p-3 rounded-2xl w-24 my-2 "
             onClick={() => localStorage.removeItem("login")}
           >
             log out
