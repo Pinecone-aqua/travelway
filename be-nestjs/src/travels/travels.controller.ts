@@ -7,21 +7,41 @@ import {
   Patch,
   Post,
   UploadedFile,
+  UploadedFiles,
   UseInterceptors,
 } from '@nestjs/common';
 import { TravelsService } from './travels.service';
-import { CreateTravelDto } from './dto/create-travel.dto';
 import { Travel } from './schemas/travel.schema';
 import { UpdateTravelDto } from './dto/update-travel.dto';
-import { FileInterceptor } from '@nestjs/platform-express';
+import {
+  FileFieldsInterceptor,
+  FileInterceptor,
+} from '@nestjs/platform-express';
+import { CreateTravelDto } from './dto/create-travel.dto';
 
 @Controller('travels')
 export class TravelsController {
   constructor(private readonly travelService: TravelsService) {}
 
   @Post('add')
-  create(@Body() createTravelDto: CreateTravelDto): Promise<Travel> {
-    return this.travelService.create(createTravelDto);
+  @UseInterceptors(FileFieldsInterceptor([{ name: 'images' }]))
+  async createTravel(
+    @Body() body: { body: string },
+    @UploadedFiles() files?: { images?: Express.Multer.File[] },
+  ) {
+    const request: CreateTravelDto = JSON.parse(body.body);
+
+    if (files.images) {
+      const url = await this.travelService.uploadImageToCloudinary(
+        files.images,
+      );
+      request.images.push(...url);
+    }
+
+    console.log('BE Request files.images ==>');
+    console.log(request);
+
+    return this.travelService.create(request);
   }
 
   @Get('get')

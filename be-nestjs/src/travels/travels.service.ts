@@ -6,9 +6,9 @@ import {
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { Travel } from './schemas/travel.schema';
-import { CreateTravelDto } from './dto/create-travel.dto';
 import { UpdateTravelDto } from './dto/update-travel.dto';
 import { CloudinaryService as Cloudinary } from 'src/cloudinary/cloudinary.service';
+import { CreateTravelDto } from './dto/create-travel.dto';
 
 @Injectable()
 export class TravelsService {
@@ -16,11 +16,12 @@ export class TravelsService {
     @InjectModel('Travel') private readonly travelModel: Model<Travel>,
     private readonly cloudinary: Cloudinary,
   ) {}
-
-  async create(createTravelDto: CreateTravelDto): Promise<Travel> {
-    const newTravel = new this.travelModel(createTravelDto);
-    const result = await newTravel.save();
-    return result;
+  async create(createTravel: CreateTravelDto): Promise<Travel> {
+    console.log('Model create before');
+    console.log(createTravel);
+    // const newTravel = new this.travelModel({...createTravel});
+    // const result = await newTravel.save();
+    return;
   }
 
   async findAll(): Promise<Travel[]> {
@@ -71,13 +72,16 @@ export class TravelsService {
     return secure_url;
   }
 
-  async addToCloudinary(files: any): Promise<any> {
-    const arrImage = [];
+  async uploadImageToCloudinary(
+    images: Express.Multer.File[],
+  ): Promise<string[]> {
+    const arr = [];
     await Promise.all(
-      await files?.map(async (file) => {
+      images?.map(async (file) => {
         const { secure_url } = await this.cloudinary.uploadImage(file);
-        return arrImage.push(secure_url);
+        return arr.push(secure_url);
       }),
     );
+    return arr;
   }
 }

@@ -8,6 +8,11 @@ export class CreateTravelDto {
   @IsString()
   description: string;
 
+  @IsString()
+  userId: string;
+
+  images: string[];
+
   @IsNotEmpty()
   @ValidateNested({ each: true })
   @Type(() => DayDto)
@@ -20,9 +25,6 @@ export class DayDto {
 
   @IsString()
   describe: string;
-
-  @IsString()
-  image: string;
 
   @IsString()
   considerations: string;
