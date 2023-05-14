@@ -16,7 +16,6 @@ export default function MiniStory(props: {
   const [changeInput, setChangeInput] = useState(false);
 
   const story = props.storyType;
-  console.log("story", story);
 
   function enter() {
     setTimeout(() => {

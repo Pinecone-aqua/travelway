@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import axios from "axios";
 import { useEffect, useState } from "react";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
@@ -28,8 +27,6 @@ export default function TravelBlog(): JSX.Element {
   let userName = "";
   let userImage = "";
 
-  console.log("dasd", { userData });
-
   try {
     useEffect(() => {
       // if (!localStorage.getItem("userId")) return;
@@ -41,8 +38,9 @@ export default function TravelBlog(): JSX.Element {
     const logUser = localStorage.getItem("userId");
 
     const getFetchdata = async (): Promise<void> => {
-      const travels = await axios.get("http://localhost:3009/miniStory/get");
+      const travels = await axios.get("http://localhost:3009/ministory/get");
       const disp = travels.data;
+
       setStories(disp);
     };
 

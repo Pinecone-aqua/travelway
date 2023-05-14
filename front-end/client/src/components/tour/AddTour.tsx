@@ -2,22 +2,11 @@ import React, { ChangeEvent, FormEvent, useState } from "react";
 import { DayType } from "../../../util/types";
 import TourDetails from "./TourDetails";
 import axios from "axios";
+import ImageUploader from "./ImageUploader";
 
 const AddTour = () => {
   // const router = useRouter();
-  const [allData, setAllData] = useState({
-    title: "",
-    description: "",
-    day: [
-      {
-        subTitle: "",
-        describe: "",
-        considerations: "",
-        destination: "",
-        image: "",
-      },
-    ],
-  });
+
   const [activeClass, setActiveClass] = useState(0);
   const [travelData, setTravelData] = useState({
     title: "",
@@ -36,6 +25,7 @@ const AddTour = () => {
   ]);
 
   const [message, setMessage] = useState("");
+  const [coverImage, setCoverImage] = useState<File>();
 
   const handleSubmit = async (event: FormEvent): Promise<void> => {
     event.preventDefault();
@@ -45,6 +35,7 @@ const AddTour = () => {
         const newDataObj = {
           title: travelData.title,
           description: travelData.description,
+          image: coverImage,
           day: [...dayFormData],
           userId: "644947267fbc2625e4543407",
         };
@@ -60,7 +51,8 @@ const AddTour = () => {
           newDataObj
         );
         console.log("ALL data =======> ");
-        console.log(responseAll);
+        console.log("New Data");
+        console.log(newDataObj);
       } else {
         setMessage("Error: Complete form and image upload button click");
       }
@@ -161,6 +153,12 @@ const AddTour = () => {
     ]);
   };
 
+  const handleCoverImageChange = (event: ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files) {
+      setCoverImage(event.target.files[0]);
+    }
+  };
+
   return (
     <>
       <div className="w-6/12 mx-auto mt-16 mb-8">
@@ -186,6 +184,13 @@ const AddTour = () => {
                 defaultValue={travelData.description}
                 onChange={handleChange}
                 required
+              />
+              <label htmlFor="coverImage">Зураг оруулах/Cover image:</label>
+              <input
+                className="inline-block -2 rounded w-full border border-slate-600"
+                type="file"
+                name="coverImage"
+                onChange={handleCoverImageChange}
               />
             </>
 
