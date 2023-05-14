@@ -14,7 +14,7 @@ export default function Travel({ result }: { result: TravelType }) {
     fetch(`http://localhost:3009/travels/${id}`)
       .then((response) => response.json())
       .then((res) => setTravelData(res));
-  }, []);
+  }, [id]);
 
   console.log("travelData", travelData);
 

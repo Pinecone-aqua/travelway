@@ -1,6 +1,5 @@
 // import { StoryType } from "../../util/types";
 import AddTour from "@/components/tour/AddTour";
-import ImageUploader from "@/components/tour/ImageUploader";
 
 export default function User(): JSX.Element {
   // const [stories, setStories] = useState<StoryType[]>([]);
