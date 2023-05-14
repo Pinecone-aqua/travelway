@@ -62,7 +62,7 @@ export default function TravelBlogAdd(): JSX.Element {
               <div className="bg-gray-100 card">
                 <Editor
                   value={text}
-                  onTextChange={(e) => setText(e.textValue)}
+                  onTextChange={(e) => setText(e.htmlValue)}
                   ref={textEditorRef}
                   style={{ height: "320px" }}
                   name="title"

@@ -3,15 +3,15 @@ export interface TravelType {
   title: string;
   image: string;
   description: string;
-  day: [];
+  day: DayType[];
 }
 
 export interface DayType {
   subTitle: string;
   describe: string;
-  image: string;
   considerations: string;
   destination: string;
+  image: string;
 }
 
 export interface StoryType {
