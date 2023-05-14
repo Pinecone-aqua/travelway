@@ -14,7 +14,7 @@ export default function DeleteModal(props: PropType): JSX.Element {
   const handleShow = () => setShow(true);
 
   function deleteHandler(storyId: string) {
-    axios.delete(`http://localhost:3009/allStories/${storyId}`);
+    axios.delete(`http://localhost:3009/stories/${storyId}`);
   }
 
   return (

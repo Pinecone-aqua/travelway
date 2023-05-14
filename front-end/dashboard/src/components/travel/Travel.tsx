@@ -1,41 +1,41 @@
-import { DayType, TravelType } from "@/util/types";
-import axios from "axios";
+import { TravelType } from "@/util/types";
+import { Button, Dropdown } from "react-bootstrap";
+import { BsThreeDotsVertical } from "react-icons/bs";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 interface PropType {
   unit: TravelType;
 }
 export default function Travel(props: PropType): JSX.Element {
   const data = props.unit;
-  const plan = data.day;
-  function deleteHandler(travelId: string) {
-    axios.delete(`http://localhost:3009/travels/${travelId}`);
-    console.log(travelId);
-  }
-
   return (
-    <div className="flex flex-col min-h-96 h-100 w-full bg-gray-200 rounded-2xl p-10 mb-10 shadow-lg shadow-cyan-100">
-      <h1>{data._id}</h1>
-      <p>{data.description}</p>
-      <h2>
-        {plan.map((unit: DayType, index: number) => (
-          <div key={index} className="flex my-3">
-            <picture>
-              <img src={unit.image} alt={""} width={500} height={500} />
-            </picture>
-            <div>
-              <h1>{unit.title}</h1>
-              <p>{unit.description}</p>
-            </div>
-          </div>
-        ))}
-      </h2>
+    <>
+      <tr className="border-t-2 border-white">
+        <td className="p-4">{data._id.slice(0, 5)}...</td>
+        <td>{data.title}</td>
+        <td>
+          <picture>{data.createdAt}</picture>
+        </td>
+        <td>...</td>
+        <td>
+          <div className="z-50">
+            <Dropdown>
+              <Dropdown.Toggle className="toggle">
+                <BsThreeDotsVertical />
+              </Dropdown.Toggle>
 
-      <button
-        onClick={() => deleteHandler(data._id)}
-        className="h-12 w-32 bg-cyan-500 p-3 m-3 shadow-lg shadow-gray-500/100 rounded-xl text-white self-end"
-      >
-        delete
-      </button>
-    </div>
+              <Dropdown.Menu>
+                <Dropdown.Item href={`travel/${data._id}`}>
+                  <Button className="button">Дэлгэрэнгүй</Button>
+                </Dropdown.Item>
+                <Dropdown.Item href="#/action-2">
+                  <Button className="button">Дэлгэрэнгүй</Button>
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </div>
+        </td>
+      </tr>
+    </>
   );
 }

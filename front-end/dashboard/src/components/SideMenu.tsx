@@ -13,13 +13,11 @@ interface ButtonType {
 export default function SideMenu(): JSX.Element {
   const buttons = [
     { name: "Dashboard", path: "/", icon: <TravelIcon /> },
-    { name: "Travels", path: "/travels", icon: <TravelIcon /> },
-    { name: "Stories", path: "/allStories/1", icon: <OrderIcon /> },
-    { name: "Users", path: "/allUser/1", icon: <UserIcon /> },
+    { name: "Travels", path: "/travels/1", icon: <TravelIcon /> },
+    { name: "Stories", path: "/stories/1", icon: <OrderIcon /> },
+    { name: "Users", path: "/users/1", icon: <UserIcon /> },
   ];
   const [color, setColor] = useState("");
-
-  console.log(color);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function handleClick(e: any): void {

@@ -7,7 +7,7 @@ export class CreateStoryDto {
   @IsString()
   readonly description: string;
   @IsString()
-  readonly image: string;
+  readonly image: string[];
   @IsString()
   readonly myth: string;
   @IsArray()
