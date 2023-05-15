@@ -3,15 +3,19 @@ import { useEffect, useState } from "react";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
-import { StoryType, TravelType } from "../../util/types";
-import { Flex, Avatar, Heading, CardBody, Box, Card } from "@chakra-ui/react";
+import { miniStoryType } from "../../util/types";
 import React from "react";
-import { useDisclosure } from "@chakra-ui/react";
 import TravelblogCard from "@/components/travelBlog/TravelblogCard";
+import {
+  Skeleton,
+  SkeletonCircle,
+  SkeletonText,
+  Stack,
+} from "@chakra-ui/react";
 
-const BlogOffCanvas = React.lazy(
-  () => import("../components/travelBlog/BlogOffCanvas")
-);
+// const BlogOffCanvas = React.lazy(
+//   () => import("../components/travelBlog/BlogOffCanvas")
+// );
 
 interface UserType {
   _id: string;
@@ -20,18 +24,21 @@ interface UserType {
 }
 
 export default function TravelBlog(): JSX.Element {
-  const [stories, setStories] = useState<StoryType[]>([]);
+  const [stories, setStories] = useState<miniStoryType[]>([]);
   const [userData, setUserData] = useState<UserType[]>([]);
   const [isOpen, setIsOpen] = useState(false);
   const [changeInput, setChangeInput] = useState(false);
   let userName = "";
   let userImage = "";
 
+  console.log("stories", stories);
+
   useEffect(() => {
     const logUser = localStorage.getItem("userId");
 
     const getFetchdata = async (): Promise<void> => {
       const travels = await axios.get("http://localhost:3009/ministory/get");
+      console.log("ddasda", travels);
       const disp = travels.data;
       setStories(disp);
     };
@@ -43,8 +50,8 @@ export default function TravelBlog(): JSX.Element {
     };
 
     if (logUser) {
-      getFetchdata();
       getUserFetch();
+      getFetchdata();
       setUserData((prevUserData) => {
         const currentUser = prevUserData.find(
           (user: UserType) => user._id === logUser
@@ -58,7 +65,7 @@ export default function TravelBlog(): JSX.Element {
     }
   }, []);
 
-  const handleOpen = (story: StoryType) => {
+  const handleOpen = () => {
     setIsOpen(true);
     setChangeInput(false);
   };
@@ -72,18 +79,32 @@ export default function TravelBlog(): JSX.Element {
       <div className="flex justify-center content-center p-5">
         <div className="gap-3 grid">
           <div className="gap-3 grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 xxl:grid-cols-4 relative ">
-            {stories?.slice(0, 8).map((story: StoryType, index: number) => (
-              <div key={index}>
-                <TravelblogCard
-                  story={story}
-                  isOpen={isOpen}
-                  onClose={handleClose}
-                  changeInput={changeInput}
-                  setChangeInput={setChangeInput}
-                  onOpen={() => handleOpen(story)}
-                />
+            {stories.length === 0 ? (
+              <div className="flex justify-center content-center  ">
+                <div>
+                  <Stack className="w-[500px] h-auto flex ">
+                    <Skeleton height="20px" />
+                    <Skeleton height="20px" />
+                    <Skeleton height="20px" />
+                  </Stack>
+                </div>
               </div>
-            ))}
+            ) : (
+              stories
+                ?.slice(0, 8)
+                .map((story: miniStoryType, index: number) => (
+                  <div key={index}>
+                    <TravelblogCard
+                      story={story}
+                      isOpen={isOpen}
+                      onClose={handleClose}
+                      changeInput={changeInput}
+                      setChangeInput={setChangeInput}
+                      onOpen={() => handleOpen(story)}
+                    />
+                  </div>
+                ))
+            )}
           </div>
         </div>
       </div>

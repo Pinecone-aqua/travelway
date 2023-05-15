@@ -1,9 +1,9 @@
-import MiniStoryAdd from "@/components/userProfile/MiniStoryAdd";
 import TravelGuide from "@/components/userProfile/TravelGuide";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { miniStoryType } from "../../util/types";
 import MiniStory from "@/components/userProfile/MiniStory";
+import { GrAddCircle } from "react-icons/gr";
 
 export default function User(): JSX.Element {
   const [change, setChange] = useState("Mini story");
@@ -86,9 +86,11 @@ export default function User(): JSX.Element {
             ) : (
               <>
                 <div className="gap-3 grid">
-                  <div>
-                    <MiniStoryAdd />
-                  </div>
+                  <a href="/miniStoryAdd">
+                    <button className="grid place-content-center w-[100%] border border-1px shadow-inner p-2">
+                      <GrAddCircle size={"2em"} />
+                    </button>
+                  </a>
                   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     {story?.map((storyType: miniStoryType, index: number) => (
                       <div className="relative" key={index}>

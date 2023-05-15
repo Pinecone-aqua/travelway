@@ -41,7 +41,7 @@ export default function Header(): JSX.Element {
   }
 
   return (
-    <div className="sticky ">
+    <div className="sticky">
       <div className="flex gap-3 justify-center content-center text-center ">
         <div className="flex h-7 w-full scroll-m-2 ">
           {MENULIST.map((menuItem, index) => (
@@ -71,8 +71,7 @@ export default function Header(): JSX.Element {
 const LoginAuthentication = ({ user, setUser }: HeaderType) => {
   const router = useRouter();
   function loginCheckAuth() {
-    console.log("User autnentication here:-----> ");
-    console.log(user);
+    console.log("User autnentication here:-----> ", user);
     if (user) {
       router.push("/user");
     } else {
@@ -84,7 +83,7 @@ const LoginAuthentication = ({ user, setUser }: HeaderType) => {
     <>
       <div className="absolute right-0 mr-[1rem] flex items-center">
         {user ? (
-          <div className="flex items-center justify-center gap-5 cursor-pointer">
+          <div className="flex items-center justify-center gap-5 cursor-pointer ">
             <div>Нэвтэрсэн {user.user}</div>
             <div
               className="cursor-pointer"
@@ -107,7 +106,7 @@ const LoginAuthentication = ({ user, setUser }: HeaderType) => {
 };
 
 const LoginButton = () => (
-  <button className="w-8 h-8">
+  <button className="w-8 h-8 ">
     <picture>
       <img
         src="../../images/efil.webp"

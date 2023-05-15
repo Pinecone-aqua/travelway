@@ -1,18 +1,19 @@
 import {
-  Button,
   Drawer,
-  DrawerOverlay,
   DrawerContent,
   DrawerHeader,
   DrawerBody,
+  Avatar,
 } from "@chakra-ui/react";
+import Image from "next/image";
 import React from "react";
-import { StoryType } from "../../../util/types";
+import { CiHeart } from "react-icons/ci";
+import { miniStoryType } from "../../../util/types";
 
 type Props = {
   isOpen: boolean;
   onClose: () => void;
-  story: StoryType;
+  story: miniStoryType;
   changeInput: boolean;
   setChangeInput: React.Dispatch<React.SetStateAction<boolean>>;
 };
@@ -20,7 +21,7 @@ type Props = {
 export default function BlogOffCanvas(props: Props): JSX.Element {
   const { isOpen, onClose, story } = props;
   console.log(story);
-  const btnRef = React.useRef();
+
   return (
     <>
       <div>
@@ -28,7 +29,7 @@ export default function BlogOffCanvas(props: Props): JSX.Element {
           <DrawerContent>
             <DrawerHeader
               borderBottomWidth="1px"
-              className="bg-none flex justify-between"
+              className="bg-transparent flex justify-between"
             >
               Basic Drawer
               <div onClick={onClose} className="cursor-pointer">
@@ -37,9 +38,28 @@ export default function BlogOffCanvas(props: Props): JSX.Element {
             </DrawerHeader>
             <DrawerBody className="flex jusify-center place-content-center ">
               <div>
-                <img src={story.image} alt="pic" />
-                <h2>{story.title}</h2>
-                <p>{story.sentence}</p>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center  py-4 gap-4 ">
+                    <Avatar name="Segun Adebayo" src={story.title} />
+                    <p>{story.title}</p>
+                  </div>
+                  <div>
+                    <div className="p-2 border rounded-2xl cursor-pointer">
+                      <CiHeart />
+                    </div>
+                  </div>
+                </div>
+                <Image
+                  src={story.image}
+                  alt="pic"
+                  width={1200}
+                  height={500}
+                  className="object-cover h-auto rounded-2xl"
+                />
+                <div className="w-[50%]">
+                  <h2>{story.title}</h2>
+                  <p>{story.sentence}</p>
+                </div>
               </div>
             </DrawerBody>
           </DrawerContent>

@@ -10,12 +10,12 @@ import {
 import React, { useState } from "react";
 import BlogOffCanvas from "./BlogOffCanvas";
 import Image from "next/image";
-import { StoryType } from "../../../util/types";
+import { miniStoryType } from "../../../util/types";
 
 type story = {
   isOpen: boolean;
   onClose: () => void;
-  story: StoryType;
+  story: miniStoryType;
   changeInput: boolean;
   setChangeInput: React.Dispatch<React.SetStateAction<boolean>>;
   onOpen: () => void;
