@@ -77,7 +77,7 @@ export default function MiniStory(props: {
             height={500}
             quality={10}
             alt="pic"
-            className="w-[100%] h-[auto] object-cover rounded-xl disable-text-selection border hover:bg-black "
+            className="w-[100%] h-[auto] object-cover rounded-xl disable-text-selection border hover:bg-black cursor-pointer"
             onMouseEnter={enter}
             onMouseLeave={leave}
           />

@@ -8,16 +8,32 @@ export default function MiniStoryAdd(): JSX.Element {
     setPopup(true);
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  function miniStoryHandler(e: any) {
-    e.preventDefault();
-    axios.post(`http://localhost:3009/miniStory/add`, {
-      image: e.target.image.value,
-      title: e.target.title.value,
-      sentence: e.target.sentence.value,
-    });
-    console.log(e.target.sentence.value);
+  const [selectedOption, setSelectedOption] = useState("");
+
+  function handleOptionSelect(option: string) {
+    setSelectedOption(option);
   }
+
+  function miniStoryHandler(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    axios.post(`http://localhost:3009/minitory/add`, {
+      image: e.currentTarget.image.value,
+      title: e.currentTarget.title.value,
+      sentence: e.currentTarget.sentence.value,
+      blockType: selectedOption,
+    });
+    console.log;
+  }
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // function miniStoryHandler(e: any) {
+  //   e.preventDefault();
+  //   axios.post(`http://localhost:3009/miniStory/add`, {
+  //     image: e.target.image.value,
+  //     title: e.target.title.value,
+  //     sentence: e.target.sentence.value,
+  //   });
+  //   console.log(e.target.sentence.value);
+  // }
 
   return (
     <>
@@ -39,7 +55,7 @@ export default function MiniStoryAdd(): JSX.Element {
                   className="border-b-[2px]  p-2  placeholder:text-[25px] font-semibold text-[25px] activate:border-none"
                 />
                 <div className="flex justify-center">
-                  <MiniStoryOffCanvas />
+                  <MiniStoryOffCanvas onOptionSelect={handleOptionSelect} />
                 </div>
                 <input
                   type="text"
@@ -48,16 +64,15 @@ export default function MiniStoryAdd(): JSX.Element {
                   name="image"
                 />
                 <div className="flex justify-center">
-                  {}
-                  <MiniStoryOffCanvas />
+                  <MiniStoryOffCanvas onOptionSelect={handleOptionSelect} />
                 </div>
                 <textarea
                   name="sentence"
                   placeholder="Enter you'r text here"
-                  className="border h-auto p-2 rounded-xl text-[25px]"
+                  className="border h-auto p-2 rounded-xl text-[25px] placeholder-center"
                 />
                 <div className="flex justify-center">
-                  <MiniStoryOffCanvas />
+                  <MiniStoryOffCanvas onOptionSelect={handleOptionSelect} />
                 </div>
                 <button type="submit" className="border p-2 drop-shadow-xl">
                   Submit

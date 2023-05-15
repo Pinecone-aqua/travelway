@@ -20,51 +20,65 @@ type Props = {
 
 export default function BlogOffCanvas(props: Props): JSX.Element {
   const { isOpen, onClose, story } = props;
-  console.log(story);
 
   return (
-    <>
-      <div>
-        <Drawer placement={"bottom"} onClose={onClose} isOpen={isOpen}>
-          <DrawerContent>
-            <DrawerHeader
-              borderBottomWidth="1px"
-              className="bg-transparent flex justify-between"
+    <Drawer placement="bottom" onClose={onClose} isOpen={isOpen}>
+      <DrawerContent bg="gray.100">
+        <DrawerHeader
+          borderBottomWidth="1px"
+          bg="gray.200"
+          className="flex justify-between"
+        >
+          <div className="text-lg font-medium">Basic Drawer</div>
+          <div onClick={onClose} className="cursor-pointer">
+            <svg
+              className="w-6 h-6 fill-current text-gray-500 hover:text-gray-600 transition-colors duration-200"
+              viewBox="0 0 24 24"
             >
-              Basic Drawer
-              <div onClick={onClose} className="cursor-pointer">
-                X
-              </div>
-            </DrawerHeader>
-            <DrawerBody className="flex jusify-center place-content-center ">
-              <div>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center  py-4 gap-4 ">
-                    <Avatar name="Segun Adebayo" src={story.title} />
-                    <p>{story.title}</p>
-                  </div>
-                  <div>
-                    <div className="p-2 border rounded-2xl cursor-pointer">
-                      <CiHeart />
-                    </div>
-                  </div>
+              <path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M6.345 18.803L12 13.148l5.655 5.655 1.414-1.414L13.414 11.73l5.655-5.655-1.414-1.414L12 10.32 6.345 4.665 4.93 6.079l5.655 5.655L4.93 17.388l1.415 1.415z"
+              />
+            </svg>
+          </div>
+        </DrawerHeader>
+        <DrawerBody className="flex place-content-center">
+          <div className="w-full max-w-xl">
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center gap-4">
+                <Avatar name={story.title} src={story.image} />
+                <div>
+                  <div className="text-lg font-medium">{story.title}</div>
+                  <div className="text-sm text-gray-500">{story.sentence}</div>
                 </div>
+              </div>
+              <div>
+                <div className="p-2 border rounded-2xl cursor-pointer">
+                  <CiHeart />
+                </div>
+              </div>
+            </div>
+            <div className="flex justify-center mb-6">
+              <div className="h-64 w-full relative">
                 <Image
                   src={story.image}
                   alt="pic"
-                  width={1200}
-                  height={500}
-                  className="object-cover h-auto rounded-2xl"
+                  layout="fill"
+                  objectFit="cover"
+                  className="rounded-2xl"
                 />
-                <div className="w-[50%]">
-                  <h2>{story.title}</h2>
-                  <p>{story.sentence}</p>
-                </div>
               </div>
-            </DrawerBody>
-          </DrawerContent>
-        </Drawer>
-      </div>
-    </>
+            </div>
+            <div className="flex justify-center text-lg font-medium mb-2">
+              {story.title}
+            </div>
+            <div className="text-sm text-gray-500 text-center">
+              {story.sentence}
+            </div>
+          </div>
+        </DrawerBody>
+      </DrawerContent>
+    </Drawer>
   );
 }

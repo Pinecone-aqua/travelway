@@ -8,108 +8,118 @@ import {
   DrawerBody,
   DrawerFooter,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
-import { TbTextSize } from "react-icons/tb";
-import { BsImage } from "react-icons/bs";
-import MiniStoryAdd from "@/pages/miniStoryAdd";
+import { useState } from "react";
 
-export default function MiniStoryOffCanvas() {
+type MiniStoryOffCanvasProps = {
+  onOptionSelect: (option: string) => void;
+};
+
+export default function MiniStoryOffCanvas(props: MiniStoryOffCanvasProps) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [text, setText] = useState(true);
-  const [changeArea, setChangeArea] = useState("");
+  const [selectedType, setSelectedType] = useState("");
+  const [selectedOption, setSelectedOption] = useState("");
+  const [textBlockTypes] = useState([
+    { id: "header", name: "Header" },
+    { id: "header-paragraph", name: "Header and Paragraph" },
+    { id: "paragraph", name: "Paragraph" },
+  ]);
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  function changeTextArea(e: any) {
-    if (e.target.innerText == "Hallo") {
-      setChangeArea("Hallo");
-    } else if (e.target.innerText == "Hallo1") {
-      setChangeArea("Hallo1");
-      <MiniStoryAdd changeArea={changeArea} />;
-    } else {
-      setChangeArea("sentence");
-    }
+  function handleTypeSelect(typeId: string) {
+    setSelectedType(typeId);
+  }
+
+  function handleOptionSelect(optionId: string) {
+    setSelectedOption(optionId);
+    props.onOptionSelect(optionId);
+    onClose();
   }
 
   return (
     <>
       <Button
-        colorScheme="black"
         onClick={onOpen}
-        className="hover:visible hidden p-3 border rounded-[25px]  hidden bg-black text-white"
+        className="bg-blue-500 hover:bg-blue-600 text-white rounded-md px-4 py-2"
       >
-        + insert Block
+        + Insert Block
       </Button>
       <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
-          <Button variant="outline" mr={3} onClick={onClose}>
-            Cancel
-          </Button>
-
-          <DrawerBody>
-            <p className="text-[20px] font-semibold">Insert Block</p>
-
-            <p className="font-semibold">Basic</p>
-
-            <div className="gap-3 ">
-              {text ? (
-                <div
-                  className="p-1 border flex items-center gap-2 cursor-pointer"
-                  onClick={() => setText(false)}
-                >
-                  <TbTextSize size={30} />
-                  <p className="font-semibold">Text</p>
-                </div>
-              ) : (
-                <>
-                  <div
-                    className="p-1 border flex items-center gap-2 cursor-pointer"
-                    onClick={() => setText(true)}
-                  >
-                    <TbTextSize size={30} />
-                    <p className="font-semibold">Text</p>
-                  </div>
-                  <div className="bg-gray-200 grid gap-5">
-                    <button
-                      className="p-1 border flex items-center gap-2 justify-center"
-                      onClick={changeTextArea}
-                    >
-                      <div className="bg-white  w-[200px] p-2 rounded-xl">
-                        <p className="font-bold flex items-center gap-2 justify-center text-[20px] ">
-                          Hallo
-                        </p>
-                      </div>
-                    </button>
-                    <button className="p-1 border flex items-center gap-2 justify-center ">
-                      <div className="bg-white  w-[200px] p-2">
-                        <p className="font-bold">Hallo1</p>
-                        <p>jdlaisjdlai</p>
-                      </div>
-                    </button>
-                    <button className="p-1 border flex items-center gap-2 justify-center ">
-                      <div className="bg-white w-[200px] p-2">
-                        <p>
-                          Lorem ipsum dolor sit amet consectetur, adipisicing
-                          elit.
-                        </p>
-                      </div>
-                    </button>
-                  </div>
-                </>
-              )}
-              <div className="p-1 border flex items-center gap-2">
-                <BsImage size={20} />
-                <p className="font-semibold">Image</p>
+          <DrawerBody className="p-6">
+            <h2 className="text-xl font-bold mb-4">Insert Block</h2>
+            <p className="text-lg font-medium mb-4">Basic</p>
+            <div className="grid grid-cols-2 gap-4">
+              <div
+                className={`border rounded-md p-4 ${
+                  selectedType === "text" ? "bg-blue-100" : ""
+                }`}
+                onClick={() => handleTypeSelect("text")}
+              >
+                <h3 className="text-lg font-medium mb-2">Text</h3>
+                <p className="text-gray-500">Add some text to your story</p>
+              </div>
+              <div
+                className={`border rounded-md p-4 ${
+                  selectedType === "image" ? "bg-blue-100" : ""
+                }`}
+                onClick={() => handleTypeSelect("image")}
+              >
+                <h3 className="text-lg font-medium mb-2">Image</h3>
+                <p className="text-gray-500">Add an image to your story</p>
               </div>
             </div>
+            {selectedType === "text" && (
+              <>
+                <p className="text-lg font-medium mt-6 mb-4">
+                  Choose Text Block Type
+                </p>
+                <div className="grid grid-cols-3 gap-4">
+                  {textBlockTypes.map((type) => (
+                    <div
+                      key={type.id}
+                      className={`border rounded-md p-4 ${
+                        selectedOption === type.id ? "bg-blue-100" : ""
+                      }`}
+                      onClick={() => handleOptionSelect(type.id)}
+                    >
+                      <h3 className="text-lg font-medium mb-2">{type.name}</h3>
+                      {type.id === "header-paragraph" && (
+                        <p className="text-gray-500">
+                          Add a header and a paragraph to your story
+                        </p>
+                      )}
+                      {type.id === "header" && (
+                        <p className="text-gray-500">
+                          Add a header to your story
+                        </p>
+                      )}
+                      {type.id === "paragraph" && (
+                        <p className="text -lg text-gray-500">
+                          Add a paragraph to your story
+                        </p>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </>
+            )}
+            {selectedType === "image" && (
+              <>
+                <p className="text-lg font-medium mt-6 mb-4">Upload Image</p>
+                <input type="file" />
+              </>
+            )}
           </DrawerBody>
-
-          <DrawerFooter>
-            <Button variant="outline" mr={3} onClick={onClose}>
+          <DrawerFooter className="p-6">
+            <Button
+              variant="outline"
+              mr={3}
+              onClick={onClose}
+              className="bg-gray-200 hover:bg-gray-300 text-gray-800 rounded-md px-4 py-2"
+            >
               Cancel
             </Button>
-            <Button colorScheme="blue">Save</Button>
           </DrawerFooter>
         </DrawerContent>
       </Drawer>
