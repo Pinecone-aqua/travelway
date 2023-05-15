@@ -8,12 +8,10 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { toast } from "react-toastify";
 
-
 export default function Login(): JSX.Element {
   const [error, setError] = useState<string>("");
   const { setToken } = useUser();
   const router = useRouter();
-
 
   const [loginForm, setLoginForm] = useState<LoginForm>({
     email: "",
@@ -52,36 +50,20 @@ export default function Login(): JSX.Element {
       // response.data.token token
 
       if (response.status === 201 || response.status === 200) {
-        console.log("Token =======> ", response.data.token);
+        if (response.data.token) {
+          console.log("Token =======> ", response.data.token);
 
-        localStorage.setItem("userId", response.data.token);
-        Cookies.set("token", response.data.token);
-        setToken(response.data.token);
+          localStorage.setItem("userId", response.data.token);
+          Cookies.set("token", response.data.token);
+          setToken(response.data.token);
 
-        toast.success("Амжилттай нэвтэрлээ", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
+          toast.success("Амжилттай нэвтэрлээ");
+          router.push("/user");
+        }
       } else {
-        toast.warning("Нэвтрэлт амжилтгүй, И-мэйл, нууц үгээ шалгана уу", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
+        toast.warning("Нэвтрэлт амжилтгүй, И-мэйл, нууц үгээ шалгана уу");
       }
 
-      router.push("/user");
     } catch (error) {
       console.log("Error occurred: ", error);
       setError(`Хэрэглэгчийн и-мейл, нууц үг буруу байна`);
@@ -152,11 +134,14 @@ export default function Login(): JSX.Element {
                 нэвтрэх
               </button>
 
-              <div onClick={googleLoginHandler} className="rounded-lg text-sm bg-cyan-500 px-5 py-2 mt-5 flex justify-between align-center text-white cursor-pointer">
-                <div className="flex items-center" >
-                    <FaGoogle className="my-auto text-white absolute" />
+              <div
+                onClick={googleLoginHandler}
+                className="rounded-lg text-sm bg-cyan-500 px-5 py-2 mt-5 flex justify-between align-center text-white cursor-pointer"
+              >
+                <div className="flex items-center">
+                  <FaGoogle className="my-auto text-white absolute" />
                 </div>
-                    <span className="mx-auto text-white">Google-р НЭВТРЭХ</span>
+                <span className="mx-auto text-white">Google-р НЭВТРЭХ</span>
               </div>
 
               <div className="text-sm font-normal text-slate-400 text-center mt-4 uppercase">

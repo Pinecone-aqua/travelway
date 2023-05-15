@@ -28,45 +28,18 @@ const AddTour = () => {
   const [coverImage, setCoverImage] = useState<File>();
   const [dayImage, setDayImage] = useState<File[]>([]);
 
-  // const handleSubmitImageUploader = async (event: React.FormEvent) => {
-  //   event.preventDefault();
-  //   const formData = new FormData();
-
-  //   try {
-  //     if (file) {
-  //       formData.append("image", file);
-  //       const response = await axios.post(
-  //         "http://localhost:3009/travels/uploadimg",
-  //         formData,
-  //         {
-  //           headers: { "Content-Type": "multipart/form-data" },
-  //         }
-  //       );
-  //       handleImageUrl(response.data, index);
-  //       console.log("Amjilttai orloo");
-  //     } else {
-  //       console.log("Error occurence when check file data");
-  //     }
-  //   } catch (error) {
-  //     // Handle error
-  //     console.log("Erroro", error);
-  //   }
-  // };
-
   const handleSubmit = async (
     event: React.ChangeEvent<HTMLInputElement>
   ): Promise<void> => {
     event.preventDefault();
 
     try {
-      // const allImages: FileList = event.target.files;
-
       const newFormData = {
         title: travelData.title,
         description: travelData.description,
         userId: "644947267fbc2625e4543407",
         images: [],
-        dayData: [...dayData],
+        day: [...dayData],
       };
 
       const sendFormData = new FormData();
@@ -80,8 +53,6 @@ const AddTour = () => {
         `http://localhost:3009/travels/add`,
         sendFormData
       );
-      console.log("RESPONSE =======> ");
-      console.log(responseAll);
 
       // router.push("/addtravel");
     } catch (error) {
@@ -94,22 +65,6 @@ const AddTour = () => {
     const { name, value } = event.target;
     setTravelData((prevState) => ({ ...prevState, [name]: value }));
   };
-
-  // const handleImageData = (image: File, index: number) => {
-
-  //   setDayData((prevData) => {
-  //     const updatedData = prevData.map((day, i) => {
-  //       if (i === index) {
-  //         return {
-  //           ...day,
-  //           image: imageUrl,
-  //         };
-  //       }
-  //       return day;
-  //     });
-  //     return updatedData;
-  //   });
-  // };
 
   const handleFormChange = (
     event: ChangeEvent<HTMLInputElement>,
