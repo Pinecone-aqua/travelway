@@ -44,3 +44,19 @@ export interface UserContextType {
   token: string | undefined;
   setToken: React.Dispatch<React.SetStateAction<string | undefined>>;
 }
+
+//sharvaa added
+
+export interface StoryTypeSh {
+  map(
+    arg0: (unit: StoryType, index: number) => JSX.Element
+  ): import("react").ReactNode;
+  _id: string;
+  title: string;
+  province: string;
+  description: string;
+  image: string[];
+  myth: string;
+  coord: object;
+  toDo: [];
+}
