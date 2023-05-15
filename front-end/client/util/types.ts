@@ -3,6 +3,7 @@ export interface TravelType {
   title: string;
   image: string;
   description: string;
+  userId: string;
   day: DayType[];
 }
 
@@ -11,7 +12,6 @@ export interface DayType {
   describe: string;
   considerations: string;
   destination: string;
-  image: string;
 }
 
 export interface StoryType {
