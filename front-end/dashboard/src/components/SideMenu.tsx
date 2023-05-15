@@ -12,10 +12,10 @@ interface ButtonType {
 }
 export default function SideMenu(): JSX.Element {
   const buttons = [
-    { name: "Dashboard", path: "/", icon: <TravelIcon /> },
-    { name: "Travels", path: "/travels/1", icon: <TravelIcon /> },
-    { name: "Stories", path: "/stories/1", icon: <OrderIcon /> },
-    { name: "Users", path: "/users/1", icon: <UserIcon /> },
+    { name: "Хянах самбар", path: "/", icon: <TravelIcon /> },
+    { name: "Аялалууд", path: "/travels/1", icon: <TravelIcon /> },
+    { name: "Түүхүүд", path: "/stories/1", icon: <OrderIcon /> },
+    { name: "Хэрэглэгчид", path: "/users/1", icon: <UserIcon /> },
   ];
   const [color, setColor] = useState("");
 
@@ -29,19 +29,19 @@ export default function SideMenu(): JSX.Element {
 
   const inActiveClass =
     "flex justify-center items-center text-white text-2xl text-2xl bg-mycolor rounded-l-3xl w-10/12 h-16 m-7";
-  const activeTop = "bg-mycolor h-8 w-8 rounded-br-full text-mycolor";
-  const inActive = "bg-mycolor h-8 w-8  text-mycolor";
-  const activeBottom = "bg-mycolor h-8 w-8 rounded-tr-full text-mycolor";
+  const activeTop = "bg-mycolor h-8 w-[180px] rounded-br-full text-mycolor";
+  const inActive = "bg-mycolor h-8 w-8  text-mycolor decoration-none";
+  const activeBottom = "bg-mycolor h-8 w-8 rounded-tr-full text-mycolor ";
   return (
-    <div className="w-1/6 h-screen flex bg-mycolor flex-col justify-center place-items-end">
+    <div className="w-1/6 h-[800px] flex bg-mycolor flex-col justify-center place-items-end decoration-double">
       {/* <ul className=" h-2/3 w-full flex flex-col content-end self-end place-items-end -mr-[28px]"> */}
       {buttons.map((unit: ButtonType, index: number) => (
         <div
           className="h-1/6 w-full flex flex-col content-end self-end place-items-end -mr-[28px]"
           key={index}
         >
-          <div className="rounded-none bg-slate-100 overflow-hidden -mb-[28px] mr-[28px]">
-            <div className={color === unit.name ? activeTop : inActive}>.</div>
+          <div className="rounded-none  bg-slate-100 overflow-hidden -mb-[28px] mr-[28px]">
+            <div className={color === unit.name ? activeTop : inActive}>{}</div>
           </div>
 
           <Link
@@ -55,7 +55,7 @@ export default function SideMenu(): JSX.Element {
           </Link>
           <div className="rounded-none bg-slate-100 overflow-hidden -mt-[28px] mr-[28px]">
             <div className={color === unit.name ? activeBottom : inActive}>
-              .
+              {}
             </div>
           </div>
         </div>

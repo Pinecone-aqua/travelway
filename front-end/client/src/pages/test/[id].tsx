@@ -4,13 +4,13 @@ import { StoryTypeSh } from "../../../util/types";
 
 export default function Test(props: { data: StoryTypeSh }): JSX.Element {
   const { data } = props;
-  console.log(data);
+
   return (
     <div className="flex flex-col m-5">
       <div className="flex flex-col md:flex-row">
         <Image
           src={data.image[0]}
-          alt="s"
+          alt={data.title}
           style={{ borderRadius: "20px" }}
           width={1000}
           height={500}
