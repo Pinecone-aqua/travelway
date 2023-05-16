@@ -2,10 +2,14 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { miniStoryType } from "../../util/types";
 import MiniStory from "@/components/userProfile/MiniStory";
+import { useUser } from "../../context/user.context";
+import { setDefaultResultOrder } from "dns/promises";
 
 export default function User(): JSX.Element {
   const [change, setChange] = useState("Mini story");
   const [story, setStory] = useState<miniStoryType[]>();
+  // const { user, setUser } = useUser();
+  const [errorMessage, setErrorMessage] = useState("");
 
   const defaultStyle = "border-black  py-[3px] font-semibold ";
   const activatedStyle =
@@ -18,11 +22,25 @@ export default function User(): JSX.Element {
     setChange(e.target.innerText);
   }
   useEffect(() => {
-    const getFetchdata = async () => {
-      const travels = await axios.get("http://localhost:3009/miniStory/get");
-      const { data } = travels;
+    console.log("User ID==> USER PROFILE PAGE ");
+    console.log(localStorage.getItem("contextUserId"));
+    const ctxUserId = localStorage.getItem("contextUserId");
 
-      setStory(data);
+    const getFetchdata = async () => {
+      const travels = await axios.get(
+        `http://localhost:3009/miniStory/${ctxUserId}`
+      );
+      console.log("Travels data");
+      console.log("users", ctxUserId);
+      console.log("travels", travels);
+
+      if (travels.data.length > 0) {
+        const { data } = travels;
+        setStory(data);
+      } else {
+        setErrorMessage("Сервертэй холбогдоход алдаа гарлаа...");
+        setStory(undefined);
+      }
     };
     getFetchdata();
   }, []);
@@ -68,11 +86,13 @@ export default function User(): JSX.Element {
               </button>
             </a>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {story?.map((storyType: miniStoryType, index: number) => (
-                <div className="relative" key={index}>
-                  <MiniStory storyType={storyType} />
-                </div>
-              ))}
+              {story === undefined
+                ? story?.map((storyType: miniStoryType, index: number) => (
+                    <div className="relative" key={index}>
+                      <MiniStory storyType={storyType} />
+                    </div>
+                  ))
+                : errorMessage}
             </div>
           </div>
         </div>
