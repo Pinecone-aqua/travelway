@@ -1,17 +1,49 @@
-import React, { useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import axios from "axios";
 import MiniStoryOffCanvas from "@/components/userProfile/MiniStoryOffCanvas";
 
 export default function MiniStoryAdd(): JSX.Element {
-  const [popup, setPopup] = useState(false);
-  function popUpHandler() {
-    setPopup(true);
-  }
-
+  // const [popup, setPopup] = useState(false);
+  // function popUpHandler() {
+  //   setPopup(true);
+  // }
+  /**
+   *  user mini collection
+   * _id
+   * userId
+   * notes: [
+   * {
+   * noteContent: string;
+   * noteStyle: string;
+   * },
+   * {}
+   * ]
+   *  */
+  type NoteType = {
+    noteText: string;
+    noteStyle: string;
+  };
   const [selectedOption, setSelectedOption] = useState("");
+  const [userNotes, setUserNote] = useState<NoteType[]>([]);
+  const [currStyle, setCurStyle] = useState<string>("");
+
+  useEffect(() => {
+    handleInputNotes(currStyle);
+  }, [currStyle]);
+
+  const handleInputNotes = (styleText: string) => {
+    console.log("Button Clicked ====???");
+    if (userNotes.length) {
+      const newNotes = userNotes;
+      newNotes.push({ noteText: "", noteStyle: styleText });
+
+      setUserNote([...newNotes]);
+    }
+  };
 
   function handleOptionSelect(option: string) {
     setSelectedOption(option);
+    setCurStyle(option);
   }
 
   function miniStoryHandler(e: React.FormEvent<HTMLFormElement>) {
@@ -22,7 +54,6 @@ export default function MiniStoryAdd(): JSX.Element {
       sentence: e.currentTarget.sentence.value,
       blockType: selectedOption,
     });
-    console.log;
   }
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   // function miniStoryHandler(e: any) {
@@ -57,7 +88,7 @@ export default function MiniStoryAdd(): JSX.Element {
                 <div className="flex justify-center">
                   <MiniStoryOffCanvas onOptionSelect={handleOptionSelect} />
                 </div>
-                <input
+                {/* <input
                   type="text"
                   placeholder="image"
                   className="border  p-2 rounded-xl w-[800px] h-[300px] bg-gray-30 "
@@ -73,6 +104,16 @@ export default function MiniStoryAdd(): JSX.Element {
                 />
                 <div className="flex justify-center">
                   <MiniStoryOffCanvas onOptionSelect={handleOptionSelect} />
+                </div> */}
+                <div>
+                  {userNotes.map((note, index) => (
+                    <textarea
+                      cols={30}
+                      rows={8}
+                      key={index}
+                      defaultValue={note}
+                    />
+                  ))}
                 </div>
                 <button type="submit" className="border p-2 drop-shadow-xl">
                   Submit
