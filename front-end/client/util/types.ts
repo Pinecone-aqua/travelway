@@ -20,6 +20,7 @@ export interface StoryType {
   title: string;
   image: string;
   sentence: string;
+  coord: object;
 }
 
 export interface miniStoryType {

@@ -27,7 +27,6 @@ export class AuthController {
   }
   @Post('loginHandler')
   adminLogin(@Body() userDto: User): Promise<{ token: string }> {
-    console.log(userDto);
     return this.authService.adminLogin(userDto);
   }
 }
