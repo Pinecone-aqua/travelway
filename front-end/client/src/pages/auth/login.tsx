@@ -9,17 +9,14 @@ import Cookies from "js-cookie";
 import { toast } from "react-toastify";
 import jwtDecode from "jwt-decode";
 
-<<<<<<< HEAD
-=======
 type UserLoginType = {
   _id: string;
   email: string;
 };
 
->>>>>>> 19b0a32d4a8c1417f67a3273626a1e473fc5117b
 export default function Login(): JSX.Element {
   const [error, setError] = useState<string>("");
-  const { setToken, setUser, user } = useUser();
+  const { setToken, setUser } = useUser();
   const router = useRouter();
 
   const [loginForm, setLoginForm] = useState<LoginForm>({
@@ -77,7 +74,7 @@ export default function Login(): JSX.Element {
 
           toast.success("Амжилттай нэвтэрлээ");
 
-          // router.push("/user");
+          router.push("/user");
         }
       } else {
         toast.warning("Нэвтрэлт амжилтгүй, И-мэйл, нууц үгээ шалгана уу");
@@ -100,69 +97,6 @@ export default function Login(): JSX.Element {
       <Head>
         <title>Хэрэглэгч нэвтрэх</title>
       </Head>
-<<<<<<< HEAD
-      <div className="flex flex-col md:flex-row container mx-auto rounded-md p-6 justify-normal md:justify-center items-center">
-        <picture>
-          <img
-            src="/images/draw2.webp"
-            style={{ width: 400 }}
-            alt="Left side login image"
-          />
-        </picture>
-
-        <div className="flex flex-col w-11/12 md:w-6/12 lg:w-4/12">
-          <div>
-            {error && <p>{error}</p>}
-            <form onSubmit={onSubmit}>
-              <label htmlFor="email" className="block text-md mb-1">
-                И-мейл хаяг
-              </label>
-              <input
-                type="text"
-                id="email"
-                name="email"
-                value={loginForm.email}
-                onChange={onchangeHandle}
-                placeholder="Email"
-                required
-                className="border border-gray-500 px-5 py-2 text-md rounded w-full"
-              />
-              <br />
-              <br />
-              <label htmlFor="password" className="block text-md mb-1">
-                Нууц үг
-              </label>
-              <input
-                type="text"
-                id="password"
-                name="password"
-                value={loginForm.password}
-                onChange={onchangeHandle}
-                placeholder="нууц үг"
-                required
-                className="border border-gray-500 px-5 py-2 text-md rounded w-full"
-              />
-              <br />
-              <br />
-              <button
-                type="submit"
-                className="inline-block rounded-lg bg-blue-500 px-5 py-2 text-sm
-                font-medium uppercase leading-normal text-white w-full"
-              >
-                нэвтрэх
-              </button>
-
-              <div
-                onClick={googleLoginHandler}
-                className="rounded-lg text-sm bg-cyan-500 px-5 py-2 mt-5 flex justify-between align-center text-white cursor-pointer"
-              >
-                <div className="flex items-center">
-                  <FaGoogle className="my-auto text-white absolute" />
-                </div>
-                <span className="mx-auto text-white">Google-р НЭВТРЭХ</span>
-              </div>
-=======
->>>>>>> 19b0a32d4a8c1417f67a3273626a1e473fc5117b
 
       <div className="flex flex-col w-11/12 md:w-6/12 lg:w-4/12 border p-16 rounded">
         <div>
