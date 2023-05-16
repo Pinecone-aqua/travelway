@@ -23,6 +23,8 @@ export interface StoryType {
 }
 
 export interface miniStoryType {
+  width: number;
+  height: number;
   _id: string;
   image: string;
   title: string;

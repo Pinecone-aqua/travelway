@@ -1,5 +1,3 @@
-import MiniStoryAdd from "@/components/userProfile/MiniStoryAdd";
-import TravelGuide from "@/components/userProfile/TravelGuide";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { miniStoryType } from "../../util/types";
@@ -10,7 +8,8 @@ export default function User(): JSX.Element {
   const [story, setStory] = useState<miniStoryType[]>();
 
   const defaultStyle = "border-black  py-[3px] font-semibold ";
-  const activatedStyle = "border-black  py-[3px] font-semibold  border-b-2 ";
+  const activatedStyle =
+    "border-black  py-[3px] font-semibold  border-b-2  transiton w-[200px]";
   const topBtnStyle =
     "border border-black rounded-[13px] px-[15px] md:px-[29.5px] active:text-gray-200 py-[3px]";
 
@@ -29,76 +28,52 @@ export default function User(): JSX.Element {
   }, []);
 
   return (
-    <div>
-      <div className="w-full justify-center flex   drop-shadow-2xl  ">
-        <div className="flex justify-center pt-5">
+    <div className="max-w-5xl mx-auto px-4 py-10">
+      <div className="flex justify-center">
+        <picture>
           <img
             src="../images/efil.webp"
             alt="pic"
-            className=" rounded-full w-[150px] h-[150px] bg-black   outline outline-green-500 drop-shadow-2xl place-content-center"
+            className="rounded-full w-40 h-40 bg-gray-200 outline outline-green-500 shadow-lg"
           />
-        </div>
+        </picture>
       </div>
-      <div className="h-[3rem]" />
-      <div className="items-center justify-center flex flex-col gap-10 relative ">
-        <p className="font-bold text-[26px] border p-2 rounded-xl">
-          Robert Harrison
+      <div className="h-10" />
+      <div className="flex flex-col items-center gap-6">
+        <h1 className="text-3xl font-bold">Robert Harrison</h1>
+        <div className="flex justify-center gap-5">
+          <button className={`${topBtnStyle}`}>Follow</button>
+          <button className={`${topBtnStyle}`}>Edit Profile</button>
+        </div>
+        <p className="text-gray-700 text-center max-w-2xl">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa
+          mi.
         </p>
-        <div className="w-[80%] grid gap-10">
-          <div className="flex justify-center gap-5 font-semibold">
-            <button className={`${topBtnStyle}`}>Follow</button>
-            <button className={`${topBtnStyle}`}>Edit Profile</button>
-            <button className={`${topBtnStyle}`}>Message</button>
-          </div>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa
-            mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien
-            fringilla, mattis ligula consectetur, ultrices mauris. Maecenas
-            vitae mattis tellus. fringilla, mattis ligula consectetur, ultrices
-            mauris. Maecenas vitae mattis tellus.
-          </p>
-          <hr className=" border-black  drop-shadow-xl" />
-          <div className="flex justify-evenly">
-            <button
-              className={
-                change == "Mini story" ? `${activatedStyle}` : `${defaultStyle}`
-              }
-              onClick={changer}
-            >
-              Mini story
-            </button>
-            <button
-              className={
-                change == "TravelGuide"
-                  ? `${activatedStyle}`
-                  : `${defaultStyle}`
-              }
-              onClick={changer}
-            >
-              TravelGuide
-            </button>
-          </div>
-          <div className="relative">
-            {change == "TravelGuide" ? (
-              <>
-                <TravelGuide />
-              </>
-            ) : (
-              <>
-                <div className="gap-3 grid">
-                  <div>
-                    <MiniStoryAdd />
-                  </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                    {story?.map((storyType: miniStoryType, index: number) => (
-                      <div className="relative" key={index}>
-                        <MiniStory storyType={storyType} />
-                      </div>
-                    ))}
-                  </div>
+        <hr className="w-full border-gray-400 my-8" />
+        <div className="flex justify-center gap-8">
+          <button
+            className={`${
+              change == "Mini story" ? `${activatedStyle}` : `${defaultStyle}`
+            }`}
+            onClick={changer}
+          >
+            Mini story
+          </button>
+        </div>
+        <div className="relative">
+          <div className="gap-3 grid">
+            <a href="/miniStoryAdd">
+              <button className="py-2 font-semibold text-gray-400 grid place-content-center w-[100%] bg-gray-200 rounded-lg shadow-lg hover:bg-gray-300 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110">
+                Add your new adventure
+              </button>
+            </a>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              {story?.map((storyType: miniStoryType, index: number) => (
+                <div className="relative" key={index}>
+                  <MiniStory storyType={storyType} />
                 </div>
-              </>
-            )}
+              ))}
+            </div>
           </div>
         </div>
       </div>

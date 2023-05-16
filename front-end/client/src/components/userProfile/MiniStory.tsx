@@ -12,22 +12,17 @@ const MiniStoryModal = React.lazy(() => import("./MiniStoryModal"));
 export default function MiniStory(props: {
   storyType: miniStoryType;
 }): JSX.Element {
-  const [hover, setHover] = useState("invisible");
+  const [hover, setHover] = useState(false);
   const [changeInput, setChangeInput] = useState(false);
 
   const story = props.storyType;
-  console.log("story", story);
 
   function enter() {
-    setTimeout(() => {
-      setHover("visible");
-    }, 500);
+    setHover(true);
   }
 
   function leave() {
-    setTimeout(() => {
-      setHover("invisible");
-    }, 500);
+    setHover(false);
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -49,20 +44,39 @@ export default function MiniStory(props: {
       .catch((err) => console.log("story error", err));
   }
 
+  const determineImageHeight = () => {
+    const aspectRatio = story.width / story.height;
+    const maxWidth = 500;
+    const maxHeight = 500;
+
+    if (aspectRatio > 1) {
+      return Math.min(maxWidth, story.width);
+    } else {
+      return Math.min(maxHeight, story.height);
+    }
+  };
+
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <>
       <div>
-        <div className="relative ">
+        <div
+          className={`relative ${
+            hover ? "transform scale-110 duration-500" : "ease-out duration-599"
+          }`}
+        >
           <details
-            className={`absolute p-1 right-0 ${hover}`}
+            className={`absolute p-1 right-0 ${
+              hover ? "visible" : "invisible"
+            }`}
             onMouseEnter={enter}
+            onMouseLeave={leave}
           >
             <summary className="p-1 rounded-full border opacity-60">
               <BsThreeDots />
             </summary>
-            <div className=" grid gap-2 pt-2  border rounded-full p-1 opacity-80">
+            <div className="grid gap-2 pt-2 border rounded-full p-1 opacity-80">
               <button className="">
                 <MdModeEdit />
               </button>
@@ -78,7 +92,9 @@ export default function MiniStory(props: {
             height={500}
             quality={10}
             alt="pic"
-            className="w-[100%] h-[auto] object-cover rounded-xl disable-text-selection border hover:bg-black "
+            className={`w-[100%] h-[${determineImageHeight()}px] object-cover rounded-xl disable-text-selection border hover:bg-black cursor-pointer ${
+              hover ? "opacity-80" : "opacity-100"
+            }`}
             onMouseEnter={enter}
             onMouseLeave={leave}
           />

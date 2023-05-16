@@ -9,11 +9,9 @@ import {
   FormLabel,
   Input,
   Button,
-  Textarea,
 } from "@chakra-ui/react";
 import { useRef } from "react";
 import { miniStoryType } from "../../../util/types";
-// import ImageUpload from "../../shared/ImageUpload";
 
 type Props = {
   isOpen: boolean;
@@ -26,13 +24,7 @@ type Props = {
 
 export default function MiniStoryModal(props: Props): JSX.Element {
   const { isOpen, onClose, story, changeInput, setChangeInput, edit } = props;
-  //   const [selectedImage, setSelectedImage] = useState<string>(story.image);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-
-  //   const handleImageUpload = (image: string) => {
-  //     setSelectedImage(image);
-  //     setChangeInput(true);
-  //   };
 
   function handleChange() {
     const textarea = textareaRef.current;
@@ -43,13 +35,13 @@ export default function MiniStoryModal(props: Props): JSX.Element {
   }
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
+    <Modal isOpen={isOpen} onClose={onClose} size="sm">
       <ModalOverlay />
-      <ModalContent className="flex">
+      <ModalContent bg="gray.100">
         <ModalHeader>Edit your story</ModalHeader>
         <ModalBody>
           <form onSubmit={edit}>
-            <img src={story.image} alt="pic" />
+            <img src={story.image} alt="pic" className="mb-4" />
             <FormControl mb="4">
               <FormLabel>Title</FormLabel>
               <Input
@@ -59,32 +51,23 @@ export default function MiniStoryModal(props: Props): JSX.Element {
                 onChange={() => setChangeInput(true)}
               />
             </FormControl>
-            <FormControl mb="4">
-              <FormLabel>Sentence</FormLabel>
-              <Textarea
-                defaultValue={story.sentence}
-                name="sentence"
-                ref={textareaRef}
+            <FormControl
+              mb="4"
+              className="hover:bg-blue-100 transition-all duration-300"
+            >
+              <FormLabel>Title</FormLabel>
+              <Input
+                defaultValue={story.title}
+                name="title"
                 required
-                onChange={() => {
-                  setChangeInput(true);
-                  handleChange();
-                }}
-                style={{ height: "50px ", width: "100%" }}
+                onChange={() => setChangeInput(true)}
               />
-            </FormControl>
-            <FormControl mb="4">
-              <FormLabel>Image</FormLabel>
-              {/* <ImageUpload
-                setSelectedImage={handleImageUpload}
-                currentImage={selectedImage}
-              /> */}
             </FormControl>
           </form>
         </ModalBody>
 
         <ModalFooter>
-          <Button variant="ghost" onClick={onClose}>
+          <Button variant="outline" onClick={onClose}>
             Cancel
           </Button>
           <Button
@@ -95,6 +78,7 @@ export default function MiniStoryModal(props: Props): JSX.Element {
               setChangeInput(false);
               onClose();
             }}
+            className="hover:bg-blue-500 transition-all duration-300 transform hover:scale-105"
           >
             Save
           </Button>

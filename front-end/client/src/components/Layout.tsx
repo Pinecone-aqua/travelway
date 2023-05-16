@@ -7,27 +7,42 @@ interface PropType {
 
 const Layout = ({ children }: PropType): JSX.Element => (
   <>
-    <div className=" w-full xxl:h-[500px] xl:h-[400px] lg:h-[300px] md:h-[200px]  drop-shadow-2xl relative">
-      <picture>
-        <img
-          src="./images/sdcfvgbhnjik8765432wdfghjkio87654.webp"
-          alt="pic"
-          className="w-full object-cover absolute h-full"
-        />
-      </picture>
+    <div className=" drop-shadow-2xl  p-3">
       <Header />
-      <div className="box-border relative ms-5 h-full">
-        <h2 className="text-white  xxl:text-[10rem] xl:text-[8rem] md:text-[5rem] sm:text-[3rem]">
-          Mongolia
-        </h2>
-        <p className="inline-block bg-white bg-opacity-50 rounded-lg right-0 text-center py-1 px-4">
-          <span className="opacity-100 text-white text-3xl font-bold">
-            {new Date().toISOString().substring(0, 10)}
-          </span>
-        </p>
+      <div className=" drop-shadow-xl border rounded-xl mt-4  md:flex justify-center p-4 w-[100%]">
+        <div className=" flex justify-center grid place-content-center p-2 md:gap-5 z-50 gap-3">
+          <div className="flex justify-center">
+            <h2 className="font-bold text-[32px]">
+              The Informed Retailer Blog
+            </h2>
+          </div>
+          <p className="flex justify-center text-center">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem dolor
+            sit amet consectetur architecto dolorum fuga pariatur?
+          </p>
+          <div className="box-border h-full">
+            <div className="flex gap-3 justify-center ">
+              <a
+                href="/auth/login"
+                className="rounded-full font-semibold p-2 px-8 text-[18px] bg-black text-white cursor-pointer hover:bg-gray-700 transition-colors duration-300 ease-in-out transform-gpu hover:scale-105 active:bg-gray-900"
+              >
+                Get started
+              </a>
+            </div>
+          </div>
+        </div>
+        <picture className="w-[100%]">
+          <img
+            width={500}
+            height={500}
+            src={`../../images/tokyofuji.webp`}
+            alt=""
+            className="border rounded-xl h-[500px]  object-cover w-[100%]"
+          />
+        </picture>
       </div>
     </div>
-    <div className="">{children}</div>
+    <div>{children}</div>
     <Footer />
   </>
 );
