@@ -11,14 +11,14 @@ export default function Profile(): JSX.Element {
   const [stories, setStories] = useState<StoryType[]>();
   useEffect(() => {
     setLoading(true);
-    fetch(`http://localhost:3009/allUsers/${admin?.id}`)
+    fetch(`http://localhost:3009/users/${admin?.id}`)
       .then((response) => response.json())
       .then((res) => {
         setUser(res), setLoading(false);
       });
   }, [admin?.id]);
   useEffect(() => {
-    fetch(`http://localhost:3009/allStories/user${admin?.id}`)
+    fetch(`http://localhost:3009/ministory/user${admin?.id}`)
       .then((response) => response.json())
       .then((res) => setStories(res));
   }, [admin?.id]);
