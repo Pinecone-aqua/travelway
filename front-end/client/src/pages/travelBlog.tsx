@@ -6,12 +6,7 @@ import "primeicons/primeicons.css";
 import { miniStoryType } from "../../util/types";
 import React from "react";
 import TravelblogCard from "@/components/travelBlog/TravelblogCard";
-import {
-  Skeleton,
-  SkeletonCircle,
-  SkeletonText,
-  Stack,
-} from "@chakra-ui/react";
+import { Skeleton, Stack } from "@chakra-ui/react";
 
 // const BlogOffCanvas = React.lazy(
 //   () => import("../components/travelBlog/BlogOffCanvas")
@@ -28,17 +23,14 @@ export default function TravelBlog(): JSX.Element {
   const [userData, setUserData] = useState<UserType[]>([]);
   const [isOpen, setIsOpen] = useState(false);
   const [changeInput, setChangeInput] = useState(false);
-  let userName = "";
-  let userImage = "";
-
-  console.log("stories", stories);
+  // let userName = "";
+  // let userImage = "";
 
   useEffect(() => {
     const logUser = localStorage.getItem("userId");
 
     const getFetchdata = async (): Promise<void> => {
       const travels = await axios.get("http://localhost:3009/ministory/get");
-      console.log("ddasda", travels);
       const disp = travels.data;
       setStories(disp);
     };
@@ -52,14 +44,14 @@ export default function TravelBlog(): JSX.Element {
     if (logUser) {
       getUserFetch();
       getFetchdata();
-      setUserData((prevUserData) => {
-        const currentUser = prevUserData.find(
-          (user: UserType) => user._id === logUser
-        );
-        userName = currentUser?.username || "";
-        userImage = currentUser?.image || "";
-        return prevUserData;
-      });
+      // setUserData((prevUserData) => {
+      //   const currentUser = prevUserData.find(
+      //     (user: UserType) => user._id === logUser
+      //   );
+      //   userName = currentUser?.username || "";
+      //   userImage = currentUser?.image || "";
+      //   return prevUserData;
+      // });
     } else {
       console.log("Error user not found");
     }
@@ -90,20 +82,18 @@ export default function TravelBlog(): JSX.Element {
                 </div>
               </div>
             ) : (
-              stories
-                ?.slice(0, 8)
-                .map((story: miniStoryType, index: number) => (
-                  <div key={index}>
-                    <TravelblogCard
-                      story={story}
-                      isOpen={isOpen}
-                      onClose={handleClose}
-                      changeInput={changeInput}
-                      setChangeInput={setChangeInput}
-                      onOpen={() => handleOpen(story)}
-                    />
-                  </div>
-                ))
+              stories.map((story: miniStoryType, index: number) => (
+                <div key={index} className="grid sm:columns-3">
+                  <TravelblogCard
+                    story={story}
+                    isOpen={isOpen}
+                    onClose={handleClose}
+                    changeInput={changeInput}
+                    setChangeInput={setChangeInput}
+                    onOpen={() => handleOpen(story)}
+                  />
+                </div>
+              ))
             )}
           </div>
         </div>

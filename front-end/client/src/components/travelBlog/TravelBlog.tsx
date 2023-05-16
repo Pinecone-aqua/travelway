@@ -1,13 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 
-import { Editor, EditorTextChangeEvent } from "primereact/editor";
-import { SetStateAction, useState } from "react";
-// import { Editor } from "primereact/editor";
-import { travelWayType } from "../../../util/types"; 
+import { useState } from "react";
+import { travelWayType } from "../../../util/types";
 
 export default function TravelBlog(props: { travelWayData: travelWayType }) {
   const [popup, setPopup] = useState(false);
-  const [text, setText] = useState<SetStateAction<string>>("");
   const data = props.travelWayData;
 
   return (
@@ -21,15 +18,6 @@ export default function TravelBlog(props: { travelWayData: travelWayType }) {
             >
               X
             </button>
-          </div>
-          <div>
-            <Editor
-              value={data.title}
-              onTextChange={(e: EditorTextChangeEvent) => setText(e.textValue)}
-              style={{ height: "320px" }}
-              name="title"
-            />
-            {/* <div dangerouslySetInnerHTML={{ __html: data.title }} /> */}
           </div>
         </div>
       ) : (

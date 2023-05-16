@@ -29,7 +29,9 @@ export default function BlogOffCanvas(props: Props): JSX.Element {
           bg="gray.200"
           className="flex justify-between"
         >
-          <div className="text-lg font-medium">Basic Drawer</div>
+          <div className="text-lg font-medium">
+            <p>Travel Blog</p>
+          </div>
           <div onClick={onClose} className="cursor-pointer">
             <svg
               className="w-6 h-6 fill-current text-gray-500 hover:text-gray-600 transition-colors duration-200"

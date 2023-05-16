@@ -9,7 +9,6 @@ import {
   FormLabel,
   Input,
   Button,
-  Textarea,
 } from "@chakra-ui/react";
 import { useRef } from "react";
 import { miniStoryType } from "../../../util/types";
@@ -26,8 +25,6 @@ type Props = {
 export default function MiniStoryModal(props: Props): JSX.Element {
   const { isOpen, onClose, story, changeInput, setChangeInput, edit } = props;
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-
-  console.log(story);
 
   function handleChange() {
     const textarea = textareaRef.current;

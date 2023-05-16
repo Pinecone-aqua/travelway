@@ -74,7 +74,7 @@ export default function MiniStoryOffCanvas(props: MiniStoryOffCanvasProps) {
                 <p className="text-lg font-medium mt-6 mb-4">
                   Choose Text Block Type
                 </p>
-                <div className="grid grid-cols-3 gap-4">
+                <div>
                   {textBlockTypes.map((type) => (
                     <div
                       key={type.id}
