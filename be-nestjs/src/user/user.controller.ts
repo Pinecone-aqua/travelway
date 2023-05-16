@@ -36,6 +36,14 @@ export class UsersController {
     return this.userService.findOne(id);
   }
 
+  // @Get(':token')
+  // findOneUser(@Param('token') token: string) {
+  //   const userObj = jwtDecode(token);
+  //   const userId = userObj?._id;
+  //   console.log(userId);
+  //   return this.userService.findOne(userId);
+  // }
+
   @Patch(':id')
   update(@Param('id') _id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.userService.update(_id, updateUserDto);

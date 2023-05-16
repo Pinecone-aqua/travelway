@@ -7,6 +7,9 @@ import { miniStoryType } from "../../util/types";
 import React from "react";
 import TravelblogCard from "@/components/travelBlog/TravelblogCard";
 import { Skeleton, Stack } from "@chakra-ui/react";
+import { useUser } from "../../context/user.context";
+import jwtDecode from "jwt-decode";
+
 
 // const BlogOffCanvas = React.lazy(
 //   () => import("../components/travelBlog/BlogOffCanvas")
@@ -23,11 +26,12 @@ export default function TravelBlog(): JSX.Element {
   const [userData, setUserData] = useState<UserType[]>([]);
   const [isOpen, setIsOpen] = useState(false);
   const [changeInput, setChangeInput] = useState(false);
+  const { token, setUser } = useUser();
   // let userName = "";
   // let userImage = "";
 
   useEffect(() => {
-    const logUser = localStorage.getItem("userId");
+    // const token = Cookies.get("usertoken");
 
     const getFetchdata = async (): Promise<void> => {
       const travels = await axios.get("http://localhost:3009/ministory/get");
@@ -36,12 +40,14 @@ export default function TravelBlog(): JSX.Element {
     };
 
     const getUserFetch = async (): Promise<void> => {
-      const user = await axios.get(`http://localhost:3009/allUsers/profile`);
+      const id = jwtDecode(token)?._id;
+      const user = await axios.get(`http://localhost:3009/allUsers/${id}`);
+      // const user = await axios.get(`http://localhost:3009/allUsers/profile`);
       const currentUser = user.data;
       setUserData(currentUser);
     };
 
-    if (logUser) {
+    if (token) {
       getUserFetch();
       getFetchdata();
       // setUserData((prevUserData) => {
@@ -55,7 +61,7 @@ export default function TravelBlog(): JSX.Element {
     } else {
       console.log("Error user not found");
     }
-  }, []);
+  }, [token]);
 
   const handleOpen = () => {
     setIsOpen(true);
