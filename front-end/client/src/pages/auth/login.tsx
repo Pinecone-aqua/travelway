@@ -7,15 +7,22 @@ import { useUser } from "../../../context/user.context";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { toast } from "react-toastify";
+import jwtDecode from "jwt-decode";
+
+type UserLoginType = {
+  _id: string;
+  email: string;
+};
 
 export default function Login(): JSX.Element {
   const [error, setError] = useState<string>("");
-  const { setToken } = useUser();
+  const { setToken, setUser, user } = useUser();
   const router = useRouter();
 
   const [loginForm, setLoginForm] = useState<LoginForm>({
     email: "",
     password: "",
+    userId: "",
   });
 
   const onchangeHandle = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,15 +32,13 @@ export default function Login(): JSX.Element {
   };
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  async function onSubmit(e: any): Promise<void> {
+  async function onSubmit(e: any): void {
     e.preventDefault();
     const data: LoginForm = {
       email: loginForm.email,
       password: loginForm.password,
+      userId: "",
     };
-
-    console.log("data=====> ");
-    console.log(data);
 
     try {
       if (!data.email || !data.password) {
@@ -43,27 +48,37 @@ export default function Login(): JSX.Element {
 
       const endpoint = `http://localhost:3009/auth/login`;
       const response = await axios.post(endpoint, data);
-
-      console.log("RESPONSE ======> ", response);
       // response.data.status status
       // response.data.msg message
       // response.data.token token
 
       if (response.status === 201 || response.status === 200) {
         if (response.data.token) {
-          console.log("Token =======> ", response.data.token);
+          const tokenStr = response.data.token;
 
-          localStorage.setItem("userId", response.data.token);
-          Cookies.set("token", response.data.token);
-          setToken(response.data.token);
+          const lggUserId: UserLoginType = jwtDecode(tokenStr);
+          const contextUserID = lggUserId._id;
+          const contextEmail = lggUserId.email;
+          localStorage.setItem("userToken", tokenStr);
+          localStorage.setItem("contextUserId", contextUserID);
+          localStorage.setItem("contextEmail", contextEmail);
+          Cookies.set("token", tokenStr);
+
+          // User Context settlement
+          setToken(tokenStr);
+          setUser({
+            email: contextEmail,
+            password: "",
+            userId: contextUserID,
+          });
 
           toast.success("Амжилттай нэвтэрлээ");
-          router.push("/user");
+
+          // router.push("/user");
         }
       } else {
         toast.warning("Нэвтрэлт амжилтгүй, И-мэйл, нууц үгээ шалгана уу");
       }
-
     } catch (error) {
       console.log("Error occurred: ", error);
       setError(`Хэрэглэгчийн и-мейл, нууц үг буруу байна`);
@@ -83,82 +98,73 @@ export default function Login(): JSX.Element {
       <Head>
         <title>Хэрэглэгч нэвтрэх</title>
       </Head>
-      <div className="flex flex-col md:flex-row container mx-auto rounded-md p-6 justify-normal md:justify-center items-center">
-        <picture>
-          <img
-            src="/images/draw2.webp"
-            style={{ width: 400 }}
-            alt="Left side login image"
-          />
-        </picture>
 
-        <div className="flex flex-col w-11/12 md:w-6/12 lg:w-4/12">
-          <div>
-            {error && <p>{error}</p>}
-            <form onSubmit={onSubmit}>
-              <label htmlFor="email" className="block text-md mb-1">
-                И-мейл хаяг
-              </label>
-              <input
-                type="text"
-                id="email"
-                name="email"
-                value={loginForm.email}
-                onChange={onchangeHandle}
-                placeholder="Email"
-                required
-                className="border border-gray-500 px-5 py-2 text-md rounded w-full"
-              />
-              <br />
-              <br />
-              <label htmlFor="password" className="block text-md mb-1">
-                Нууц үг
-              </label>
-              <input
-                type="text"
-                id="password"
-                name="password"
-                value={loginForm.password}
-                onChange={onchangeHandle}
-                placeholder="нууц үг"
-                required
-                className="border border-gray-500 px-5 py-2 text-md rounded w-full"
-              />
-              <br />
-              <br />
-              <button
-                type="submit"
-                className="inline-block rounded-lg bg-blue-500 px-5 py-2 text-sm
+      <div className="flex flex-col w-11/12 md:w-6/12 lg:w-4/12 border p-16 rounded">
+        <div>
+          {error && <p>{error}</p>}
+          <form onSubmit={onSubmit}>
+            <label htmlFor="email" className="block text-md mb-1">
+              И-мейл хаяг
+            </label>
+            <input
+              type="text"
+              id="email"
+              name="email"
+              value={loginForm.email}
+              onChange={onchangeHandle}
+              placeholder="Email"
+              required
+              className="border border-gray-500 px-5 py-2 text-md rounded w-full"
+            />
+            <br />
+            <br />
+            <label htmlFor="password" className="block text-md mb-1">
+              Нууц үг
+            </label>
+            <input
+              type="text"
+              id="password"
+              name="password"
+              value={loginForm.password}
+              onChange={onchangeHandle}
+              placeholder="нууц үг"
+              required
+              className="border border-gray-500 px-5 py-2 text-md rounded w-full"
+            />
+            <br />
+            <br />
+            <button
+              type="submit"
+              className="inline-block rounded-lg bg-blue-500 px-5 py-2 text-sm
                 font-medium uppercase leading-normal text-white w-full"
-              >
-                нэвтрэх
-              </button>
+            >
+              нэвтрэх
+            </button>
 
-              <div
-                onClick={googleLoginHandler}
-                className="rounded-lg text-sm bg-cyan-500 px-5 py-2 mt-5 flex justify-between align-center text-white cursor-pointer"
-              >
-                <div className="flex items-center">
-                  <FaGoogle className="my-auto text-white absolute" />
-                </div>
-                <span className="mx-auto text-white">Google-р НЭВТРЭХ</span>
+            <div
+              onClick={googleLoginHandler}
+              className="rounded-lg text-sm bg-cyan-500 px-5 py-2 mt-5 flex justify-between align-center text-white cursor-pointer"
+            >
+              <div className="flex items-center">
+                <FaGoogle className="my-auto text-white absolute" />
               </div>
+              <span className="mx-auto text-white">Google-р НЭВТРЭХ</span>
+            </div>
 
-              <div className="text-sm font-normal text-slate-400 text-center mt-4 uppercase">
-                Шинэ хэрэглэгч бүртгүүлэх бол
-                <span
-                  className="cursor-pointer text-blue-700"
-                  onClick={() => {
-                    router.push("/auth/register");
-                  }}
-                >
-                  {" "}
-                  Энд дарж{" "}
-                </span>
-                бүртгүүлнэ.
-              </div>
-            </form>
-          </div>
+            <div className="text-sm font-normal text-slate-400 text-center mt-4 uppercase">
+              Шинэ хэрэглэгч бүртгүүлэх бол
+              <span
+                className="cursor-pointer text-blue-700"
+                onClick={() => {
+                  router.push("/auth/register");
+                }}
+              >
+                {" "}
+                Энд дарж{" "}
+              </span>
+              бүртгүүлнэ.
+            </div>
+          </form>
         </div>
       </div>
     </div>

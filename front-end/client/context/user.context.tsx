@@ -7,7 +7,9 @@ interface UserProviderType {
   children: React.ReactNode;
 }
 
-export const UserContext = createContext<UserContextType>({} as UserContextType);
+export const UserContext = createContext<UserContextType>(
+  {} as UserContextType
+);
 
 export function useUser() {
   return useContext(UserContext);
@@ -18,13 +20,13 @@ export default function UserProvider({ children }: UserProviderType) {
   const [token, setToken] = useState<string | undefined>(Cookies.get("token"));
 
   useEffect(() => {
-    if(token) {
+    if (token) {
       setUser(jwtDecode(token));
     }
-  }, [token])
+  }, [token]);
 
   return (
-    <UserContext.Provider value={ { user, setUser, token, setToken } }>
+    <UserContext.Provider value={{ user, setUser, token, setToken }}>
       {children}
     </UserContext.Provider>
   );

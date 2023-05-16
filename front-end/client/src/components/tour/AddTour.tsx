@@ -25,12 +25,12 @@ const AddTour = () => {
   ]);
 
   const [message, setMessage] = useState("");
-  const [coverImage, setCoverImage] = useState<File>();
+  const [coverImage, setCoverImage] = useState<File | string>();
   const [dayImage, setDayImage] = useState<File[]>([]);
 
   const handleSubmit = async (
     event: React.ChangeEvent<HTMLInputElement>
-  ): Promise<void> => {
+  ): void => {
     event.preventDefault();
 
     try {
@@ -43,9 +43,9 @@ const AddTour = () => {
       };
 
       const sendFormData = new FormData();
-      
+      sendFormData.append('images', coverImage);
       if (dayImage.length > 0) {
-        dayImage.forEach((image) => sendFormData.append("images", image));
+        dayImage.forEach((image) => sendFormData.append('images', image));
       }
       sendFormData.append("body", JSON.stringify(newFormData));
 
@@ -54,6 +54,7 @@ const AddTour = () => {
         sendFormData
       );
 
+      console.log(responseAll);
       // router.push("/addtravel");
     } catch (error) {
       console.error(error);
@@ -93,6 +94,7 @@ const AddTour = () => {
       destination: "",
     };
     setDayData((prevData) => [...prevData, newDay]);
+    setActiveClass(dayData.length);
   };
 
   const handleCurrentDisplay = (e: FormEvent, index: number) => {
@@ -104,6 +106,8 @@ const AddTour = () => {
     setTravelData({
       title: "",
       description: "",
+      images: [],
+      userId: "",
     });
     setDayData([
       {
@@ -113,14 +117,15 @@ const AddTour = () => {
         destination: "",
       },
     ]);
+    setActiveClass(0);
   };
 
   const handleCoverImageChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
-      const headerImage = event.target.files;
-      setCoverImage(headerImage[0]);
-      console.log("Cover image");
-      console.log(coverImage);
+      const headerImage = event.target.files[0];
+      setCoverImage(headerImage);
+      console.log("Cover event listener");
+      console.log(headerImage);
     }
   };
 
@@ -132,8 +137,6 @@ const AddTour = () => {
         dayImage.push(images[i]);
       }
       setDayImage([...dayImage]);
-      console.log("Days images: ==> ");
-      console.log(dayImage);
     }
   };
 
