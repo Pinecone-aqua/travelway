@@ -12,7 +12,7 @@ import BlogOffCanvas from "./BlogOffCanvas";
 import Image from "next/image";
 import { miniStoryType } from "../../../util/types";
 
-type story = {
+type StoryProps = {
   isOpen: boolean;
   onClose: () => void;
   story: miniStoryType;
@@ -21,9 +21,13 @@ type story = {
   onOpen: () => void;
 };
 
-export default function TravelblogCard(prop: story) {
-  const { story } = prop;
-  const { isOpen, onOpen, onClose } = useDisclosure();
+export default function TravelblogCard(props: StoryProps) {
+  const { story, isOpen, onClose, onOpen } = props;
+  const {
+    isOpen: isOffCanvasOpen,
+    onOpen: onOffCanvasOpen,
+    onClose: onOffCanvasClose,
+  } = useDisclosure();
   const [changeInput, setChangeInput] = useState(false);
 
   return (
@@ -32,7 +36,11 @@ export default function TravelblogCard(prop: story) {
       className="cursor-pointer border border-gray-300 rounded-md overflow-hidden transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105"
     >
       <CardBody>
-        <Flex alignItems="center" flexWrap="wrap">
+        <Flex
+          alignItems="center"
+          flexWrap="wrap"
+          className="bg-transparent bg-green-500"
+        >
           <Avatar name="Segun Adebayo" src={story.title} mr="4" />
           <Box>
             <Heading size="sm" mb="1">
@@ -49,13 +57,13 @@ export default function TravelblogCard(prop: story) {
         width={500}
         height={500}
         alt="Chakra UI"
-        onClick={onOpen}
+        onClick={onOffCanvasOpen}
         className="w-full h-56 object-cover transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105"
       />
       <React.Suspense fallback={null}>
         <BlogOffCanvas
-          isOpen={isOpen}
-          onClose={onClose}
+          isOpen={isOffCanvasOpen}
+          onClose={onOffCanvasClose}
           story={story}
           changeInput={changeInput}
           setChangeInput={setChangeInput}

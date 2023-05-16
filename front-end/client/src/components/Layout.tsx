@@ -17,8 +17,9 @@ const Layout = ({ children }: PropType): JSX.Element => (
             </h2>
           </div>
           <p className="flex justify-center text-center">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem dolor
-            sit amet consectetur architecto dolorum fuga pariatur?
+            Welcome to TravelWay, a travel blog where travelers can share their
+            stories, knowledge, and suggestions with fellow adventure
+            enthusiasts.
           </p>
           <div className="box-border h-full">
             <div className="flex gap-3 justify-center ">
