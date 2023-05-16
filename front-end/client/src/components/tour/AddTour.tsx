@@ -4,6 +4,8 @@ import TourDetails from "./TourDetails";
 import axios from "axios";
 import { useUser } from "../../../context/user.context";
 import jwtDecode from "jwt-decode";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AddTour = () => {
   // const router = useRouter();
@@ -65,9 +67,11 @@ const AddTour = () => {
         );
 
         console.log(responseAll);
+        notifySaveSuccess();
         // router.push("/addtravel");
       }
     } catch (error) {
+      notifySaveError()
       console.error(error);
       setMessage("Failed to upload file.");
       setTimeout(() => {
@@ -121,7 +125,7 @@ const AddTour = () => {
     setTravelData({
       title: "",
       description: "",
-      images: "",
+      image: "",
       userId: "",
     });
     setDayData([
@@ -155,6 +159,29 @@ const AddTour = () => {
       setDayImage([...dayImage]);
     }
   };
+
+  const notifySaveSuccess = () =>
+    toast.success("🦄 Successfull login!", {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  const notifySaveError = () =>
+    toast.warn("🦄 Login unsuccessful, please check email password!", {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
 
   return (
     <>
@@ -246,6 +273,18 @@ const AddTour = () => {
           </form>
         </div>
       </div>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </>
   );
 };
