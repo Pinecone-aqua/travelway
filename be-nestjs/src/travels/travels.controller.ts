@@ -35,11 +35,15 @@ export class TravelsController {
       const url = await this.travelService.uploadImageToCloudinary(
         files.images,
       );
-      request.images.push(...url);
-    }
+      // request.images.push(...url);
+      request.image = url[0];
 
-    console.log('BE Request files.images ==>');
-    console.log(request);
+      if (request.day.length > 0) {
+        request.day.forEach((dday, index) => (dday.image = url[index + 1]));
+      }
+    }
+    // console.log('BE Request files.images ==>');
+    // console.log(request);
 
     return this.travelService.create(request);
   }

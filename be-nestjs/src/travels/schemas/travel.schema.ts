@@ -2,6 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
 export interface Day {
+  image: string;
   subTitle: string;
   describe: string;
   considerations: string;
@@ -12,7 +13,7 @@ export type TravelDocument = Document & {
   title: string;
   description: string;
   userId: string;
-  images: string[];
+  image: string;
   day: Day[];
 };
 
@@ -30,7 +31,7 @@ export class Travel {
   userId: string;
 
   @Prop()
-  images: string[];
+  image: string;
 
   @Prop({ type: [{ type: Object }] })
   day: Day[];
