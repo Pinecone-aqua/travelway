@@ -9,7 +9,7 @@ export default function StoryPage(props: { data: StoryType[] }): JSX.Element {
   const { data } = props;
 
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const path = "allStories";
+  const path = "stories";
 
   return (
     <>
@@ -52,7 +52,7 @@ export default function StoryPage(props: { data: StoryType[] }): JSX.Element {
 }
 
 export async function getStaticPaths() {
-  const res = await fetch(`http://localhost:3009/allStories/pageNum`);
+  const res = await fetch(`http://localhost:3009/stories/pageNum`);
   const pages = await res.json();
   const lastPage = pages && Math.ceil(pages / 8);
 
@@ -73,7 +73,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }: { params: { page: string } }) {
   const response = await fetch(
-    `http://localhost:3009/allStories/page${params.page}`
+    `http://localhost:3009/stories/page${params.page}`
   );
   const data = await response.json();
 

@@ -6,12 +6,19 @@ import {
   Param,
   Patch,
   Post,
+  UploadedFile,
+  UploadedFiles,
+  UseInterceptors,
 } from '@nestjs/common';
 import { CreateStoryDto } from './dto/create-story.dto';
 import { UpdateStoryDto } from './dto/update-story.dto';
 import { StoryService } from './story.service';
 import { Story } from './schemas/story.schema';
-@Controller('allStories')
+import {
+  FileFieldsInterceptor,
+  FileInterceptor,
+} from '@nestjs/platform-express';
+@Controller('stories')
 export class StoryController {
   constructor(private readonly storyService: StoryService) {}
   @Get('pageNum')
@@ -42,9 +49,17 @@ export class StoryController {
     return this.storyService.remove(id);
   }
   @Post('create')
-  create(@Body() create: CreateStoryDto) {
-    return this.storyService.create(create);
+  @UseInterceptors(FileFieldsInterceptor([{ name: 'file' }]))
+  async create(
+    @Body() body: { product: string },
+    @UploadedFiles() files?: { file?: Express.Multer.File[] },
+  ) {
+    const url = await this.storyService.uploadImageToCloudinary(files.file);
+    const req: CreateStoryDto = JSON.parse(body.product);
+    req.image.push(...url);
+    return this.storyService.create(req);
   }
+
   @Patch(':id')
   update(
     @Param('id') id: string,

@@ -1,5 +1,6 @@
 import { MiniStoryType, TravelType, UserType } from "@/util/types";
 import axios from "axios";
+import Link from "next/link";
 
 interface PropType {
   travels: TravelType[];
@@ -199,38 +200,43 @@ function UserTravels(props: { travels: TravelType[] }) {
   const { travels } = props;
 
   function deleteHandler(_id: string) {
-    axios.delete(`http://localhost:3009/miniStory/${_id}`);
+    axios.delete(`http://localhost:3009/travels/${_id}`);
   }
 
   return (
     <>
       {travels.map((travel: TravelType, index: number) => (
-        <div
-          key={index}
-          className="rounded-2xl bg-white p-2 m-5 flex gap-5 h-100 w-[95%]"
-        >
-          <picture className="">
-            {" "}
-            <img
-              className="w-[100px] h-32 rounded-lg"
-              src={travel.image}
-              alt=""
-            />
-          </picture>
-          <div className="flex w-[90%] justify-between">
-            <div className="flex flex-col h-[90%] justify-between">
-              <p className="text-2xl">{travel.title}</p>
-              <p className="text-xl">{travel.createdAt}</p>
-            </div>
-
-            <button
-              className="p-2 bg-mycolor text-white text-xl rounded-xl flex shadow-lg shadow-gray-500/100 rounded-xl self-end"
-              onClick={() => deleteHandler(travel._id)}
+        <>
+          <Link href={`/travels/travel/${travel._id}`}>
+            <div
+              key={index}
+              className="rounded-2xl bg-white p-2 m-5 flex gap-5 h-100 w-[95%]"
             >
-              delete
-            </button>
-          </div>
-        </div>
+              <picture className="">
+                {" "}
+                <img
+                  className="w-[100px] h-32 rounded-lg"
+                  src={travel.image}
+                  alt=""
+                />
+              </picture>
+              <div className="flex w-[90%] justify-between">
+                <div className="flex flex-col h-[90%] justify-between">
+                  <p className="text-2xl">{travel.title}</p>
+                  <p className="text-xl">{travel.createdAt}</p>
+                </div>
+                <div>
+                  <button
+                    className="p-2 bg-mycolor text-white text-xl rounded-xl flex shadow-lg shadow-gray-500/100 rounded-xl self-end"
+                    onClick={() => deleteHandler(travel._id)}
+                  >
+                    delete
+                  </button>
+                </div>
+              </div>
+            </div>
+          </Link>
+        </>
       ))}
     </>
   );

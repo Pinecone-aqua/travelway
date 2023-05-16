@@ -26,7 +26,7 @@ export default function Story(props: PropsType): JSX.Element {
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
-              <Dropdown.Item href={`/story/${data._id}`}>
+              <Dropdown.Item href={`/stories/story/${data._id}`}>
                 <Button className="button">засварлах</Button>
               </Dropdown.Item>
               <Dropdown.Item href="#/action-2">

@@ -1,33 +1,22 @@
-import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { DayType, TravelType } from "@/util/types";
 
-import { DayType, TravelType } from "../../../util/types";
-import { useRouter } from "next/router";
-import Image from "next/image";
+export default function TravelID(props: { data: TravelType }): JSX.Element {
+  const { data } = props;
 
-export default function Travel({ result }: { result: TravelType }) {
-  console.log(JSON.stringify(result, null, 2));
-
-  const { query } = useRouter();
-  const id = query.id;
-  const [travelData, setTravelData] = useState<TravelType | null>(null);
-  useEffect(() => {
-    fetch(`http://localhost:3009/travels/${id}`)
-      .then((response) => response.json())
-      .then((res) => setTravelData(res));
-  }, [id]);
-
-  console.log("travelData", travelData);
+  // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-explicit-any
+  console.log(data);
 
   return (
     <>
-      <div className="p-20">
-        <div className="text-4xl p-5">{travelData?.title}</div>
-        <div className="text-2xl">{travelData?.description}</div>
-        {travelData?.day.map((oneday: DayType, index: number) => (
+      <div className="p-20 bg-slate-100">
+        <div className="text-4xl p-5">{data.title}</div>
+        <div className="text-2xl">{data.description}</div>
+        {data.day.map((oneday: DayType, index: number) => (
           <div key={index}>
             {index === 0 ? (
               <div className="my-4 w-full overflow-hidden">
-                <Image
+                <img
                   src={oneday.image}
                   alt={oneday.image}
                   width={1450}
@@ -39,10 +28,12 @@ export default function Travel({ result }: { result: TravelType }) {
                   Day {index + 1}
                 </h2>
                 {/* <p className="text-xl text-orange-500 font-normal">
-                                {Date(page.updatedAt)}
-                              </p> */}
+                          {Date(page.updatedAt)}
+                        </p> */}
                 <h3 className="font-bold mb-2 text-lg">{oneday.subTitle}</h3>
-                <p className="my-4 text-xl text-justify">{oneday.describe}</p>
+                <p className="my-4 text-xl text-justify">
+                  {oneday.description}
+                </p>
                 <h3 className="font-bold mt-2">
                   Очих газар: {oneday.destination}
                 </h3>
@@ -54,7 +45,7 @@ export default function Travel({ result }: { result: TravelType }) {
             ) : index % 2 === 0 ? (
               <div className="flex justify-between gap-20 items-center mt-8 mb-4">
                 <div className="flex-0">
-                  <Image
+                  <img
                     src={oneday.image}
                     alt={oneday.image}
                     width={550}
@@ -67,10 +58,12 @@ export default function Travel({ result }: { result: TravelType }) {
                     Day {index + 1}
                   </h2>
                   {/* <p className="text-xl text-orange-500 font-normal">
-                                  {Date(page.updatedAt)}
-                                </p> */}
+                            {Date(page.updatedAt)}
+                          </p> */}
                   <h3 className="font-bold mb-2 text-lg">{oneday.subTitle}</h3>
-                  <p className="my-4 text-xl text-justify">{oneday.describe}</p>
+                  <p className="my-4 text-xl text-justify">
+                    {oneday.description}
+                  </p>
                   <h3 className="font-bold mt-2">
                     Очих газар: {oneday.destination}
                   </h3>
@@ -87,10 +80,12 @@ export default function Travel({ result }: { result: TravelType }) {
                     Day {index + 1}
                   </h2>
                   {/* <p className="text-xl text-orange-500 font-normal">
-                                  {Date(page.updatedAt)}
-                                </p> */}
+                            {Date(page.updatedAt)}
+                          </p> */}
                   <h3 className="font-bold mb-2 text-lg">{oneday.subTitle}</h3>
-                  <p className="my-4 text-xl text-justify">{oneday.describe}</p>
+                  <p className="my-4 text-xl text-justify">
+                    {oneday.description}
+                  </p>
                   <h3 className="font-bold mt-2">
                     Очих газар: {oneday.destination}
                   </h3>
@@ -100,7 +95,7 @@ export default function Travel({ result }: { result: TravelType }) {
                   </h3>
                 </div>
                 <div className="flex-0">
-                  <Image
+                  <img
                     src={oneday.image}
                     alt={oneday.image}
                     width={550}
@@ -115,4 +110,29 @@ export default function Travel({ result }: { result: TravelType }) {
       </div>
     </>
   );
+}
+
+export async function getStaticPaths() {
+  const res = await fetch("http://localhost:3009/travels/allId");
+  const ids = await res.json();
+
+  const paths = await ids.map((id: { _id: string }) => ({
+    params: { id: id._id },
+  }));
+
+  return {
+    paths,
+    fallback: false,
+  };
+}
+
+export async function getStaticProps({ params }: { params: { id: string } }) {
+  const { data } = await axios.get(
+    `http://localhost:3009/travels/${params.id}`
+  );
+  return {
+    props: {
+      data: data,
+    },
+  };
 }

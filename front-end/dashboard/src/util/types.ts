@@ -16,7 +16,7 @@ export interface StoryType {
   title: string;
   province: string;
   description: string;
-  image: string;
+  image: string[];
   myth: string;
   coord: object;
   toDo: [];
@@ -34,6 +34,8 @@ export interface DayType {
   description: string;
   image: string;
   considerations: string;
+  subTitle: string;
+  destination: string;
 }
 
 export interface ToDoType {
@@ -50,7 +52,7 @@ export interface MiniStoryType {
 
 export interface AdminType {
   id: string;
-  username: string;
+  userName: string;
   exp: number;
   iat: number;
 }

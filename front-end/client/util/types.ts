@@ -3,13 +3,13 @@ export interface TravelType {
   title: string;
   image: string;
   description: string;
-  day: [];
+  userId: string;
+  day: DayType[];
 }
 
 export interface DayType {
   subTitle: string;
   describe: string;
-  image: string;
   considerations: string;
   destination: string;
 }
@@ -34,6 +34,7 @@ export interface miniStoryType {
 export interface LoginForm {
   email: string | undefined;
   password: string;
+  userId: string;
 }
 
 export interface travelWayType {
