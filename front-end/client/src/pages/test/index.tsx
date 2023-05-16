@@ -49,7 +49,6 @@ export default function BranchSection(props: { markers: StoryType[] }) {
 
       <div className="flex flex-col gap-8 md:flex md:flex-row md:items-center">
         <div className="w-full h-[500px]">
-          {/* {data && ( */}
           <GoogleMap
             mapContainerStyle={mapContainerStyle}
             center={center}

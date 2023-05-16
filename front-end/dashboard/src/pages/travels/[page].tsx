@@ -2,24 +2,17 @@ import Pagination from "@/components/Pagination";
 import Travel from "@/components/travel/Travel";
 import { TravelType } from "@/util/types";
 
-import { useState } from "react";
-
 export default function TravelPage(props: {
   data: TravelType[] | undefined;
 }): JSX.Element {
   const { data } = props;
 
-  const [currentPage, setCurrentPage] = useState<number>(1);
   const path = "travels";
 
   return (
     <>
       <div className="bg-white rounded-2xl h-full p-20">
-        <Pagination
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-          path={path}
-        />
+        <Pagination path={path} />
 
         <table className="w-full bg-slate-100 rounded-2xl mt-5 shadow-lg shadow-gray-300">
           <thead className="h-14 text-left p-5">

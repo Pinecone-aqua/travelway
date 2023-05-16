@@ -3,12 +3,9 @@ import CreateStory from "@/components/story/CreateStory";
 import Story from "@/components/story/Story";
 import { StoryType } from "@/util/types";
 
-import { useState } from "react";
-
 export default function StoryPage(props: { data: StoryType[] }): JSX.Element {
   const { data } = props;
 
-  const [currentPage, setCurrentPage] = useState<number>(1);
   const path = "stories";
 
   return (
@@ -18,11 +15,7 @@ export default function StoryPage(props: { data: StoryType[] }): JSX.Element {
           <div className="">
             <div className="flex justify-between h-12">
               <div className="h-12">
-                <Pagination
-                  currentPage={currentPage}
-                  setCurrentPage={setCurrentPage}
-                  path={path}
-                />
+                <Pagination path={path} />
               </div>
 
               <CreateStory />
