@@ -39,6 +39,10 @@ export class StoryController {
   findAllId(): Promise<number> {
     return this.storyService.findAllId();
   }
+  @Get('mark')
+  findMark(): Promise<number> {
+    return this.storyService.findMark();
+  }
 
   @Get(':id')
   findOne(@Param('id') id: string): Promise<Story> {

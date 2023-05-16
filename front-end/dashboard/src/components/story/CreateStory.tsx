@@ -4,7 +4,6 @@ import ModalInput from "./ModaInput";
 
 import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function CreateStory(): JSX.Element {
   const [addIndicator, setAddIndicator] = useState<string[]>([]);
