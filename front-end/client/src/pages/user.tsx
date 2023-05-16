@@ -2,8 +2,6 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { miniStoryType } from "../../util/types";
 import MiniStory from "@/components/userProfile/MiniStory";
-import { useUser } from "../../context/user.context";
-import { setDefaultResultOrder } from "dns/promises";
 
 export default function User(): JSX.Element {
   const [change, setChange] = useState("Mini story");
@@ -28,11 +26,8 @@ export default function User(): JSX.Element {
 
     const getFetchdata = async () => {
       const travels = await axios.get(
-        `http://localhost:3009/miniStory/${ctxUserId}`
+        `http://localhost:3009/ministory/user/${ctxUserId}`
       );
-      console.log("Travels data");
-      console.log("users", ctxUserId);
-      console.log("travels", travels);
 
       if (travels.data.length > 0) {
         const { data } = travels;
