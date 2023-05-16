@@ -32,6 +32,7 @@ export interface miniStoryType {
 export interface LoginForm {
   email: string | undefined;
   password: string;
+  userId: string;
 }
 
 export interface travelWayType {
