@@ -8,6 +8,7 @@ export interface TravelType {
 }
 
 export interface DayType {
+  image: string;
   subTitle: string;
   describe: string;
   considerations: string;
