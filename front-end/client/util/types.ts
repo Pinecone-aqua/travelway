@@ -21,6 +21,7 @@ export interface StoryType {
   title: string;
   image: string;
   sentence: string;
+  coord: object;
 }
 
 export interface miniStoryType {
@@ -47,4 +48,20 @@ export interface UserContextType {
   setUser: React.Dispatch<React.SetStateAction<LoginForm | null | undefined>>;
   token: string | undefined;
   setToken: React.Dispatch<React.SetStateAction<string | undefined>>;
+}
+
+//sharvaa added
+
+export interface StoryTypeSh {
+  map(
+    arg0: (unit: StoryType, index: number) => JSX.Element
+  ): import("react").ReactNode;
+  _id: string;
+  title: string;
+  province: string;
+  description: string;
+  image: string[];
+  myth: string;
+  coord: object;
+  toDo: [];
 }

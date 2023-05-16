@@ -26,6 +26,13 @@ export class StoryService {
     const result = await this.storyModel.find({}).select({ id: 1 });
     return result;
   }
+  async findMark(): Promise<any> {
+    const result = await this.storyModel
+      .find({})
+      .select({ id: 1, coord: 1 })
+      .limit(7);
+    return result;
+  }
   async findOne(id: string): Promise<Story> {
     const result = await this.storyModel.findOne({ _id: id });
     return result;

@@ -23,7 +23,7 @@ import { ConfigModule } from '@nestjs/config';
     StoryModule,
     MiniStoryModule,
     TravelWayModule,
-    GoogleLoginModule,
+    // GoogleLoginModule,
     ConfigModule.forRoot({
       envFilePath: './env',
     }),

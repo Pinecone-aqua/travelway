@@ -6,16 +6,16 @@ export default function Header(): JSX.Element {
     <div className="flex justify-center ">
       <div className="container flex justify-between h-24 items-center">
         <Link className="text-3xl" href={"/"}>
-          Dashboard
+          Хянах самбар
         </Link>
         <div className="flex ">
           <input
             className="h-12 w-72 p-3 bg-white border-2 color-mycolor rounded-s-3xl"
             type="text"
-            placeholder="search"
+            placeholder="хайх утга"
           />
           <button className="bg-gradient-to-r from-tocolor to-mycolor w-16 text-white  rounded-e-3xl">
-            search
+            хайх
           </button>
         </div>
 
