@@ -24,6 +24,8 @@ export default function User(): JSX.Element {
     console.log(localStorage.getItem("contextUserId"));
     const ctxUserId = localStorage.getItem("contextUserId");
 
+    console.log("Context ");
+
     const getFetchdata = async () => {
       const travels = await axios.get(
         `http://localhost:3009/ministory/user/${ctxUserId}`
