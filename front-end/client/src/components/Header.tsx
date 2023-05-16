@@ -2,10 +2,10 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Cookies from "js-cookie";
-import jwtDecode from "jwt-decode";
 import { Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/menu";
 import { IconButton } from "@chakra-ui/react";
 import { RxHamburgerMenu } from "react-icons/rx";
+import jwtDecode from "jwt-decode";
 
 interface HeaderType {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -21,18 +21,35 @@ const MENULIST = [
   { name: "About us", uri: "/about" },
 ];
 
+type UserLoginType = {
+  _id: string;
+  email: string;
+};
+
 export default function Header(): JSX.Element {
+  
   const [nav, setNav] = useState<string | null>();
   const [user, setUser] = useState<HeaderType>();
   const [isResponsive, setIsResponsive] = useState(false);
+  const { setToken, setUser } = useUser();
+  const router = useRouter()
 
   const activatedStyle =
     "opacity-100 text-xl hover:text-black  text-black ease-out duration-300 md:w-[192px] sm:w-[142px] w-[96px] border-b-4 border-gray-400 ";
   const defaultStyle =
     "opacity-70 text-lg hover:text-black ease-out duration-300 md:w-[160px] sm:w-[128px] w-[80px]";
 
+
+    const lggUserId: UserLoginType = jwtDecode(tokenStr);
+          const contextUserID = lggUserId._id;
+          const contextEmail = lggUserId.email;
+          localStorage.setItem("userToken", tokenStr);
+          localStorage.setItem("contextUserId", contextUserID);
+          localStorage.setItem("contextEmail", contextEmail);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const token: any = Cookies.get("token");
+
+
 
   useEffect(() => {
     if (token) setUser(jwtDecode(token));

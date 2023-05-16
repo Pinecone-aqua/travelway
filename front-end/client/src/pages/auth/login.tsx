@@ -1,29 +1,19 @@
 import Head from "next/head";
-import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { FaGoogle } from "react-icons/fa";
 import { LoginForm } from "../../../util/types";
-import { useUser } from "../../../context/user.context";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { toast } from "react-toastify";
-import jwtDecode from "jwt-decode";
-
-type UserLoginType = {
-  _id: string;
-  email: string;
-};
+import { useRouter } from "next/router";
 
 export default function Login(): JSX.Element {
   const [error, setError] = useState<string>("");
-  const { setToken, setUser } = useUser();
-  const router = useRouter();
-
   const [loginForm, setLoginForm] = useState<LoginForm>({
     email: "",
     password: "",
-    userId: "",
   });
+  const router = useRouter();
 
   const onchangeHandle = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -37,47 +27,27 @@ export default function Login(): JSX.Element {
     const data: LoginForm = {
       email: loginForm.email,
       password: loginForm.password,
-      userId: "",
     };
 
     try {
       if (!data.email || !data.password) {
         setError("Нэр болон нууц үгээ бүрэн оруулна уу");
-        return;
-      }
-
-      const endpoint = `http://localhost:3009/auth/login`;
-      const response = await axios.post(endpoint, data);
-      // response.data.status status
-      // response.data.msg message
-      // response.data.token token
-
-      if (response.status === 201 || response.status === 200) {
-        if (response.data.token) {
-          const tokenStr = response.data.token;
-
-          const lggUserId: UserLoginType = jwtDecode(tokenStr);
-          const contextUserID = lggUserId._id;
-          const contextEmail = lggUserId.email;
-          localStorage.setItem("userToken", tokenStr);
-          localStorage.setItem("contextUserId", contextUserID);
-          localStorage.setItem("contextEmail", contextEmail);
-          Cookies.set("token", tokenStr);
-
-          // User Context settlement
-          setToken(tokenStr);
-          setUser({
-            email: contextEmail,
-            password: "",
-            userId: contextUserID,
-          });
-
-          toast.success("Амжилттай нэвтэрлээ");
-
-          router.push("/user");
-        }
       } else {
-        toast.warning("Нэвтрэлт амжилтгүй, И-мэйл, нууц үгээ шалгана уу");
+        const endpoint = `http://localhost:3009/auth/login`;
+        const response = await axios.post(endpoint, data);
+        // response.data.status status
+        // response.data.msg message
+        // response.data.token token
+
+        if (response.status === 201 || response.status === 200) {
+          if (response.data.token) {
+            const tokenStr = response.data.token;
+            Cookies.set("token", tokenStr);
+            toast.success("Амжилттай нэвтэрлээ");
+          }
+        } else {
+          toast.warning("Нэвтрэлт амжилтгүй, И-мэйл, нууц үгээ шалгана уу");
+        }
       }
     } catch (error) {
       console.log("Error occurred: ", error);
