@@ -19,11 +19,11 @@ import { ConfigModule } from '@nestjs/config';
     AuthModule,
     UsersModule,
     TagsModule,
-    // TravelsModule,
+    TravelsModule,
     StoryModule,
     MiniStoryModule,
     TravelWayModule,
-    // GoogleLoginModule,
+    GoogleLoginModule,
     ConfigModule.forRoot({
       envFilePath: './env',
     }),

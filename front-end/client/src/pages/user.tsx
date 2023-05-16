@@ -42,7 +42,6 @@ export default function User(): JSX.Element {
       <div className="flex flex-col items-center gap-6">
         <h1 className="text-3xl font-bold">Robert Harrison</h1>
         <div className="flex justify-center gap-5">
-          <button className={`${topBtnStyle}`}>Follow</button>
           <button className={`${topBtnStyle}`}>Edit Profile</button>
         </div>
         <p className="text-gray-700 text-center max-w-2xl">

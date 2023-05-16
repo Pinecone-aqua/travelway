@@ -27,34 +27,12 @@ export default function TravelBlog(): JSX.Element {
   // let userImage = "";
 
   useEffect(() => {
-    const logUser = localStorage.getItem("userId");
-
     const getFetchdata = async (): Promise<void> => {
       const travels = await axios.get("http://localhost:3009/ministory/get");
       const disp = travels.data;
       setStories(disp);
     };
-
-    const getUserFetch = async (): Promise<void> => {
-      const user = await axios.get(`http://localhost:3009/allUsers/profile`);
-      const currentUser = user.data;
-      setUserData(currentUser);
-    };
-
-    if (logUser) {
-      getUserFetch();
-      getFetchdata();
-      // setUserData((prevUserData) => {
-      //   const currentUser = prevUserData.find(
-      //     (user: UserType) => user._id === logUser
-      //   );
-      //   userName = currentUser?.username || "";
-      //   userImage = currentUser?.image || "";
-      //   return prevUserData;
-      // });
-    } else {
-      console.log("Error user not found");
-    }
+    getFetchdata();
   }, []);
 
   const handleOpen = () => {
