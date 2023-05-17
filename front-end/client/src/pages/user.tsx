@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { miniStoryType } from "../../util/types";
 import MiniStory from "@/components/userProfile/MiniStory";
+import Link from "next/link";
 
 export default function User(): JSX.Element {
   const [change, setChange] = useState("Mini story");
@@ -77,11 +78,11 @@ export default function User(): JSX.Element {
         </div>
         <div className="relative">
           <div className="gap-3 grid">
-            <a href="/miniStoryAdd">
+            <Link href="/miniStoryAdd">
               <button className="py-2 font-semibold text-gray-400 grid place-content-center w-[100%] bg-gray-200 rounded-lg shadow-lg hover:bg-gray-300 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110">
                 Add your new adventure
               </button>
-            </a>
+            </Link>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {story === undefined
                 ? story?.map((storyType: miniStoryType, index: number) => (
