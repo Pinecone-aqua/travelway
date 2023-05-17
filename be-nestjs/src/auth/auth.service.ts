@@ -77,33 +77,37 @@ export class AuthService {
   }
   //admin dashboard login
   async adminLogin(userDto: User): Promise<{ token: string }> {
-    const { username, password, role } = userDto;
+    try {
+      const { username, password, role } = userDto;
 
-    // console.log('Request irsen: ====> ', loginDto);
-    const user = await this.userModel.findOne({ email: username });
+      // console.log('Request irsen: ====> ', loginDto);
+      const user = await this.userModel.findOne({ email: username });
 
-    if (!user) {
-      // throw new BadRequestException(HttpStatus.BAD_REQUEST);
-      throw new UnauthorizedException('И-мейл хаяг  үг буруу байна!');
-    }
+      if (!user) {
+        // throw new BadRequestException(HttpStatus.BAD_REQUEST);
+        throw new UnauthorizedException('И-мейл хаяг  үг буруу байна!');
+      }
 
-    const isPasswordMatched = await bcrypt.compare(password, user.password);
+      const isPasswordMatched = await bcrypt.compare(password, user.password);
 
-    if (!isPasswordMatched) {
-      throw new UnauthorizedException(
-        'И-мейл хаяг эсвэл aaa нууц үг буруу байна!',
-      );
-    }
+      if (!isPasswordMatched) {
+        throw new UnauthorizedException(
+          'И-мейл хаяг эсвэл aaa нууц үг буруу байна!',
+        );
+      }
 
-    if (user.role !== role) {
-      throw new UnauthorizedException('ta admin bish baina!');
-    } else {
-      const token = this.jwtService.sign({
-        id: user._id,
-        userName: user.username,
-      });
+      if (user.role !== role) {
+        throw new UnauthorizedException('Та админ эрхгүй байна!');
+      } else {
+        const token = this.jwtService.sign({
+          id: user._id,
+          userName: user.username,
+        });
 
-      return { token };
+        return { token };
+      }
+    } catch (error) {
+      console.log(error);
     }
   }
 }

@@ -22,12 +22,12 @@ export class CreateTravelDto {
 export class DayDto {
   @IsString()
   subTitle: string;
-  
+
   @IsString()
   describe: string;
-  
+
   image: string;
-  
+
   @IsString()
   considerations: string;
 

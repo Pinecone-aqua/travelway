@@ -1,8 +1,10 @@
 import { AdminContext } from "@/context/AdminProvider";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useContext, useState } from "react";
 
 export default function DropProfile(): JSX.Element {
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const { admin } = useContext(AdminContext);
   const buttonStyle = "bg-white text-mycolor p-3 rounded-2xl w-28 my-2";
@@ -26,7 +28,9 @@ export default function DropProfile(): JSX.Element {
           <button className={buttonStyle}>Тохиргоо</button>
           <button
             className={buttonStyle}
-            onClick={() => localStorage.removeItem("login")}
+            onClick={() => {
+              localStorage.removeItem("login"), router.reload();
+            }}
           >
             Гарах
           </button>

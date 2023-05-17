@@ -11,9 +11,6 @@ interface PropType {
 export default function UserId(props: PropType): JSX.Element {
   const { travels, user, miniStory } = props;
 
-  console.log("users", user);
-  console.log("travels", travels);
-
   return (
     <div className="bg-white rounded-2xl h-full p-20 flex flex-col w-full">
       <div className="w-full h-[350px] bg-slate-100 rounded-2xl flex justify-around">
@@ -206,37 +203,32 @@ function UserTravels(props: { travels: TravelType[] }) {
   return (
     <>
       {travels.map((travel: TravelType, index: number) => (
-        <>
-          <Link href={`/travels/travel/${travel._id}`}>
-            <div
-              key={index}
-              className="rounded-2xl bg-white p-2 m-5 flex gap-5 h-100 w-[95%]"
-            >
-              <picture className="">
-                {" "}
-                <img
-                  className="w-[100px] h-32 rounded-lg"
-                  src={travel.image}
-                  alt=""
-                />
-              </picture>
-              <div className="flex w-[90%] justify-between">
-                <div className="flex flex-col h-[90%] justify-between">
-                  <p className="text-2xl">{travel.title}</p>
-                  <p className="text-xl">{travel.createdAt}</p>
-                </div>
-                <div>
-                  <button
-                    className="p-2 bg-mycolor text-white text-xl rounded-xl flex shadow-lg shadow-gray-500/100 rounded-xl self-end"
-                    onClick={() => deleteHandler(travel._id)}
-                  >
-                    delete
-                  </button>
-                </div>
+        <Link href={`/travels/travel/${travel._id}`} key={index}>
+          <div className="rounded-2xl bg-white p-2 m-5 flex gap-5 h-100 w-[95%]">
+            <picture className="">
+              {" "}
+              <img
+                className="w-[100px] h-32 rounded-lg"
+                src={travel.image}
+                alt=""
+              />
+            </picture>
+            <div className="flex w-[90%] justify-between">
+              <div className="flex flex-col h-[90%] justify-between">
+                <p className="text-2xl">{travel.title}</p>
+                <p className="text-xl">{travel.createdAt}</p>
+              </div>
+              <div>
+                <button
+                  className="p-2 bg-mycolor text-white text-xl rounded-xl flex shadow-lg shadow-gray-500/100 rounded-xl self-end"
+                  onClick={() => deleteHandler(travel._id)}
+                >
+                  delete
+                </button>
               </div>
             </div>
-          </Link>
-        </>
+          </div>
+        </Link>
       ))}
     </>
   );

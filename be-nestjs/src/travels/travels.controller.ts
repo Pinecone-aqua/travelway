@@ -42,9 +42,6 @@ export class TravelsController {
         request.day.forEach((dday, index) => (dday.image = url[index + 1]));
       }
     }
-    // console.log('BE Request files.images ==>');
-    // console.log(request);
-
     return this.travelService.create(request);
   }
   @Get('pageNum')

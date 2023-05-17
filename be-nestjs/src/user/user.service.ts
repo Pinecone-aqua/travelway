@@ -62,17 +62,22 @@ export class UsersService {
     }
     return updatedUserLocal;
   }
-
   async remove(id: string): Promise<User> {
-    const deletedUserLocal = await this.userModel.findByIdAndRemove({
-      _id: id,
-    });
-
-    if (!deletedUserLocal) {
-      throw new NotFoundException(`Хэрэглэгч ${id} ID-тай олдсонгүй`);
+    try {
+      const deletedUserLocal = await this.userModel.findOneAndDelete({
+        _id: id,
+      });
+      if (!deletedUserLocal) {
+        throw new NotFoundException(`oldsongui`);
+      }
+      return deletedUserLocal;
+    } catch (error) {
+      // Handle the error here
+      console.error('Error occurred while removing user:', error);
+      throw error; // Optionally rethrow the error
     }
-    return deletedUserLocal;
   }
+
   async countNum(): Promise<any> {
     const result = await this.userModel.count();
     return result;

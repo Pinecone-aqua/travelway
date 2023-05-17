@@ -4,6 +4,7 @@ import ModalInput from "./ModaInput";
 
 import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
+import { toast } from "react-toastify";
 
 export default function CreateStory(): JSX.Element {
   const [addIndicator, setAddIndicator] = useState<string[]>([]);
@@ -38,13 +39,35 @@ export default function CreateStory(): JSX.Element {
     const product = new FormData();
     addFile.forEach((file) => {
       product.append("file", file);
-      console.log(product);
     });
     product.append("product", JSON.stringify(object));
-    axios
-      .post(`http://localhost:3009/stories/create`, product)
-      .then((res) => console.log(res));
-    console.log("product", product);
+    try {
+      const response = axios.post(
+        `http://localhost:3009/stories/create`,
+        product
+      );
+      response.then((response) => response.data);
+
+      toast.success("succes", {
+        position: "top-right",
+        type: "success",
+        autoClose: 1000,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } catch {
+      toast.error("Failed to delete", {
+        position: "top-right",
+        type: "error",
+        autoClose: 1000,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
   }
   return (
     <>
@@ -95,7 +118,7 @@ export default function CreateStory(): JSX.Element {
                   <div key={index}>
                     <input
                       type="text"
-                      className="p-2 rounded-xl w-full"
+                      className="p-2 m-2 rounded-xl w-full"
                       name="activity"
                       defaultValue={unit}
                     />
@@ -107,11 +130,12 @@ export default function CreateStory(): JSX.Element {
                 <p>зураг нэмэх</p>
                 <div className="flex gap-2 flex-wrap">
                   {addFile.map((image, index) => (
-                    <img
-                      key={index}
-                      src={URL.createObjectURL(image)}
-                      className="w-10"
-                    />
+                    <picture key={index}>
+                      <img
+                        src={URL.createObjectURL(image)}
+                        className="w-10 h-10"
+                      />
+                    </picture>
                   ))}
                 </div>
 
@@ -125,7 +149,7 @@ export default function CreateStory(): JSX.Element {
               </div>
 
               <button
-                className="bg-gradient-to-r from-tocolor to-mycolor text-white shadow-lg shadow-mycolor px-4 py-2 rounded-xl border-2 w-96"
+                className="bg-gradient-to-r from-tocolor to-mycolor text-white shadow-lg shadow-mycolor px-4 py-2 rounded-xl border-2 w-96 "
                 type="submit"
               >
                 creates

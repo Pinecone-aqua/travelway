@@ -1,18 +1,28 @@
 import Link from "next/link";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import PageBtn from "./subComponent/PageBtn";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import PageBtn from "./PageBtn";
 interface PropType {
-  currentPage: number;
-  setCurrentPage: Dispatch<SetStateAction<number>>;
   path: string;
 }
 
 export default function Pagination(props: PropType): JSX.Element {
-  const { currentPage, setCurrentPage, path } = props;
+  const { path } = props;
+
+  const router = useRouter();
   const active =
     "bg-gradient-to-r from-tocolor text-white to-purple-500 p-3 rounded-xl m-2";
   const inActive = " p-3 rounded-xl m-2 border-2";
+
   const [pageNum, setPageNum] = useState<number>(1);
+
+  const [currentPage, setCurrentPage] = useState<number>(1);
+
+  useEffect(() => {
+    const page = router.query.page;
+    setCurrentPage(Number(page));
+  }, [router]);
+
   useEffect(() => {
     fetch(`http://localhost:3009/${path}/pageNum`)
       .then((response) => response.json())

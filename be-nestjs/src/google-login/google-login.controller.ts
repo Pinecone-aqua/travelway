@@ -25,7 +25,7 @@ export class GoogleLoginController {
   googleLogin() {
     const stringifiedParams = queryString.stringify({
       client_id: process.env.CLIENT_ID,
-      redirect_uri: `http://localhost:${process.env.PORT}/google/callback`,
+      redirect_uri: `${process.env.HOST_REDIRECT_URI}/google/callback`,
       scope: [
         'https://www.googleapis.com/auth/userinfo.email',
         'https://www.googleapis.com/auth/userinfo.profile',
@@ -48,7 +48,6 @@ export class GoogleLoginController {
       throw new HttpException('Bad Request', HttpStatus.BAD_REQUEST);
 
     const profile: any = await getGoogleUserInfo(accessToken);
-    console.log(profile);
 
     let user = await this.userService.findByEmail(profile.email);
 
@@ -75,6 +74,6 @@ export class GoogleLoginController {
     res
       .status(200)
       .cookie('token', token)
-      .redirect(`http://localhost:${process.env.CLIENT_PORT}`);
+      .redirect(`${process.env.CLIENT_REDIRECT_URI}`);
   }
 }

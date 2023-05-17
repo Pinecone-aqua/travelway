@@ -1,5 +1,5 @@
 import Link from "next/link";
-import DropProfile from "./profile/DropProfile";
+import DropProfile from "../profile/DropProfile";
 
 export default function Header(): JSX.Element {
   return (
