@@ -24,7 +24,7 @@ const Loader = ({ children }: { children: ReactNode }) => {
   }, [router]);
 
   return loading ? (
-    <div className="loader-container w-screen h-screen flex justify-center items-center">
+    <div className="loader-container w-full h-screen flex justify-center items-center m-auto">
       <ReactLoading color="mycolor" height={50} width={50} type="spin" />
     </div>
   ) : (

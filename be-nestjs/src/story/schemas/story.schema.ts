@@ -21,6 +21,8 @@ export class Story {
   province: string;
   @Prop()
   userId: string;
+  @Prop({ type: Object })
+  coord: { lat: number; lng: number };
 }
 
 export const StorySchema = SchemaFactory.createForClass(Story);

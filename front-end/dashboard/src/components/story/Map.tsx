@@ -51,10 +51,7 @@ export default function BranchSection(props: PropType) {
           onClick={handleMarkerClick}
         >
           {clickedLocation && (
-            <Marker
-              position={clickedLocation as google.maps.LatLngLiteral}
-              animation={2}
-            />
+            <Marker position={clickedLocation as google.maps.LatLngLiteral} />
           )}
         </GoogleMap>
       </div>

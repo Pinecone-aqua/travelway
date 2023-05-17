@@ -20,7 +20,7 @@ export default function DeleteModalUser(props: PropType): JSX.Element {
   async function deleteHandler(userId: string) {
     try {
       const response = await axios.delete(
-        `http://localhost:3009/allUsers/${userId}`
+        `http://localhost:3009/users/${userId}`
       );
       if (response.status === 200) {
         toast.success("🦄 amjilttai!", {

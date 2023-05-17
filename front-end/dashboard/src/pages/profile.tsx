@@ -9,7 +9,7 @@ export default function Profile(): JSX.Element {
 
   const [stories, setStories] = useState<StoryType[]>();
   useEffect(() => {
-    fetch(`http://localhost:3009/allUsers/${admin?.id}`)
+    fetch(`http://localhost:3009/users/${admin?.id}`)
       .then((response) => response.json())
       .then((res) => {
         setUser(res);

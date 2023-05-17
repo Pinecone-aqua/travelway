@@ -104,7 +104,7 @@ export default function UserId(props: PropType): JSX.Element {
 }
 
 export async function getStaticPaths() {
-  const res = await fetch("http://localhost:3009/allUsers/allId");
+  const res = await fetch("http://localhost:3009/users/allId");
   const ids = await res.json();
 
   const paths = await ids.map((id: { _id: string }) => ({
@@ -127,7 +127,7 @@ export async function getStaticProps({ params }: { params: { id: string } }) {
       `http://localhost:3009/travels/user/${params.id}`
     );
     const travels = await response.json();
-    const resUser = await fetch(`http://localhost:3009/allUsers/${params.id}`);
+    const resUser = await fetch(`http://localhost:3009/users/${params.id}`);
     const user = await resUser.json();
 
     if (!user) {
@@ -165,7 +165,7 @@ function UserMiniStory(props: { miniStory: MiniStoryType[] }): JSX.Element {
       {miniStory.map((story: MiniStoryType, index: number) => (
         <div
           key={index}
-          className="rounded-2xl bg-white p-2 m-5 flex  gap-5 h-100 w-[90%]"
+          className="rounded-2xl bg-white p-2 m-5 flex  gap-5 w-[90%]"
         >
           <picture className="">
             {" "}

@@ -75,27 +75,33 @@ export class StoryService {
   async uploadImageToCloudinary(
     images: Express.Multer.File[],
   ): Promise<string[]> {
-    const arr = [];
-    await Promise.all(
-      images?.map(async (file) => {
-        const { secure_url } = await this.CloudinaryService.uploadImage(file);
-        return arr.push(secure_url);
-      }),
-    );
-    return arr;
+    try {
+      const arr = [];
+      await Promise.all(
+        images?.map(async (file) => {
+          const { secure_url } = await this.CloudinaryService.uploadImage(file);
+          return arr.push(secure_url);
+        }),
+      );
+      return arr;
+    } catch (error) {
+      throw new BadRequestException('Аяллын зураг дутуу байна');
+    }
   }
 
   async create(newStory: CreateStoryDto) {
     try {
-      const { title, description, myth, toDo, province } = newStory;
+      const { title, description, myth, toDo, province, coord, userId } =
+        newStory;
 
-      if (!title && !description && !myth && !toDo && !province) {
+      if (title && description && myth && toDo && province && coord && userId) {
+        console.log('new story', newStory);
+        const newAsStory = new this.storyModel(newStory);
+        const result = await newAsStory.save();
+        return result;
+      } else {
         throw new BadRequestException('Аяллын мэдээлэл дутуу байна');
       }
-      console.log(newStory);
-      const newAsStory = new this.storyModel(newStory);
-      const result = await newAsStory.save();
-      return result;
     } catch (error) {
       console.log(error);
     }

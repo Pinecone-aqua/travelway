@@ -10,7 +10,7 @@ import {
 import { UsersService } from './user.service';
 import { User, UpdateUserDto } from './schemas/user.schema';
 
-@Controller('allUsers')
+@Controller('users')
 export class UsersController {
   constructor(private readonly userService: UsersService) {}
   @Get('/pageNum')

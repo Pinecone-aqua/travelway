@@ -7,7 +7,7 @@ import { ToastContainer } from "react-toastify";
 export default function AllUser(props: { users: UserType[] }): JSX.Element {
   const { users } = props;
 
-  const path = "allUsers";
+  const path = "users";
 
   return (
     <div className="bg-white rounded-2xl h-full p-20">
@@ -41,7 +41,7 @@ export default function AllUser(props: { users: UserType[] }): JSX.Element {
 }
 
 export async function getStaticPaths() {
-  const res = await fetch(`http://localhost:3009/allUsers/pageNum`);
+  const res = await fetch(`http://localhost:3009/users/pageNum`);
   const pages = await res.json();
   const lastPage = pages && Math.ceil(pages / 8);
 
@@ -61,7 +61,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }: { params: { page: string } }) {
   const response = await fetch(
-    `http://localhost:3009/allUsers/page/${params.page}`
+    `http://localhost:3009/users/page/${params.page}`
   );
   const data = await response.json();
   if (!data) {

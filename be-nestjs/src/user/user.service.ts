@@ -17,11 +17,6 @@ export class UsersService {
     return result;
   }
 
-  // async findAll(): Promise<User[]> {
-  //   const result = await this.userModel.find({});
-  //   return result;
-  // }
-
   async findProInfo(): Promise<any> {
     try {
       const result = await this.userModel.find({}, { username: 1, image: 1 });

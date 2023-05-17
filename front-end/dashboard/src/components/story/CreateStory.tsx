@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import ModalInput from "./ModaInput";
 
 import Button from "react-bootstrap/Button";
@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import Image from "next/image";
 import BranchSection from "./Map";
 import { province } from "@/util/Constants";
+import { AdminContext } from "@/context/AdminProvider";
 
 export default function CreateStory(): JSX.Element {
   const [addIndicator, setAddIndicator] = useState<string[]>([]);
@@ -19,6 +20,7 @@ export default function CreateStory(): JSX.Element {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [addFile, setAddFile] = useState<File[]>([]);
+  const { admin } = useContext(AdminContext);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function addFiles(e: any) {
@@ -43,6 +45,7 @@ export default function CreateStory(): JSX.Element {
       myth: e.target.myth.value,
       toDo: addIndicator,
       coord: clickedLocation,
+      userId: admin?.id,
     };
 
     const product = new FormData();

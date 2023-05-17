@@ -58,10 +58,14 @@ export class StoryController {
     @Body() body: { product: string },
     @UploadedFiles() files?: { file?: Express.Multer.File[] },
   ) {
-    const url = await this.storyService.uploadImageToCloudinary(files.file);
-    const req: CreateStoryDto = JSON.parse(body.product);
-    req.image.push(...url);
-    return this.storyService.create(req);
+    try {
+      const url = await this.storyService.uploadImageToCloudinary(files.file);
+      const req: CreateStoryDto = JSON.parse(body.product);
+      req.image.push(...url);
+      return this.storyService.create(req);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   @Patch(':id')
@@ -71,6 +75,4 @@ export class StoryController {
   ): Promise<Story> {
     return this.storyService.update(id, updateStoryDto);
   }
-
-  // page number
 }

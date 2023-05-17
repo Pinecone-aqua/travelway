@@ -1,7 +1,7 @@
 import { AdminContext } from "@/context/AdminProvider";
 import React, { ReactNode, useContext } from "react";
 import Header from "./Header";
-import Login from "../Login";
+import Login from "./Login";
 import SideMenu from "./SideMenu";
 import Loader from "../subComponent/Loader";
 

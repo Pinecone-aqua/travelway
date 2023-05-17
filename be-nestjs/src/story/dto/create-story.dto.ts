@@ -1,4 +1,4 @@
-import { IsArray, IsString } from 'class-validator';
+import { IsArray, IsObject, IsString } from 'class-validator';
 
 export class CreateStoryDto {
   @IsString()
@@ -14,4 +14,8 @@ export class CreateStoryDto {
   readonly toDo: [];
   @IsString()
   readonly province: string;
+  @IsString()
+  readonly userId: string;
+  @IsObject()
+  readonly coord: object;
 }
