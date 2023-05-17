@@ -10,6 +10,7 @@ import { MiniStoryModule } from './miniStory/miniStory.module';
 import { TravelWayModule } from './travelWay/miniStory.module';
 import { StoryModule } from './story/story.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { GoogleLoginModule } from './google-login/google-login.module';
 
 @Module({
   imports: [
@@ -20,7 +21,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
     StoryModule,
     MiniStoryModule,
     TravelWayModule,
-    // GoogleLoginModule,
+    GoogleLoginModule,
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
