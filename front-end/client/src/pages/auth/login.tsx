@@ -1,29 +1,22 @@
 import Head from "next/head";
-import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaGoogle } from "react-icons/fa";
 import { LoginForm } from "../../../util/types";
-import { useUser } from "../../../context/user.context";
 import axios from "axios";
 import Cookies from "js-cookie";
-import { toast } from "react-toastify";
-import jwtDecode from "jwt-decode";
-
-type UserLoginType = {
-  _id: string;
-  email: string;
-};
+import { useRouter } from "next/router";
+import { useUser } from "../../../context/user.context";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Login(): JSX.Element {
   const [error, setError] = useState<string>("");
-  const { setToken, setUser } = useUser();
-  const router = useRouter();
-
   const [loginForm, setLoginForm] = useState<LoginForm>({
     email: "",
     password: "",
-    userId: "",
   });
+  const { setToken, setUser } = useUser();
+  const router = useRouter();
 
   const onchangeHandle = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -37,47 +30,32 @@ export default function Login(): JSX.Element {
     const data: LoginForm = {
       email: loginForm.email,
       password: loginForm.password,
-      userId: "",
     };
 
     try {
       if (!data.email || !data.password) {
         setError("Нэр болон нууц үгээ бүрэн оруулна уу");
-        return;
-      }
-
-      const endpoint = `http://localhost:3009/auth/login`;
-      const response = await axios.post(endpoint, data);
-      // response.data.status status
-      // response.data.msg message
-      // response.data.token token
-
-      if (response.status === 201 || response.status === 200) {
-        if (response.data.token) {
-          const tokenStr = response.data.token;
-
-          const lggUserId: UserLoginType = jwtDecode(tokenStr);
-          const contextUserID = lggUserId._id;
-          const contextEmail = lggUserId.email;
-          localStorage.setItem("userToken", tokenStr);
-          localStorage.setItem("contextUserId", contextUserID);
-          localStorage.setItem("contextEmail", contextEmail);
-          Cookies.set("token", tokenStr);
-
-          // User Context settlement
-          setToken(tokenStr);
-          setUser({
-            email: contextEmail,
-            password: "",
-            userId: contextUserID,
-          });
-
-          toast.success("Амжилттай нэвтэрлээ");
-
-          router.push("/user");
-        }
       } else {
-        toast.warning("Нэвтрэлт амжилтгүй, И-мэйл, нууц үгээ шалгана уу");
+        const endpoint = `http://localhost:3009/auth/login`;
+        const response = await axios.post(endpoint, data);
+        // response.data.status status
+        // response.data.msg message
+        // response.data.token token
+
+        if (response.status === 201 || response.status === 200) {
+          if (response.data.token) {
+            const tokenStr = response.data.token;
+            Cookies.set("usertoken", tokenStr);
+            setToken(tokenStr);
+            notifySuccess();
+
+            router.back();
+          } else {
+            notifyLoginError();
+            setError(`Хэрэглэгчийн и-мейл, нууц үг буруу байна`);
+            setTimeout(() => setError(""), 4000);
+          }
+        }
       }
     } catch (error) {
       console.log("Error occurred: ", error);
@@ -92,6 +70,36 @@ export default function Login(): JSX.Element {
     });
   }
 
+  useEffect(() => {
+    setUser({
+      email: loginForm.email,
+      password: loginForm.password,
+    });
+  }, [loginForm]);
+
+  const notifySuccess = () =>
+    toast.success("🦄 Successfull login!", {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  const notifyLoginError = () =>
+    toast.warn("🦄 Login unsuccessful, please check email password!", {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+
   return (
     <div className="absolute top-0 z-100 bg-white w-full h-[100vh] flex flex-col items-center justify-center">
       <Head>
@@ -100,7 +108,11 @@ export default function Login(): JSX.Element {
 
       <div className="flex flex-col w-11/12 md:w-6/12 lg:w-4/12 border p-16 rounded">
         <div>
-          {error && <p>{error}</p>}
+          {error && (
+            <p className="text-red-600 font-thin text-center text-sm">
+              {error}
+            </p>
+          )}
           <form onSubmit={onSubmit}>
             <label htmlFor="email" className="block text-md mb-1">
               И-мейл хаяг
@@ -166,6 +178,18 @@ export default function Login(): JSX.Element {
           </form>
         </div>
       </div>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 }

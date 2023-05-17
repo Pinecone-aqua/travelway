@@ -15,7 +15,6 @@ import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
-    MongooseModule.forRoot(dbConstants.db_uri),
     AuthModule,
     UsersModule,
     TagsModule,
@@ -24,6 +23,7 @@ import { ConfigModule } from '@nestjs/config';
     MiniStoryModule,
     TravelWayModule,
     // GoogleLoginModule,
+    MongooseModule.forRoot(dbConstants.db_uri),
     ConfigModule.forRoot({
       envFilePath: './env',
     }),

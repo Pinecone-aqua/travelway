@@ -10,7 +10,6 @@ import {
   Input,
   Button,
 } from "@chakra-ui/react";
-import { useRef } from "react";
 import { miniStoryType } from "../../../util/types";
 import { MdDelete, MdModeEdit } from "react-icons/md";
 import { BsThreeDots } from "react-icons/bs";
@@ -27,15 +26,6 @@ type Props = {
 
 export default function MiniStoryModal(props: Props): JSX.Element {
   const { isOpen, onClose, story, changeInput, setChangeInput, edit } = props;
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
-
-  function handleChange() {
-    const textarea = textareaRef.current;
-    if (textarea) {
-      textarea.style.height = "auto";
-      textarea.style.height = textarea.scrollHeight + "px";
-    }
-  }
 
   function remove() {
     axios

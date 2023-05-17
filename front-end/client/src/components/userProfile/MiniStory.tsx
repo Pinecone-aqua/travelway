@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { miniStoryType } from "../../../util/types";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Image from "next/image";
-import axios from "axios";
+
 import { useDisclosure } from "@chakra-ui/react";
 
 const MiniStoryCardOffCanvas = React.lazy(
@@ -23,20 +23,6 @@ export default function MiniStory(props: {
 
   function leave() {
     setHover(false);
-  }
-
-  function edit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    const title = e.currentTarget.title.value;
-    const sentence = e.currentTarget.sentence.value;
-
-    axios
-      .patch(`http://localhost:3009/ministory/${story._id}`, {
-        title,
-        sentence,
-      })
-      .then((res) => console.log("edit res:", res))
-      .catch((err) => console.log("err :", err));
   }
 
   const determineImageHeight = () => {
@@ -83,7 +69,6 @@ export default function MiniStory(props: {
             story={story}
             changeInput={changeInput}
             setChangeInput={setChangeInput}
-            edit={edit}
           />
         </React.Suspense>
       </div>

@@ -17,12 +17,11 @@ export class TravelsService {
     private readonly cloudinary: Cloudinary,
   ) {}
   async create(createTravel: CreateTravelDto): Promise<Travel> {
+    console.log(createTravel);
     const newTravel = new this.travelModel({ ...createTravel });
-    // const result = await newTravel.save();
-    console.log('Unit test - 2');
-    console.log(newTravel);
-    return;
-    // return result;
+
+    const result = await newTravel.save();
+    return result;
   }
 
   async findAll(): Promise<Travel[]> {

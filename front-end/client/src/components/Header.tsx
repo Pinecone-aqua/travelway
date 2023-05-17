@@ -2,10 +2,10 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Cookies from "js-cookie";
-import jwtDecode from "jwt-decode";
 import { Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/menu";
 import { IconButton } from "@chakra-ui/react";
 import { RxHamburgerMenu } from "react-icons/rx";
+import { useUser } from "../../context/user.context";
 
 interface HeaderType {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -23,19 +23,17 @@ const MENULIST = [
 
 export default function Header(): JSX.Element {
   const [nav, setNav] = useState<string | null>();
-  const [user, setUser] = useState<HeaderType>();
   const [isResponsive, setIsResponsive] = useState(false);
+  const { user, setUser, role, token } = useUser();
+  // user has email password
 
   const activatedStyle =
     "opacity-100 text-xl hover:text-black  text-black ease-out duration-300 md:w-[192px] sm:w-[142px] w-[96px] border-b-4 border-gray-400 ";
   const defaultStyle =
     "opacity-70 text-lg hover:text-black ease-out duration-300 md:w-[160px] sm:w-[128px] w-[80px]";
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const token: any = Cookies.get("token");
-
   useEffect(() => {
-    if (token) setUser(jwtDecode(token));
+    console.log("inner header variables ", user + " " + role);
   }, [token]);
 
   useEffect(() => {
@@ -107,7 +105,7 @@ const LoginAuthentication = ({ user, setUser }: HeaderType) => {
   const router = useRouter();
   function loginCheckAuth() {
     console.log("User autnentication here:-----> ", user);
-    if (user) {
+    if (user?.email) {
       router.push("/user");
     } else {
       router.push("/auth/login");
@@ -118,20 +116,24 @@ const LoginAuthentication = ({ user, setUser }: HeaderType) => {
     <>
       <div className="absolute right-0 mr-[1rem] flex items-center">
         {user ? (
-          <div className="flex items-center justify-center gap-5 cursor-pointer ">
-            <div>Нэвтэрсэн {user.user}</div>
+          <div className="flex items-center justify-center gap-2 cursor-pointer ">
+            <span>Гарах</span>
             <div
               className="cursor-pointer"
               onClick={() => {
-                Cookies.remove("token");
-                setUser(undefined);
+                Cookies.remove("usertoken");
+                setUser(null);
               }}
             >
               <LoginButton />
             </div>
           </div>
         ) : (
-          <div className="cursor-pointer" onClick={loginCheckAuth}>
+          <div
+            className="flex items-center justify-center gap-2 cursor-pointer"
+            onClick={loginCheckAuth}
+          >
+            <span>Нэвтрэх</span>
             <LoginButton />
           </div>
         )}

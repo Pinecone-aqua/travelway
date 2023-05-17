@@ -4,14 +4,15 @@ import {
   DrawerHeader,
   DrawerBody,
   Avatar,
+  Button,
 } from "@chakra-ui/react";
 import Image from "next/image";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { miniStoryType } from "../../../util/types";
-
 import { MdDelete, MdModeEdit } from "react-icons/md";
 import { BsThreeDots } from "react-icons/bs";
 import axios from "axios";
+import Modal from "react-bootstrap/Modal";
 
 type Props = {
   isOpen: boolean;
@@ -23,26 +24,30 @@ type Props = {
 
 export default function MiniStoryCardOffCanvas(props: Props): JSX.Element {
   const { isOpen, onClose, story } = props;
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-  //   function remove() {
-  //     axios
-  //       .delete(`http://localhost:3009/ministory/${story._id}`)
-  //       .then((res) => console.log("story remover", res))
-  //       .catch((err) => console.log("story error", err));
-  //   }
-
-  function edit(e: React.FormEvent<HTMLFormElement>) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  function edit(e: any) {
     e.preventDefault();
-    const title = e.currentTarget.title.value;
-    const sentence = e.currentTarget.sentence.value;
-    axios
-      .patch(`http://localhost:3009/ministory/${story._id}`, {
-        title,
-        sentence,
-      })
-      .then((res) => console.log("edit res:", res))
-      .catch((err) => console.log("err :", err));
+    const title = e.target.title.value;
+    const sentence = e.target.sentence.value;
+    axios.patch(`http://localhost:3009/ministory/${story._id}`, {
+      title,
+      sentence,
+    });
+    // .then((res) => console.log("edit res:", res))
+    // .catch((err) => console.log("err :", err));
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  function remove(e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
+    e.preventDefault();
+    axios.delete(`http://localhost:3009/ministory/${story._id}`);
+    // .then((res) => console.log("edit res:", res))
+    // .catch((err) => console.log("err :", err));
   }
 
   function handleChange() {
@@ -83,8 +88,9 @@ export default function MiniStoryCardOffCanvas(props: Props): JSX.Element {
               <div className="flex items-center gap-4">
                 <Avatar name={story.title} src={story.image} />
                 <div>
-                  <div className="text-xl font-medium">{story.title}</div>
-                  {/* <div className="text-sm text-gray-500">{story.sentence}</div> */}
+                  <div className="text-xl font-medium">
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                  </div>
                 </div>
               </div>
               <div>
@@ -97,9 +103,29 @@ export default function MiniStoryCardOffCanvas(props: Props): JSX.Element {
                       <button type="submit">
                         <MdModeEdit />
                       </button>
-                      <button>
+                      <button onClick={handleShow}>
                         <MdDelete />
                       </button>
+                      <Modal show={show} onHide={handleClose} animation={false}>
+                        <Modal.Header closeButton>
+                          <Modal.Title>Delete</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>Are you sure !</Modal.Body>
+                        <Modal.Footer>
+                          <Button variant="secondary" onClick={handleClose}>
+                            Close
+                          </Button>
+                          <Button
+                            variant="warning"
+                            onClick={(e) => {
+                              handleClose();
+                              remove(e);
+                            }}
+                          >
+                            Delete
+                          </Button>
+                        </Modal.Footer>
+                      </Modal>
                     </div>
                   </div>
                 </div>

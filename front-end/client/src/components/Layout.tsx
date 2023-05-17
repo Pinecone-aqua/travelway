@@ -25,7 +25,7 @@ const Layout = ({ children }: PropType): JSX.Element => (
             <div className="flex gap-3 justify-center ">
               <a
                 href="/auth/login"
-                className="rounded-full font-semibold p-2 px-8 text-[18px] bg-black text-white cursor-pointer hover:bg-gray-700 transition-colors duration-300 ease-in-out transform-gpu hover:scale-105 active:bg-gray-900"
+                className="rounded-full font-semibold p-2 px-10 text-[18px] bg-black text-white cursor-pointer hover:bg-gray-700 transition-colors duration-300 ease-in-out transform-gpu hover:scale-105 active:bg-gray-900"
               >
                 Get started
               </a>

@@ -22,7 +22,7 @@ type StoryProps = {
 };
 
 export default function TravelblogCard(props: StoryProps) {
-  const { story, isOpen, onClose, onOpen } = props;
+  const { story } = props;
   const {
     isOpen: isOffCanvasOpen,
     onOpen: onOffCanvasOpen,
@@ -35,7 +35,7 @@ export default function TravelblogCard(props: StoryProps) {
       maxW="md"
       className="cursor-pointer border border-gray-300 rounded-md overflow-hidden transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105"
     >
-      <CardBody>
+      <CardBody onClick={onOffCanvasOpen}>
         <Flex
           alignItems="center"
           flexWrap="wrap"
@@ -49,10 +49,9 @@ export default function TravelblogCard(props: StoryProps) {
             <p className="text-gray-500 text-sm">Creator</p>
           </Box>
         </Flex>
-        <p className="text-gray-600 mt-2">{story.sentence.slice(0, 50)}...</p>
+        <p className="text-gray-600 mt-2">{story.sentence.slice(0, 40)}...</p>
       </CardBody>
       <Image
-        objectFit="cover"
         src={story.image}
         width={500}
         height={500}

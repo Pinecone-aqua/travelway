@@ -16,7 +16,7 @@ export default function Pagination(props: PropType): JSX.Element {
     fetch(`http://localhost:3009/${path}/pageNum`)
       .then((response) => response.json())
       .then((res) => {
-        if (!res) return; // Add this guard clause to handle empty response
+        if (!res) return;
         setPageNum(Math.ceil(res / 8));
       });
   }, [path]);
@@ -27,9 +27,7 @@ export default function Pagination(props: PropType): JSX.Element {
     return <Spinner color="red.500" />;
   }
 
-  const showEllipsis = (index: number) => {
-    return index === 0 || index === lastPage - 1;
-  };
+  const showEllipsis = (index: number) => index === 0 || index === lastPage - 1;
 
   return (
     <nav className="flex justify-center my-4">
@@ -37,9 +35,12 @@ export default function Pagination(props: PropType): JSX.Element {
         {currentPage > 1 && (
           <li>
             <NextLink href={`${path}/${currentPage - 1}`} passHref>
-              <a className="py-2 px-3 bg-gray-200 hover:bg-gray-300 rounded-l-md">
+              <div
+                className="py-2 px-3 bg-gray-200 hover:bg-gray-300 rounded-l-md"
+                onClick={() => setCurrentPage(currentPage - 1)}
+              >
                 Previous
-              </a>
+              </div>
             </NextLink>
           </li>
         )}
@@ -60,6 +61,7 @@ export default function Pagination(props: PropType): JSX.Element {
                         ? "bg-indigo-500 text-white hover:bg-indigo-700"
                         : "bg-gray-200 hover:bg-gray-300"
                     } rounded-md`}
+                    onClick={() => setCurrentPage(page)}
                   >
                     {page}
                   </a>
@@ -73,9 +75,12 @@ export default function Pagination(props: PropType): JSX.Element {
         {currentPage < lastPage && (
           <li>
             <NextLink href={`${path}/${currentPage + 1}`} passHref>
-              <a className="py-2 px-3 bg-gray-200 hover:bg-gray-300 rounded-r-md">
+              <div
+                className="py-2 px-3 bg-gray-200 hover:bg-gray-300 rounded-r-md"
+                onClick={() => setCurrentPage(currentPage + 1)}
+              >
                 Next
-              </a>
+              </div>
             </NextLink>
           </li>
         )}

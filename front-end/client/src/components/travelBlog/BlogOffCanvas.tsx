@@ -9,9 +9,6 @@ import Image from "next/image";
 import React from "react";
 import { CiHeart } from "react-icons/ci";
 import { miniStoryType } from "../../../util/types";
-import { MdDelete, MdModeEdit } from "react-icons/md";
-import { BsThreeDots } from "react-icons/bs";
-import axios from "axios";
 
 type Props = {
   isOpen: boolean;
@@ -24,13 +21,6 @@ type Props = {
 export default function BlogOffCanvas(props: Props): JSX.Element {
   const { isOpen, onClose, story } = props;
 
-  function remove() {
-    axios
-      .delete(`http://localhost:3009/ministory/${story._id}`)
-      .then((res) => console.log("story remover", res))
-      .catch((err) => console.log("story error", err));
-  }
-
   return (
     <Drawer placement="bottom" onClose={onClose} isOpen={isOpen}>
       <DrawerContent bg="gray.100">
@@ -42,30 +32,17 @@ export default function BlogOffCanvas(props: Props): JSX.Element {
           <div className="text-lg font-medium">
             <p>Travel Blog</p>
           </div>
-          <div onClick={onClose} className="cursor-pointer">
-            <div className={`absolute p-1 right-0`}>
-              <button className="p-1 rounded-full border opacity-60">
-                <BsThreeDots />
-              </button>
-              <div className="grid gap-2 pt-2 border rounded-full p-1 opacity-80">
-                <button className="">
-                  <MdModeEdit />
-                </button>
-                <button onClick={remove}>
-                  <MdDelete />
-                </button>
-              </div>
-            </div>
-          </div>
         </DrawerHeader>
-        <DrawerBody className="flex place-content-center">
-          <div className="w-full max-w-2xl">
+        <DrawerBody className="flex place-content-center py-5">
+          <div className="w-full max-w-3xl">
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-4">
                 <Avatar name={story.title} src={story.image} />
                 <div>
-                  <div className="text-xl font-medium">{story.title}</div>
-                  <div className="text-sm text-gray-500">{story.sentence}</div>
+                  <div className="text-2xl font-medium">{story.title}</div>
+                  <div className="text-base text-gray-500">
+                    {story.sentence}
+                  </div>
                 </div>
               </div>
               <div>
@@ -81,14 +58,14 @@ export default function BlogOffCanvas(props: Props): JSX.Element {
                   alt="pic"
                   layout="fill"
                   objectFit="cover"
-                  className="rounded-2xl"
+                  className="rounded-3xl"
                 />
               </div>
             </div>
-            <div className="flex justify-center text-xl font-medium mb-2">
+            <div className="flex justify-center text-2xl font-medium mb-2">
               {story.title}
             </div>
-            <div className="text-sm text-gray-500 text-center">
+            <div className="text-base text-gray-500 text-center">
               {story.sentence}
             </div>
           </div>

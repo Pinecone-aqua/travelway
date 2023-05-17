@@ -8,6 +8,10 @@ import React from "react";
 import TravelblogCard from "@/components/travelBlog/TravelblogCard";
 import { Skeleton, Stack } from "@chakra-ui/react";
 import Pagination from "@/components/Pagination";
+import { useUser } from "../../context/user.context";
+import jwtDecode from "jwt-decode";
+import Cookies from "js-cookie";
+
 interface UserType {
   _id: string;
   username: string;
@@ -19,17 +23,26 @@ export default function TravelBlog(): JSX.Element {
   const [userData, setUserData] = useState<UserType[]>([]);
   const [isOpen, setIsOpen] = useState(false);
   const [changeInput, setChangeInput] = useState(false);
+  const { token, setUser } = useUser();
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const path = "travelBlog";
+  const path = "travels";
+  // let userName = "";
+  // let userImage = "";
 
   useEffect(() => {
-    fetch(`http://localhost:3009/${path}/pageNum`)
-      .then((response) => response.json())
-      .then((res) => {
-        if (!res) return; // Add this guard clause to handle empty response
-        setPageNum(Math.ceil(res / 8));
-      });
-  }, [path]);
+    const token = Cookies.get("usertoken");
+
+    const getFetchdata = async (): Promise<void> => {
+      const travels = await axios.get("http://localhost:3009/ministory/get");
+      const disp = travels.data;
+      setStories(disp);
+    };
+    if (token) {
+      getFetchdata();
+    } else {
+      console.log("Error user not found");
+    }
+  }, [token]);
 
   const handleOpen = () => {
     setIsOpen(true);
@@ -79,7 +92,4 @@ export default function TravelBlog(): JSX.Element {
       </div>
     </>
   );
-}
-function setPageNum(arg0: number) {
-  throw new Error("Function not implemented.");
 }
