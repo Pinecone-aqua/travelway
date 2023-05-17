@@ -86,14 +86,18 @@ export class StoryService {
   }
 
   async create(newStory: CreateStoryDto) {
-    const { title, description, myth, toDo, province } = newStory;
+    try {
+      const { title, description, myth, toDo, province } = newStory;
 
-    if (!title && !description && !myth && !toDo && !province) {
-      throw new BadRequestException('Аяллын мэдээлэл дутуу байна');
+      if (!title && !description && !myth && !toDo && !province) {
+        throw new BadRequestException('Аяллын мэдээлэл дутуу байна');
+      }
+      console.log(newStory);
+      const newAsStory = new this.storyModel(newStory);
+      const result = await newAsStory.save();
+      return result;
+    } catch (error) {
+      console.log(error);
     }
-    console.log(newStory);
-    const newAsStory = new this.storyModel(newStory);
-    const result = await newAsStory.save();
-    return result;
   }
 }

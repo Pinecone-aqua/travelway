@@ -1,4 +1,4 @@
-import Layout from "@/components/Layout";
+import Layout from "@/components/mainComponents/Layout";
 import AdminProvider from "@/context/AdminProvider";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";

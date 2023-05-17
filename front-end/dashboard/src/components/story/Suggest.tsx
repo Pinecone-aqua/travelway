@@ -5,10 +5,6 @@ export default function Suggest(props: {
   function suggestChangeHandler(newVal: string, i: number) {
     if (toDo) toDo[i] = newVal;
   }
-  //   function deleteInput(i: number) {
-  //     console.log("asda", i);
-  //   }
-
   return (
     <>
       {toDo?.map((unit: string, index: number) => (
@@ -19,7 +15,6 @@ export default function Suggest(props: {
             name={`activity-${index}`}
             defaultValue={unit}
           />
-          {/* <button onClick={deleteInput(index)}>delete</button> */}
         </div>
       ))}
 

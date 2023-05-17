@@ -12,17 +12,22 @@ export default function ModalInput(props: PropType): JSX.Element {
     e.preventDefault();
     if (e.target.activity.value !== "") {
       setAddIndicator([...addIndicator, e.target.activity.value]);
+      e.target.activity.value = "";
     }
   }
 
   return (
     <>
-      <form onSubmit={saveInput} className="bg-mycolor [w-400px]">
-        <div>toDoList нэмэх</div>
-        <div className="w-full">
-          <input name="activity" className="p-2 rounded-xl" type="text" />
+      <form onSubmit={saveInput} className="[w-400px] ">
+        <div className="m-2">toDoList нэмэх</div>
+        <div className="w-[390px]  flex justify-between">
+          <input
+            name="activity"
+            className="w-4/6 p-2 rounded-xl"
+            type="text reset"
+          />
           <button
-            className="bg-gradient-to-r from-tocolor to-mycolor text-white  rounded-xl p-2 ml-2"
+            className="bg-gradient-to-r from-tocolor to-mycolor text-white  rounded-xl p-2 ml-2 w-2/6"
             type="submit"
           >
             нэмэх

@@ -1,22 +1,19 @@
-import Pagination from "@/components/Pagination";
+import Pagination from "@/components/subComponent/Pagination";
 
 import User from "@/components/user/User";
 import { UserType } from "@/util/types";
-import { useState } from "react";
+import { ToastContainer } from "react-toastify";
 
 export default function AllUser(props: { users: UserType[] }): JSX.Element {
   const { users } = props;
-  const [currentPage, setCurrentPage] = useState<number>(1);
 
   const path = "allUsers";
 
   return (
     <div className="bg-white rounded-2xl h-full p-20">
-      <Pagination
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-        path={path}
-      />
+      <Pagination path={path} />
+      <ToastContainer position="top-right" />
+
       <table
         className="
       w-full bg-slate-100 rounded-2xl mt-5 shadow-lg shadow-gray-300"
