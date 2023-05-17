@@ -1,5 +1,5 @@
 import Head from "next/head";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { FaGoogle } from "react-icons/fa";
 import { LoginForm } from "../../../util/types";
 import axios from "axios";
@@ -15,7 +15,7 @@ export default function Login(): JSX.Element {
     email: "",
     password: "",
   });
-  const { setToken, setUser } = useUser();
+  const { setToken } = useUser();
   const router = useRouter();
 
   const onchangeHandle = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -55,6 +55,10 @@ export default function Login(): JSX.Element {
             setError(`Хэрэглэгчийн и-мейл, нууц үг буруу байна`);
             setTimeout(() => setError(""), 4000);
           }
+        } else {
+          notifyLoginError();
+          setError(`Хэрэглэгчийн и-мейл, нууц үг буруу байна`);
+          setTimeout(() => setError(""), 4000);
         }
       }
     } catch (error) {
@@ -69,13 +73,6 @@ export default function Login(): JSX.Element {
       router.push(res.data);
     });
   }
-
-  useEffect(() => {
-    setUser({
-      email: loginForm.email,
-      password: loginForm.password,
-    });
-  }, [loginForm]);
 
   const notifySuccess = () =>
     toast.success("🦄 Successfull login!", {
