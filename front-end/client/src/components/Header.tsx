@@ -24,7 +24,7 @@ const MENULIST = [
 export default function Header(): JSX.Element {
   const [nav, setNav] = useState<string | null>();
   const [isResponsive, setIsResponsive] = useState(false);
-  const { user, setUser, role, token } = useUser();
+  const { user, setUser, role } = useUser();
   // user has email password
 
   const activatedStyle =
@@ -32,9 +32,7 @@ export default function Header(): JSX.Element {
   const defaultStyle =
     "opacity-70 text-lg hover:text-black ease-out duration-300 md:w-[160px] sm:w-[128px] w-[80px]";
 
-  useEffect(() => {
-    console.log("inner header variables ", user + " " + role);
-  }, [token]);
+  console.log("inner header variables ", user + " " + role);
 
   useEffect(() => {
     const handleResize = () => {
@@ -68,7 +66,7 @@ export default function Header(): JSX.Element {
               <MenuList className="bg-white ">
                 {MENULIST.map((menuItem, index) => (
                   // eslint-disable-next-line react/jsx-key
-                  <Link href={menuItem.uri}>
+                  <Link href={menuItem.uri} key={index}>
                     <MenuItem key={index} className="hover:bg-gray">
                       <button>{menuItem.name}</button>
                     </MenuItem>
