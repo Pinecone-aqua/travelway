@@ -2,6 +2,10 @@ import React, { ChangeEvent, FormEvent, useState } from "react";
 import { DayType } from "../../../util/types";
 import TourDetails from "./TourDetails";
 import axios from "axios";
+import { useUser } from "../../../context/user.context";
+import jwtDecode from "jwt-decode";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AddTour = () => {
   // const router = useRouter();
@@ -10,13 +14,14 @@ const AddTour = () => {
   const [travelData, setTravelData] = useState({
     title: "",
     description: "",
-    images: [],
+    image: "",
     userId: "",
   });
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [dayData, setDayData] = useState<DayType[]>([
     {
+      image: "",
       subTitle: "",
       describe: "",
       considerations: "",
@@ -27,6 +32,7 @@ const AddTour = () => {
   const [message, setMessage] = useState("");
   const [coverImage, setCoverImage] = useState<File | string>();
   const [dayImage, setDayImage] = useState<File[]>([]);
+  const { token } = useUser();
 
   const handleSubmit = async (
     event: React.ChangeEvent<HTMLInputElement>
@@ -34,31 +40,43 @@ const AddTour = () => {
     event.preventDefault();
 
     try {
-      const newFormData = {
-        title: travelData.title,
-        description: travelData.description,
-        userId: "644947267fbc2625e4543407",
-        images: [],
-        day: [...dayData],
-      };
 
-      const sendFormData = new FormData();
-      sendFormData.append('images', coverImage);
-      if (dayImage.length > 0) {
-        dayImage.forEach((image) => sendFormData.append('images', image));
+      if (token) {
+        const userFromToken = jwtDecode(token);
+        const userId = userFromToken?._id;
+
+        const newFormData = {
+          title: travelData.title,
+          description: travelData.description,
+          userId: userId,
+          image: "",
+          day: [...dayData],
+        };
+  
+        const sendFormData = new FormData();
+        sendFormData.append('images', coverImage);
+        if (dayImage.length > 0) {
+          dayImage.forEach((image) => sendFormData.append('images', image));
+        }
+        sendFormData.append("body", JSON.stringify(newFormData));
+  
+
+        const responseAll = await axios.post(
+          `http://localhost:3009/travels/add`,
+          sendFormData
+        );
+
+        console.log(responseAll);
+        notifySaveSuccess();
+        // router.push("/addtravel");
       }
-      sendFormData.append("body", JSON.stringify(newFormData));
-
-      const responseAll = await axios.post(
-        `http://localhost:3009/travels/add`,
-        sendFormData
-      );
-
-      console.log(responseAll);
-      // router.push("/addtravel");
     } catch (error) {
+      notifySaveError()
       console.error(error);
       setMessage("Failed to upload file.");
+      setTimeout(() => {
+        setMessage("");
+      }, 10000);
     }
   };
 
@@ -92,6 +110,7 @@ const AddTour = () => {
       describe: "",
       considerations: "",
       destination: "",
+      image: "",
     };
     setDayData((prevData) => [...prevData, newDay]);
     setActiveClass(dayData.length);
@@ -106,7 +125,7 @@ const AddTour = () => {
     setTravelData({
       title: "",
       description: "",
-      images: [],
+      image: "",
       userId: "",
     });
     setDayData([
@@ -115,6 +134,7 @@ const AddTour = () => {
         describe: "",
         considerations: "",
         destination: "",
+        image: "",
       },
     ]);
     setActiveClass(0);
@@ -139,6 +159,29 @@ const AddTour = () => {
       setDayImage([...dayImage]);
     }
   };
+
+  const notifySaveSuccess = () =>
+    toast.success("🦄 Successfull login!", {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  const notifySaveError = () =>
+    toast.warn("🦄 Login unsuccessful, please check email password!", {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
 
   return (
     <>
@@ -230,6 +273,18 @@ const AddTour = () => {
           </form>
         </div>
       </div>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </>
   );
 };

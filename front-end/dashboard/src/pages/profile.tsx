@@ -16,7 +16,7 @@ export default function Profile(): JSX.Element {
       });
   }, [admin?.id]);
   useEffect(() => {
-    fetch(`http://localhost:3009/allStories/user${admin?.id}`)
+    fetch(`http://localhost:3009/ministory/user${admin?.id}`)
       .then((response) => response.json())
       .then((res) => setStories(res));
   }, [admin?.id]);

@@ -11,7 +11,7 @@ export class CreateTravelDto {
   @IsString()
   userId: string;
 
-  images: string[];
+  image: string;
 
   @IsNotEmpty()
   @ValidateNested({ each: true })
@@ -22,10 +22,12 @@ export class CreateTravelDto {
 export class DayDto {
   @IsString()
   subTitle: string;
-
+  
   @IsString()
   describe: string;
-
+  
+  image: string;
+  
   @IsString()
   considerations: string;
 

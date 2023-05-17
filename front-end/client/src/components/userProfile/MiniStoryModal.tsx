@@ -10,8 +10,10 @@ import {
   Input,
   Button,
 } from "@chakra-ui/react";
-import { useRef } from "react";
 import { miniStoryType } from "../../../util/types";
+import { MdDelete, MdModeEdit } from "react-icons/md";
+import { BsThreeDots } from "react-icons/bs";
+import axios from "axios";
 
 type Props = {
   isOpen: boolean;
@@ -24,21 +26,33 @@ type Props = {
 
 export default function MiniStoryModal(props: Props): JSX.Element {
   const { isOpen, onClose, story, changeInput, setChangeInput, edit } = props;
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-  function handleChange() {
-    const textarea = textareaRef.current;
-    if (textarea) {
-      textarea.style.height = "auto";
-      textarea.style.height = textarea.scrollHeight + "px";
-    }
+  function remove() {
+    axios
+      .delete(`http://localhost:3009/ministory/${story._id}`)
+      .then((res) => console.log("story remover", res))
+      .catch((err) => console.log("story error", err));
   }
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="sm">
       <ModalOverlay />
       <ModalContent bg="gray.100">
-        <ModalHeader>Edit your story</ModalHeader>
+        <ModalHeader>
+          <div className={`absolute p-1 right-0`}>
+            <button className="p-1 rounded-full border opacity-60">
+              <BsThreeDots />
+            </button>
+            <div className="grid gap-2 pt-2 border rounded-full p-1 opacity-80">
+              <button className="">
+                <MdModeEdit />
+              </button>
+              <button onClick={remove}>
+                <MdDelete />
+              </button>
+            </div>
+          </div>
+        </ModalHeader>
         <ModalBody>
           <form onSubmit={edit}>
             <img src={story.image} alt="pic" className="mb-4" />

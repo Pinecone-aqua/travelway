@@ -8,6 +8,7 @@ export interface TravelType {
 }
 
 export interface DayType {
+  image: string;
   subTitle: string;
   describe: string;
   considerations: string;
@@ -39,11 +40,20 @@ export interface miniStoryType {
 export interface LoginForm {
   email: string | undefined;
   password: string;
-  userId: string;
 }
 
 export interface travelWayType {
   title: string;
+}
+
+export type UserDataContextType = {
+  _id: string;
+  username: string;
+  email: "";
+  image: "";
+  role: "";
+  iat: number;
+  exp: number;
 }
 
 export interface UserContextType {
@@ -51,6 +61,8 @@ export interface UserContextType {
   setUser: React.Dispatch<React.SetStateAction<LoginForm | null | undefined>>;
   token: string | undefined;
   setToken: React.Dispatch<React.SetStateAction<string | undefined>>;
+  role: string | undefined;
+  setRole: React.Dispatch<React.SetStateAction<string | undefined>>;
 }
 
 //sharvaa added
@@ -68,3 +80,4 @@ export interface StoryTypeSh {
   coord: object;
   toDo: [];
 }
+

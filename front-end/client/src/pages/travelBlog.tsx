@@ -7,10 +7,10 @@ import { miniStoryType } from "../../util/types";
 import React from "react";
 import TravelblogCard from "@/components/travelBlog/TravelblogCard";
 import { Skeleton, Stack } from "@chakra-ui/react";
-
-// const BlogOffCanvas = React.lazy(
-//   () => import("../components/travelBlog/BlogOffCanvas")
-// );
+import Pagination from "@/components/Pagination";
+import { useUser } from "../../context/user.context";
+import jwtDecode from "jwt-decode";
+import Cookies from "js-cookie";
 
 interface UserType {
   _id: string;
@@ -23,39 +23,26 @@ export default function TravelBlog(): JSX.Element {
   const [userData, setUserData] = useState<UserType[]>([]);
   const [isOpen, setIsOpen] = useState(false);
   const [changeInput, setChangeInput] = useState(false);
+  const { token, setUser } = useUser();
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const path = "travels";
   // let userName = "";
   // let userImage = "";
 
   useEffect(() => {
-    const logUser = localStorage.getItem("userId");
+    const token = Cookies.get("usertoken");
 
     const getFetchdata = async (): Promise<void> => {
       const travels = await axios.get("http://localhost:3009/ministory/get");
       const disp = travels.data;
       setStories(disp);
     };
-
-    const getUserFetch = async (): Promise<void> => {
-      const user = await axios.get(`http://localhost:3009/allUsers/profile`);
-      const currentUser = user.data;
-      setUserData(currentUser);
-    };
-
-    if (logUser) {
-      getUserFetch();
+    if (token) {
       getFetchdata();
-      // setUserData((prevUserData) => {
-      //   const currentUser = prevUserData.find(
-      //     (user: UserType) => user._id === logUser
-      //   );
-      //   userName = currentUser?.username || "";
-      //   userImage = currentUser?.image || "";
-      //   return prevUserData;
-      // });
     } else {
       console.log("Error user not found");
     }
-  }, []);
+  }, [token]);
 
   const handleOpen = () => {
     setIsOpen(true);
@@ -70,7 +57,7 @@ export default function TravelBlog(): JSX.Element {
     <>
       <div className="flex justify-center content-center p-5">
         <div className="gap-3 grid">
-          <div className="gap-3 grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 xxl:grid-cols-4 relative ">
+          <div className="gap-3 grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 xxl:grid-cols-4 relative ">
             {stories.length === 0 ? (
               <div className="flex justify-center content-center  ">
                 <div>
@@ -83,18 +70,23 @@ export default function TravelBlog(): JSX.Element {
               </div>
             ) : (
               stories.map((story: miniStoryType, index: number) => (
-                <div key={index} className="grid sm:columns-3">
+                <div key={index}>
                   <TravelblogCard
                     story={story}
                     isOpen={isOpen}
                     onClose={handleClose}
                     changeInput={changeInput}
                     setChangeInput={setChangeInput}
-                    onOpen={() => handleOpen(story)}
+                    onOpen={() => handleOpen()}
                   />
                 </div>
               ))
             )}
+            <Pagination
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+              path={path}
+            />
           </div>
         </div>
       </div>

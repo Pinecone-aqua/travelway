@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React, { ReactNode } from "react";
 import Header from "./Header";
 
@@ -17,17 +18,18 @@ const Layout = ({ children }: PropType): JSX.Element => (
             </h2>
           </div>
           <p className="flex justify-center text-center">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem dolor
-            sit amet consectetur architecto dolorum fuga pariatur?
+            Welcome to TravelWay, a travel blog where travelers can share their
+            stories, knowledge, and suggestions with fellow adventure
+            enthusiasts.
           </p>
           <div className="box-border h-full">
             <div className="flex gap-3 justify-center ">
-              <a
+              <Link
                 href="/auth/login"
-                className="rounded-full font-semibold p-2 px-8 text-[18px] bg-black text-white cursor-pointer hover:bg-gray-700 transition-colors duration-300 ease-in-out transform-gpu hover:scale-105 active:bg-gray-900"
+                className="rounded-full font-semibold p-2 px-10 text-[18px] bg-black text-white cursor-pointer hover:bg-gray-700 transition-colors duration-300 ease-in-out transform-gpu hover:scale-105 active:bg-gray-900"
               >
                 Get started
-              </a>
+              </Link>
             </div>
           </div>
         </div>

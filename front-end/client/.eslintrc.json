@@ -12,7 +12,7 @@
   "parserOptions": {
     "ecmaVersion": 2018,
     "sourceType": "module",
-    "project": "**/tsconfig.json"
+    "project": "./**/tsconfig.json"
   },
   "overrides": [
     {
@@ -21,7 +21,7 @@
       "rules": {
         "import/first": "error",
         "@typescript-eslint/no-unused-vars": "error",
-        "@typescript-eslint/no-explicit-any": "error",
+        // "@typescript-eslint/no-explicit-any": "error",
         "react/self-closing-comp": [
           "error",
           { "component": true, "html": true }
@@ -37,7 +37,7 @@
       }
     },
     {
-      "files": ["*.jsx", "**/*.tsx", "**/**/*.tsx", "!^\\[.*]\\.tsx$"], // for JSX Component
+      "files": ["*.jsx", "**/*.tsx", "**/**/*.tsx"], // for JSX Component
       "excludedFiles": ["^\\[.*]\\.tsx$", "!^_/.*.tsx$"],
       "rules": {
         "unicorn/prefer-module": "off",
