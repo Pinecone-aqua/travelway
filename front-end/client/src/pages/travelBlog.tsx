@@ -9,21 +9,13 @@ import TravelblogCard from "@/components/travelBlog/TravelblogCard";
 import { Skeleton, Stack } from "@chakra-ui/react";
 import Pagination from "@/components/Pagination";
 import { useUser } from "../../context/user.context";
-import jwtDecode from "jwt-decode";
 import Cookies from "js-cookie";
-
-interface UserType {
-  _id: string;
-  username: string;
-  image: string;
-}
 
 export default function TravelBlog(): JSX.Element {
   const [stories, setStories] = useState<miniStoryType[]>([]);
-  const [userData, setUserData] = useState<UserType[]>([]);
   const [isOpen, setIsOpen] = useState(false);
   const [changeInput, setChangeInput] = useState(false);
-  const { token, setUser } = useUser();
+  const { token } = useUser();
   const [currentPage, setCurrentPage] = useState<number>(1);
   const path = "travels";
   // let userName = "";
