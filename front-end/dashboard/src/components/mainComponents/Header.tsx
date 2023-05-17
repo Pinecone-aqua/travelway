@@ -6,7 +6,7 @@ export default function Header(): JSX.Element {
     <div className="flex justify-center ">
       <div className="container flex justify-between h-24 items-center">
         <Link className="text-3xl" href={"/"}>
-          Хянах самбар
+          Хянах самбар test
         </Link>
         <div className="flex ">
           <input
