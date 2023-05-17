@@ -1,5 +1,5 @@
 import Head from "next/head";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { FaGoogle } from "react-icons/fa";
 import { LoginForm } from "../../../util/types";
 import axios from "axios";
@@ -15,7 +15,7 @@ export default function Login(): JSX.Element {
     email: "",
     password: "",
   });
-  const { setToken, setUser } = useUser();
+  const { setToken } = useUser();
   const router = useRouter();
 
   const onchangeHandle = (e: React.ChangeEvent<HTMLInputElement>) => {
