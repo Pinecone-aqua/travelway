@@ -38,32 +38,33 @@ export default function Register(): JSX.Element {
   };
 
   // @typescript-eslint/no-misused-promises
-  async function handleSubmit(e: FormEvent<HTMLFormElement>): Promise<void> {
+  function handleSubmit(e: FormEvent<HTMLFormElement>): void {
     e.preventDefault();
 
-    try {
-      const data: InputStateType = {
-        username: registerForm.username,
-        nickname: registerForm.nickname,
-        email: registerForm.email,
-        phone: registerForm.phone,
-        password: registerForm.password,
-        biography: registerForm.biography,
-        image: registerForm.image,
-        role: userRole,
-      };
+    const data: InputStateType = {
+      username: registerForm.username,
+      nickname: registerForm.nickname,
+      email: registerForm.email,
+      phone: registerForm.phone,
+      password: registerForm.password,
+      biography: registerForm.biography,
+      image: registerForm.image,
+      role: userRole,
+    };
 
-      const endpoint = `http://localhost:3009/auth/signup`;
+    const endpoint = `http://localhost:3009/auth/signup`;
 
-      const resData = await axios.post(endpoint, data);
-      const result = resData.data;
-      console.log(result);
-
-      toast.success("Амжилттай хадгалагдлаа");
-      router.push("/login");
-    } catch (error) {
-      console.log(error);
-    }
+    axios
+      .post(endpoint, data)
+      .then((restData) => {
+        const result = restData.data;
+        console.log(result);
+        toast.success("Амжилттай хадгалагдлаа");
+        router.push("/login");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   return (
