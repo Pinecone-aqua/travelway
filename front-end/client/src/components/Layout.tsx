@@ -13,7 +13,7 @@ const Layout = ({ children }: PropType): JSX.Element => (
       <div className=" drop-shadow-xl border rounded-xl mt-4  md:flex justify-center p-4 w-[100%]">
         <div className=" flex justify-center grid place-content-center p-2 md:gap-5 z-50 gap-3">
           <div className="flex justify-center">
-            <h2 className="font-bold text-[32px]">
+            <h2 className="font-bold text-[32px] text-center">
               The Informed Retailer Blog
             </h2>
           </div>
@@ -26,7 +26,7 @@ const Layout = ({ children }: PropType): JSX.Element => (
             <div className="flex gap-3 justify-center ">
               <Link
                 href="/auth/login"
-                className="rounded-full font-semibold p-2 px-10 text-[18px] bg-black text-white cursor-pointer hover:bg-gray-700 transition-colors duration-300 ease-in-out transform-gpu hover:scale-105 active:bg-gray-900"
+                className="rounded-full font-semibold px-5 py-2 pl-[10px] text-[18px] bg-black text-white cursor-pointer hover:bg-gray-700 transition-colors duration-300 ease-in-out transform-gpu hover:scale-105 active:bg-gray-900"
               >
                 Get started
               </Link>

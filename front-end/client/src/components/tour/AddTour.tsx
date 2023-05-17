@@ -40,7 +40,6 @@ const AddTour = () => {
     event.preventDefault();
 
     try {
-
       if (token) {
         const userFromToken = jwtDecode(token);
         const userId = userFromToken?._id;
@@ -52,14 +51,13 @@ const AddTour = () => {
           image: "",
           day: [...dayData],
         };
-  
+
         const sendFormData = new FormData();
-        sendFormData.append('images', coverImage);
+        sendFormData.append("images", coverImage);
         if (dayImage.length > 0) {
-          dayImage.forEach((image) => sendFormData.append('images', image));
+          dayImage.forEach((image) => sendFormData.append("images", image));
         }
         sendFormData.append("body", JSON.stringify(newFormData));
-  
 
         const responseAll = await axios.post(
           `http://localhost:3009/travels/add`,
@@ -71,7 +69,7 @@ const AddTour = () => {
         // router.push("/addtravel");
       }
     } catch (error) {
-      notifySaveError()
+      notifySaveError();
       console.error(error);
       setMessage("Failed to upload file.");
       setTimeout(() => {
@@ -185,7 +183,7 @@ const AddTour = () => {
 
   return (
     <>
-      <div className="w-6/12 mx-auto mt-16 mb-8">
+      <div className="w-full mt-16 mb-8  sm:w-10/12 md:w-8/12 lg:w-6/12 ">
         <div className="flex flex-col gap-y-2">
           <p className="text-red-400 font-normal text-sm">{message}</p>
           <form onSubmit={(e) => handleSubmit(e)}>
@@ -211,7 +209,7 @@ const AddTour = () => {
               />
               <label htmlFor="coverImage">Зураг оруулах/Cover image:</label>
               <input
-                className="inline-block -2 rounded w-full border border-slate-600"
+                className="inline-block p-2 rounded w-full border border-slate-600"
                 type="file"
                 name="coverImage"
                 onChange={handleCoverImageChange}
@@ -249,10 +247,10 @@ const AddTour = () => {
               ))}
             </div>
 
-            <div className="flex justify-between items-center">
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center">
               <input
                 type="button"
-                className="mt-4 bg-cyan-500 p-2 w-3/12 mx-5 text-white rounded text-sm uppercase"
+                className="mt-4 sm:text-[10px] bg-cyan-500 p-2 w-full sm:w-3/12 text-white rounded text-sm uppercase"
                 value="Өдөр нэмэх"
                 onClick={handleAddDay}
               />
@@ -261,11 +259,11 @@ const AddTour = () => {
                 name="clearBtn"
                 value="ЦЭВЭРЛЭХ"
                 onClick={handleCleanObjects}
-                className="mt-4 w-3/12 border bg-red-600 py-2 px-8 text-white rounded text-sm uppercase"
+                className="mt-4 w-full sm:text-[10px] border bg-red-600 py-2 px-8 text-white rounded text-sm uppercase"
               />
               <button
                 type="submit"
-                className="mt-4 w-4/12 border bg-blue-600 py-2 px-8 text-white rounded text-sm uppercase"
+                className="mt-4 w-4/12 sm:text-[10px] border bg-blue-600 py-2 sm:px-5 px-8 text-white rounded text-sm uppercase"
               >
                 ХАДГАЛАХ
               </button>

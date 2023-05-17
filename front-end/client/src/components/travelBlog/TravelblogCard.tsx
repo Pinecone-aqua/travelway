@@ -43,22 +43,32 @@ export default function TravelblogCard(props: StoryProps) {
         >
           <Avatar name="Segun Adebayo" src={story.title} mr="4" />
           <Box>
-            <Heading size="sm" mb="1">
+            <Heading size="sm" mb="1 ">
               {story.title}
             </Heading>
-            <p className="text-gray-500 text-sm">Creator</p>
+            <p className="text-gray-500 text-sm">Creator: </p>
           </Box>
         </Flex>
-        <p className="text-gray-600 mt-2">{story.sentence.slice(0, 40)}...</p>
       </CardBody>
-      <Image
-        src={story.image}
-        width={500}
-        height={500}
-        alt="Chakra UI"
-        onClick={onOffCanvasOpen}
-        className="w-full h-56 object-cover transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105"
-      />
+      {!story.image.includes(`https://`) && !story.image.includes(`http://`) ? (
+        <div className="border   w-full flex justify-center ">
+          <picture>
+            <img
+              src="../../images/sorry.webp"
+              alt="Sorry this picture is no longer available"
+            />
+          </picture>
+        </div>
+      ) : (
+        <Image
+          src={story.image}
+          width={500}
+          height={500}
+          alt="Chakra UI"
+          onClick={onOffCanvasOpen}
+          className="w-full h-56 object-cover transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105"
+        />
+      )}
       <React.Suspense fallback={null}>
         <BlogOffCanvas
           isOpen={isOffCanvasOpen}

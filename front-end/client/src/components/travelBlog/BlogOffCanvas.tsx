@@ -7,7 +7,6 @@ import {
 } from "@chakra-ui/react";
 import Image from "next/image";
 import React from "react";
-import { CiHeart } from "react-icons/ci";
 import { miniStoryType } from "../../../util/types";
 
 type Props = {
@@ -43,11 +42,6 @@ export default function BlogOffCanvas(props: Props): JSX.Element {
                   <div className="text-base text-gray-500">
                     {story.sentence}
                   </div>
-                </div>
-              </div>
-              <div>
-                <div className="p-2 border rounded-full cursor-pointer">
-                  <CiHeart />
                 </div>
               </div>
             </div>

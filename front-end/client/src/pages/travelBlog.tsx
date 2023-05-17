@@ -8,41 +8,23 @@ import React from "react";
 import TravelblogCard from "@/components/travelBlog/TravelblogCard";
 import { Skeleton, Stack } from "@chakra-ui/react";
 import Pagination from "@/components/Pagination";
-import { useUser } from "../../context/user.context";
-import jwtDecode from "jwt-decode";
-import Cookies from "js-cookie";
-
-interface UserType {
-  _id: string;
-  username: string;
-  image: string;
-}
 
 export default function TravelBlog(): JSX.Element {
   const [stories, setStories] = useState<miniStoryType[]>([]);
-  const [userData, setUserData] = useState<UserType[]>([]);
+
   const [isOpen, setIsOpen] = useState(false);
   const [changeInput, setChangeInput] = useState(false);
-  const { token, setUser } = useUser();
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const path = "travels";
-  // let userName = "";
-  // let userImage = "";
-
+  const path = "travelBlog";
   useEffect(() => {
-    const token = Cookies.get("usertoken");
-
     const getFetchdata = async (): Promise<void> => {
       const travels = await axios.get("http://localhost:3009/ministory/get");
       const disp = travels.data;
       setStories(disp);
     };
-    if (token) {
-      getFetchdata();
-    } else {
-      console.log("Error user not found");
-    }
-  }, [token]);
+
+    getFetchdata();
+  }, [stories]);
 
   const handleOpen = () => {
     setIsOpen(true);
@@ -82,13 +64,15 @@ export default function TravelBlog(): JSX.Element {
                 </div>
               ))
             )}
-            <Pagination
-              currentPage={currentPage}
-              setCurrentPage={setCurrentPage}
-              path={path}
-            />
           </div>
         </div>
+      </div>
+      <div className="flex justify-center">
+        <Pagination
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          path={path}
+        />
       </div>
     </>
   );

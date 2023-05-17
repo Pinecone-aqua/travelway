@@ -49,10 +49,10 @@ export default function User(): JSX.Element {
   return (
     <>
       <div className="h-[8rem]" />
-      <div className="items-center justify-center flex flex-col gap-10 relative ">
-        <p className="font-bold text-[26px]">{"userName"}</p>
-        <div className="w-[80%] grid gap-10">
-          <hr className=" border-black drop-shadow-xl" />
+      <div className="flex flex-col items-center justify-center gap-10 relative">
+        <p className="font-bold text-2xl md:text-4xl">{"userName"}</p>
+        <div className="w-11/12 md:w-4/5 lg:w-3/4 xl:w-2/3 2xl:w-1/2  gap-10">
+          <hr className="border-black drop-shadow-xl" />
           <div className="flex flex-wrap justify-center items-start">
             <AddTour />
           </div>
@@ -61,7 +61,6 @@ export default function User(): JSX.Element {
     </>
   );
 }
-
 /**
  * Stories to link profile component
  */

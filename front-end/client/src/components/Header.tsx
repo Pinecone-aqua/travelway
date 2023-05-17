@@ -24,7 +24,9 @@ const MENULIST = [
 export default function Header(): JSX.Element {
   const [nav, setNav] = useState<string | null>();
   const [isResponsive, setIsResponsive] = useState(false);
-  const { user, setUser, role } = useUser();
+  const { user, setUser } = useUser();
+  console.log(user);
+
   // user has email password
 
   const activatedStyle =
@@ -32,16 +34,12 @@ export default function Header(): JSX.Element {
   const defaultStyle =
     "opacity-70 text-lg hover:text-black ease-out duration-300 md:w-[160px] sm:w-[128px] w-[80px]";
 
-  console.log("inner header variables ", user + " " + role);
-
   useEffect(() => {
     const handleResize = () => {
       setIsResponsive(window.innerWidth <= 768);
     };
-
-    handleResize(); // Check on initial load
+    handleResize();
     window.addEventListener("resize", handleResize);
-
     return () => {
       window.removeEventListener("resize", handleResize);
     };
@@ -142,12 +140,14 @@ const LoginAuthentication = ({ user, setUser }: HeaderType) => {
 
 const LoginButton = () => (
   <button className="w-8 h-8 ">
-    <picture>
-      <img
-        src="../../images/efil.webp"
-        alt="pic"
-        className="w-10 h-[33px] ease-in rounded-full border object-cover "
-      />
-    </picture>
+    {/* {user && user.image && (
+      <picture>
+        <img
+          src={`${user.image}`}
+          alt="pic"
+          className="rounded-full w-40 h-40 bg-gray-200 outline outline-green-500 shadow-lg text-center"
+        />
+      </picture>
+    )} */}
   </button>
 );
