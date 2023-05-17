@@ -134,6 +134,7 @@ export default function CreateStory(): JSX.Element {
                       <img
                         src={URL.createObjectURL(image)}
                         className="w-10 h-10"
+                        alt={image.name}
                       />
                     </picture>
                   ))}
