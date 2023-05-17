@@ -2,6 +2,7 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 interface PropType {
   id: string;
@@ -14,9 +15,43 @@ export default function DeleteModalUser(props: PropType): JSX.Element {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  // const [test, setTest] = useState();
 
-  function deleteHandler(userId: string) {
-    axios.delete(`http://localhost:3009/allUsers/${userId}`);
+  async function deleteHandler(userId: string) {
+    try {
+      const response = await axios.delete(
+        `http://localhost:3009/allUsers/${userId}`
+      );
+      if (response.status === 200) {
+        toast.success("🦄 amjilttai!", {
+          position: "top-right",
+          autoClose: 1000,
+          type: "success",
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+
+        handleClose();
+      } else {
+        toast.error("🦄 amjiltgui!", {
+          position: "top-right",
+          type: "error",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+      console.log(response.status);
+    } catch (error) {
+      toast.error("An error occurred");
+      console.error(error);
+    }
   }
 
   return (

@@ -2,25 +2,57 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
+import { toast } from "react-toastify";
+
 interface PropType {
   id: string;
 }
 
 export default function DeleteModal(props: PropType): JSX.Element {
-  const story = props;
-
+  const { id } = props;
   const [show, setShow] = useState(false);
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  function deleteHandler(storyId: string) {
-    axios.delete(`http://localhost:3009/stories/${storyId}`);
-  }
+  const deleteHandler = async (id: string) => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:3009/stories/${id}`
+      );
+      if (response.status === 200) {
+        toast.success("deleted", {
+          position: "top-right",
+          type: "success",
+          autoClose: 1000,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+
+        handleClose();
+      } else {
+        toast.error("Failed to delete", {
+          position: "top-right",
+          type: "error",
+          autoClose: 1000,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+    } catch (error) {
+      toast.error("An error occurred");
+      console.error(error);
+    }
+  };
 
   return (
     <>
       <Button variant="primary" className="button" onClick={handleShow}>
-        устгах
+        Устгах
       </Button>
 
       <Modal show={show} onHide={handleClose}>
@@ -35,10 +67,10 @@ export default function DeleteModal(props: PropType): JSX.Element {
           <Button
             className="button"
             onClick={() => {
-              deleteHandler(story.id), handleClose();
+              deleteHandler(id);
             }}
           >
-            Tийм
+            Устгах
           </Button>
         </Modal.Footer>
       </Modal>

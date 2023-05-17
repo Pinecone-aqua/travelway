@@ -1,4 +1,4 @@
-import Pagination from "@/components/Pagination";
+import Pagination from "@/components/subComponent/Pagination";
 import Travel from "@/components/travel/Travel";
 import { TravelType } from "@/util/types";
 
@@ -6,7 +6,6 @@ export default function TravelPage(props: {
   data: TravelType[] | undefined;
 }): JSX.Element {
   const { data } = props;
-
   const path = "travels";
 
   return (

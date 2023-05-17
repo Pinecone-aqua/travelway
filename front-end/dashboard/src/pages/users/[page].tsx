@@ -1,7 +1,8 @@
-import Pagination from "@/components/Pagination";
+import Pagination from "@/components/subComponent/Pagination";
 
 import User from "@/components/user/User";
 import { UserType } from "@/util/types";
+import { ToastContainer } from "react-toastify";
 
 export default function AllUser(props: { users: UserType[] }): JSX.Element {
   const { users } = props;
@@ -11,6 +12,8 @@ export default function AllUser(props: { users: UserType[] }): JSX.Element {
   return (
     <div className="bg-white rounded-2xl h-full p-20">
       <Pagination path={path} />
+      <ToastContainer position="top-right" />
+
       <table
         className="
       w-full bg-slate-100 rounded-2xl mt-5 shadow-lg shadow-gray-300"

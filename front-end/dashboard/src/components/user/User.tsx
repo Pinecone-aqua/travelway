@@ -4,6 +4,7 @@ import DeleteModalUser from "./UserDeleteModal";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Dropdown from "react-bootstrap/Dropdown";
 import { Button } from "react-bootstrap";
+
 // import UserDeleteModal from "./UserDeleteModal";
 
 interface PropType {

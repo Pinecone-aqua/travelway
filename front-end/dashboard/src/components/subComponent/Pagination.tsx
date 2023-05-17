@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import PageBtn from "./subComponent/PageBtn";
+import PageBtn from "./PageBtn";
 interface PropType {
   path: string;
 }
@@ -20,7 +20,6 @@ export default function Pagination(props: PropType): JSX.Element {
 
   useEffect(() => {
     const page = router.query.page;
-    console.log("router", router.query.page);
     setCurrentPage(Number(page));
   }, [router]);
 

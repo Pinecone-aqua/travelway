@@ -1,11 +1,9 @@
 import axios from "axios";
 import { DayType, TravelType } from "@/util/types";
+import Image from "next/image";
 
 export default function TravelID(props: { data: TravelType }): JSX.Element {
   const { data } = props;
-
-  // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-explicit-any
-  console.log(data);
 
   return (
     <>
@@ -16,7 +14,7 @@ export default function TravelID(props: { data: TravelType }): JSX.Element {
           <div key={index}>
             {index === 0 ? (
               <div className="my-4 w-full overflow-hidden">
-                <img
+                <Image
                   src={oneday.image}
                   alt={oneday.image}
                   width={1450}
@@ -27,9 +25,6 @@ export default function TravelID(props: { data: TravelType }): JSX.Element {
                 <h2 className="font-bold text-slate-700 text-4xl mt-4 mb-2">
                   Day {index + 1}
                 </h2>
-                {/* <p className="text-xl text-orange-500 font-normal">
-                          {Date(page.updatedAt)}
-                        </p> */}
                 <h3 className="font-bold mb-2 text-lg">{oneday.subTitle}</h3>
                 <p className="my-4 text-xl text-justify">
                   {oneday.description}
@@ -45,7 +40,7 @@ export default function TravelID(props: { data: TravelType }): JSX.Element {
             ) : index % 2 === 0 ? (
               <div className="flex justify-between gap-20 items-center mt-8 mb-4">
                 <div className="flex-0">
-                  <img
+                  <Image
                     src={oneday.image}
                     alt={oneday.image}
                     width={550}
@@ -57,9 +52,7 @@ export default function TravelID(props: { data: TravelType }): JSX.Element {
                   <h2 className="font-bold text-4xl mt-4 mb-2">
                     Day {index + 1}
                   </h2>
-                  {/* <p className="text-xl text-orange-500 font-normal">
-                            {Date(page.updatedAt)}
-                          </p> */}
+
                   <h3 className="font-bold mb-2 text-lg">{oneday.subTitle}</h3>
                   <p className="my-4 text-xl text-justify">
                     {oneday.description}
@@ -79,9 +72,7 @@ export default function TravelID(props: { data: TravelType }): JSX.Element {
                   <h2 className="font-bold text-4xl mt-4 mb-2">
                     Day {index + 1}
                   </h2>
-                  {/* <p className="text-xl text-orange-500 font-normal">
-                            {Date(page.updatedAt)}
-                          </p> */}
+
                   <h3 className="font-bold mb-2 text-lg">{oneday.subTitle}</h3>
                   <p className="my-4 text-xl text-justify">
                     {oneday.description}
@@ -95,7 +86,7 @@ export default function TravelID(props: { data: TravelType }): JSX.Element {
                   </h3>
                 </div>
                 <div className="flex-0">
-                  <img
+                  <Image
                     src={oneday.image}
                     alt={oneday.image}
                     width={550}

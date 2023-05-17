@@ -56,3 +56,8 @@ export interface AdminType {
   exp: number;
   iat: number;
 }
+export interface ButtonType {
+  name: string;
+  path: string;
+  icon: JSX.Element;
+}

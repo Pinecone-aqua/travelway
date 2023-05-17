@@ -1,7 +1,8 @@
-import Pagination from "@/components/Pagination";
+import Pagination from "@/components/subComponent/Pagination";
 import CreateStory from "@/components/story/CreateStory";
 import Story from "@/components/story/Story";
 import { StoryType } from "@/util/types";
+import { ToastContainer } from "react-toastify";
 
 export default function StoryPage(props: { data: StoryType[] }): JSX.Element {
   const { data } = props;
@@ -16,12 +17,13 @@ export default function StoryPage(props: { data: StoryType[] }): JSX.Element {
             <div className="flex justify-between h-12">
               <div className="h-12">
                 <Pagination path={path} />
+                <ToastContainer position="top-right" />
               </div>
 
               <CreateStory />
             </div>
 
-            <table className="w-full bg-slate-100 rounded-2xl mt-5 shadow-lg shadow-gray-300">
+            <table className=" w-full bg-slate-100 rounded-2xl mt-5 shadow-lg shadow-gray-300">
               <thead className="h-14 text-left p-5">
                 <tr className="p-5">
                   <th scope="col" className="p-5">
