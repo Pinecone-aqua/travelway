@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React, { ReactNode } from "react";
 import Header from "./Header";
 
@@ -22,12 +23,12 @@ const Layout = ({ children }: PropType): JSX.Element => (
           </p>
           <div className="box-border h-full">
             <div className="flex gap-3 justify-center ">
-              <a
+              <Link
                 href="/auth/login"
                 className="rounded-full font-semibold p-2 px-8 text-[18px] bg-black text-white cursor-pointer hover:bg-gray-700 transition-colors duration-300 ease-in-out transform-gpu hover:scale-105 active:bg-gray-900"
               >
                 Get started
-              </a>
+              </Link>
             </div>
           </div>
         </div>
