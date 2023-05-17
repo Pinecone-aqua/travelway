@@ -3,10 +3,10 @@ import fetch from 'node-fetch';
 
 export async function getAccessTokenFromCode(code: any) {
   const postData = queryString.stringify({
-    client_id: process.env.CLIENT_ID,
-    client_secret: process.env.CLIENT_SECRET,
+    client_id: `${process.env.CLIENT_ID}`,
+    client_secret: `${process.env.CLIENT_SECRET}`,
     grant_type: 'authorization_code',
-    redirect_uri: `http://localhost:${process.env.PORT}/google/callback`,
+    redirect_uri: `${process.env.HOST_REDIRECT_URI}/google/callback`,
     code,
   });
 

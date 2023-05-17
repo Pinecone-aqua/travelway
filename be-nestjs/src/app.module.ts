@@ -9,9 +9,7 @@ import { UsersModule } from './user/user.module';
 import { MiniStoryModule } from './miniStory/miniStory.module';
 import { TravelWayModule } from './travelWay/miniStory.module';
 import { StoryModule } from './story/story.module';
-import { dbConstants } from './constants';
-import { GoogleLoginModule } from './google-login/google-login.module';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
   imports: [
@@ -23,7 +21,13 @@ import { ConfigModule } from '@nestjs/config';
     MiniStoryModule,
     TravelWayModule,
     // GoogleLoginModule,
-    MongooseModule.forRoot(dbConstants.db_uri),
+    MongooseModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => ({
+        uri: configService.get<string>('MONGO_DB_URI'),
+      }),
+      inject: [ConfigService],
+    }),
     ConfigModule.forRoot({
       envFilePath: './env',
     }),
