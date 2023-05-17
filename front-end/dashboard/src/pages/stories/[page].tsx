@@ -24,7 +24,7 @@ export default function StoryPage(props: { data: StoryType[] }): JSX.Element {
             </div>
 
             <table className=" w-full bg-slate-100 rounded-2xl mt-5 shadow-lg shadow-gray-300">
-              <thead className="h-14 text-left p-5">
+              <thead className="h-14 font-bold text-xl text-left p-5">
                 <tr className="p-5">
                   <th scope="col" className="p-5">
                     story id

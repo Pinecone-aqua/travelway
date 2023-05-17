@@ -87,7 +87,7 @@ export default function Pagination(props: PropType): JSX.Element {
               href={`${currentPage + 1}`}
               onClick={() => setCurrentPage(currentPage + 1)}
             >
-              <PageBtn btnName={"Дараахи"} btnClass={inActive} />
+              <PageBtn btnName={"Дараах"} btnClass={inActive} />
             </Link>
           )}
         </>

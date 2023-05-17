@@ -18,8 +18,12 @@ export interface StoryType {
   description: string;
   image: string[];
   myth: string;
-  coord: object;
+  coord: CoordType;
   toDo: [];
+}
+export interface CoordType {
+  lan: number;
+  lng: number;
 }
 export interface TravelType {
   _id: string;

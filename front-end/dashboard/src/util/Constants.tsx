@@ -18,3 +18,28 @@ export const activeTop =
   "bg-mycolor h-8 w-[180px] rounded-br-full text-mycolor";
 export const inActive = "bg-mycolor h-8 w-8  text-mycolor decoration-none";
 export const activeBottom = "bg-mycolor h-8 w-8 rounded-tr-full text-mycolor ";
+
+export const province = [
+  "All province",
+  "Архангай",
+  "Баян-Өлгий",
+  "Баянхонгор",
+  "Булган",
+  "Говь-Алтай",
+  "Говьсүмбэр	",
+  "Дархан-Уул	",
+  "Дорноговь",
+  "Дорнод",
+  "Дундговь",
+  "Завхан",
+  "Орхон",
+  "Өвөрхангай",
+  "Өмнөговь",
+  "Сүхбаатар",
+  "Сэлэнгэ",
+  "Төв",
+  "Увс",
+  "Ховд",
+  "Хөвсгөл",
+  "Хэнтий",
+];

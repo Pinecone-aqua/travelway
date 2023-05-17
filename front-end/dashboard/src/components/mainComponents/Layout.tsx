@@ -14,7 +14,7 @@ export default function Layout({ children }: PropType): JSX.Element {
   return (
     <>
       {admin ? (
-        <div className="flex bg-mycolor ">
+        <div className="flex bg-mycolor min-h-screen">
           <SideMenu />
           <div className="w-5/6 flex flex-col bg-slate-100 rounded-l-[50px] justify-center items-center border-">
             <div className="w-[90%]">
