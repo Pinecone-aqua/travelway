@@ -53,9 +53,12 @@ export default function Login(): JSX.Element {
           } else {
             notifyLoginError();
             setError(`Хэрэглэгчийн и-мейл, нууц үг буруу байна`);
-            setTimeout(() => 
-            setError(""), 4000);
+            setTimeout(() => setError(""), 4000);
           }
+        } else {
+          notifyLoginError();
+          setError(`Хэрэглэгчийн и-мейл, нууц үг буруу байна`);
+          setTimeout(() => setError(""), 4000);
         }
       }
     } catch (error) {
@@ -70,13 +73,6 @@ export default function Login(): JSX.Element {
       router.push(res.data);
     });
   }
-
-  useEffect(() => {
-    setUser({
-      email: loginForm.email,
-      password: loginForm.password,
-    });
-  }, [loginForm]);
 
   const notifySuccess = () =>
     toast.success("🦄 Successfull login!", {
@@ -109,7 +105,11 @@ export default function Login(): JSX.Element {
 
       <div className="flex flex-col w-11/12 md:w-6/12 lg:w-4/12 border p-16 rounded">
         <div>
-          {error && <p className="text-red-600 font-thin text-center text-sm">{error}</p>}
+          {error && (
+            <p className="text-red-600 font-thin text-center text-sm">
+              {error}
+            </p>
+          )}
           <form onSubmit={onSubmit}>
             <label htmlFor="email" className="block text-md mb-1">
               И-мейл хаяг
