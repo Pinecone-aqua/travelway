@@ -21,7 +21,7 @@ import { GoogleLoginModule } from './google-login/google-login.module';
     StoryModule,
     MiniStoryModule,
     TravelWayModule,
-    GoogleLoginModule,
+    // GoogleLoginModule,
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({

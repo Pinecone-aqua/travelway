@@ -121,7 +121,7 @@ const LoginAuthentication = ({ user, setUser }: HeaderType) => {
                 setUser(null);
               }}
             >
-              <LoginButton />
+              <LoginButton user={user} />
             </div>
           </div>
         ) : (
@@ -130,7 +130,7 @@ const LoginAuthentication = ({ user, setUser }: HeaderType) => {
             onClick={loginCheckAuth}
           >
             <span>Нэвтрэх</span>
-            <LoginButton />
+            <LoginButton user={user} />
           </div>
         )}
       </div>
@@ -138,16 +138,16 @@ const LoginAuthentication = ({ user, setUser }: HeaderType) => {
   );
 };
 
-const LoginButton = () => (
-  <button className="w-8 h-8 ">
-    {/* {user && user.image && (
+const LoginButton = ({ user }: any) => (
+  <button className="w-[40px] h-[40px] ">
+    {user && user.image && (
       <picture>
         <img
           src={`${user.image}`}
           alt="pic"
-          className="rounded-full w-40 h-40 bg-gray-200 outline outline-green-500 shadow-lg text-center"
+          className=" object-cover rounded-full w-[40px] h-[40px]  bg-gray-200  text-center"
         />
       </picture>
-    )} */}
+    )}
   </button>
 );

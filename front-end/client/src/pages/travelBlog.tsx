@@ -37,7 +37,7 @@ export default function TravelBlog(): JSX.Element {
 
   return (
     <>
-      <div className="flex justify-center content-center p-5">
+      <div className="flex justify-center content-center pt-5">
         <div className="gap-3 grid">
           <div className="gap-3 grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 xxl:grid-cols-4 relative ">
             {stories.length === 0 ? (
@@ -51,6 +51,7 @@ export default function TravelBlog(): JSX.Element {
                 </div>
               </div>
             ) : (
+              stories &&
               stories.map((story: miniStoryType, index: number) => (
                 <div key={index}>
                   <TravelblogCard

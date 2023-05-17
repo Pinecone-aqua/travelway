@@ -69,7 +69,7 @@ export default function MiniStoryAdd(): JSX.Element {
                 <input
                   type="text"
                   placeholder="image"
-                  className="border  p-2 rounded-xl w-[800px] h-[300px] bg-gray-30 "
+                  className="border  p-2 rounded-xl w-[100%] h-[300px] bg-gray-30 "
                   name="image"
                 />
 

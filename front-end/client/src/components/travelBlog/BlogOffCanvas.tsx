@@ -31,6 +31,10 @@ export default function BlogOffCanvas(props: Props): JSX.Element {
           <div className="text-lg font-medium">
             <p>Travel Blog</p>
           </div>
+
+          <div className="cursor-pointer" onClick={onClose}>
+            X
+          </div>
         </DrawerHeader>
         <DrawerBody className="flex place-content-center py-5">
           <div className="w-full max-w-3xl">
