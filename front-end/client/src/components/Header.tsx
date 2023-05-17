@@ -24,15 +24,13 @@ const MENULIST = [
 export default function Header(): JSX.Element {
   const [nav, setNav] = useState<string | null>();
   const [isResponsive, setIsResponsive] = useState(false);
-  const { user, setUser, role } = useUser();
+  const { user, setUser } = useUser();
   // user has email password
 
   const activatedStyle =
     "opacity-100 text-xl hover:text-black  text-black ease-out duration-300 md:w-[192px] sm:w-[142px] w-[96px] border-b-4 border-gray-400 ";
   const defaultStyle =
     "opacity-70 text-lg hover:text-black ease-out duration-300 md:w-[160px] sm:w-[128px] w-[80px]";
-
-  console.log("inner header variables ", user + " " + role);
 
   useEffect(() => {
     const handleResize = () => {
