@@ -1,6 +1,7 @@
 import TravelCard from "@/components/travel/Travel";
 import { useEffect, useState } from "react";
 import { TravelType } from "../../util/types";
+import HeroSection from "@/components/heroSection";
 
 export default function Home(): JSX.Element {
   const [travels, setTravels] = useState<TravelType[] | null>(null);
@@ -12,7 +13,8 @@ export default function Home(): JSX.Element {
 
   return (
     <>
-      <div className="flex justify-start container mx-auto flex-wrap">
+      <div className="flex justify-start flex-wrap">
+        <HeroSection />
         {travels &&
           travels.map((data: TravelType, index: number) => (
             <TravelCard data={data} key={index} />

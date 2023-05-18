@@ -4,6 +4,7 @@ import {
   DrawerHeader,
   DrawerBody,
   Avatar,
+  Spinner,
 } from "@chakra-ui/react";
 import Image from "next/image";
 import React from "react";
@@ -58,13 +59,17 @@ export default function BlogOffCanvas(props: Props): JSX.Element {
             </div>
             <div className="flex justify-center mb-6">
               <div className="h-96 w-full relative">
-                <Image
-                  src={story.image}
-                  alt="pic"
-                  layout="fill"
-                  objectFit="cover"
-                  className="rounded-3xl"
-                />
+                {story.image ? (
+                  <Image
+                    src={story.image}
+                    alt="pic"
+                    layout="fill"
+                    objectFit="cover"
+                    className="rounded-3xl"
+                  />
+                ) : (
+                  <Spinner color="red.500" />
+                )}
               </div>
             </div>
             <div className="flex justify-center text-2xl font-medium mb-2">

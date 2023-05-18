@@ -43,6 +43,14 @@ summary {
   margin-top: 50px;
 }
 
+@media screen and (max-width: 600px) {
+  .css-3a5bz2 {
+    width: 60% !important;
+    height: 60% !important;
+  }
+}
+
+
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }

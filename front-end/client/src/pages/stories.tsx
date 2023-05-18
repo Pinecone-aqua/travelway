@@ -1,4 +1,5 @@
 // import { StoryType } from "../../util/types";
+import HeroSection from "@/components/heroSection";
 import AddTour from "@/components/tour/AddTour";
 
 export default function User(): JSX.Element {
@@ -48,6 +49,7 @@ export default function User(): JSX.Element {
 
   return (
     <>
+      <HeroSection />
       <div className="h-[8rem]" />
       <div className="flex flex-col items-center justify-center gap-10 relative">
         <p className="font-bold text-2xl md:text-4xl">{"userName"}</p>

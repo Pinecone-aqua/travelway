@@ -59,6 +59,7 @@ export default function Header(): JSX.Element {
                 as={IconButton}
                 aria-label="Options"
                 icon={<RxHamburgerMenu />}
+                style={{ backgroundColor: "white" }}
               />
               <MenuList className="bg-white ">
                 {MENULIST.map((menuItem, index) => (
@@ -109,7 +110,7 @@ const LoginAuthentication = ({ user, setUser }: HeaderType) => {
 
   return (
     <>
-      <div className="absolute right-0 mr-[1rem] flex items-center">
+      <div className="absolute right-0 flex items-center">
         {user ? (
           <>
             <Menu>

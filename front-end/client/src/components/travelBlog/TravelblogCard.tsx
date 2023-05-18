@@ -40,15 +40,15 @@ export default function TravelblogCard(props: StoryProps) {
         <Flex
           alignItems="center"
           flexWrap="wrap"
-          className="bg-white pr-3 py-2 pl-2 rounded-r-full  absolute z-50 opacity-80"
+          className="bg-white pr-3 py-2 pl-2 rounded-r-full  absolute z-50 opacity-90"
           onClick={onOffCanvasOpen}
         >
           <Avatar name={userInfo.image} src={userInfo.image} mr="4" />
-          <Box>
+          <Box className="hover:opacity-90">
             <Heading size="sm" mb="1 ">
               {story.username}
             </Heading>
-            <p className="text-gray-500 text-sm">
+            <p className="text-gray-500 text-sm mt-3">
               Creator: {userInfo.username}
             </p>
           </Box>

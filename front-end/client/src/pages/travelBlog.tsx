@@ -7,6 +7,7 @@ import { miniStoryType } from "../../util/types";
 import TravelblogCard from "@/components/travelBlog/TravelblogCard";
 import { Skeleton, Stack } from "@chakra-ui/react";
 import Pagination from "@/components/Pagination";
+import HeroSection from "@/components/heroSection";
 
 export default function TravelBlog(): JSX.Element {
   const [stories, setStories] = useState<miniStoryType[]>([]);
@@ -58,9 +59,10 @@ export default function TravelBlog(): JSX.Element {
 
   return (
     <>
+      <HeroSection />
       <div className="flex justify-center content-center pt-5">
         <div className="gap-3 grid">
-          <div className="gap-3 grid p-2 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 xxl:grid-cols-4 relative ">
+          <div className="gap-3 grid p-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 xxl:grid-cols-4 relative ">
             {stories.length === 0 ? (
               <div className="flex justify-center content-center  ">
                 <div>
