@@ -7,7 +7,7 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 import { toast } from "react-toastify";
 import Image from "next/image";
 import BranchSection from "./Map";
-import { province } from "@/util/Constants";
+import { category, province } from "@/util/Constants";
 import { AdminContext } from "@/context/AdminProvider";
 
 export default function CreateStory(): JSX.Element {
@@ -34,7 +34,7 @@ export default function CreateStory(): JSX.Element {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  function createHandler(e: any): void {
+  function createHandler(e: any) {
     e.preventDefault();
 
     const object = {
@@ -46,45 +46,34 @@ export default function CreateStory(): JSX.Element {
       toDo: addIndicator,
       coord: clickedLocation,
       userId: admin?.id,
+      category: e.target.category.value,
     };
 
-    const product = new FormData();
-    addFile.forEach((file) => {
-      product.append("file", file);
-    });
-    product.append("product", JSON.stringify(object));
-    try {
-      const response = axios.post(
-        `http://localhost:3009/stories/create`,
-        product
-      );
-      response
-        .then((response) => {
-          if (response.status == 200 || response.status == 201) {
-            console.log("response status", response.status);
-            toast.success(`Таний мэдээлэл амжилттай орлоо${response.status}`, {
-              position: "top-right",
-              type: "success",
-              autoClose: 1000,
-              closeOnClick: false,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-            });
-          } else {
-            toast.error("Таний оруулсан мэдээлэл буруу байна", {
-              position: "top-right",
-              type: "error",
-              autoClose: 1000,
-              closeOnClick: false,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-            });
-          }
-        })
-        .catch(() => {
-          toast.error("Таний оруулсан мэдээлэл буруу байна", {
+    const promise = (async () => {
+      try {
+        const product = new FormData();
+        addFile.forEach((file) => {
+          product.append("file", file);
+        });
+        product.append("product", JSON.stringify(object));
+        const response = await axios.post(
+          `${process.env.NEXT_PUBLIC_API_BACK_END_URL}/stories/create`,
+          product
+        );
+        const res = response.data;
+
+        if (res.status == 200) {
+          toast.success(`${res.message}`, {
+            position: "top-right",
+            type: "success",
+            autoClose: 1000,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        } else {
+          toast.error(`${res.message}`, {
             position: "top-right",
             type: "error",
             autoClose: 1000,
@@ -93,19 +82,26 @@ export default function CreateStory(): JSX.Element {
             draggable: true,
             progress: undefined,
           });
+        }
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } catch (error: any) {
+        console.log(error);
+
+        toast.error(`${"аялалын мэдээлэл дутуу байна"}`, {
+          position: "top-right",
+          type: "error",
+          autoClose: 1000,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
         });
-      console.log(response);
-    } catch (error) {
-      toast.error("Таний оруулсан зураг буруу байна", {
-        position: "top-right",
-        type: "error",
-        autoClose: 1000,
-        closeOnClick: false,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-    }
+      }
+    })();
+
+    promise.catch((error) => {
+      console.log(error);
+    });
   }
   return (
     <>
@@ -130,9 +126,18 @@ export default function CreateStory(): JSX.Element {
                 <select
                   className="p-2 w-full border-2 rounded-lg"
                   name="province"
-                  id=""
                 >
                   {province.map((pro: string, index: number) => (
+                    <option key={index}>{pro}</option>
+                  ))}
+                </select>
+                <div>Ангилал</div>
+                <select
+                  className="p-2 w-full border-2 rounded-lg"
+                  name="category"
+                  id=""
+                >
+                  {category.map((pro: string, index: number) => (
                     <option key={index}>{pro}</option>
                   ))}
                 </select>

@@ -35,7 +35,9 @@ export default function TravelPage(props: {
 }
 
 export async function getStaticPaths() {
-  const res = await fetch(`http://localhost:3009/travels/pageNumber`);
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BACK_END_URL}/travels/pageNumber`
+  );
   const pages = await res.json();
   const lastPage = pages && Math.ceil(pages / 8);
 
@@ -56,7 +58,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }: { params: { page: string } }) {
   const response = await fetch(
-    `http://localhost:3009/travels/page${params.page}`
+    `${process.env.NEXT_PUBLIC_API_BACK_END_URL}/travels/page${params.page}`
   );
   const data = await response.json();
 

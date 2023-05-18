@@ -62,9 +62,11 @@ export class StoryController {
       const url = await this.storyService.uploadImageToCloudinary(files.file);
       const req: CreateStoryDto = JSON.parse(body.product);
       req.image.push(...url);
-      return this.storyService.create(req);
+      const result = this.storyService.create(req);
+      return result;
     } catch (error) {
-      console.log(error);
+      console.log('error', error);
+      return error;
     }
   }
 

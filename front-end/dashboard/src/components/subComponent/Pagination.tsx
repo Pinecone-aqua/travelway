@@ -24,7 +24,7 @@ export default function Pagination(props: PropType): JSX.Element {
   }, [router]);
 
   useEffect(() => {
-    fetch(`http://localhost:3009/${path}/pageNum`)
+    fetch(`${process.env.NEXT_PUBLIC_API_BACK_END_URL}/${path}/pageNum`)
       .then((response) => response.json())
       .then((res) => setPageNum(res));
   }, [path]);

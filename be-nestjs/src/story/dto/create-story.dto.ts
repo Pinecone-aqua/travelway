@@ -18,4 +18,6 @@ export class CreateStoryDto {
   readonly userId: string;
   @IsObject()
   readonly coord: object;
+  @IsString()
+  readonly category: string;
 }

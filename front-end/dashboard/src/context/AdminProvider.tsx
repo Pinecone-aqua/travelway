@@ -33,35 +33,40 @@ export default function AdminProvider({ children }: PropType): JSX.Element {
         password: target.adminPassword.value,
         role: "admin",
       };
-      axios.post("http://localhost:3009/auth/loginHandler", obj).then((res) => {
-        if (res.data.token !== undefined) {
-          localStorage.setItem("login", res.data.token);
+      axios
+        .post(
+          `${process.env.NEXT_PUBLIC_API_BACK_END_URL}/auth/loginHandler`,
+          obj
+        )
+        .then((res) => {
+          if (res.data.token !== undefined) {
+            localStorage.setItem("login", res.data.token);
 
-          console.log("hi", res.data);
-        }
+            console.log("hi", res.data);
+          }
 
-        if (res.data.token !== undefined) {
-          toast.success("Амжилттай нэвтэрлээ", {
-            position: "top-left",
-            type: "success",
-            autoClose: 1000,
-            closeOnClick: false,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
-        } else {
-          toast.error("И-мейл хаяг эсвэл нууц үг буруу байна!", {
-            position: "top-left",
-            type: "error",
-            autoClose: 1000,
-            closeOnClick: false,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
-        }
-      });
+          if (res.data.token !== undefined) {
+            toast.success("Амжилттай нэвтэрлээ", {
+              position: "top-left",
+              type: "success",
+              autoClose: 1000,
+              closeOnClick: false,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+          } else {
+            toast.error("И-мейл хаяг эсвэл нууц үг буруу байна!", {
+              position: "top-left",
+              type: "error",
+              autoClose: 1000,
+              closeOnClick: false,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+          }
+        });
     } catch (error) {
       console.log(" Aldaa uslee");
     }

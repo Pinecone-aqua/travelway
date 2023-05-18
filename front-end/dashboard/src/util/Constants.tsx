@@ -20,7 +20,7 @@ export const inActive = "bg-mycolor h-8 w-8  text-mycolor decoration-none";
 export const activeBottom = "bg-mycolor h-8 w-8 rounded-tr-full text-mycolor ";
 
 export const province = [
-  "All province",
+  "Улаанбаатар",
   "Архангай",
   "Баян-Өлгий",
   "Баянхонгор",
@@ -43,3 +43,4 @@ export const province = [
   "Хөвсгөл",
   "Хэнтий",
 ];
+export const category = ["lake", "history", "mountain"];

@@ -104,7 +104,9 @@ export default function UserId(props: PropType): JSX.Element {
 }
 
 export async function getStaticPaths() {
-  const res = await fetch("http://localhost:3009/users/allId");
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BACK_END_URL}/users/allId`
+  );
   const ids = await res.json();
 
   const paths = await ids.map((id: { _id: string }) => ({
@@ -120,14 +122,16 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }: { params: { id: string } }) {
   try {
     const res = await fetch(
-      `http://localhost:3009/ministory/user/${params.id}`
+      `${process.env.NEXT_PUBLIC_API_BACK_END_URL}/ministory/user/${params.id}`
     );
     const miniStory = await res.json();
     const response = await fetch(
-      `http://localhost:3009/travels/user/${params.id}`
+      `${process.env.NEXT_PUBLIC_API_BACK_END_URL}/travels/user/${params.id}`
     );
     const travels = await response.json();
-    const resUser = await fetch(`http://localhost:3009/users/${params.id}`);
+    const resUser = await fetch(
+      `${process.env.NEXT_PUBLIC_API_BACK_END_URL}/users/${params.id}`
+    );
     const user = await resUser.json();
 
     if (!user) {
@@ -158,7 +162,9 @@ function UserMiniStory(props: { miniStory: MiniStoryType[] }): JSX.Element {
   const { miniStory } = props;
 
   function deleteHandler(_id: string) {
-    axios.delete(`http://localhost:3009/miniStory/${_id}`);
+    axios.delete(
+      `${process.env.NEXT_PUBLIC_API_BACK_END_URL}/miniStory/${_id}`
+    );
   }
   return (
     <>
@@ -197,7 +203,7 @@ function UserTravels(props: { travels: TravelType[] }) {
   const { travels } = props;
 
   function deleteHandler(_id: string) {
-    axios.delete(`http://localhost:3009/travels/${_id}`);
+    axios.delete(`${process.env.NEXT_PUBLIC_API_BACK_END_URL}/travels/${_id}`);
   }
 
   return (

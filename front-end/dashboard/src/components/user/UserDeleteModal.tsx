@@ -1,16 +1,19 @@
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { UserType } from "@/util/types";
 
 interface PropType {
   id: string;
   username: string;
+  users: UserType[];
+  setUsers: Dispatch<SetStateAction<UserType[] | undefined>>;
 }
 
 export default function DeleteModalUser(props: PropType): JSX.Element {
-  const { id, username } = props;
+  const { id, username, users, setUsers } = props;
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -20,7 +23,7 @@ export default function DeleteModalUser(props: PropType): JSX.Element {
   async function deleteHandler(userId: string) {
     try {
       const response = await axios.delete(
-        `http://localhost:3009/users/${userId}`
+        `${process.env.NEXT_PUBLIC_API_BACK_END_URL}/users/${userId}`
       );
       if (response.status === 200) {
         toast.success("🦄 amjilttai!", {
@@ -52,6 +55,8 @@ export default function DeleteModalUser(props: PropType): JSX.Element {
       toast.error("An error occurred");
       console.error(error);
     }
+    const result = users.filter((user: UserType) => user._id !== id);
+    setUsers(result);
   }
 
   return (

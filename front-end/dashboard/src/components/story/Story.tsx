@@ -3,12 +3,16 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import DeleteModal from "./DeleteModal";
 import Dropdown from "react-bootstrap/Dropdown";
 import { Button } from "react-bootstrap";
+import { Dispatch, SetStateAction } from "react";
 interface PropsType {
   unit: StoryType;
+  stories: StoryType[];
+  setStories: Dispatch<SetStateAction<StoryType[] | undefined>>;
 }
 
 export default function Story(props: PropsType): JSX.Element {
-  const data = props.unit;
+  const { unit, stories, setStories } = props;
+  const data = unit;
 
   return (
     <tr className="border-t-2 border-white">
@@ -28,8 +32,12 @@ export default function Story(props: PropsType): JSX.Element {
               <Dropdown.Item href={`/stories/story/${data._id}`}>
                 <Button className="button">засварлах</Button>
               </Dropdown.Item>
-              <Dropdown.Item href="#/action-2">
-                <DeleteModal id={data._id} />
+              <Dropdown.Item>
+                <DeleteModal
+                  stories={stories}
+                  setStories={setStories}
+                  id={data._id}
+                />
               </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>

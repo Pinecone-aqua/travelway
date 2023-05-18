@@ -4,6 +4,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
+import { response } from 'express';
 import { Model } from 'mongoose';
 import { CloudinaryService } from 'src/cloudinary/cloudinary.service';
 import { CreateStoryDto } from './dto/create-story.dto';
@@ -91,19 +92,40 @@ export class StoryService {
 
   async create(newStory: CreateStoryDto) {
     try {
-      const { title, description, myth, toDo, province, coord, userId } =
-        newStory;
+      const {
+        title,
+        description,
+        myth,
+        toDo,
+        province,
+        coord,
+        userId,
+        category,
+      } = newStory;
 
-      if (title && description && myth && toDo && province && coord && userId) {
+      if (
+        title &&
+        description &&
+        myth &&
+        toDo &&
+        province &&
+        coord &&
+        userId &&
+        category
+      ) {
         console.log('new story', newStory);
         const newAsStory = new this.storyModel(newStory);
-        const result = await newAsStory.save();
-        return result;
+        await newAsStory.save();
+
+        return {
+          status: 200,
+          message: 'Амжилттай хадгалагдлаа',
+        };
       } else {
         throw new BadRequestException('Аяллын мэдээлэл дутуу байна');
       }
     } catch (error) {
-      console.log(error);
+      throw new BadRequestException('Аяллын мэдээлэл дутуу байна');
     }
   }
 }
