@@ -76,7 +76,7 @@ const AddTour = () => {
         setMessage("");
       }, 10000);
     }
-  };
+  }
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = event.target;
