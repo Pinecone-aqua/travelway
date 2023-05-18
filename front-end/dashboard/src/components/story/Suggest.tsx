@@ -19,7 +19,7 @@ export default function Suggest(props: {
       ))}
 
       <input
-        className="rounded-2xl p-2"
+        className="rounded-2xl p-2 my-3"
         type="text"
         name="addSuggest"
         onChange={(e): void => {

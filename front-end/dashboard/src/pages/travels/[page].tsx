@@ -13,7 +13,7 @@ export default function TravelPage(props: {
       <div className="bg-white rounded-2xl h-full p-20">
         <Pagination path={path} />
 
-        <table className="w-full bg-gray-200 rounded-2xl mt-5 ">
+        <table className="w-full bg-slate-100 rounded-2xl mt-5 ">
           <thead className="h-14 text-left p-5">
             <tr className="p-5">
               <th scope="col" className="p-5">
