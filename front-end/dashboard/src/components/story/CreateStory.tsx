@@ -183,6 +183,7 @@ export default function CreateStory(): JSX.Element {
                       alt={""}
                       className="m-2"
                     />
+
                   ))}
                 </div>
 
