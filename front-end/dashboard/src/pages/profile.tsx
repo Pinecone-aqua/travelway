@@ -9,14 +9,16 @@ export default function Profile(): JSX.Element {
 
   const [stories, setStories] = useState<StoryType[]>();
   useEffect(() => {
-    fetch(`http://localhost:3009/allUsers/${admin?.id}`)
+    fetch(`${process.env.NEXT_PUBLIC_API_BACK_END_URL}/users/${admin?.id}`)
       .then((response) => response.json())
       .then((res) => {
         setUser(res);
       });
   }, [admin?.id]);
   useEffect(() => {
-    fetch(`http://localhost:3009/ministory/user${admin?.id}`)
+    fetch(
+      `${process.env.NEXT_PUBLIC_API_BACK_END_URL}/ministory/user${admin?.id}`
+    )
       .then((response) => response.json())
       .then((res) => setStories(res));
   }, [admin?.id]);

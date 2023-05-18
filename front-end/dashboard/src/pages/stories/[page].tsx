@@ -3,9 +3,15 @@ import CreateStory from "@/components/story/CreateStory";
 import Story from "@/components/story/Story";
 import { StoryType } from "@/util/types";
 import { ToastContainer } from "react-toastify";
+import { useEffect, useState } from "react";
 
 export default function StoryPage(props: { data: StoryType[] }): JSX.Element {
+  const [stories, setStories] = useState<StoryType[]>();
   const { data } = props;
+
+  useEffect(() => {
+    setStories(data);
+  }, [data]);
 
   const path = "stories";
 
@@ -24,7 +30,7 @@ export default function StoryPage(props: { data: StoryType[] }): JSX.Element {
             </div>
 
             <table className=" w-full bg-slate-100 rounded-2xl mt-5 shadow-lg shadow-gray-300">
-              <thead className="h-14 text-left p-5">
+              <thead className="h-14 font-bold text-xl text-left p-5">
                 <tr className="p-5">
                   <th scope="col" className="p-5">
                     story id
@@ -34,9 +40,15 @@ export default function StoryPage(props: { data: StoryType[] }): JSX.Element {
                 </tr>
               </thead>
               <tbody className="h-32">
-                {data.map((unit: StoryType, index: number) => (
-                  <Story key={index} unit={unit} />
-                ))}
+                {stories &&
+                  stories.map((unit: StoryType, index: number) => (
+                    <Story
+                      key={index}
+                      stories={stories}
+                      setStories={setStories}
+                      unit={unit}
+                    />
+                  ))}
               </tbody>
             </table>
           </div>
@@ -47,7 +59,9 @@ export default function StoryPage(props: { data: StoryType[] }): JSX.Element {
 }
 
 export async function getStaticPaths() {
-  const res = await fetch(`http://localhost:3009/stories/pageNum`);
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BACK_END_URL}/stories/pageNum`
+  );
   const pages = await res.json();
   const lastPage = pages && Math.ceil(pages / 8);
 
@@ -68,7 +82,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }: { params: { page: string } }) {
   const response = await fetch(
-    `http://localhost:3009/stories/page${params.page}`
+    `${process.env.NEXT_PUBLIC_API_BACK_END_URL}/stories/page${params.page}`
   );
   const data = await response.json();
 

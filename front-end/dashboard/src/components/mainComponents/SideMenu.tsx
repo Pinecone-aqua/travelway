@@ -30,7 +30,7 @@ export default function SideMenu(): JSX.Element {
   }
 
   return (
-    <div className="w-1/6 min-h-screen h-100 flex bg-mycolor flex-col justify-center place-items-end decoration-double">
+    <div className="w-1/6  h-[800px] flex bg-mycolor flex-col justify-center place-items-end decoration-double">
       {Buttons.map((unit: ButtonType, index: number) => (
         <div
           className="h-1/6 w-full flex flex-col content-end self-end place-items-end -mr-[28px]"

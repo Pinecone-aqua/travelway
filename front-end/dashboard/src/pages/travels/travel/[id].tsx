@@ -104,7 +104,9 @@ export default function TravelID(props: { data: TravelType }): JSX.Element {
 }
 
 export async function getStaticPaths() {
-  const res = await fetch("http://localhost:3009/travels/allId");
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BACK_END_URL}/travels/allId`
+  );
   const ids = await res.json();
 
   const paths = await ids.map((id: { _id: string }) => ({
@@ -119,7 +121,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }: { params: { id: string } }) {
   const { data } = await axios.get(
-    `http://localhost:3009/travels/${params.id}`
+    `${process.env.NEXT_PUBLIC_API_BACK_END_URL}/travels/${params.id}`
   );
   return {
     props: {

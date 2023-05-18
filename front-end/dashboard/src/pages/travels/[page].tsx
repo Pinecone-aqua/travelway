@@ -13,7 +13,7 @@ export default function TravelPage(props: {
       <div className="bg-white rounded-2xl h-full p-20">
         <Pagination path={path} />
 
-        <table className="w-full bg-slate-100 rounded-2xl mt-5 shadow-lg shadow-gray-300">
+        <table className="w-full bg-gray-200 rounded-2xl mt-5 ">
           <thead className="h-14 text-left p-5">
             <tr className="p-5">
               <th scope="col" className="p-5">
@@ -35,7 +35,9 @@ export default function TravelPage(props: {
 }
 
 export async function getStaticPaths() {
-  const res = await fetch(`http://localhost:3009/travels/pageNumber`);
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BACK_END_URL}/travels/pageNumber`
+  );
   const pages = await res.json();
   const lastPage = pages && Math.ceil(pages / 8);
 
@@ -56,7 +58,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }: { params: { page: string } }) {
   const response = await fetch(
-    `http://localhost:3009/travels/page${params.page}`
+    `${process.env.NEXT_PUBLIC_API_BACK_END_URL}/travels/page${params.page}`
   );
   const data = await response.json();
 
