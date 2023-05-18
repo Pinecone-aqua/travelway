@@ -25,7 +25,6 @@ export default function Header(): JSX.Element {
   const [nav, setNav] = useState<string | null>();
   const [isResponsive, setIsResponsive] = useState(false);
   const { user, setUser } = useUser();
-  console.log(user);
 
   // user has email password
 
@@ -112,18 +111,26 @@ const LoginAuthentication = ({ user, setUser }: HeaderType) => {
     <>
       <div className="absolute right-0 mr-[1rem] flex items-center">
         {user ? (
-          <div className="flex items-center justify-center gap-2 cursor-pointer ">
-            <span>Гарах</span>
-            <div
-              className="cursor-pointer"
-              onClick={() => {
-                Cookies.remove("usertoken");
-                setUser(null);
-              }}
-            >
-              <LoginButton user={user} />
-            </div>
-          </div>
+          <>
+            <Menu>
+              <MenuButton>
+                <LoginButton user={user} />
+              </MenuButton>
+              <MenuList>
+                <a href="/user">
+                  <MenuItem>Profile</MenuItem>
+                </a>
+                <MenuItem
+                  onClick={() => {
+                    Cookies.remove("usertoken");
+                    setUser(null);
+                  }}
+                >
+                  Logout
+                </MenuItem>
+              </MenuList>
+            </Menu>
+          </>
         ) : (
           <div
             className="flex items-center justify-center gap-2 cursor-pointer"
@@ -138,6 +145,7 @@ const LoginAuthentication = ({ user, setUser }: HeaderType) => {
   );
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const LoginButton = ({ user }: any) => (
   <button className="w-[40px] h-[40px] ">
     {user && user.image && (

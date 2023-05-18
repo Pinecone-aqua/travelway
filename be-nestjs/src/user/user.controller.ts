@@ -21,6 +21,12 @@ export class UsersController {
   findAllId(): Promise<number> {
     return this.userService.findAllId();
   }
+
+  @Get('all')
+  findAll(): Promise<User[]> {
+    return this.userService.findAll();
+  }
+
   @Post()
   create(@Body() user: User): Promise<User> {
     return this.userService.create(user);

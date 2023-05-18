@@ -17,10 +17,10 @@ export class UsersService {
     return result;
   }
 
-  // async findAll(): Promise<User[]> {
-  //   const result = await this.userModel.find({});
-  //   return result;
-  // }
+  async findAll(): Promise<User[]> {
+    const result = await this.userModel.find({});
+    return result;
+  }
 
   async findProInfo(): Promise<any> {
     try {

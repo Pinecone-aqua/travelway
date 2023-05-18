@@ -20,7 +20,6 @@ export default function UserProvider({ children }: UserProviderType) {
   const [token, setToken] = useState<string | undefined>(
     Cookies.get("usertoken")
   );
-  console.log(user);
 
   const [role, setRole] = useState<string | undefined>();
 

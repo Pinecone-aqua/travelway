@@ -2,17 +2,27 @@ import React from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { UserContext } from "../../context/user.context";
+import { useContext } from "react";
 
 export default function MiniStoryAdd(): JSX.Element {
+  const { user } = useContext(UserContext);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function miniStoryHandler(e: any) {
     e.preventDefault();
+
+    // const formData = new FormData();
+    const formDataObj = {
+      userId: user?._id,
+      title: e.currentTarget.title.value,
+      sentence: e.currentTarget.sentence.value,
+      image: e.currentTarget.image.value,
+    };
+
+    console.log(formDataObj);
+
     axios
-      .post(`http://localhost:3009/miniStory/add`, {
-        image: e.target.image.value,
-        title: e.target.title.value,
-        sentence: e.target.sentence.value,
-      })
+      .post(`http://localhost:3009/miniStory/add`, formDataObj)
       .then(() => {
         notifySuccess();
       })
@@ -20,8 +30,6 @@ export default function MiniStoryAdd(): JSX.Element {
         console.error("Error creating mini story:", error);
         notifyLoginError();
       });
-
-    console.log(e.target.sentence.value);
   }
 
   const notifySuccess = () =>

@@ -130,7 +130,7 @@ export default function Login(): JSX.Element {
               Нууц үг
             </label>
             <input
-              type="text"
+              type="password"
               id="password"
               name="password"
               value={loginForm.password}
@@ -167,8 +167,7 @@ export default function Login(): JSX.Element {
                   router.push("/auth/register");
                 }}
               >
-                {" "}
-                Энд дарж{" "}
+                Энд дарж
               </span>
               бүртгүүлнэ.
             </div>

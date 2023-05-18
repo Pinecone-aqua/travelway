@@ -7,9 +7,10 @@ import {
 } from "@chakra-ui/react";
 import Image from "next/image";
 import React from "react";
-import { miniStoryType } from "../../../util/types";
+import { LoginForm, miniStoryType } from "../../../util/types";
 
 type Props = {
+  userInfo: LoginForm | null;
   isOpen: boolean;
   onClose: () => void;
   story: miniStoryType;
@@ -18,7 +19,7 @@ type Props = {
 };
 
 export default function BlogOffCanvas(props: Props): JSX.Element {
-  const { isOpen, onClose, story } = props;
+  const { isOpen, onClose, story, userInfo } = props;
 
   return (
     <Drawer placement="bottom" onClose={onClose} isOpen={isOpen}>
@@ -40,12 +41,18 @@ export default function BlogOffCanvas(props: Props): JSX.Element {
           <div className="w-full max-w-3xl">
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-4">
-                <Avatar name={story.title} src={story.image} />
+                <Avatar name={story.title} src={userInfo?.image} />
                 <div>
                   <div className="text-2xl font-medium">{story.title}</div>
-                  <div className="text-base text-gray-500">
-                    {story.sentence}
-                  </div>
+                  {userInfo?.username ? (
+                    <div className="text-base text-gray-500">
+                      Creator: {userInfo.username}
+                    </div>
+                  ) : (
+                    <div className="text-base text-gray-500">
+                      <p>Creator: Admin</p>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

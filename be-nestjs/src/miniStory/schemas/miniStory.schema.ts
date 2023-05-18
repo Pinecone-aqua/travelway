@@ -15,6 +15,7 @@ export class MiniStory {
 
   @Prop({ type: String })
   sentence: string;
+
   @Prop({ type: String })
   userId: string;
 }

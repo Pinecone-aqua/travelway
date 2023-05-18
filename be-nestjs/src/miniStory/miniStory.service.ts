@@ -16,9 +16,9 @@ export class MiniStoryService {
   ) {}
 
   async create(createMiniStoryDto: CreateMiniStoryDto): Promise<MiniStory> {
-    const { title, image, sentence } = createMiniStoryDto;
+    const { title, image, sentence, userId } = createMiniStoryDto;
 
-    if (!(title && image && sentence)) {
+    if (!(title && image && sentence && userId)) {
       throw new BadRequestException('MiniStory мэдээлэл дутуу байна');
     }
 
