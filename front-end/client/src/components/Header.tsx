@@ -15,10 +15,10 @@ interface HeaderType {
 }
 
 const MENULIST = [
-  { name: "Home", uri: "/" },
-  { name: "stories", uri: "/stories" },
-  { name: "Travel blog", uri: "/travelBlog" },
-  { name: "About us", uri: "/about" },
+  { name: "Нүүр", uri: "/" },
+  { name: "Аялал", uri: "/stories" },
+  { name: "Аяллын блог", uri: "/travelBlog" },
+  { name: "Бидний тухай", uri: "/about" },
 ];
 
 export default function Header(): JSX.Element {
