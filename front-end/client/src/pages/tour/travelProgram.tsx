@@ -9,13 +9,10 @@ export default function TravelProgram(): JSX.Element {
     const getFetchdata = async () => {
       const alltravels = await axios.get(`http://localhost:3009/travels/get`);
       const { data } = alltravels;
-
       setTravels(data);
     };
     getFetchdata();
   }, []);
-
-  console.log("Data===> ", travels);
 
   return (
     <div>
@@ -54,7 +51,6 @@ export default function TravelProgram(): JSX.Element {
 }
 
 // function Travel(daysOfTravel: DayType[]) {
-
 //   return (
 //     <div>
 //       {daysOfTravel.map((dayOf: DayType, index: number) => (
