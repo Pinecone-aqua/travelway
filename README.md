@@ -1,6 +1,6 @@
 ## **Төслийн ERD**
 
-<a href="https://www.travelway.com/" target="_blank"><img src="https://res.cloudinary.com/dhirtao9q/image/upload/v1682643047/travelwayERDdiagram_mbin5d.png" width="100%" alt="travelway: Free and open fair-code licensed experience operating system (XOS)">
+<a href="https://www.travelway.com/" target="_blank"><img src="https://res.cloudinary.com/dhirtao9q/image/upload/v1684374350/travelwayerd20230518at093722_ce18vt.png" width="100%" alt="travelway: Free and open fair-code licensed experience operating system (XOS)">
 </a>
 
 ### Hello 👋
