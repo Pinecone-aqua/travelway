@@ -63,7 +63,7 @@ const TourDetails = (props: {
         <label className="mt-4" htmlFor="image">
           Зураг/Image:
         </label>
-        <input type="file" onChange={(e) => handleFileChange(e)} />
+        <input type="file" onChange={handleFileChange} />
       </div>
     </div>
   );
