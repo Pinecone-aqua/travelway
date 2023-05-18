@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
@@ -27,10 +27,8 @@ export default function User(): JSX.Element {
       setUserData(currentUser);
     };
 
-    useEffect(() => {
-      getFetchdata();
-      getUserFetch();
-    }, []);
+    getFetchdata();
+    getUserFetch();
 
     if (logUser) {
       userData
