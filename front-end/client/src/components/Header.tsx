@@ -7,6 +7,13 @@ import { IconButton } from "@chakra-ui/react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { useUser } from "../../context/user.context";
 
+interface HeaderType {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  user: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  setUser: (arg: any) => void;
+}
+
 const MENULIST = [
   { name: "Нүүр", uri: "/" },
   { name: "Аялал", uri: "/stories" },
@@ -17,6 +24,8 @@ const MENULIST = [
 export default function Header(): JSX.Element {
   const [nav, setNav] = useState<string | null>();
   const [isResponsive, setIsResponsive] = useState(false);
+  const { user, setUser } = useUser();
+  // user has email password
 
   const activatedStyle =
     "opacity-100 text-xl hover:text-black  text-black ease-out duration-300 md:w-[192px] sm:w-[142px] w-[96px] border-b-4 border-gray-400 ";
@@ -27,10 +36,8 @@ export default function Header(): JSX.Element {
     const handleResize = () => {
       setIsResponsive(window.innerWidth <= 768);
     };
-
-    handleResize(); // Check on initial load
+    handleResize();
     window.addEventListener("resize", handleResize);
-
     return () => {
       window.removeEventListener("resize", handleResize);
     };
@@ -42,7 +49,7 @@ export default function Header(): JSX.Element {
   }
 
   return (
-    <div className="sticky z-50">
+    <div className=" z-10">
       <div className="flex gap-3 justify-center content-center text-center  ">
         <div className="flex h-7 w-full scroll-m-2 ">
           {isResponsive ? (
@@ -51,6 +58,7 @@ export default function Header(): JSX.Element {
                 as={IconButton}
                 aria-label="Options"
                 icon={<RxHamburgerMenu />}
+                style={{ backgroundColor: "white" }}
               />
               <MenuList className="bg-white ">
                 {MENULIST.map((menuItem, index) => (
@@ -82,16 +90,16 @@ export default function Header(): JSX.Element {
         </div>
 
         <div>
-          <LoginAuthentication />
+          <LoginAuthentication user={user} setUser={setUser} />
         </div>
       </div>
     </div>
   );
 }
-const LoginAuthentication = () => {
-  const { user, setUser, setRole } = useUser();
+const LoginAuthentication = ({ user, setUser }: HeaderType) => {
   const router = useRouter();
   function loginCheckAuth() {
+    console.log("User autnentication here:-----> ", user);
     if (user?.email) {
       router.push("/user");
     } else {
@@ -101,28 +109,35 @@ const LoginAuthentication = () => {
 
   return (
     <>
-      <div className="absolute right-0 mr-[1rem] flex items-center">
+      <div className="absolute right-0 flex items-center ">
         {user ? (
-          <div className="flex items-center justify-center gap-2 cursor-pointer ">
-            <span>Гарах</span>
-            <div
-              className="cursor-pointer"
-              onClick={() => {
-                Cookies.remove("usertoken");
-                setUser(null);
-                setRole(undefined);
-              }}
-            >
-              <LoginButton />
-            </div>
-          </div>
+          <>
+            <Menu>
+              <MenuButton>
+                <LoginButton user={user} />
+              </MenuButton>
+              <MenuList>
+                <Link href="/user">
+                  <MenuItem>Profile</MenuItem>
+                </Link>
+                <MenuItem
+                  onClick={() => {
+                    Cookies.remove("usertoken");
+                    setUser(null);
+                  }}
+                >
+                  Logout
+                </MenuItem>
+              </MenuList>
+            </Menu>
+          </>
         ) : (
           <div
             className="flex items-center justify-center gap-2 cursor-pointer"
             onClick={loginCheckAuth}
           >
             <span>Нэвтрэх</span>
-            <LoginButton />
+            <LoginButton user={user} />
           </div>
         )}
       </div>
@@ -130,14 +145,17 @@ const LoginAuthentication = () => {
   );
 };
 
-const LoginButton = () => (
-  <button className="w-8 h-8 ">
-    <picture>
-      <img
-        src="../../images/efil.webp"
-        alt="pic"
-        className="w-10 h-[33px] ease-in rounded-full border object-cover "
-      />
-    </picture>
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const LoginButton = ({ user }: any) => (
+  <button className="w-[40px] h-[40px] mr-3">
+    {user && user.image && (
+      <picture>
+        <img
+          src={`${user.image}`}
+          alt="pic"
+          className=" object-cover rounded-full w-[40px] h-[40px]  bg-gray-200  text-center"
+        />
+      </picture>
+    )}
   </button>
 );

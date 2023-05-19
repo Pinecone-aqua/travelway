@@ -5,6 +5,8 @@ export class CreateMiniStoryDto {
   readonly image: string;
   @IsString()
   readonly title: string;
+  @IsString()
   readonly sentence: string;
+  @IsString()
   readonly userId: string;
 }

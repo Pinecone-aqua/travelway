@@ -17,13 +17,16 @@ export function useUser() {
 
 export default function UserProvider({ children }: UserProviderType) {
   const [user, setUser] = useState<LoginForm | null>();
-  const [token, setToken] = useState<string | undefined>(Cookies.get("usertoken"));
+  const [token, setToken] = useState<string | undefined>(
+    Cookies.get("usertoken")
+  );
+
   const [role, setRole] = useState<string | undefined>();
 
   useEffect(() => {
     if (token) {
       const tokenData: UserDataContextType = jwtDecode(token);
-      setUser({ email: tokenData.email, password: "" });
+      setUser(tokenData as unknown as LoginForm);
       setRole(tokenData.role);
     }
   }, [token]);

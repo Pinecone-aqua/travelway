@@ -2,7 +2,6 @@ import {
   Flex,
   Avatar,
   Heading,
-  CardBody,
   Box,
   Card,
   useDisclosure,
@@ -10,9 +9,10 @@ import {
 import React, { useState } from "react";
 import BlogOffCanvas from "./BlogOffCanvas";
 import Image from "next/image";
-import { miniStoryType } from "../../../util/types";
+import { LoginForm, miniStoryType } from "../../../util/types";
 
 type StoryProps = {
+  userInfo: LoginForm | null;
   isOpen: boolean;
   onClose: () => void;
   story: miniStoryType;
@@ -22,7 +22,10 @@ type StoryProps = {
 };
 
 export default function TravelblogCard(props: StoryProps) {
-  const { story } = props;
+  const { story, userInfo } = props;
+
+  console.log("usrIn", userInfo);
+
   const {
     isOpen: isOffCanvasOpen,
     onOpen: onOffCanvasOpen,
@@ -33,34 +36,47 @@ export default function TravelblogCard(props: StoryProps) {
   return (
     <Card
       maxW="md"
-      className="cursor-pointer border border-gray-300 rounded-md overflow-hidden transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105"
+      className="relative flex place-content-center cursor-pointer border border-gray-300 rounded-md overflow-hidden transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105"
     >
-      <CardBody onClick={onOffCanvasOpen}>
+      {userInfo && (
         <Flex
           alignItems="center"
           flexWrap="wrap"
-          className="bg-transparent bg-green-500"
+          className="bg-white pr-3 py-2 pl-2 rounded-r-full  absolute z-50 opacity-90"
+          onClick={onOffCanvasOpen}
         >
-          <Avatar name="Segun Adebayo" src={story.title} mr="4" />
-          <Box>
-            <Heading size="sm" mb="1">
-              {story.title}
-            </Heading>
-            <p className="text-gray-500 text-sm">Creator</p>
+          <Avatar name={userInfo.image} src={userInfo.image} mr="4" />
+          <Box className="hover:opacity-90 h-[50px] ">
+            <Heading size="sm">{story.title.slice(0, 12)}...</Heading>
+            <p className="text-gray-500 text-sm mt-2">
+              Creator: {userInfo.username}
+            </p>
           </Box>
         </Flex>
-        <p className="text-gray-600 mt-2">{story.sentence.slice(0, 40)}...</p>
-      </CardBody>
-      <Image
-        src={story.image}
-        width={500}
-        height={500}
-        alt="Chakra UI"
-        onClick={onOffCanvasOpen}
-        className="w-full h-56 object-cover transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105"
-      />
+      )}
+
+      {!story.image.includes(`https://`) && !story.image.includes(`http://`) ? (
+        <div className="border   w-full flex justify-center ">
+          <picture>
+            <img
+              src="../../images/sorry.webp"
+              alt="Sorry this picture is no longer available"
+            />
+          </picture>
+        </div>
+      ) : (
+        <Image
+          src={story.image}
+          width={500}
+          height={500}
+          alt="Chakra UI"
+          onClick={onOffCanvasOpen}
+          className="w-full h-56 object-cover transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105"
+        />
+      )}
       <React.Suspense fallback={null}>
         <BlogOffCanvas
+          userInfo={userInfo}
           isOpen={isOffCanvasOpen}
           onClose={onOffCanvasClose}
           story={story}

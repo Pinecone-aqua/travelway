@@ -14,6 +14,7 @@ import { miniStoryType } from "../../../util/types";
 import { MdDelete, MdModeEdit } from "react-icons/md";
 import { BsThreeDots } from "react-icons/bs";
 import axios from "axios";
+import Image from "next/image";
 
 type Props = {
   isOpen: boolean;
@@ -55,7 +56,7 @@ export default function MiniStoryModal(props: Props): JSX.Element {
         </ModalHeader>
         <ModalBody>
           <form onSubmit={edit}>
-            <img src={story.image} alt="pic" className="mb-4" />
+            <Image src={story.image} alt="pic" className="mb-4" />
             <FormControl mb="4">
               <FormLabel>Title</FormLabel>
               <Input
