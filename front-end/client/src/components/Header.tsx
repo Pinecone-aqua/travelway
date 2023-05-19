@@ -7,13 +7,6 @@ import { IconButton } from "@chakra-ui/react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { useUser } from "../../context/user.context";
 
-interface HeaderType {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  user: any;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  setUser: (arg: any) => void;
-}
-
 const MENULIST = [
   { name: "Нүүр", uri: "/" },
   { name: "Аялал", uri: "/stories" },
@@ -24,8 +17,6 @@ const MENULIST = [
 export default function Header(): JSX.Element {
   const [nav, setNav] = useState<string | null>();
   const [isResponsive, setIsResponsive] = useState(false);
-  const { user, setUser } = useUser();
-  // user has email password
 
   const activatedStyle =
     "opacity-100 text-xl hover:text-black  text-black ease-out duration-300 md:w-[192px] sm:w-[142px] w-[96px] border-b-4 border-gray-400 ";
@@ -91,16 +82,16 @@ export default function Header(): JSX.Element {
         </div>
 
         <div>
-          <LoginAuthentication user={user} setUser={setUser} />
+          <LoginAuthentication />
         </div>
       </div>
     </div>
   );
 }
-const LoginAuthentication = ({ user, setUser }: HeaderType) => {
+const LoginAuthentication = () => {
+  const { user, setUser, setRole } = useUser();
   const router = useRouter();
   function loginCheckAuth() {
-    console.log("User autnentication here:-----> ", user);
     if (user?.email) {
       router.push("/user");
     } else {
@@ -119,6 +110,7 @@ const LoginAuthentication = ({ user, setUser }: HeaderType) => {
               onClick={() => {
                 Cookies.remove("usertoken");
                 setUser(null);
+                setRole(undefined);
               }}
             >
               <LoginButton />
