@@ -1,40 +1,50 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 import { miniStoryType } from "../../util/types";
-import React from "react";
 import TravelblogCard from "@/components/travelBlog/TravelblogCard";
 import { Skeleton, Stack } from "@chakra-ui/react";
 import Pagination from "@/components/Pagination";
-import { useUser } from "../../context/user.context";
-import Cookies from "js-cookie";
+// import HeroSection from "@/components/HeroSection";
 
 export default function TravelBlog(): JSX.Element {
   const [stories, setStories] = useState<miniStoryType[]>([]);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [userInfo, setUserInfo] = useState<any[]>([]);
   const [isOpen, setIsOpen] = useState(false);
   const [changeInput, setChangeInput] = useState(false);
-  const { token } = useUser();
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const path = "travels";
-  // let userName = "";
-  // let userImage = "";
+  const path = "travelBlog";
 
   useEffect(() => {
-    const token = Cookies.get("usertoken");
-
     const getFetchdata = async (): Promise<void> => {
-      const travels = await axios.get("http://localhost:3009/ministory/get");
-      const disp = travels.data;
-      setStories(disp);
+      try {
+        const travels = await axios.get("http://localhost:3009/ministory/get");
+        const filteredData = travels.data.filter(
+          (item: miniStoryType) => item.userId
+        );
+        setStories(filteredData);
+
+        const userAllInfo = await axios.get("http://localhost:3009/users/all");
+        const allUsers = userAllInfo.data;
+
+        const matchingUserIds = filteredData.map(
+          (story: miniStoryType) => story.userId
+        );
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const matchingUsers = allUsers.filter((user: any) =>
+          matchingUserIds.includes(user._id)
+        );
+        setUserInfo(matchingUsers);
+      } catch (err) {
+        console.log(err);
+      }
     };
-    if (token) {
-      getFetchdata();
-    } else {
-      console.log("Error user not found");
-    }
-  }, [token]);
+
+    getFetchdata();
+  }, []);
 
   const handleOpen = () => {
     setIsOpen(true);
@@ -47,9 +57,10 @@ export default function TravelBlog(): JSX.Element {
 
   return (
     <>
-      <div className="flex justify-center content-center p-5">
+      {/* <HeroSection /> */}
+      <div className="flex justify-center content-center pt-5">
         <div className="gap-3 grid">
-          <div className="gap-3 grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 xxl:grid-cols-4 relative ">
+          <div className="gap-3 grid p-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 xxl:grid-cols-4 relative ">
             {stories.length === 0 ? (
               <div className="flex justify-center content-center  ">
                 <div>
@@ -64,23 +75,28 @@ export default function TravelBlog(): JSX.Element {
               stories.map((story: miniStoryType, index: number) => (
                 <div key={index}>
                   <TravelblogCard
+                    userInfo={userInfo.find(
+                      (user) => user._id === story.userId
+                    )}
                     story={story}
                     isOpen={isOpen}
                     onClose={handleClose}
                     changeInput={changeInput}
                     setChangeInput={setChangeInput}
-                    onOpen={() => handleOpen()}
+                    onOpen={handleOpen}
                   />
                 </div>
               ))
             )}
-            <Pagination
-              currentPage={currentPage}
-              setCurrentPage={setCurrentPage}
-              path={path}
-            />
           </div>
         </div>
+      </div>
+      <div className="flex justify-center">
+        <Pagination
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          path={path}
+        />
       </div>
     </>
   );

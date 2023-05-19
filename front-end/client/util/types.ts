@@ -29,6 +29,8 @@ interface CoordType {
 }
 
 export interface miniStoryType {
+  userId: string | undefined;
+  username?: string;
   width: number;
   height: number;
   _id: string;
@@ -38,8 +40,13 @@ export interface miniStoryType {
 }
 
 export interface LoginForm {
+  _id?: string;
   email: string | undefined;
   password: string;
+  username?: string;
+  image?: string;
+  biography?: string;
+  phone?: string;
 }
 
 export interface travelWayType {
@@ -54,7 +61,7 @@ export type UserDataContextType = {
   role: "";
   iat: number;
   exp: number;
-}
+};
 
 export interface UserContextType {
   user: LoginForm | null | undefined;
@@ -80,4 +87,3 @@ export interface StoryTypeSh {
   coord: object;
   toDo: [];
 }
-

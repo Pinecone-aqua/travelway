@@ -10,21 +10,38 @@ interface PropType {
 
 export default function Pagination(props: PropType): JSX.Element {
   const { currentPage, setCurrentPage, path } = props;
-  const [pageNum, setPageNum] = useState<number>(0);
+  const [pageNum, setPageNum] = useState<number>(1);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string>("");
 
   useEffect(() => {
-    fetch(`http://localhost:3009/${path}/pageNum`)
-      .then((response) => response.json())
+    fetch(`http://localhost:3009/${path}/${pageNum}`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
       .then((res) => {
         if (!res) return;
         setPageNum(Math.ceil(res / 8));
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        setError("Error fetching page numbers");
+        console.log(error);
+        setIsLoading(false);
       });
-  }, [path]);
+  }, [pageNum, path]);
 
   const lastPage = Math.ceil(pageNum / 8);
 
-  if (lastPage <= 1) {
+  if (isLoading) {
     return <Spinner color="red.500" />;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
   }
 
   const showEllipsis = (index: number) => index === 0 || index === lastPage - 1;

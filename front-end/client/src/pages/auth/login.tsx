@@ -24,8 +24,12 @@ export default function Login(): JSX.Element {
     setLoginForm((prev) => ({ ...prev, [name]: value }));
   };
 
+  function onSubmitWrapper(e: React.FormEvent): void {
+    e.preventDefault();
+    onSubmit(e);
+  }
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  async function onSubmit(e: any): void {
+  async function onSubmit(e: any): Promise<void> {
     e.preventDefault();
     const data: LoginForm = {
       email: loginForm.email,
@@ -110,7 +114,7 @@ export default function Login(): JSX.Element {
               {error}
             </p>
           )}
-          <form onSubmit={onSubmit}>
+          <form onSubmit={onSubmitWrapper}>
             <label htmlFor="email" className="block text-md mb-1">
               И-мейл хаяг
             </label>
@@ -130,7 +134,7 @@ export default function Login(): JSX.Element {
               Нууц үг
             </label>
             <input
-              type="text"
+              type="password"
               id="password"
               name="password"
               value={loginForm.password}
@@ -167,8 +171,7 @@ export default function Login(): JSX.Element {
                   router.push("/auth/register");
                 }}
               >
-                {" "}
-                Энд дарж{" "}
+                Энд дарж
               </span>
               бүртгүүлнэ.
             </div>
