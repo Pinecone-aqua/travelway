@@ -4,7 +4,6 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { response } from 'express';
 import { Model } from 'mongoose';
 import { CloudinaryService as cloudinary } from 'src/cloudinary/cloudinary.service';
 import { CreateStoryDto } from './dto/create-story.dto';
