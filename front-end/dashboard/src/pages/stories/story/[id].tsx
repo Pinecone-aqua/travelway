@@ -25,11 +25,11 @@ export default function StoryID(props: { data: StoryType }): JSX.Element {
   }
   return (
     <>
-      <form action="" onSubmit={editHandler}>
+      <form onSubmit={editHandler}>
         <div className="flex justify-around">
           <div className=" flex flex-col bg-gray-100 rounded-2xl w-1/2 h-100 items-center shadow-lg  shadow-gray-600">
             <div className="w-[80%]">
-              <div className="text-3xl"> Гарчиг</div>
+              <div className="text-2xl"> Гарчиг</div>
               <textarea
                 className="text-2xl w-full text-slate-500 rounded-2xl p-2"
                 name="title"
@@ -37,7 +37,7 @@ export default function StoryID(props: { data: StoryType }): JSX.Element {
               />
             </div>
             <div className="w-[80%]">
-              <div className="text-3xl"> province</div>
+              <div className="text-2xl"> Аймаг</div>
               <textarea
                 className="text-2xl w-full text-slate-500 rounded-2xl p-2"
                 name="province"
@@ -46,16 +46,16 @@ export default function StoryID(props: { data: StoryType }): JSX.Element {
             </div>
 
             <div className="w-[80%]">
-              <div className="text-3xl">Тайлбар</div>
+              <div className="text-2xl">Тайлбар</div>
               <textarea
                 name="description"
-                className="block w-auto text-slate-500 h-52 file:rounded-full w-full rounded-2xl p-2"
+                className="block w-full text-slate-500 h-52  rounded-2xl p-2"
                 defaultValue={data.description}
               />
             </div>
 
             <div className="w-[80%]">
-              <div>myth</div>
+              <div>Түүх домог</div>
               <textarea
                 name="myth"
                 className="text-slate-500 h-52 w-full rounded-2xl p-2"
@@ -63,7 +63,7 @@ export default function StoryID(props: { data: StoryType }): JSX.Element {
               />
             </div>
             <div className="w-[80%]">
-              <div>Хийж болох зүйлс</div>
+              <div className="p-2">Хийж болох зүйлс</div>
               <Suggest toDo={toDo} />
             </div>
           </div>

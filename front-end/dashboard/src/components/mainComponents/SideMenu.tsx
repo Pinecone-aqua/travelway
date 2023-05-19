@@ -1,56 +1,76 @@
 import { ButtonType } from "@/util/types";
+import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
-import OrderIcon from "../../../public/icons/OrderIcon";
-import TravelIcon from "../../../public/icons/TravelIcon";
-import UserIcon from "../../../public/icons/UserIcon";
+import { useEffect, useState } from "react";
+import DashboardIcon from "../icons/DashboardIcon";
+import StoryIcon from "../icons/StoryIcon";
+import TravelIcon from "../icons/TravelIcon";
+import UserIcon from "../icons/UserIcon";
 
 export default function SideMenu(): JSX.Element {
-  const [color, setColor] = useState("");
-
   const Buttons = [
-    { name: "Хянах самбар", path: "/", icon: <TravelIcon /> },
+    { name: "Хянах самбар", path: "/", icon: <DashboardIcon /> },
     { name: "Аялалууд", path: "/travels/1", icon: <TravelIcon /> },
-    { name: "Түүхүүд", path: "/stories/1", icon: <OrderIcon /> },
+    { name: "Түүхүүд", path: "/stories/1", icon: <StoryIcon /> },
     { name: "Хэрэглэгчид", path: "/users/1", icon: <UserIcon /> },
   ];
-
   const activeClass =
-    "flex justify-center items-center text-mycolor text-2xl text-2xl bg-slate-100 rounded-l-[50px] w-10/12 h-16 m-7";
-
+    "flex justify-between px-4 items-center text-mycolor text-2xl bg-slate-100 rounded-l-[50px] w-10/12 h-16 m-7";
   const inActiveClass =
-    "flex justify-center items-center text-white text-2xl text-2xl bg-mycolor rounded-l-3xl w-10/12 h-16 m-7 hover:bg-slate-100 text-red-100";
+    "flex justify-between px-4 items-center text-white text-2xl bg-mycolor rounded-l-3xl w-10/12 h-16 m-7 hover:opacity-50 hover:text-black";
   const activeTop = "bg-mycolor h-8 w-[180px] rounded-br-full text-mycolor";
   const inActive = "bg-mycolor h-8 w-8  text-mycolor decoration-none";
   const activeBottom = "bg-mycolor h-8 w-8 rounded-tr-full text-mycolor ";
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  function handleClick(e: any): void {
-    setColor(e.target.innerText);
+  const [button, setButton] = useState("Хянах самбар");
+
+  useEffect(() => {
+    if (localStorage.getItem("sideButton")) {
+      const buttonValue = Buttons.find(
+        (button: ButtonType) =>
+          button.name === localStorage.getItem("sideButton")
+      );
+      buttonValue && setButton(buttonValue.name);
+    }
+  }, []);
+
+  function handleClick(name: string) {
+    setButton(name);
+    localStorage.setItem("sideButton", name);
   }
+  console.log();
 
   return (
-    <div className="w-1/6  h-[800px] flex bg-mycolor flex-col justify-center place-items-end decoration-double">
+    <div className="w-1/6  h-[700px] flex bg-mycolor flex-col justify-center place-items-end decoration-double">
+      <Image
+        src="/images/travel-logo.png"
+        alt="logo"
+        width={150}
+        height={10}
+        className="m-auto"
+      />
       {Buttons.map((unit: ButtonType, index: number) => (
         <div
           className="h-1/6 w-full flex flex-col content-end self-end place-items-end -mr-[28px]"
           key={index}
         >
           <div className="rounded-none  bg-slate-100 overflow-hidden -mb-[28px] mr-[28px]">
-            <div className={color === unit.name ? activeTop : inActive}>.</div>
+            <div className={button === unit.name ? activeTop : inActive}>
+              {}
+            </div>
           </div>
 
           <Link
-            className={color === unit.name ? activeClass : inActiveClass}
+            className={button === unit.name ? activeClass : inActiveClass}
             href={unit.path}
-            onClick={handleClick}
+            onClick={() => handleClick(unit.name)}
           >
             {unit.icon}
             {unit.name}
           </Link>
           <div className="rounded-none bg-slate-100 overflow-hidden -mt-[28px] mr-[28px]">
-            <div className={color === unit.name ? activeBottom : inActive}>
-              .
+            <div className={button === unit.name ? activeBottom : inActive}>
+              {}
             </div>
           </div>
         </div>

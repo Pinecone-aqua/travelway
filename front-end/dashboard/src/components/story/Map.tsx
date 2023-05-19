@@ -1,4 +1,4 @@
-import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
+import { GoogleMap, MarkerF, useLoadScript } from "@react-google-maps/api";
 import { Dispatch, SetStateAction } from "react";
 
 const mapContainerStyle = {
@@ -21,7 +21,7 @@ interface PropType {
   >;
 }
 
-export default function BranchSection(props: PropType) {
+export default function Map(props: PropType) {
   const { clickedLocation, setClickedLocation } = props;
 
   const { isLoaded, loadError } = useLoadScript({
@@ -51,7 +51,7 @@ export default function BranchSection(props: PropType) {
           onClick={handleMarkerClick}
         >
           {clickedLocation && (
-            <Marker position={clickedLocation as google.maps.LatLngLiteral} />
+            <MarkerF position={clickedLocation as google.maps.LatLngLiteral} />
           )}
         </GoogleMap>
       </div>

@@ -18,7 +18,7 @@ export default function User(props: PropType): JSX.Element {
 
   return (
     <>
-      <tr className="border-t-2 border-white">
+      <tr className="border-t-2 border-gray-300">
         <td className="p-4">{unit._id.slice(0, 5)}...</td>
         <td>{unit.nickname}</td>
         <td>{unit.username}</td>
