@@ -8,7 +8,6 @@ import Image from "next/image";
 import { StoryType } from "../../../util/types";
 
 export default function User(): JSX.Element {
-  const logUser = localStorage.getItem("userId");
   const [stories, setStories] = useState<StoryType[]>([]);
 
   try {
