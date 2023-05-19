@@ -18,9 +18,10 @@ export default function SideMenu(): JSX.Element {
     "flex justify-between px-4 items-center text-mycolor text-2xl bg-slate-100 rounded-l-[50px] w-10/12 h-16 m-7";
   const inActiveClass =
     "flex justify-between px-4 items-center text-white text-2xl bg-mycolor rounded-l-3xl w-10/12 h-16 m-7 hover:opacity-50 hover:text-black";
-  const activeTop = "bg-mycolor h-8 w-[180px] rounded-br-full text-mycolor";
   const inActive = "bg-mycolor h-8 w-8  text-mycolor decoration-none";
-  const activeBottom = "bg-mycolor h-8 w-8 rounded-tr-full text-mycolor ";
+
+  const activeTop = "bg-mycolor h-full w-full rounded-br-full";
+  const activeBottom = "bg-mycolor h-full w-full rounded-tr-full";
 
   const [button, setButton] = useState("Хянах самбар");
 
@@ -54,7 +55,7 @@ export default function SideMenu(): JSX.Element {
           className="h-1/6 w-full flex flex-col content-end self-end place-items-end -mr-[28px]"
           key={index}
         >
-          <div className="rounded-none  bg-slate-100 overflow-hidden -mb-[28px] mr-[28px]">
+          <div className="h-8 w-8 bg-slate-100 overflow-hidden -mb-[28px] mr-[28px]">
             <div className={button === unit.name ? activeTop : inActive}>
               {}
             </div>
@@ -68,7 +69,7 @@ export default function SideMenu(): JSX.Element {
             {unit.icon}
             {unit.name}
           </Link>
-          <div className="rounded-none bg-slate-100 overflow-hidden -mt-[28px] mr-[28px]">
+          <div className="h-8 w-8 bg-slate-100 overflow-hidden -mt-[28px] mr-[28px]">
             <div className={button === unit.name ? activeBottom : inActive}>
               {}
             </div>
