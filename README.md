@@ -202,7 +202,6 @@ DELETE /travelways/:id
     * Nav
     * Logo
 * Menu bar
-* 
 
 
 ### MVP - Minimium Valuable Product
