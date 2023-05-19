@@ -1,19 +1,23 @@
 import { ButtonType } from "@/util/types";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import DashboardIcon from "../icons/DashboardIcon";
 import StoryIcon from "../icons/StoryIcon";
 import TravelIcon from "../icons/TravelIcon";
 import UserIcon from "../icons/UserIcon";
 
 export default function SideMenu(): JSX.Element {
-  const Buttons = [
-    { name: "Хянах самбар", path: "/", icon: <DashboardIcon /> },
-    { name: "Аялалууд", path: "/travels/1", icon: <TravelIcon /> },
-    { name: "Түүхүүд", path: "/stories/1", icon: <StoryIcon /> },
-    { name: "Хэрэглэгчид", path: "/users/1", icon: <UserIcon /> },
-  ];
+  const Buttons = useMemo(
+    () => [
+      { name: "Хянах самбар", path: "/", icon: <DashboardIcon /> },
+      { name: "Аялалууд", path: "/travels/1", icon: <TravelIcon /> },
+      { name: "Түүхүүд", path: "/stories/1", icon: <StoryIcon /> },
+      { name: "Хэрэглэгчид", path: "/users/1", icon: <UserIcon /> },
+    ],
+    []
+  );
+
   const activeClass =
     "flex justify-between px-4 items-center text-mycolor text-2xl bg-slate-100 rounded-l-[50px] w-10/12 h-16 m-7";
   const inActiveClass =
@@ -33,7 +37,7 @@ export default function SideMenu(): JSX.Element {
       );
       buttonValue && setButton(buttonValue.name);
     }
-  }, []);
+  }, [Buttons]);
 
   function handleClick(name: string) {
     setButton(name);
