@@ -15,7 +15,7 @@ export default function Story(props: PropsType): JSX.Element {
   const data = unit;
 
   return (
-    <tr className="border-t-2 border-white">
+    <tr className="border-t-2 border-gray-300">
       <td className="p-4">{data._id.slice(0, 5)}...</td>
       <td>{data.title}</td>
       <td>

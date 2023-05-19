@@ -49,7 +49,7 @@ export default function Header(): JSX.Element {
   }
 
   return (
-    <div className="z-10">
+    <div className=" z-10">
       <div className="flex gap-3 justify-center content-center text-center  ">
         <div className="flex h-7 w-full scroll-m-2 ">
           {isResponsive ? (

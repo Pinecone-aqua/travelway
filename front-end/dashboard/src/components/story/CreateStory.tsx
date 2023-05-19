@@ -6,9 +6,9 @@ import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { toast } from "react-toastify";
 import Image from "next/image";
-import BranchSection from "./Map";
 import { category, province } from "@/util/Constants";
 import { AdminContext } from "@/context/AdminProvider";
+import Map from "./Map";
 
 export default function CreateStory(): JSX.Element {
   const [addIndicator, setAddIndicator] = useState<string[]>([]);
@@ -183,7 +183,6 @@ export default function CreateStory(): JSX.Element {
                       alt={""}
                       className="m-2"
                     />
-
                   ))}
                 </div>
 
@@ -209,7 +208,7 @@ export default function CreateStory(): JSX.Element {
             />
           </div>
         </Offcanvas.Body>
-        <BranchSection
+        <Map
           setClickedLocation={setClickedLocation}
           clickedLocation={clickedLocation}
         />
