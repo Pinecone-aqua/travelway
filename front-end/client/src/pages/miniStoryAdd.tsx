@@ -1,17 +1,18 @@
-import React from "react";
+import React, { useRef } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { UserContext } from "../../context/user.context";
 import { useContext } from "react";
 
+// import MiniStoryOffCanvas from "@/components/userProfile/MiniStoryOffCanvas";
+
 export default function MiniStoryAdd(): JSX.Element {
   const { user } = useContext(UserContext);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function miniStoryHandler(e: any) {
     e.preventDefault();
-
-    // const formData = new FormData();
     const formDataObj = {
       userId: user?._id,
       title: e.currentTarget.title.value,
@@ -30,6 +31,14 @@ export default function MiniStoryAdd(): JSX.Element {
         console.error("Error creating mini story:", error);
         notifyLoginError();
       });
+  }
+
+  function handleChange() {
+    const textarea = textareaRef.current;
+    if (textarea) {
+      textarea.style.height = "auto";
+      textarea.style.height = textarea.scrollHeight + "px";
+    }
   }
 
   const notifySuccess = () =>
@@ -58,7 +67,7 @@ export default function MiniStoryAdd(): JSX.Element {
   return (
     <>
       <div>
-        <button className="border p-3 rounded-2xl font-semibold px-[25px] mb-5">
+        <button className="border p-3 rounded-xl font-semibold px-[25px] m-4">
           <a href="/user">back</a>
         </button>
         <div className="w-[100%]  bg-white p-5 z-50  ">
@@ -83,13 +92,16 @@ export default function MiniStoryAdd(): JSX.Element {
 
                 <textarea
                   name="sentence"
+                  onChange={handleChange}
                   placeholder="Enter you'r text here"
-                  className="border h-auto p-2 rounded-xl text-[25px] placeholder-center"
+                  className="text-xl p-2 text-gray-500 w-full h-[150px] rounded-lg"
+                  ref={textareaRef}
                 />
 
                 <button type="submit" className="border p-2 drop-shadow-xl">
                   Submit
                 </button>
+                {/* <MiniStoryOffCanvas /> */}
               </div>
             </form>
           </div>
@@ -105,7 +117,6 @@ export default function MiniStoryAdd(): JSX.Element {
             pauseOnHover
             theme="light"
           />
-          {/* <MiniStoryOffCanvas /> */}
         </div>
       </div>
     </>

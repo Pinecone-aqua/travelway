@@ -7,7 +7,7 @@ import { miniStoryType } from "../../util/types";
 import TravelblogCard from "@/components/travelBlog/TravelblogCard";
 import { Skeleton, Stack } from "@chakra-ui/react";
 import Pagination from "@/components/Pagination";
-import HeroSection from "@/components/heroSection";
+// import HeroSection from "@/components/HeroSection";
 
 export default function TravelBlog(): JSX.Element {
   const [stories, setStories] = useState<miniStoryType[]>([]);
@@ -27,9 +27,7 @@ export default function TravelBlog(): JSX.Element {
         );
         setStories(filteredData);
 
-        const userAllInfo = await axios.get(
-          "http://localhost:3009/allUsers/all"
-        );
+        const userAllInfo = await axios.get("http://localhost:3009/users/all");
         const allUsers = userAllInfo.data;
 
         const matchingUserIds = filteredData.map(
@@ -59,7 +57,7 @@ export default function TravelBlog(): JSX.Element {
 
   return (
     <>
-      <HeroSection />
+      {/* <HeroSection /> */}
       <div className="flex justify-center content-center pt-5">
         <div className="gap-3 grid">
           <div className="gap-3 grid p-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 xxl:grid-cols-4 relative ">

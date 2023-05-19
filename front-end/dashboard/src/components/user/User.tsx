@@ -4,24 +4,27 @@ import DeleteModalUser from "./UserDeleteModal";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Dropdown from "react-bootstrap/Dropdown";
 import { Button } from "react-bootstrap";
+import { Dispatch, SetStateAction } from "react";
 
 // import UserDeleteModal from "./UserDeleteModal";
 
 interface PropType {
   unit: UserType;
+  users: UserType[];
+  setUsers: Dispatch<SetStateAction<UserType[] | undefined>>;
 }
 export default function User(props: PropType): JSX.Element {
-  const data = props.unit;
+  const { users, setUsers, unit } = props;
 
   return (
     <>
       <tr className="border-t-2 border-white">
-        <td className="p-4">{data._id.slice(0, 5)}...</td>
-        <td>{data.nickname}</td>
-        <td>{data.username}</td>
-        <td>{data.email.slice(0, 5)}...</td>
-        <td>{data.phone}</td>
-        <td>{data.createdAt}</td>
+        <td className="p-4">{unit._id.slice(0, 5)}...</td>
+        <td>{unit.nickname}</td>
+        <td>{unit.username}</td>
+        <td>{unit.email.slice(0, 5)}...</td>
+        <td>{unit.phone}</td>
+        <td>{unit.createdAt}</td>
         <td className="z-40">
           <div className="z-50">
             <Dropdown>
@@ -30,11 +33,16 @@ export default function User(props: PropType): JSX.Element {
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
-                <Dropdown.Item href={`/users/userprofile/${data._id}`}>
+                <Dropdown.Item href={`/users/userprofile/${unit._id}`}>
                   <Button className="button">Profile</Button>
                 </Dropdown.Item>
                 <Dropdown.Item href="#/action-2">
-                  <DeleteModalUser username={data.username} id={data._id} />
+                  <DeleteModalUser
+                    username={unit.username}
+                    id={unit._id}
+                    setUsers={setUsers}
+                    users={users}
+                  />
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
@@ -44,12 +52,3 @@ export default function User(props: PropType): JSX.Element {
     </>
   );
 }
-
-// {details && (
-//   <div className="flex flex-col justify-around items-center rounded-2xl h-32 w-32 absolute bg-gradient-to-r from-tocolor to-mycolor">
-//     <button className="w-24 p-2 bg-white text-mycolor text-xl rounded-lg">
-//       <Link href={`/miniStory/${data._id}`}>profile</Link>
-//     </button>
-//     {/* <UserDeleteModal username={data.username} id={data._id} /> */}
-//   </div>
-// )}

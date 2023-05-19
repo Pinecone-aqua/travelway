@@ -33,35 +33,40 @@ export default function AdminProvider({ children }: PropType): JSX.Element {
         password: target.adminPassword.value,
         role: "admin",
       };
-      axios.post("http://localhost:3009/auth/loginHandler", obj).then((res) => {
-        if (res.data.token !== undefined) {
-          localStorage.setItem("login", res.data.token);
+      axios
+        .post(
+          `${process.env.NEXT_PUBLIC_API_BACK_END_URL}/auth/loginHandler`,
+          obj
+        )
+        .then((res) => {
+          if (res.data.token !== undefined) {
+            localStorage.setItem("login", res.data.token);
 
-          console.log("hi", res.data);
-        }
+            console.log("hi", res.data);
+          }
 
-        if (res.data.token !== undefined) {
-          toast.success("Амжилттай нэвтэрлээ", {
-            position: "top-left",
-            type: "success",
-            autoClose: 1000,
-            closeOnClick: false,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
-        } else {
-          toast.error("И-мейл хаяг эсвэл нууц үг буруу байна!", {
-            position: "top-left",
-            type: "error",
-            autoClose: 1000,
-            closeOnClick: false,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
-        }
-      });
+          if (res.data.token !== undefined) {
+            toast.success("Амжилттай нэвтэрлээ", {
+              position: "top-left",
+              type: "success",
+              autoClose: 1000,
+              closeOnClick: false,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+          } else {
+            toast.error("И-мейл хаяг эсвэл нууц үг буруу байна!", {
+              position: "top-left",
+              type: "error",
+              autoClose: 1000,
+              closeOnClick: false,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+          }
+        });
     } catch (error) {
       console.log(" Aldaa uslee");
     }
@@ -82,42 +87,3 @@ export default function AdminProvider({ children }: PropType): JSX.Element {
     </AdminContext.Provider>
   );
 }
-
-// function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-//import { toast } from "react-toastify";
-//import "react-toastify/dist/ReactToastify.css";
-//   e.preventDefault();
-//   try {
-//     const target = e.currentTarget;
-//     const obj = {
-//       username: target.adminName.value,
-//       password: target.adminPassword.value,
-//       role: "admin",
-//     };
-//     axios
-//       .post("http://localhost:3009/auth/loginHandler", obj)
-//       .then((res) => {
-//         localStorage.setItem("login", res.data.token);
-//         router.reload();
-//       })
-//       .catch((error) => {
-//         // Display error toast
-//         displayErrorToast("An error occurred. Please try again.");
-//         console.error("Error occurred during form submission:", error);
-//       });
-//   } catch (error) {
-//     console.log("Error occurred during form submission:", error);
-//   }
-// }
-
-// const displayErrorToast = (message: string) => {
-//   toast.error(message, {
-//     position: "top-right",
-//     autoClose: 5000,
-//     hideProgressBar: false,
-//     closeOnClick: true,
-//     pauseOnHover: true,
-//     draggable: true,
-//     progress: undefined,
-//   });
-// };

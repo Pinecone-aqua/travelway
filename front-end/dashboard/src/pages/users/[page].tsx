@@ -2,12 +2,17 @@ import Pagination from "@/components/subComponent/Pagination";
 
 import User from "@/components/user/User";
 import { UserType } from "@/util/types";
+import { useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
 
-export default function AllUser(props: { users: UserType[] }): JSX.Element {
-  const { users } = props;
+export default function AllUser(props: { data: UserType[] }): JSX.Element {
+  const [users, setUsers] = useState<UserType[]>();
+  const path = "users";
 
-  const path = "allUsers";
+  const { data } = props;
+  useEffect(() => {
+    setUsers(data);
+  }, [data]);
 
   return (
     <div className="bg-white rounded-2xl h-full p-20">
@@ -31,9 +36,10 @@ export default function AllUser(props: { users: UserType[] }): JSX.Element {
           </tr>
         </thead>
         <tbody className="h-32">
-          {users.map((unit: UserType, index: number) => (
-            <User key={index} unit={unit} />
-          ))}
+          {users &&
+            users.map((unit: UserType, index: number) => (
+              <User key={index} unit={unit} users={users} setUsers={setUsers} />
+            ))}
         </tbody>
       </table>
     </div>
@@ -41,7 +47,9 @@ export default function AllUser(props: { users: UserType[] }): JSX.Element {
 }
 
 export async function getStaticPaths() {
-  const res = await fetch(`http://localhost:3009/allUsers/pageNum`);
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BACK_END_URL}/users/pageNum`
+  );
   const pages = await res.json();
   const lastPage = pages && Math.ceil(pages / 8);
 
@@ -61,7 +69,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }: { params: { page: string } }) {
   const response = await fetch(
-    `http://localhost:3009/allUsers/page/${params.page}`
+    `${process.env.NEXT_PUBLIC_API_BACK_END_URL}/users/page/${params.page}`
   );
   const data = await response.json();
   if (!data) {
@@ -72,7 +80,7 @@ export async function getStaticProps({ params }: { params: { page: string } }) {
 
   return {
     props: {
-      users: data,
+      data: data,
     },
   };
 }

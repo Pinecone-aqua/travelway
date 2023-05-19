@@ -10,9 +10,6 @@ export default function User(): JSX.Element {
   const [change, setChange] = useState("Mini story");
   const [story, setStory] = useState<miniStoryType[]>();
   const { user } = useContext(UserContext);
-  // const [stories, setStories] = useState<miniStoryType[]>([]);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [userInfo, setUserInfo] = useState<any[]>([]);
 
   const defaultStyle = "border-black  py-[3px] font-semibold ";
   const activatedStyle =
@@ -24,34 +21,20 @@ export default function User(): JSX.Element {
   }
 
   useEffect(() => {
-    const getFetchdata = async (): Promise<void> => {
+    const getFetchData = async (): Promise<void> => {
       try {
         const travels = await axios.get("http://localhost:3009/ministory/get");
         const filteredData = travels.data.filter(
-          (item: miniStoryType) => item.userId
+          (item: miniStoryType) => item.userId === user?._id
         );
         setStory(filteredData);
-
-        const userAllInfo = await axios.get(
-          "http://localhost:3009/allUsers/all"
-        );
-        const allUsers = userAllInfo.data;
-
-        const matchingUserIds = filteredData.map(
-          (story: miniStoryType) => story.userId
-        );
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const matchingUsers = allUsers.filter((user: any) =>
-          matchingUserIds.includes(user._id)
-        );
-        setUserInfo(matchingUsers);
       } catch (err) {
         console.log(err);
       }
     };
 
-    getFetchdata();
-  }, []);
+    getFetchData();
+  }, [user]);
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-10">
@@ -100,12 +83,7 @@ export default function User(): JSX.Element {
               {story ? (
                 story.map((storyType: miniStoryType, index: number) => (
                   <div className="relative" key={index}>
-                    <MiniStory
-                      userInfo={userInfo.find(
-                        (user) => user._id === story.userId
-                      )}
-                      storyType={storyType}
-                    />
+                    <MiniStory storyType={storyType} />
                   </div>
                 ))
               ) : (

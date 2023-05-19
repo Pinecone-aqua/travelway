@@ -1,15 +1,19 @@
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 import { toast } from "react-toastify";
+// import Dialog from "../subComponent/Dialog";
+import { StoryType } from "@/util/types";
 
 interface PropType {
   id: string;
+  stories: StoryType[];
+  setStories: Dispatch<SetStateAction<StoryType[] | undefined>>;
 }
 
 export default function DeleteModal(props: PropType): JSX.Element {
-  const { id } = props;
+  const { id, stories, setStories } = props;
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -18,7 +22,7 @@ export default function DeleteModal(props: PropType): JSX.Element {
   const deleteHandler = async (id: string) => {
     try {
       const response = await axios.delete(
-        `http://localhost:3009/stories/${id}`
+        `${process.env.NEXT_PUBLIC_API_BACK_END_URL}/stories/${id}`
       );
       if (response.status === 200) {
         toast.success("deleted", {
@@ -47,6 +51,8 @@ export default function DeleteModal(props: PropType): JSX.Element {
       toast.error("An error occurred");
       console.error(error);
     }
+    const result = stories.filter((story: StoryType) => story._id !== id);
+    setStories(result);
   };
 
   return (

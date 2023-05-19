@@ -6,6 +6,7 @@ import { useUser } from "../../../context/user.context";
 import jwtDecode from "jwt-decode";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { UserDataContextType } from "../../../util/types";
 
 const AddTour = () => {
   // const router = useRouter();
@@ -34,15 +35,13 @@ const AddTour = () => {
   const [dayImage, setDayImage] = useState<File[]>([]);
   const { token } = useUser();
 
-  const handleSubmit = async (
-    event: React.ChangeEvent<HTMLInputElement>
-  ): void => {
+  const handleSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     try {
       if (token) {
-        const userFromToken = jwtDecode(token);
-        const userId = userFromToken?._id;
+        const userFromToken: UserDataContextType = jwtDecode(token);
+        const userId = userFromToken._id;
 
         const newFormData = {
           title: travelData.title,
@@ -53,19 +52,20 @@ const AddTour = () => {
         };
 
         const sendFormData = new FormData();
-        sendFormData.append("images", coverImage);
+        sendFormData.append("images", String(coverImage));
         if (dayImage.length > 0) {
           dayImage.forEach((image) => sendFormData.append("images", image));
         }
         sendFormData.append("body", JSON.stringify(newFormData));
 
-        const responseAll = await axios.post(
-          `http://localhost:3009/travels/add`,
-          sendFormData
-        );
+        axios
+          .post(`http://localhost:3009/travels/add`, sendFormData)
+          .then((response) => response.data)
+          .then((responseAll) => {
+            console.log(responseAll);
+            notifySaveSuccess();
+          });
 
-        console.log(responseAll);
-        notifySaveSuccess();
         // router.push("/addtravel");
       }
     } catch (error) {
@@ -186,7 +186,7 @@ const AddTour = () => {
       <div className="w-full mt-16 mb-8  sm:w-10/12 md:w-8/12 lg:w-6/12 ">
         <div className="flex flex-col gap-y-2">
           <p className="text-red-400 font-normal text-sm">{message}</p>
-          <form onSubmit={(e) => handleSubmit(e)}>
+          <form onSubmit={handleSubmit}>
             <>
               <label htmlFor="title">Аяллын гарчиг/Title:</label>
               <input

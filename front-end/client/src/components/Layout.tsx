@@ -1,4 +1,3 @@
-import Link from "next/link";
 import React, { ReactNode } from "react";
 import Header from "./Header";
 
@@ -17,7 +16,7 @@ const Layout = ({ children }: PropType): JSX.Element => (
 );
 
 const Footer = () => (
-  <div className="text-center text-slate-500 py-4 bg-slate-100 bottom-0 w-full">
+  <div className="text-center text-slate-500 py-4 bg-slate-100 bottom-0 w-full ">
     {"Copyright © 2023 Travelway development team."}
   </div>
 );

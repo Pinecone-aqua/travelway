@@ -15,17 +15,16 @@ interface HeaderType {
 }
 
 const MENULIST = [
-  { name: "Home", uri: "/" },
-  { name: "stories", uri: "/stories" },
-  { name: "Travel blog", uri: "/travelBlog" },
-  { name: "About us", uri: "/about" },
+  { name: "Нүүр", uri: "/" },
+  { name: "Аялал", uri: "/stories" },
+  { name: "Аяллын блог", uri: "/travelBlog" },
+  { name: "Бидний тухай", uri: "/about" },
 ];
 
 export default function Header(): JSX.Element {
   const [nav, setNav] = useState<string | null>();
   const [isResponsive, setIsResponsive] = useState(false);
   const { user, setUser } = useUser();
-
   // user has email password
 
   const activatedStyle =
@@ -50,7 +49,7 @@ export default function Header(): JSX.Element {
   }
 
   return (
-    <div className="sticky z-50">
+    <div className="z-10">
       <div className="flex gap-3 justify-center content-center text-center  ">
         <div className="flex h-7 w-full scroll-m-2 ">
           {isResponsive ? (
@@ -110,7 +109,7 @@ const LoginAuthentication = ({ user, setUser }: HeaderType) => {
 
   return (
     <>
-      <div className="absolute right-0 flex items-center">
+      <div className="absolute right-0 flex items-center ">
         {user ? (
           <>
             <Menu>
@@ -118,9 +117,9 @@ const LoginAuthentication = ({ user, setUser }: HeaderType) => {
                 <LoginButton user={user} />
               </MenuButton>
               <MenuList>
-                <a href="/user">
+                <Link href="/user">
                   <MenuItem>Profile</MenuItem>
-                </a>
+                </Link>
                 <MenuItem
                   onClick={() => {
                     Cookies.remove("usertoken");
@@ -148,7 +147,7 @@ const LoginAuthentication = ({ user, setUser }: HeaderType) => {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const LoginButton = ({ user }: any) => (
-  <button className="w-[40px] h-[40px] ">
+  <button className="w-[40px] h-[40px] mr-3">
     {user && user.image && (
       <picture>
         <img

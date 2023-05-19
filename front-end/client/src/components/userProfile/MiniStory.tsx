@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { miniStoryType } from "../../../util/types";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Image from "next/image";
-
 import { useDisclosure } from "@chakra-ui/react";
 
 const MiniStoryCardOffCanvas = React.lazy(
@@ -25,18 +24,6 @@ export default function MiniStory(props: {
     setHover(false);
   }
 
-  const determineImageHeight = () => {
-    const aspectRatio = story.width / story.height;
-    const maxWidth = 500;
-    const maxHeight = 500;
-
-    if (aspectRatio > 1) {
-      return Math.min(maxWidth, story.width);
-    } else {
-      return Math.min(maxHeight, story.height);
-    }
-  };
-
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -54,9 +41,7 @@ export default function MiniStory(props: {
             height={500}
             quality={10}
             alt="pic"
-            className={`w-full h-${determineImageHeight()} object-cover rounded-xl disable-text-selection border hover:bg-black cursor-pointer ${
-              hover ? "opacity-80" : "opacity-100"
-            }`}
+            className={`w-full object-cover rounded-xl disable-text-selection border hover:bg-black cursor-pointer w-full h-56 object-cover transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105 `}
             onMouseEnter={enter}
             onMouseLeave={leave}
           />

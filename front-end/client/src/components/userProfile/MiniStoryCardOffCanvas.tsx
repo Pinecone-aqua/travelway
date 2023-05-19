@@ -16,6 +16,8 @@ import { Button } from "primereact/button";
 import { UserContext } from "../../../context/user.context";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "primeicons/primeicons.css";
+import { MdEdit } from "react-icons/md";
 
 type Props = {
   isOpen: boolean;
@@ -37,12 +39,13 @@ export default function MiniStoryCardOffCanvas(props: Props): JSX.Element {
       title: e.target.title.value,
       sentence: e.target.sentence.value,
     });
+    notifySuccess();
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function remove() {
     axios.delete(`http://localhost:3009/ministory/${story._id}`);
-    notifySuccess();
+    notifyDelete();
   }
 
   function handleChange() {
@@ -53,8 +56,20 @@ export default function MiniStoryCardOffCanvas(props: Props): JSX.Element {
     }
   }
 
+  const notifyDelete = () =>
+    toast.success("Successfull Deleted!", {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+
   const notifySuccess = () =>
-    toast.success("🦄 Successfull login!", {
+    toast.success("Successfull Edited!", {
       position: "bottom-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -100,6 +115,7 @@ export default function MiniStoryCardOffCanvas(props: Props): JSX.Element {
                 </p>
               </div>
             </div>
+
             <div className="flex justify-center mb-6">
               <div className="h-96 w-full relative">
                 <Image
@@ -107,34 +123,33 @@ export default function MiniStoryCardOffCanvas(props: Props): JSX.Element {
                   alt="pic"
                   layout="fill"
                   objectFit="cover"
-                  className="rounded-2xl"
+                  className="rounded-2xl h-full"
                 />
               </div>
             </div>
             <form onSubmit={edit}>
               <input
-                className="flex justify-center text-xl font-medium mb-2 rounded-xl text-center"
+                className="flex justify-center text-xl font-medium mb-2 rounded-lg text-center"
                 defaultValue={story.title}
                 name="title"
                 onChange={handleChange}
               />
               <textarea
-                className="text-sm text-gray-500 text-center w-full h-auto"
+                className="text-xl p-2 text-gray-500 w-full h-[150px] rounded-lg"
                 defaultValue={story.sentence}
                 name="sentence"
                 onChange={handleChange}
+                ref={textareaRef}
               />
-              <div className={`absolute p-1 right-0`}>
-                <div className="mr-5">
-                  <Modal remove={remove} />
-                </div>
+              <div className="flex">
+                <Modal remove={remove} />
+                <button
+                  type="submit"
+                  className="p-2 w-[45px] h-[45px] border rounded-full bg-yellow-400 px-3 text-white font-semibold text-center"
+                >
+                  <MdEdit />
+                </button>
               </div>
-              <button
-                type="submit"
-                className="p-2 border rounded bg-yellow-400 px-3 text-white font-semibold"
-              >
-                Update
-              </button>
             </form>
           </div>
         </DrawerBody>
@@ -158,10 +173,9 @@ export default function MiniStoryCardOffCanvas(props: Props): JSX.Element {
 export function Modal(prop: { remove: () => void }) {
   const { remove } = prop;
   const [visible, setVisible] = useState(false);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [position, setPosition] = useState("center");
+
   const footerContent = (
-    <div className="text-center">
+    <div className="text-center ">
       <Button
         label="No"
         icon="pi pi-times"
@@ -193,27 +207,31 @@ export function Modal(prop: { remove: () => void }) {
       position === "bottom-left" ||
       position === "bottom-right"
     ) {
-      setPosition(position);
       setVisible(true);
     }
   };
 
   return (
     <>
-      <div className="card">
-        <div className="flex flex-wrap justify-content-center gap-2 ">
+      <div className="  border-0 ">
+        <div className="flex flex-wrap justify-content-center gap-2 w-[78px] reou ">
           <Button
-            label="Delete"
-            icon="pi pi-arrow-down"
+            icon="pi pi-trash"
             onClick={() => show("top")}
-            className="gray p-1"
+            className="gray p-2 rounded-full"
+            style={{
+              background: "red",
+              border: "none",
+              color: "white",
+              borderRadius: "100%",
+              height: "45px",
+            }}
           />
         </div>
 
         <Dialog
           visible={visible}
           position={"top"}
-          style={{ width: "35vw" }}
           onHide={() => setVisible(false)}
           footer={footerContent}
           draggable={false}

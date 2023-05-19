@@ -7,7 +7,7 @@ import {
   Spinner,
 } from "@chakra-ui/react";
 import Image from "next/image";
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import { LoginForm, miniStoryType } from "../../../util/types";
 
 type Props = {
@@ -21,6 +21,16 @@ type Props = {
 
 export default function BlogOffCanvas(props: Props): JSX.Element {
   const { isOpen, onClose, story, userInfo } = props;
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  useEffect(() => {
+    const textarea = textareaRef.current;
+    if (textarea) {
+      textarea.style.minHeight = "150px";
+      textarea.style.height = "auto";
+      textarea.style.height = textarea.scrollHeight + "px";
+    }
+  }, [story.sentence]);
 
   return (
     <Drawer placement="bottom" onClose={onClose} isOpen={isOpen}>
@@ -28,7 +38,7 @@ export default function BlogOffCanvas(props: Props): JSX.Element {
         <DrawerHeader
           borderBottomWidth="1px"
           bg="gray.200"
-          className="flex justify-between"
+          className="flex justify-between z-30"
         >
           <div className="text-lg font-medium">
             <p>Travel Blog</p>
@@ -75,8 +85,14 @@ export default function BlogOffCanvas(props: Props): JSX.Element {
             <div className="flex justify-center text-2xl font-medium mb-2">
               {story.title}
             </div>
-            <div className="text-base text-gray-500 text-center">
-              {story.sentence}
+            <div className="text-base text-gray-500  text-xl">
+              <textarea
+                ref={textareaRef}
+                className="text-xl p-2 text-gray-500 w-full rounded-lg"
+                defaultValue={story.sentence}
+                style={{ minHeight: "550px" }}
+                disabled
+              />
             </div>
           </div>
         </DrawerBody>

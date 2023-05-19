@@ -12,13 +12,16 @@ export default function StoryID(props: { data: StoryType }): JSX.Element {
   function editHandler(e: any): void {
     e.preventDefault();
 
-    axios.patch(`http://localhost:3009/stories/${query.id}`, {
-      title: e.target.title.value,
-      description: e.target.description.value,
-      myth: e.target.myth.value,
-      province: e.target.province.value,
-      toDo: toDo,
-    });
+    axios.patch(
+      `${process.env.NEXT_PUBLIC_API_BACK_END_URL}/stories/${query.id}`,
+      {
+        title: e.target.title.value,
+        description: e.target.description.value,
+        myth: e.target.myth.value,
+        province: e.target.province.value,
+        toDo: toDo,
+      }
+    );
   }
   return (
     <>
@@ -90,7 +93,9 @@ export default function StoryID(props: { data: StoryType }): JSX.Element {
 }
 
 export async function getStaticPaths() {
-  const res = await fetch("http://localhost:3009/stories/allId");
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BACK_END_URL}/stories/allId`
+  );
   const ids = await res.json();
 
   const paths = await ids.map((id: { _id: string }) => ({
@@ -105,7 +110,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }: { params: { id: string } }) {
   const { data } = await axios.get(
-    `http://localhost:3009/stories/${params.id}`
+    `${process.env.NEXT_PUBLIC_API_BACK_END_URL}/stories/${params.id}`
   );
   return {
     props: {

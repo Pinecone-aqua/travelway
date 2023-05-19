@@ -24,6 +24,8 @@ type StoryProps = {
 export default function TravelblogCard(props: StoryProps) {
   const { story, userInfo } = props;
 
+  console.log("usrIn", userInfo);
+
   const {
     isOpen: isOffCanvasOpen,
     onOpen: onOffCanvasOpen,
@@ -44,11 +46,9 @@ export default function TravelblogCard(props: StoryProps) {
           onClick={onOffCanvasOpen}
         >
           <Avatar name={userInfo.image} src={userInfo.image} mr="4" />
-          <Box className="hover:opacity-90">
-            <Heading size="sm" mb="1 ">
-              {story.username}
-            </Heading>
-            <p className="text-gray-500 text-sm mt-3">
+          <Box className="hover:opacity-90 h-[50px] ">
+            <Heading size="sm">{story.title.slice(0, 12)}...</Heading>
+            <p className="text-gray-500 text-sm mt-2">
               Creator: {userInfo.username}
             </p>
           </Box>
