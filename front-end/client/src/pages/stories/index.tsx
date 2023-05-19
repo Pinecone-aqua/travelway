@@ -29,7 +29,7 @@ export default function BranchSection(props: { markers: StoryType[] }) {
   if (loadError) return <div>Error loading maps</div>;
   if (!isLoaded) return <div>Loading Maps</div>;
   function handleClick(id: string) {
-    router.push(`/test/${id}`);
+    router.push(`/stories/${id}`);
   }
 
   return (
