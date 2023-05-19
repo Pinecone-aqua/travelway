@@ -4,6 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { UserContext } from "../../context/user.context";
 import { useContext } from "react";
+import Link from "next/link";
 
 // import MiniStoryOffCanvas from "@/components/userProfile/MiniStoryOffCanvas";
 
@@ -68,7 +69,7 @@ export default function MiniStoryAdd(): JSX.Element {
     <>
       <div>
         <button className="border p-3 rounded-xl font-semibold px-[25px] m-4">
-          <a href="/user">back</a>
+          <Link href="/user">back</Link>
         </button>
         <div className="w-[100%]  bg-white p-5 z-50  ">
           <div className=" bg-white p-5 z-50">
