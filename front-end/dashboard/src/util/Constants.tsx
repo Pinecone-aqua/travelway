@@ -1,6 +1,6 @@
-import OrderIcon from "../../public/icons/OrderIcon";
-import TravelIcon from "../../public/icons/TravelIcon";
-import UserIcon from "../../public/icons/UserIcon";
+import OrderIcon from "../components/icons/OrderIcon";
+import TravelIcon from "../components/icons/TravelIcon";
+import UserIcon from "../components/icons/UserIcon";
 
 export const Buttons = [
   { name: "Хянах самбар", path: "/", icon: <TravelIcon /> },

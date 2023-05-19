@@ -2,10 +2,10 @@ import { ButtonType } from "@/util/types";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import DashboardIcon from "../../../public/icons/DashboardIcon";
-import StoryIcon from "../../../public/icons/StoryIcon";
-import TravelIcon from "../../../public/icons/TravelIcon";
-import UserIcon from "../../../public/icons/UserIcon";
+import DashboardIcon from "../icons/DashboardIcon";
+import StoryIcon from "../icons/StoryIcon";
+import TravelIcon from "../icons/TravelIcon";
+import UserIcon from "../icons/UserIcon";
 
 export default function SideMenu(): JSX.Element {
   const Buttons = [
@@ -15,9 +15,9 @@ export default function SideMenu(): JSX.Element {
     { name: "Хэрэглэгчид", path: "/users/1", icon: <UserIcon /> },
   ];
   const activeClass =
-    "flex justify-around items-center text-mycolor text-2xl bg-slate-100 rounded-l-[50px] w-10/12 h-16 m-7";
+    "flex justify-between px-4 items-center text-mycolor text-2xl bg-slate-100 rounded-l-[50px] w-10/12 h-16 m-7";
   const inActiveClass =
-    "flex justify-around items-center text-white text-2xl bg-mycolor rounded-l-3xl w-10/12 h-16 m-7 hover:bg-slate-100 hover:text-black";
+    "flex justify-between px-4 items-center text-white text-2xl bg-mycolor rounded-l-3xl w-10/12 h-16 m-7 hover:opacity-50 hover:text-black";
   const activeTop = "bg-mycolor h-8 w-[180px] rounded-br-full text-mycolor";
   const inActive = "bg-mycolor h-8 w-8  text-mycolor decoration-none";
   const activeBottom = "bg-mycolor h-8 w-8 rounded-tr-full text-mycolor ";
