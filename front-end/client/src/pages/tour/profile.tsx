@@ -67,29 +67,27 @@ export default function User(): JSX.Element {
         <div className="w-[80%] grid gap-10">
           <hr className=" border-black  drop-shadow-xl" />
           <div className="flex flex-wrap justify-center items-start">
-            {stories.map((story, index) =>
-              story.userId === logUser ? (
-                <div key={index} className="relative w-3/12 h-4/12 mx-4 my-4">
-                  <div className="relative bg-slate-100 h-80 w-full text-black rounded-t-md">
-                    <Image
-                      src={story.image}
-                      alt={story.title}
-                      width={100}
-                      height={100 * (9 / 16)}
-                      className="h-full w-auto object-cover rounded-t-lg"
-                    />
-                    <div className="absolute w-full bottom-0 right-0 text-white bg-slate-600 bg-opacity-60 rounded">
-                      <h3 className="py-0 px-4 text-lg font-bold">
-                        {story.title}
-                      </h3>
-                      <p className="py-4 px-2 text-sm text-justify font-normal">
-                        {story.sentence}
-                      </p>
-                    </div>
+            {stories.map((story, index) => (
+              <div key={index} className="relative w-3/12 h-4/12 mx-4 my-4">
+                <div className="relative bg-slate-100 h-80 w-full text-black rounded-t-md">
+                  <Image
+                    src={story.image}
+                    alt={story.title}
+                    width={100}
+                    height={100 * (9 / 16)}
+                    className="h-full w-auto object-cover rounded-t-lg"
+                  />
+                  <div className="absolute w-full bottom-0 right-0 text-white bg-slate-600 bg-opacity-60 rounded">
+                    <h3 className="py-0 px-4 text-lg font-bold">
+                      {story.title}
+                    </h3>
+                    <p className="py-4 px-2 text-sm text-justify font-normal">
+                      {story.sentence}
+                    </p>
                   </div>
                 </div>
-              ) : null
-            )}
+              </div>
+            ))}
           </div>
         </div>
       </div>
