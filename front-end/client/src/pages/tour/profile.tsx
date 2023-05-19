@@ -10,9 +10,6 @@ import { StoryType } from "../../../util/types";
 export default function User(): JSX.Element {
   const logUser = localStorage.getItem("userId");
   const [stories, setStories] = useState<StoryType[]>([]);
-  const [userData, setUserData] = useState([]);
-  let userName = "";
-  let userImage = "";
 
   try {
     const getFetchdata = async () => {
@@ -21,28 +18,21 @@ export default function User(): JSX.Element {
       setStories(disp);
     };
 
-    const getUserFetch = async () => {
-      const user = await axios.get(`http://localhost:3009/allUsers/profile`);
-      const currentUser = user.data;
-      setUserData(currentUser);
-    };
-
     getFetchdata();
-    getUserFetch();
 
-    if (logUser) {
-      userData
-        .filter(
-          (user: { _id: string; username: string; image: string }) =>
-            user._id === logUser
-        )
-        .map((user: { username: string; image: string }) => {
-          userName = user.username;
-          userImage = user.image;
-        });
-    } else {
-      console.log("Error user not found");
-    }
+    // if (logUser) {
+    //   userData
+    //     .filter(
+    //       (user: { _id: string; username: string; image: string }) =>
+    //         user._id === logUser
+    //     )
+    //     .map((user: { username: string; image: string }) => {
+    //       userName = user.username;
+    //       userImage = user.image;
+    //     });
+    // } else {
+    //   console.log("Error user not found");
+    // }
   } catch (error) {
     console.log(error);
   }
@@ -63,18 +53,18 @@ export default function User(): JSX.Element {
           </button>
         </Link>
         <div className="flex justify-center absolute bottom-[-80px]">
-          <picture>
-            <img
+          {/* <picture> */}
+          {/* <img
               src={userImage}
               alt="pic"
               className="rounded-full w-[150px] h-[150px] bg-black border border-[3px] "
             />
-          </picture>
+          </picture> */}
         </div>
       </div>
       <div className="h-[8rem]" />
       <div className="items-center justify-center flex flex-col gap-10 relative ">
-        <p className="font-bold text-[26px]">{userName}</p>
+        {/* <p className="font-bold text-[26px]">{userName}</p> */}
         <div className="w-[80%] grid gap-10">
           <hr className=" border-black  drop-shadow-xl" />
           <div className="flex flex-wrap justify-center items-start">
