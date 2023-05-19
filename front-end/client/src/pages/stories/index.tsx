@@ -18,7 +18,7 @@ const options = {
 export default function BranchSection(props: { markers: StoryType[] }) {
   const router = useRouter();
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: `${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`,
+    googleMapsApiKey: `AIzaSyAhjl1X_pQkIAeTUWlWv4cKKUDqgyxDCQE`,
   });
   const { markers } = props;
 

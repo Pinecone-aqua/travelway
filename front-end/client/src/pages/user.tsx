@@ -1,15 +1,17 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import { miniStoryType } from "../../util/types";
+import { miniStoryType, TravelType } from "../../util/types";
 import MiniStory from "@/components/userProfile/MiniStory";
 import Link from "next/link";
 import { UserContext } from "../../context/user.context";
-import { Spinner } from "@chakra-ui/react";
+import TravelCard from "@/components/travel/Travel";
 
 export default function User(): JSX.Element {
   const [change, setChange] = useState("Mini story");
   const [story, setStory] = useState<miniStoryType[]>();
   const { user } = useContext(UserContext);
+
+  const [travels, setTravels] = useState<TravelType[] | null>(null);
 
   const defaultStyle = "border-black  py-[3px] font-semibold ";
   const activatedStyle =
@@ -19,6 +21,21 @@ export default function User(): JSX.Element {
   function changer(e: any) {
     setChange(e.target.innerText);
   }
+
+  useEffect(() => {
+    const getFetchTravel = async (): Promise<void> => {
+      try {
+        const travels = await axios.get("http://localhost:3009/travels/get");
+        const filteredData = travels.data.filter(
+          (item: TravelType) => item.userId === user?._id
+        );
+        setTravels(filteredData);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getFetchTravel();
+  }, [user]);
 
   useEffect(() => {
     const getFetchData = async (): Promise<void> => {
@@ -71,32 +88,42 @@ export default function User(): JSX.Element {
           >
             Mini story
           </button>
+          <button
+            className={`${
+              change == "Travel" ? `${activatedStyle}` : `${defaultStyle}`
+            }`}
+            onClick={changer}
+          >
+            Travel
+          </button>
         </div>
         <div className="relative">
           <div className="gap-3 grid">
-            <Link href="/miniStoryAdd">
-              <button className="py-2 px-5 font-semibold text-gray-400 grid place-content-center w-[100%] bg-gray-200 rounded-lg shadow-lg hover:bg-gray-300 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110">
-                Add your new adventure
-              </button>
-            </Link>
+            {change == "Mini story" ? (
+              <Link href="/miniStoryAdd">
+                <button className="py-2 px-5 font-semibold text-gray-400 grid place-content-center w-[100%] bg-gray-200 rounded-lg shadow-lg hover:bg-gray-300 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110">
+                  Add your new adventure
+                </button>
+              </Link>
+            ) : (
+              <Link href="/miniStoryAdd">
+                <button className="py-2 px-5 font-semibold text-gray-400 grid place-content-center w-[100%] bg-gray-200 rounded-lg shadow-lg hover:bg-gray-300 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110">
+                  Add your new Travel
+                </button>
+              </Link>
+            )}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ">
-              {story ? (
-                story.map((storyType: miniStoryType, index: number) => (
-                  <div className="relative" key={index}>
-                    <MiniStory storyType={storyType} />
-                  </div>
-                ))
-              ) : (
-                <div className="">
-                  <Spinner
-                    thickness="4px"
-                    speed="0.65s"
-                    emptyColor="gray.200"
-                    color="blue.500"
-                    size="xl"
-                  />
-                </div>
-              )}
+              {change == "Mini story"
+                ? story &&
+                  story.map((storyType: miniStoryType, index: number) => (
+                    <div className="relative" key={index}>
+                      <MiniStory storyType={storyType} />
+                    </div>
+                  ))
+                : travels &&
+                  travels.map((data: TravelType, index: number) => (
+                    <TravelCard data={data} key={index} />
+                  ))}
             </div>
           </div>
         </div>
