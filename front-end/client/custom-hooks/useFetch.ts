@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
-export const useFetch = (url: string) => {
-  const [data, setData] = useState<any>();
+export const useFetch = <T>(url: string) => {
+  const [data, setData] = useState<T>();
 
   useEffect(() => {
     async function getData(url: string) {

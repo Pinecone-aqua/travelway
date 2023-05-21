@@ -24,7 +24,7 @@ export default function MiniStoryAdd(): JSX.Element {
     console.log(formDataObj);
 
     axios
-      .post(`http://localhost:3009/miniStory/add`, formDataObj)
+      .post(`${process.env.BACKEND_API_URI}/miniStory/add`, formDataObj)
       .then(() => {
         notifySuccess();
       })

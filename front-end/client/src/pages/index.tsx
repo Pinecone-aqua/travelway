@@ -6,7 +6,7 @@ import HeroSection from "@/components/HeroSection";
 export default function Home(): JSX.Element {
   const [travels, setTravels] = useState<TravelType[] | null>(null);
   useEffect(() => {
-    fetch(`http://localhost:3009/travels/get`)
+    fetch(`${process.env.BACKEND_API_URI}/travels/get`)
       .then((response) => response.json())
       .then((res) => setTravels(res));
   }, []);

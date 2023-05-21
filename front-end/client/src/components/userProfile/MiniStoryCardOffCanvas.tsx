@@ -35,7 +35,7 @@ export default function MiniStoryCardOffCanvas(props: Props): JSX.Element {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function edit(e: any) {
     e.preventDefault();
-    axios.patch(`http://localhost:3009/ministory/${story._id}`, {
+    axios.patch(`${process.env.BACKEND_API_URI}/ministory/${story._id}`, {
       title: e.target.title.value,
       sentence: e.target.sentence.value,
     });
@@ -44,7 +44,7 @@ export default function MiniStoryCardOffCanvas(props: Props): JSX.Element {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function remove() {
-    axios.delete(`http://localhost:3009/ministory/${story._id}`);
+    axios.delete(`${process.env.BACKEND_API_URI}/ministory/${story._id}`);
     notifyDelete();
   }
 

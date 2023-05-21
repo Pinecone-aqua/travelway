@@ -21,13 +21,13 @@ export default function TravelBlog(): JSX.Element {
   useEffect(() => {
     const getFetchdata = async (): Promise<void> => {
       try {
-        const travels = await axios.get("http://localhost:3009/ministory/get");
+        const travels = await axios.get(`${process.env.BACKEND_API_URI}/ministory/get`);
         const filteredData = travels.data.filter(
           (item: miniStoryType) => item.userId
         );
         setStories(filteredData);
 
-        const userAllInfo = await axios.get("http://localhost:3009/users/all");
+        const userAllInfo = await axios.get(`${process.env.BACKEND_API_URI}/users/all`);
         const allUsers = userAllInfo.data;
 
         const matchingUserIds = filteredData.map(
