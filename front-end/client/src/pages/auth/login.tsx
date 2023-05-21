@@ -79,7 +79,7 @@ export default function Login(): JSX.Element {
   }
 
   const notifySuccess = () =>
-    toast.success("🦄 Successfull login!", {
+    toast.success("Амжилттай холбогдлоо!", {
       position: "bottom-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -90,7 +90,7 @@ export default function Login(): JSX.Element {
       theme: "light",
     });
   const notifyLoginError = () =>
-    toast.warn("🦄 Login unsuccessful, please check email password!", {
+    toast.warn("И-мэйл, нууц үг буруу байна!", {
       position: "bottom-right",
       autoClose: 5000,
       hideProgressBar: false,

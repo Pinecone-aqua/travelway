@@ -1,7 +1,6 @@
 import { Spinner } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-
 interface PropType {
   currentPage: number;
   setCurrentPage: Dispatch<SetStateAction<number>>;
@@ -15,7 +14,7 @@ export default function Pagination(props: PropType): JSX.Element {
   const [error, setError] = useState<string>("");
 
   useEffect(() => {
-    fetch(`${process.env.BACKEND_API_URI}/${path}/${pageNum}`)
+    fetch(`${process.env.NEXT_PUBLIC_BACKEND_API_URI}/${path}/${pageNum}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");

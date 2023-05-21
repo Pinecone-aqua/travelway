@@ -60,10 +60,10 @@ const TourDetails = (props: {
       />
 
       <div>
-        <label className="mt-4" htmlFor="image">
+        <label className="mt-4 w-full" htmlFor="image">
           Зураг/Image:
         </label>
-        <input type="file" onChange={handleFileChange} />
+        <input className="inline-block p-2 rounded bg-slate-100" type="file" onChange={handleFileChange} />
       </div>
     </div>
   );

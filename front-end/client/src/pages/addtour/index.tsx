@@ -1,5 +1,5 @@
+import AddTour from "@/components/tour/AddTour";
 import Head from "next/head";
-import TravelProgram from "./travelProgram";
 
 export default function Index() {
   return (
@@ -7,7 +7,7 @@ export default function Index() {
       <Head>
         <title>Аяллын хөтөлбөр</title>
       </Head>
-      <TravelProgram />
+        <AddTour />
     </div>
   );
 }

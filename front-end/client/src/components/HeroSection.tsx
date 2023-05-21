@@ -4,6 +4,10 @@ import { useContext } from "react";
 
 export default function HeroSection() {
   const { user } = useContext(UserContext);
+
+  console.log("USER CONTEXT check =====>");
+  console.log(user);
+
   return (
     <>
       <div className=" drop-shadow-xl border rounded-xl mt-4  md:flex justify-center p-4 w-[100%] ">
