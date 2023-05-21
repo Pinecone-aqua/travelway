@@ -63,7 +63,7 @@ export default function Travel({ travels }: TravelProps) {
 }
 
 export async function getStaticProps() {
-  const travels = await axios.get("http://localhost:3009/travels/get");
+  const travels = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_API_URI}/travels/get`);
   const result = await travels.data;
 
   return {
