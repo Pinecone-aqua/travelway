@@ -219,7 +219,7 @@ DELETE /travelways/:id
 10. [Client] Хэрэглэгч эсвэл агент хөтөлбөрийн мэдээллээ оруулдаг болгох
 11. [Client] Аяллын блог, товч түүхийг харуулах хэсгийг хийх
 
-**travelway project members Github profiles** <br/>
+**travelway project members Github profiles** <br/><br/>
 Yalalt [![GitHub](https://img.shields.io/badge/GitHub-%2312100E.svg?style=for-the-badge&logo=github&logoColor=white&color=green)](https://github.com/Yalalt)  
 Sharawaa [![GitHub](https://img.shields.io/badge/GitHub-%2312100E.svg?style=for-the-badge&logo=github&logoColor=white&color=orange)](https://github.com/sharawaa) 
 Namka [![GitHub](https://img.shields.io/badge/GitHub-%2312100E.svg?style=for-the-badge&logo=github&logoColor=white&color=yellow)](https://github.com/Namnantseren) <br/>
