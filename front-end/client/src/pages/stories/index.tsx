@@ -1,7 +1,10 @@
+import ProvinceFilter from "@/components/story/ProvinceFilter";
+import CategoryFilter from "@/components/story/StoryFilter";
+import StorySearch from "@/components/story/StorySearch";
 import { GoogleMap, MarkerF } from "@react-google-maps/api";
 import { useLoadScript } from "@react-google-maps/api";
+import axios from "axios";
 import { useRouter } from "next/router";
-import { province } from "../../../util/constant";
 import { StoryType } from "../../../util/types";
 
 const mapContainerStyle = {
@@ -15,17 +18,15 @@ const center = {
 const options = {
   zoomControl: true,
 };
-export default function BranchSection(props: { markers: StoryType[] }) {
+export default function BranchSection(props: {
+  markers: StoryType[] | undefined;
+}) {
   const router = useRouter();
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: `AIzaSyAhjl1X_pQkIAeTUWlWv4cKKUDqgyxDCQE`,
   });
   const { markers } = props;
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  function filterHandler(e: any) {
-    console.log(e.target.value);
-  }
   if (loadError) return <div>Error loading maps</div>;
   if (!isLoaded) return <div>Loading Maps</div>;
   function handleClick(id: string) {
@@ -34,17 +35,10 @@ export default function BranchSection(props: { markers: StoryType[] }) {
 
   return (
     <div>
-      <div className="mx-auto">
-        <select
-          className="m-5 p-2 w-64 border-2 rounded-lg"
-          name=""
-          id=""
-          onChange={filterHandler}
-        >
-          {province.map((pro: string, index: number) => (
-            <option key={index}>{pro}</option>
-          ))}
-        </select>
+      <div className="flex justify-between m-5">
+        <CategoryFilter />
+        <StorySearch />
+        <ProvinceFilter />
       </div>
 
       <div className="flex flex-col gap-8 md:flex md:flex-row md:items-center">
@@ -55,7 +49,7 @@ export default function BranchSection(props: { markers: StoryType[] }) {
             zoom={5}
             options={options}
           >
-            {markers.map((marker, i) => (
+            {markers?.map((marker, i) => (
               <MarkerF
                 key={i}
                 position={marker.coord}
@@ -68,19 +62,34 @@ export default function BranchSection(props: { markers: StoryType[] }) {
     </div>
   );
 }
-export async function getStaticProps() {
-  const response = await fetch(`http://localhost:3009/stories/mark`);
-  const data = await response.json();
 
-  if (!data) {
-    return {
-      notFound: true,
-    };
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export async function getServerSideProps(context: { query: any }) {
+  const { query } = context;
+  console.log("query", query.province, query.category);
+  try {
+    const res = await axios.get(
+      `http://localhost:3009/stories/mark?&${
+        query.search ? `&search=${query.search}` : ""
+      }${query.category ? `&category=${query.category}` : ""}${
+        query.province ? `&province=${query.province}` : ""
+      }`
+    );
+    console.log(res.status);
+
+    if (res.status === 200) {
+      return {
+        props: {
+          markers: res.data,
+        },
+      };
+    } else
+      return {
+        props: {
+          notFound: true,
+        },
+      };
+  } catch (error) {
+    console.log(error);
   }
-
-  return {
-    props: {
-      markers: data,
-    },
-  };
 }

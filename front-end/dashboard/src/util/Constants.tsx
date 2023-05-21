@@ -43,4 +43,4 @@ export const province = [
   "Хөвсгөл",
   "Хэнтий",
 ];
-export const category = ["lake", "history", "mountain"];
+export const category = ["нуур", "уул", "түүх"];

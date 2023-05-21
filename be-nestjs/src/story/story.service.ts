@@ -26,10 +26,152 @@ export class StoryService {
     const result = await this.storyModel.find({}).select({ id: 1 });
     return result;
   }
-  async findMark(): Promise<any> {
-    const result = await this.storyModel.find({}).select({ id: 1, coord: 1 });
-    return result;
+  //filter
+  // async findMark(query: any): Promise<any> {
+  //   const {
+  //     category: selectedCategory,
+  //     province: selectedProvince,
+  //     search: search,
+  //   } = query;
+  //   console.log(search, selectedProvince, selectedCategory);
+
+  //   if (!(selectedCategory || selectedProvince || search)) {
+  //     console.log('1');
+
+  //     const result = await this.storyModel.find({}).select({ id: 1, coord: 1 });
+  //     return result;
+  //   }
+  //   if (selectedCategory) {
+  //     const result = await this.storyModel
+  //       .find({ category: selectedCategory })
+  //       .select({ id: 1, coord: 1 });
+  //     return result;
+  //   }
+  //   if (selectedCategory || selectedProvince || search) {
+  //     console.log('2');
+  //     const result = await this.storyModel
+  //       .find({
+  //         category: selectedCategory,
+  //         province: selectedProvince,
+  //         title: { $regex: new RegExp(search) },
+  //       })
+  //       .select({ id: 1, coord: 1 });
+  //     return result;
+  //   }
+  //   if (selectedCategory || selectedProvince) {
+  //     console.log('3');
+  //     const result = await this.storyModel
+  //       .find({ category: selectedCategory, province: selectedProvince })
+  //       .select({ id: 1, coord: 1 });
+  //     return result;
+  //   }
+  //   if (selectedCategory || search) {
+  //     console.log('4');
+  //     const result = await this.storyModel
+  //       .find({
+  //         category: selectedCategory,
+  //         title: { $regex: new RegExp(search) },
+  //       })
+  //       .select({ id: 1, coord: 1 });
+  //     return result;
+  //   }
+  //   if (selectedProvince || search) {
+  //     console.log('5');
+  //     const result = await this.storyModel
+  //       .find({
+  //         province: selectedProvince,
+  //         title: { $regex: new RegExp(search) },
+  //       })
+  //       .select({ id: 1, coord: 1 });
+  //     return result;
+  //   }
+
+  //   if (selectedProvince) {
+  //     const result = await this.storyModel
+  //       .find({ province: selectedProvince })
+  //       .select({ id: 1, coord: 1 });
+  //     return result;
+  //   }
+  //   if (search) {
+  //     const result = await this.storyModel
+  //       .find({ title: { $regex: new RegExp(search) } })
+  //       .select({ id: 1, coord: 1 });
+  //     return result;
+  //   } else {
+  //     console.log('else');
+
+  //     // const result = await this.storyModel
+  //     //   .find({ province: selectedProvince, category: selectedCategory })
+  //     //   .select({ id: 1, coord: 1 });
+  //     // return result;
+  //   }
+  // }
+  async findMark(query: any): Promise<any> {
+    const {
+      category: selectedCategory,
+      province: selectedProvince,
+      search: search,
+    } = query;
+
+    console.log(search, selectedProvince, selectedCategory);
+
+    if (!(selectedCategory || selectedProvince || search)) {
+      console.log('1');
+      const result = await this.storyModel.find({}).select({ id: 1, coord: 1 });
+      return result;
+    } else if (selectedCategory && selectedProvince && search) {
+      console.log('2');
+      const result = await this.storyModel
+        .find({
+          category: selectedCategory,
+          province: selectedProvince,
+          title: { $regex: new RegExp(search, 'i') },
+        })
+        .select({ id: 1, coord: 1 });
+      return result;
+    } else if (selectedCategory && selectedProvince) {
+      const result = await this.storyModel
+        .find({ category: selectedCategory, province: selectedProvince })
+        .select({ id: 1, coord: 1 });
+      return result;
+    } else if (selectedCategory && search) {
+      console.log('4');
+      const result = await this.storyModel
+        .find({
+          category: selectedCategory,
+          title: { $regex: new RegExp(search, 'i') },
+        })
+        .select({ id: 1, coord: 1 });
+      return result;
+    } else if (selectedProvince && search) {
+      const result = await this.storyModel
+        .find({
+          province: selectedProvince,
+          title: { $regex: new RegExp(search, 'i') },
+        })
+        .select({ id: 1, coord: 1 });
+      return result;
+    } else if (selectedCategory) {
+      const result = await this.storyModel
+        .find({ category: selectedCategory })
+        .select({ id: 1, coord: 1 });
+      return result;
+    } else if (selectedProvince) {
+      const result = await this.storyModel
+        .find({ province: selectedProvince })
+        .select({ id: 1, coord: 1 });
+      return result;
+    } else if (search) {
+      const result = await this.storyModel
+        .find({ title: { $regex: new RegExp(search, 'i') } })
+        .select({ id: 1, coord: 1 });
+      return result;
+    } else {
+      console.log('else');
+      // Handle the case when no conditions are provided
+    }
   }
+
   async findOne(id: string): Promise<Story> {
     const result = await this.storyModel.findOne({ _id: id });
     return result;

@@ -3,9 +3,12 @@ import {
   Controller,
   Delete,
   Get,
+  HttpException,
+  HttpStatus,
   Param,
   Patch,
   Post,
+  Query,
   UploadedFiles,
   UseInterceptors,
 } from '@nestjs/common';
@@ -35,9 +38,17 @@ export class StoryController {
   findAllId(): Promise<number> {
     return this.storyService.findAllId();
   }
+  //filter
   @Get('mark')
-  findMark(): Promise<number> {
-    return this.storyService.findMark();
+  async findMark(@Query() query: any): Promise<any> {
+    console.log(query);
+
+    const result = await this.storyService.findMark(query);
+    if (result[0]) {
+      return result;
+    } else {
+      throw new HttpException('No stories', HttpStatus.NO_CONTENT);
+    }
   }
 
   @Get(':id')
