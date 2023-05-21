@@ -219,8 +219,17 @@ DELETE /travelways/:id
 10. [Client] Хэрэглэгч эсвэл агент хөтөлбөрийн мэдээллээ оруулдаг болгох
 11. [Client] Аяллын блог, товч түүхийг харуулах хэсгийг хийх
 
-**travelway documentation**
+**travelway project members Github profiles** <br/>
+Yalalt [![GitHub](https://img.shields.io/badge/GitHub-%2312100E.svg?style=for-the-badge&logo=github&logoColor=white&color=green)](https://github.com/Yalalt)  
+Sharawaa [![GitHub](https://img.shields.io/badge/GitHub-%2312100E.svg?style=for-the-badge&logo=github&logoColor=white&color=orange)](https://github.com/sharawaa) 
+Namka [![GitHub](https://img.shields.io/badge/GitHub-%2312100E.svg?style=for-the-badge&logo=github&logoColor=white&color=yellow)](https://github.com/Namnantseren) <br/>
 
-Хэрэв танд асуулт байгаа бол бидэнтэй холбоо барина уу! Бид туслахдаа баяртай байна :)
-
-<a href="https://travelway.com/contact" target="_blank"> **Feel free to contact us**</a>
+Хэрэв танд асуулт байгаа бол бидэнтэй холбоо барина уу! Бид туслахдаа баяртай байна :) <br/>
+G.Yalalt [yalaltgandush@gmail.com](mailto:yalaltgandush@gmail.com) <br/>
+U.Sharawnyambuu [sharawnyambuuurtnasan@gmail.com](mailto:sharawnyambuuurtnasan@gmail.com) <br/>
+Namnantseren [namka1472@gmail.com](mailto:namka1472@gmail.com) <br/>
+ 
+#### License
+------
+[![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT) 
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
