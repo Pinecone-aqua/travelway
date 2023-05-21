@@ -30,7 +30,7 @@ export default function MiniStoryModal(props: Props): JSX.Element {
 
   function remove() {
     axios
-      .delete(`http://localhost:3009/ministory/${story._id}`)
+      .delete(`${process.env.BACKEND_API_URI}/ministory/${story._id}`)
       .then((res) => console.log("story remover", res))
       .catch((err) => console.log("story error", err));
   }

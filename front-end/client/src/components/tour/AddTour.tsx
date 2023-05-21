@@ -59,7 +59,7 @@ const AddTour = () => {
         sendFormData.append("body", JSON.stringify(newFormData));
 
         axios
-          .post(`http://localhost:3009/travels/add`, sendFormData)
+          .post(`${process.env.BACKEND_API_URI}/travels/add`, sendFormData)
           .then((response) => response.data)
           .then((responseAll) => {
             console.log(responseAll);
@@ -159,7 +159,7 @@ const AddTour = () => {
   };
 
   const notifySaveSuccess = () =>
-    toast.success("🦄 Successfull login!", {
+    toast.success("Амжилттай холбогдлоо!", {
       position: "bottom-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -170,7 +170,7 @@ const AddTour = () => {
       theme: "light",
     });
   const notifySaveError = () =>
-    toast.warn("🦄 Login unsuccessful, please check email password!", {
+    toast.warn("И-мэйл хаяг болон нууц үг буруу байна!", {
       position: "bottom-right",
       autoClose: 5000,
       hideProgressBar: false,

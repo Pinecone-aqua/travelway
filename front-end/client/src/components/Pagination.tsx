@@ -15,7 +15,7 @@ export default function Pagination(props: PropType): JSX.Element {
   const [error, setError] = useState<string>("");
 
   useEffect(() => {
-    fetch(`http://localhost:3009/${path}/${pageNum}`)
+    fetch(`${process.env.BACKEND_API_URI}/${path}/${pageNum}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
