@@ -1,5 +1,5 @@
-export const province = [
-  "All province",
+export const provinces = [
+  "Бүгд",
   "Архангай",
   "Баян-Өлгий",
   "Баянхонгор",
@@ -22,3 +22,5 @@ export const province = [
   "Хөвсгөл",
   "Хэнтий",
 ];
+
+export const categories = ["Бүгд", "нуур", "уул", "түүх"];
