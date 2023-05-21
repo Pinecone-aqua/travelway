@@ -9,6 +9,7 @@ import { Skeleton, Stack } from "@chakra-ui/react";
 import Pagination from "@/components/Pagination";
 // import HeroSection from "@/components/HeroSection";
 
+
 export default function TravelBlog(): JSX.Element {
   const [stories, setStories] = useState<miniStoryType[]>([]);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -21,13 +22,15 @@ export default function TravelBlog(): JSX.Element {
   useEffect(() => {
     const getFetchdata = async (): Promise<void> => {
       try {
-        const travels = await axios.get(`${process.env.BACKEND_API_URI}/ministory/get`);
+        console.log(`${process.env.NEXT_PUBLIC_BACKEND_API_URI}/ministory/get`);
+        const travels = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_API_URI}/ministory/get`);
         const filteredData = travels.data.filter(
           (item: miniStoryType) => item.userId
-        );
+          );
+          console.log("Filtered Data ==> ", filteredData);
         setStories(filteredData);
 
-        const userAllInfo = await axios.get(`${process.env.BACKEND_API_URI}/users/all`);
+        const userAllInfo = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_API_URI}/users/all`);
         const allUsers = userAllInfo.data;
 
         const matchingUserIds = filteredData.map(

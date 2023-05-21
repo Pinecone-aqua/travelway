@@ -106,7 +106,7 @@ export default function User(): JSX.Element {
                 </button>
               </Link>
             ) : (
-              <Link href="/miniStoryAdd">
+              <Link href="/addtour">
                 <button className="py-2 px-5 font-semibold text-gray-400 grid place-content-center w-[100%] bg-gray-200 rounded-lg shadow-lg hover:bg-gray-300 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110">
                   Add your new Travel
                 </button>
