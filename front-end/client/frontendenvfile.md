@@ -10,8 +10,10 @@ CLOUDINARY='Cloudinary'
 JWT_SECRET="MySuperSecretKey"
 ##Backend tal.
 
-### Front end ENV 
+### Front end ENV
+
 ### env file create and copy bellow code.
+
 CLIENT_PORT=3000
 PORT=3009
 CLIENT_ID=301899563831-9b8n9kqrs0bt17hkmlb1pr4g188ng6qa.apps.googleusercontent.com
@@ -23,3 +25,5 @@ NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=AIzaSyBfPInbaLlSrx9I6lu3Il5cCW90vEn5mEc
 JWT_SECRET=MySuperSecretKey
 NEXT_PUBLIC_BACKEND_API_URI=http://localhost:3009
 NEXT_PUBLIC_CLIENT_URI=http://localhost:3000
+
+NEXT_PUBLIC_GOOGLE_MAPS_API_KEYv1="AIzaSyAhjl1X_pQkIAeTUWlWv4cKKUDqgyxDCQE"
