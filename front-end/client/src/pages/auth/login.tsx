@@ -66,16 +66,16 @@ export default function Login(): JSX.Element {
         }
       }
     } catch (error) {
-      console.log("Error occurred: ", error);
       setError(`Хэрэглэгчийн и-мейл, нууц үг буруу байна`);
     }
   }
 
   function googleLoginHandler() {
-    axios.get(`${process.env.NEXT_PUBLIC_BACKEND_API_URI}/google-login`).then((res) => {
-      console.log("Google", res.data);
-      router.push(res.data);
-    });
+    axios
+      .get(`${process.env.NEXT_PUBLIC_BACKEND_API_URI}/google-login`)
+      .then((res) => {
+        router.push(res.data);
+      });
   }
 
   const notifySuccess = () =>
@@ -171,7 +171,8 @@ export default function Login(): JSX.Element {
                   router.push("/auth/register");
                 }}
               >
-                Энд дарж
+                {" "}
+                Энд дарж{" "}
               </span>
               бүртгүүлнэ.
             </div>
