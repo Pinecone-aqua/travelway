@@ -52,7 +52,7 @@ export default function Register(): JSX.Element {
       role: userRole,
     };
 
-    const endpoint = `http://localhost:3009/auth/signup`;
+    const endpoint = `${process.env.NEXT_PUBLIC_BACKEND_API_URI}/auth/signup`;
 
     axios
       .post(endpoint, data)

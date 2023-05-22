@@ -40,7 +40,7 @@ export default function Login(): JSX.Element {
       if (!data.email || !data.password) {
         setError("Нэр болон нууц үгээ бүрэн оруулна уу");
       } else {
-        const endpoint = `http://localhost:3009/auth/login`;
+        const endpoint = `${process.env.NEXT_PUBLIC_BACKEND_API_URI}/auth/login`;
         const response = await axios.post(endpoint, data);
         // response.data.status status
         // response.data.msg message
@@ -72,7 +72,7 @@ export default function Login(): JSX.Element {
   }
 
   function googleLoginHandler() {
-    axios.get(`http://localhost:3009/google-login`).then((res) => {
+    axios.get(`${process.env.NEXT_PUBLIC_BACKEND_API_URI}/google-login`).then((res) => {
       console.log("Google", res.data);
       router.push(res.data);
     });
