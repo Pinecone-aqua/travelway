@@ -147,7 +147,7 @@ const LoginAuthentication = ({ user, setUser }: HeaderType) => {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const LoginButton = ({ user }: any) => (
-  <button className="w-[40px] h-[40px] mr-3">
+  <div className="w-[40px] h-[40px] mr-3">
     {user && user.image && (
       <picture>
         <img
@@ -157,5 +157,5 @@ const LoginButton = ({ user }: any) => (
         />
       </picture>
     )}
-  </button>
+  </div>
 );
