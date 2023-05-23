@@ -13,7 +13,12 @@
 #pr_id_2_content {
   padding: 0;
 } */
-
+.input {
+  border-style: solid;
+  border-width: 2px;
+  width: 200px;
+  background-color: white !important;
+}
 .css-1ik4h6n {
   visibility: hidden;
 }

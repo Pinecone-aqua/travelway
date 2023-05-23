@@ -5,10 +5,10 @@ export default function CategoryFilter() {
 
   function filterHandler(e: { target: { value: string } }) {
     const pathname = "/stories";
-
+    const category = e.target.value;
     router.push({
       pathname,
-      query: { ...router.query, category: e.target.value },
+      query: { ...router.query, category: category === "Бүгд" ? "" : category },
     });
   }
 
