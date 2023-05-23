@@ -13,10 +13,10 @@
 body {
   overscroll-behavior-x: none;
 }
-/* 
-#pr_id_2_content {
-  padding: 0;
-} */
+
+.menulist {
+  inset: 0px 0px auto auto !important;
+}
 
 .css-1ik4h6n {
   visibility: hidden;

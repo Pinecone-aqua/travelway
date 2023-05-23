@@ -23,6 +23,18 @@ export class MiniStoryController {
   create(@Body() createTravelDto: CreateMiniStoryDto): Promise<MiniStory> {
     return this.travelService.create(createTravelDto);
   }
+
+  @Post('uploadimg')
+  @UseInterceptors(FileInterceptor('image'))
+  async uploadImage(@UploadedFile() file: Express.Multer.File) {
+    try {
+      const result = await this.travelService.addOneImageToCld(file);
+      return result;
+    } catch (error) {
+      console.log('eRRor==> ', error);
+    }
+  }
+
   @Get('allId')
   findAllId(): Promise<number> {
     return this.travelService.findAllId();
@@ -53,16 +65,5 @@ export class MiniStoryController {
   @Get('user/:id')
   find(@Param('id') id: string): Promise<MiniStory[]> {
     return this.travelService.findMinstory(id);
-  }
-
-  @Post('uploadimg')
-  @UseInterceptors(FileInterceptor('image'))
-  async uploadImage(@UploadedFile() file: Express.Multer.File) {
-    try {
-      const result = await this.travelService.addOneImageToCld(file);
-      return result;
-    } catch (error) {
-      console.log('eRRor==> ', error);
-    }
   }
 }

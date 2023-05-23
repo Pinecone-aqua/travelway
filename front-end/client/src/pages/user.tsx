@@ -25,7 +25,9 @@ export default function User(): JSX.Element {
   useEffect(() => {
     const getFetchTravel = async (): Promise<void> => {
       try {
-        const travels = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_API_URI}/travels/get`);
+        const travels = await axios.get(
+          `${process.env.NEXT_PUBLIC_BACKEND_API_URI}/travels/get`
+        );
         const filteredData = travels.data.filter(
           (item: TravelType) => item.userId === user?._id
         );
@@ -40,7 +42,9 @@ export default function User(): JSX.Element {
   useEffect(() => {
     const getFetchData = async (): Promise<void> => {
       try {
-        const travels = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_API_URI}/ministory/get`);
+        const travels = await axios.get(
+          `${process.env.NEXT_PUBLIC_BACKEND_API_URI}/ministory/get`
+        );
         const filteredData = travels.data.filter(
           (item: miniStoryType) => item.userId === user?._id
         );

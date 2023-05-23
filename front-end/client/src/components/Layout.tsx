@@ -7,16 +7,18 @@ interface PropType {
 
 const Layout = ({ children }: PropType): JSX.Element => (
   <>
-    <div className="pt-3 p-1">
-      <Header />
+    <div>
+      <div className="pt-3 p-1">
+        <Header />
+      </div>
+      <div>{children}</div>
+      <Footer />
     </div>
-    <div>{children}</div>
-    <Footer />
   </>
 );
 
 const Footer = () => (
-  <div className="text-center text-slate-500 py-4 bg-slate-100 bottom-0 w-full ">
+  <div className="text-center text-slate-500 py-4 bg-slate-100  w-full ">
     {"Copyright © 2023 Travelway development team."}
   </div>
 );

@@ -7,8 +7,6 @@ import { miniStoryType } from "../../util/types";
 import TravelblogCard from "@/components/travelBlog/TravelblogCard";
 import { Skeleton, Stack } from "@chakra-ui/react";
 import Pagination from "@/components/Pagination";
-// import HeroSection from "@/components/HeroSection";
-
 
 export default function TravelBlog(): JSX.Element {
   const [stories, setStories] = useState<miniStoryType[]>([]);
@@ -23,14 +21,16 @@ export default function TravelBlog(): JSX.Element {
     const getFetchdata = async (): Promise<void> => {
       try {
         console.log(`${process.env.NEXT_PUBLIC_BACKEND_API_URI}/ministory/get`);
-        const travels = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_API_URI}/ministory/get`);
+        const travels = await axios.get(
+          `${process.env.NEXT_PUBLIC_BACKEND_API_URI}/ministory/get`
+        );
         const filteredData = travels.data.filter(
           (item: miniStoryType) => item.userId
-          );
-          console.log("Filtered Data ==> ", filteredData);
+        );
         setStories(filteredData);
-
-        const userAllInfo = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_API_URI}/users/all`);
+        const userAllInfo = await axios.get(
+          `${process.env.NEXT_PUBLIC_BACKEND_API_URI}/users/all`
+        );
         const allUsers = userAllInfo.data;
 
         const matchingUserIds = filteredData.map(
@@ -58,21 +58,28 @@ export default function TravelBlog(): JSX.Element {
     setIsOpen(false);
   };
 
+  console.log("wjhate", stories);
+
+  function gridFunc() {
+    if (stories.length === 0) {
+      ("");
+    } else {
+      ("sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 xxl:grid-cols-4 grid");
+    }
+  }
+
   return (
     <>
-      {/* <HeroSection /> */}
       <div className="flex justify-center content-center pt-5">
         <div className="gap-3 grid">
-          <div className="gap-3 grid p-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 xxl:grid-cols-4 relative ">
+          <div className={`gap-3  p-2 ${gridFunc} relative `}>
             {stories.length === 0 ? (
-              <div className="flex justify-center content-center  ">
-                <div>
-                  <Stack className="w-[500px] h-auto flex ">
-                    <Skeleton height="20px" />
-                    <Skeleton height="20px" />
-                    <Skeleton height="20px" />
-                  </Stack>
-                </div>
+              <div className="flex justify-center content-center gap-2  ">
+                <Stack className="w-[500px] h-auto flex ">
+                  <Skeleton height="20px" />
+                  <Skeleton height="20px" />
+                  <Skeleton height="20px" />
+                </Stack>
               </div>
             ) : (
               stories.map((story: miniStoryType, index: number) => (

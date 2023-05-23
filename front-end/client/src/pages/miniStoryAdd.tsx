@@ -18,10 +18,9 @@ export default function MiniStoryAdd(): JSX.Element {
       userId: user?._id,
       title: e.currentTarget.title.value,
       sentence: e.currentTarget.sentence.value,
-      image: e.currentTarget.image.value,
+      // image: e.currentTarget.image.value,
     };
-
-    console.log(formDataObj);
+    const formDataImg = { image: e.currentTarget.image.value };
 
     axios
       .post(
@@ -35,6 +34,11 @@ export default function MiniStoryAdd(): JSX.Element {
         console.error("Error creating mini story:", error);
         notifyLoginError();
       });
+
+    axios.post(
+      `${process.env.NEXT_PUBLIC_BACKEND_API_URI}/miniStory/uploadimg/image`,
+      formDataImg
+    );
   }
 
   function handleChange() {
@@ -72,7 +76,9 @@ export default function MiniStoryAdd(): JSX.Element {
     <>
       <div>
         <button className="border w-[50px] h-[50px] rounded-full text-gray-500 m-3">
-          <Link href="/user">back</Link>
+          <Link href="/user" className="">
+            back
+          </Link>
         </button>
         <div className="w-[100%]  bg-white p-5 z-50  ">
           <div className=" bg-white p-5 z-50">

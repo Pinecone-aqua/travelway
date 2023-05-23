@@ -8,12 +8,13 @@ import { InjectModel } from '@nestjs/mongoose';
 import { MiniStory } from './schemas/miniStory.schema';
 import { CreateMiniStoryDto } from './dto/create-miniStory.dto';
 import { UpdateMiniStorylDto } from './dto/update-miniStory.dto';
+import { CloudinaryService as Cloudinary } from 'src/cloudinary/cloudinary.service';
 
 @Injectable()
 export class MiniStoryService {
-  cloudinary: any;
   constructor(
     @InjectModel('miniStory') private readonly miniStoryModel: Model<MiniStory>,
+    private readonly cloudinary: Cloudinary,
   ) {}
 
   async create(createMiniStoryDto: CreateMiniStoryDto): Promise<MiniStory> {

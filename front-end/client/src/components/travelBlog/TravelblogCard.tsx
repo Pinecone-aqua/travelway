@@ -24,8 +24,6 @@ type StoryProps = {
 export default function TravelblogCard(props: StoryProps) {
   const { story, userInfo } = props;
 
-  console.log("usrIn", userInfo);
-
   const {
     isOpen: isOffCanvasOpen,
     onOpen: onOffCanvasOpen,

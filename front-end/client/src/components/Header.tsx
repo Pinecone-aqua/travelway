@@ -115,7 +115,7 @@ const LoginAuthentication = ({ user, setUser }: HeaderType) => {
               <MenuButton>
                 <LoginButton user={user} />
               </MenuButton>
-              <MenuList>
+              <MenuList className="menulist">
                 <Link href="/user">
                   <MenuItem>Profile</MenuItem>
                 </Link>
