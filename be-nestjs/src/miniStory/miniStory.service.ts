@@ -11,6 +11,7 @@ import { UpdateMiniStorylDto } from './dto/update-miniStory.dto';
 
 @Injectable()
 export class MiniStoryService {
+  cloudinary: any;
   constructor(
     @InjectModel('miniStory') private readonly miniStoryModel: Model<MiniStory>,
   ) {}
@@ -25,6 +26,24 @@ export class MiniStoryService {
     const newMiniStory = new this.miniStoryModel(createMiniStoryDto);
     const result = await newMiniStory.save();
     return result;
+  }
+
+  async addOneImageToCld(file: any): Promise<any> {
+    const { secure_url } = await this.cloudinary.uploadImage(file);
+    return secure_url;
+  }
+
+  async uploadImageToCloudinary(
+    images: Express.Multer.File[],
+  ): Promise<string[]> {
+    const arr = [];
+    await Promise.all(
+      images?.map(async (file) => {
+        const { secure_url } = await this.cloudinary.uploadImage(file);
+        return arr.push(secure_url);
+      }),
+    );
+    return arr;
   }
 
   async findAll(): Promise<MiniStory[]> {

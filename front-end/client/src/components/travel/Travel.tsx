@@ -6,7 +6,6 @@ import { TravelType } from "../../../util/types";
 
 export default function TravelCard(props: { data: TravelType }): JSX.Element {
   const data = props.data;
-  console.log(data);
   const [like, setLike] = useState(false);
 
   return (

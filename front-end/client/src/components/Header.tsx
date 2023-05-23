@@ -62,7 +62,6 @@ export default function Header(): JSX.Element {
               />
               <MenuList className="bg-white ">
                 {MENULIST.map((menuItem, index) => (
-                  // eslint-disable-next-line react/jsx-key
                   <Link href={menuItem.uri} key={index}>
                     <MenuItem key={index} className="hover:bg-gray">
                       <button>{menuItem.name}</button>
@@ -124,6 +123,7 @@ const LoginAuthentication = ({ user, setUser }: HeaderType) => {
                   onClick={() => {
                     Cookies.remove("usertoken");
                     setUser(null);
+                    router.push("/");
                   }}
                 >
                   Logout
@@ -133,11 +133,10 @@ const LoginAuthentication = ({ user, setUser }: HeaderType) => {
           </>
         ) : (
           <div
-            className="flex items-center justify-center gap-2 cursor-pointer"
+            className="flex items-center justify-center gap-2 cursor-pointer m-2"
             onClick={loginCheckAuth}
           >
             <span>Нэвтрэх</span>
-            <LoginButton user={user} />
           </div>
         )}
       </div>

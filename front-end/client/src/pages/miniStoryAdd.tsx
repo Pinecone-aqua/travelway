@@ -24,7 +24,10 @@ export default function MiniStoryAdd(): JSX.Element {
     console.log(formDataObj);
 
     axios
-      .post(`${process.env.NEXT_PUBLIC_BACKEND_API_URI}/miniStory/add`, formDataObj)
+      .post(
+        `${process.env.NEXT_PUBLIC_BACKEND_API_URI}/miniStory/add`,
+        formDataObj
+      )
       .then(() => {
         notifySuccess();
       })
@@ -68,7 +71,7 @@ export default function MiniStoryAdd(): JSX.Element {
   return (
     <>
       <div>
-        <button className="border p-3 rounded-xl font-semibold px-[25px] m-4">
+        <button className="border w-[50px] h-[50px] rounded-full text-gray-500 m-3">
           <Link href="/user">back</Link>
         </button>
         <div className="w-[100%]  bg-white p-5 z-50  ">
@@ -84,6 +87,12 @@ export default function MiniStoryAdd(): JSX.Element {
                   placeholder="Give me a name"
                   className="border-b-[2px]  p-2  placeholder:text-[25px] font-semibold text-[25px] activate:border-none"
                 />
+                {/* <input
+                  type="file"
+                  placeholder="image"
+                  className="border  p-2 rounded-xl w-[100%] h-[300px] bg-gray-30 "
+                  name="image"
+                /> */}
                 <input
                   type="text"
                   placeholder="image"
