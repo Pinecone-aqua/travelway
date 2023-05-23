@@ -6,10 +6,11 @@ export default function ProvinceFilter(): JSX.Element {
 
   function filterHandler(e: { target: { value: string } }) {
     const pathname = "/stories";
-    console.log(e.target.value);
+    const province = e.target.value;
+
     router.push({
       pathname,
-      query: { ...router.query, province: e.target.value },
+      query: { ...router.query, province: province === "Бүгд" ? "" : province },
     });
   }
   return (

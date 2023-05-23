@@ -1,6 +1,7 @@
 import ProvinceFilter from "@/components/story/ProvinceFilter";
+import SearchModal from "@/components/story/SearchModal";
 import CategoryFilter from "@/components/story/StoryFilter";
-import StorySearch from "@/components/story/StorySearch";
+
 import { GoogleMap, MarkerF } from "@react-google-maps/api";
 import { useLoadScript } from "@react-google-maps/api";
 import axios from "axios";
@@ -37,7 +38,7 @@ export default function BranchSection(props: {
     <div>
       <div className="flex justify-between m-5">
         <CategoryFilter />
-        <StorySearch />
+        <SearchModal markers={markers} />
         <ProvinceFilter />
       </div>
 
@@ -66,17 +67,16 @@ export default function BranchSection(props: {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function getServerSideProps(context: { query: any }) {
   const { query } = context;
-  console.log("query", query.province, query.category);
   try {
     const res = await axios.get(
-      `${process.env.NEXT_PUBLIC_BACKEND_API_URI}/stories/mark?&${
+      `${process.env.NEXT_PUBLIC_BACKEND_API_URI}/stories/mark?${
         query.search ? `&search=${query.search}` : ""
       }${query.category ? `&category=${query.category}` : ""}${
         query.province ? `&province=${query.province}` : ""
+      }${query.province === "Бүгд" ? "" : ""}${
+        query.category === "Бүгд" ? "Бүгд" : ""
       }`
     );
-    console.log(res.status);
-
     if (res.status === 200) {
       return {
         props: {
@@ -90,6 +90,6 @@ export async function getServerSideProps(context: { query: any }) {
         },
       };
   } catch (error) {
-    console.log(error);
+    return error;
   }
 }
