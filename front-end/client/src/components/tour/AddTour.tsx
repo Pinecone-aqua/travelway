@@ -2,7 +2,7 @@ import React from "react";
 import { DayType } from "../../../util/types";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { useUser } from "../../../context/user.context";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import { UserDataContextType } from "../../../util/types";
 import Link from "next/link";
 import TourDetails from "./TourDetails";
