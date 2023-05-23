@@ -9,6 +9,10 @@
   -ms-user-select: none; /* IE*/
   user-select: none; /* Standard syntax */
 }
+
+body {
+  overscroll-behavior-x: none;
+}
 /* 
 #pr_id_2_content {
   padding: 0;
