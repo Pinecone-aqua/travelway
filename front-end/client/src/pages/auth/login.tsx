@@ -52,8 +52,8 @@ export default function Login(): JSX.Element {
             Cookies.set("usertoken", tokenStr);
             setToken(tokenStr);
             notifySuccess();
-
             router.back();
+
           } else {
             notifyLoginError();
             setError(`Хэрэглэгчийн и-мейл, нууц үг буруу байна`);

@@ -3,6 +3,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { FormEvent, useState } from "react";
 import { toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 
 interface InputStateType {
   username: string;
@@ -59,8 +60,20 @@ export default function Register(): JSX.Element {
       .then((restData) => {
         const result = restData.data;
         console.log(result);
-        toast.success("Амжилттай хадгалагдлаа");
-        router.push("/login");
+
+        toast.success("Амжилттай хадгалагдлаа",{
+          position: "bottom-right",
+          autoClose: 4000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+        setTimeout(() => {
+          router.push("/");
+        }, 5000)
       })
       .catch((error) => {
         console.log(error);
@@ -95,7 +108,7 @@ export default function Register(): JSX.Element {
                   name="username"
                   id="username"
                   placeholder="Хэрэглэгч нэр"
-                  className="text-md border border-slate-500 rounded p-1  placeholder-gray-300 mb-4"
+                  className="text-md border border-slate-500 rounded p-1  placeholder-gray-300 mb-"
                 />
 
                 <label htmlFor="nickname">Nickname</label>
@@ -105,7 +118,7 @@ export default function Register(): JSX.Element {
                   name="nickname"
                   id="nickname"
                   placeholder="nickname"
-                  className="text-md border border-slate-500 rounded p-1  placeholder-gray-300 mb-4"
+                  className="text-md border border-slate-500 rounded p-1  placeholder-gray-300 mb-"
                 />
 
                 <label htmlFor="email">И-мейл хаяг</label>
@@ -115,7 +128,7 @@ export default function Register(): JSX.Element {
                   name="email"
                   id="email"
                   placeholder="email хаяг"
-                  className="text-md border border-slate-500 rounded p-1  placeholder-gray-300 mb-4"
+                  className="text-md border border-slate-500 rounded p-1  placeholder-gray-300 mb-"
                 />
                 <label htmlFor="phone">Утасны дугаар</label>
                 <input
@@ -124,7 +137,7 @@ export default function Register(): JSX.Element {
                   name="phone"
                   id="phone"
                   placeholder="Утасны дугаар"
-                  className="text-md border border-slate-500 rounded p-1  placeholder-gray-300 mb-4"
+                  className="text-md border border-slate-500 rounded p-1  placeholder-gray-300 mb-"
                 />
 
                 <label htmlFor="prepassword">Нууц үг</label>
@@ -134,7 +147,7 @@ export default function Register(): JSX.Element {
                   name="prepassword"
                   id="prepassword"
                   placeholder="Нууц үг"
-                  className="text-md border border-slate-500 rounded p-1 placeholder-gray-300 mb-4"
+                  className="text-md border border-slate-500 rounded p-1 placeholder-gray-300 mb-"
                 />
 
                 <label htmlFor="password">Нууц үгээ давтан оруулна</label>
@@ -144,7 +157,7 @@ export default function Register(): JSX.Element {
                   name="password"
                   id="password"
                   placeholder="Нууц үг"
-                  className="text-md border border-slate-500 rounded p-1 placeholder-gray-300 mb-4"
+                  className="text-md border border-slate-500 rounded p-1 placeholder-gray-300 mb-"
                 />
 
                 <label htmlFor="biography">Өөрийн товч мэдээлэл оруулна</label>
@@ -153,7 +166,7 @@ export default function Register(): JSX.Element {
                   name="biography"
                   id="biography"
                   placeholder="Товч мэдээлэл"
-                  className="text-md border border-slate-500 rounded p-1 placeholder-gray-300 mb-4"
+                  className="text-md border border-slate-500 rounded p-1 placeholder-gray-300 mb-"
                 />
 
                 <label htmlFor="profileimage">Профайл зураг оруулна</label>
@@ -163,7 +176,7 @@ export default function Register(): JSX.Element {
                   name="image"
                   id="profileimage"
                   placeholder="Image URL"
-                  className="text-md border border-slate-500 rounded p-1 placeholder-gray-300 mb-4"
+                  className="text-md border border-slate-500 rounded p-1 placeholder-gray-300 mb-"
                 />
 
                 <button
@@ -176,6 +189,18 @@ export default function Register(): JSX.Element {
             </div>
           </form>
         </div>
+        <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       </div>
     </div>
   );
