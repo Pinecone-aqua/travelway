@@ -29,7 +29,7 @@ interface CoordType {
 }
 
 export interface miniStoryType {
-  userId: string | undefined;
+  userId: string | undefined ;
   username?: string;
   width: number;
   height: number;

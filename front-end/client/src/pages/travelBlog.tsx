@@ -62,9 +62,9 @@ export default function TravelBlog(): JSX.Element {
 
   function gridFunc() {
     if (stories.length === 0) {
-      ("");
+      return "";
     } else {
-      ("sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 xxl:grid-cols-4 grid");
+      return "sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 xxl:grid-cols-4 grid";
     }
   }
 
@@ -72,7 +72,7 @@ export default function TravelBlog(): JSX.Element {
     <>
       <div className="flex justify-center content-center pt-5">
         <div className="gap-3 grid">
-          <div className={`gap-3  p-2 ${gridFunc} relative `}>
+          <div className={`gap-3  p-2 ${gridFunc()} relative `}>
             {stories.length === 0 ? (
               <div className="flex justify-center content-center gap-2  ">
                 <Stack className="w-[500px] h-auto flex ">

@@ -133,7 +133,7 @@ const LoginAuthentication = ({ user, setUser }: HeaderType) => {
           </>
         ) : (
           <div
-            className="flex items-center justify-center gap-2 cursor-pointer m-2"
+            className="flex items-center justify-center gap-2 cursor-pointer m-2 pr-3"
             onClick={loginCheckAuth}
           >
             <span>Нэвтрэх</span>

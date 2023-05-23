@@ -14,18 +14,21 @@ export default function MiniStoryAdd(): JSX.Element {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function miniStoryHandler(e: any) {
     e.preventDefault();
-    const formDataObj = {
-      userId: user?._id,
-      title: e.currentTarget.title.value,
-      sentence: e.currentTarget.sentence.value,
-      // image: e.currentTarget.image.value,
-    };
-    const formDataImg = { image: e.currentTarget.image.value };
+    const formData = new FormData();
+    formData.append("title", e.currentTarget.title.value);
+    formData.append("sentence", e.currentTarget.sentence.value);
+    formData.append("userId", user?._id || "");
+    formData.append("image", e.currentTarget.image.value);
+
+    // const imageFile = e.currentTarget.image.files[0];
+    // if (imageFile) {
+    //   formData.append("image", imageFile);
+    // }
 
     axios
       .post(
-        `${process.env.NEXT_PUBLIC_BACKEND_API_URI}/miniStory/add`,
-        formDataObj
+        `${process.env.NEXT_PUBLIC_BACKEND_API_URI}/ministory/add`,
+        formData
       )
       .then(() => {
         notifySuccess();
@@ -34,11 +37,6 @@ export default function MiniStoryAdd(): JSX.Element {
         console.error("Error creating mini story:", error);
         notifyLoginError();
       });
-
-    axios.post(
-      `${process.env.NEXT_PUBLIC_BACKEND_API_URI}/miniStory/uploadimg/image`,
-      formDataImg
-    );
   }
 
   function handleChange() {

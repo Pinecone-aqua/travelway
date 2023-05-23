@@ -117,7 +117,9 @@ export class StoryService {
 
     if (!(selectedCategory || selectedProvince || search)) {
       console.log('1');
-      const result = await this.storyModel.find({}).select({ id: 1, coord: 1 });
+      const result = await this.storyModel
+        .find({})
+        .select({ id: 1, coord: 1, title: 1 });
       return result;
     } else if (selectedCategory && selectedProvince && search) {
       console.log('2');
@@ -127,12 +129,12 @@ export class StoryService {
           province: selectedProvince,
           title: { $regex: new RegExp(search, 'i') },
         })
-        .select({ id: 1, coord: 1 });
+        .select({ id: 1, coord: 1, title: 1 });
       return result;
     } else if (selectedCategory && selectedProvince) {
       const result = await this.storyModel
         .find({ category: selectedCategory, province: selectedProvince })
-        .select({ id: 1, coord: 1 });
+        .select({ id: 1, coord: 1, title: 1 });
       return result;
     } else if (selectedCategory && search) {
       console.log('4');
@@ -141,7 +143,7 @@ export class StoryService {
           category: selectedCategory,
           title: { $regex: new RegExp(search, 'i') },
         })
-        .select({ id: 1, coord: 1 });
+        .select({ id: 1, coord: 1, title: 1 });
       return result;
     } else if (selectedProvince && search) {
       const result = await this.storyModel
@@ -149,22 +151,22 @@ export class StoryService {
           province: selectedProvince,
           title: { $regex: new RegExp(search, 'i') },
         })
-        .select({ id: 1, coord: 1 });
+        .select({ id: 1, coord: 1, title: 1 });
       return result;
     } else if (selectedCategory) {
       const result = await this.storyModel
         .find({ category: selectedCategory })
-        .select({ id: 1, coord: 1 });
+        .select({ id: 1, coord: 1, title: 1 });
       return result;
     } else if (selectedProvince) {
       const result = await this.storyModel
         .find({ province: selectedProvince })
-        .select({ id: 1, coord: 1 });
+        .select({ id: 1, coord: 1, title: 1 });
       return result;
     } else if (search) {
       const result = await this.storyModel
         .find({ title: { $regex: new RegExp(search, 'i') } })
-        .select({ id: 1, coord: 1 });
+        .select({ id: 1, coord: 1, title: 1 });
       return result;
     } else {
       console.log('else');

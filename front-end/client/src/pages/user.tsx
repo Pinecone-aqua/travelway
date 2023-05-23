@@ -17,6 +17,9 @@ export default function User(): JSX.Element {
   const activatedStyle =
     "border-black  py-[3px] font-semibold  border-b-2  transiton w-[200px]";
 
+  const twoButtonStyle =
+    " py-2 px-5 font-semibold text-gray-400 grid place-content-center w-[100%] bg-gray-200 rounded-lg shadow-lg hover:bg-gray-300 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110";
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function changer(e: any) {
     setChange(e.target.innerText);
@@ -105,13 +108,13 @@ export default function User(): JSX.Element {
           <div className="gap-3 grid">
             {change == "Mini story" ? (
               <Link href="/miniStoryAdd">
-                <button className="py-2 px-5 font-semibold text-gray-400 grid place-content-center w-[100%] bg-gray-200 rounded-lg shadow-lg hover:bg-gray-300 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110">
+                <button className={`${twoButtonStyle}`}>
                   Add your new adventure
                 </button>
               </Link>
             ) : (
               <Link href="/addtour">
-                <button className="py-2 px-5 font-semibold text-gray-400 grid place-content-center w-[100%] bg-gray-200 rounded-lg shadow-lg hover:bg-gray-300 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110">
+                <button className={`${twoButtonStyle}`}>
                   Add your new Travel
                 </button>
               </Link>
