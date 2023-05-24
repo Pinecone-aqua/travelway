@@ -5,7 +5,7 @@ const TourDetails = (props: {
   index: number;
   dayDetailOf: DayType;
   handleFormChange(e: ChangeEvent<HTMLInputElement>, index: number): void;
-  handleFileChange?: (event: ChangeEvent<HTMLInputElement>) => void;
+  handleFileChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }): JSX.Element => {
   const { index, dayDetailOf, handleFormChange, handleFileChange } = props;
 
@@ -63,7 +63,7 @@ const TourDetails = (props: {
         <label className="mt-4 w-full" htmlFor="image">
           Зураг/Image:
         </label>
-        <input className="inline-block p-2 rounded bg-slate-100" type="file" onChange={handleFileChange} />
+        <input className="inline-block p-2 rounded bg-slate-100" type="file" name="image" onChange={(e) => handleFileChange(e)} />
       </div>
     </div>
   );

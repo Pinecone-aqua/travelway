@@ -37,9 +37,6 @@ export class MiniStoryService {
       const result = await this.miniStoryModel.findOne({
         _id: new mongoose.Types.ObjectId(id),
       });
-
-      console.log('huselt orj irlee');
-      console.log(result);
       return result;
     } catch (error) {
       console.log(error);
