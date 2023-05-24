@@ -6,6 +6,7 @@ import { Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/menu";
 import { IconButton } from "@chakra-ui/react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { useUser } from "../../context/user.context";
+import Dropdown from "react-bootstrap/Dropdown";
 
 interface HeaderType {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -111,7 +112,7 @@ const LoginAuthentication = ({ user, setUser }: HeaderType) => {
       <div className="absolute right-0 flex items-center ">
         {user ? (
           <>
-            <Menu>
+            {/* <Menu>
               <MenuButton>
                 <LoginButton user={user} />
               </MenuButton>
@@ -129,7 +130,25 @@ const LoginAuthentication = ({ user, setUser }: HeaderType) => {
                   Logout
                 </MenuItem>
               </MenuList>
-            </Menu>
+            </Menu> */}
+            <Dropdown className="pr-4 ">
+              <Dropdown.Toggle className="border-0 hover:bg-none h-[50px] w-[50px] ">
+                <LoginButton user={user} />
+              </Dropdown.Toggle>
+              <Dropdown.Menu className="border-gray-200 pr-10">
+                <Dropdown.Item href="/user">Profile</Dropdown.Item>
+                <Dropdown.Item
+                  href="#/action-2"
+                  onClick={() => {
+                    Cookies.remove("usertoken");
+                    setUser(null);
+                    router.push("/");
+                  }}
+                >
+                  Logout
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
           </>
         ) : (
           <div

@@ -58,8 +58,6 @@ export default function TravelBlog(): JSX.Element {
     setIsOpen(false);
   };
 
-  console.log("wjhate", stories);
-
   function gridFunc() {
     if (stories.length === 0) {
       return "";

@@ -10,18 +10,36 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { MiniStoryService } from './miniStory.service';
-import { CreateMiniStoryDto } from './dto/create-miniStory.dto';
 import { MiniStory } from './schemas/miniStory.schema';
 import { UpdateMiniStorylDto } from './dto/update-miniStory.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { CreateMiniStoryDto } from './dto/create-miniStory.dto';
 
 @Controller('ministory')
 export class MiniStoryController {
   constructor(private readonly travelService: MiniStoryService) {}
 
   @Post('add')
-  create(@Body() createTravelDto: CreateMiniStoryDto): Promise<MiniStory> {
-    return this.travelService.create(createTravelDto);
+  @UseInterceptors(FileInterceptor('image'))
+  async create(
+    @Body()
+    body: { body: string },
+    @UploadedFile() file: Express.Multer.File,
+  ): Promise<MiniStory> {
+    try {
+      const reqBody: CreateMiniStoryDto = JSON.parse(body.body);
+
+      if (file) {
+        const url = await this.travelService.addOneImageToCld(file);
+        reqBody.image = url;
+      }
+      console.log('Request data ====> ');
+      console.log(reqBody);
+
+      return this.travelService.create(reqBody);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   @Post('uploadimg')
@@ -33,6 +51,16 @@ export class MiniStoryController {
     } catch (error) {
       console.log('eRRor==> ', error);
     }
+  }
+
+  @Get('pageNum')
+  countNum(): Promise<number> {
+    return this.travelService.countNum();
+  }
+
+  @Get('page:id')
+  findPage(@Param('id') pageNum: number): Promise<MiniStory> {
+    return this.travelService.findPage(pageNum);
   }
 
   @Get('allId')

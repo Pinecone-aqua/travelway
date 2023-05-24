@@ -29,6 +29,20 @@ export class MiniStoryService {
     return result;
   }
 
+  async countNum(): Promise<number> {
+    const result = await this.miniStoryModel.count();
+    return result;
+  }
+
+  async findPage(pageNum: number): Promise<any> {
+    const result = await this.miniStoryModel
+      .find({})
+      .select({ _id: 1, title: 1, province: 1 })
+      .skip((pageNum - 1) * 8)
+      .limit(8);
+    return result;
+  }
+
   async addOneImageToCld(file: any): Promise<any> {
     const { secure_url } = await this.cloudinary.uploadImage(file);
     return secure_url;

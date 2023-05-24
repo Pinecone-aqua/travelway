@@ -2,11 +2,11 @@ import { IsString } from 'class-validator';
 
 export class CreateMiniStoryDto {
   @IsString()
-  readonly image: string;
+  image: string;
   @IsString()
-  readonly title: string;
+  title: string;
   @IsString()
-  readonly sentence: string;
+  sentence: string;
   @IsString()
-  readonly userId: string;
+  userId: string;
 }

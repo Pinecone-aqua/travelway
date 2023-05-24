@@ -14,6 +14,37 @@ body {
   overscroll-behavior-x: none;
 }
 
+.dropdown-menu {
+  inset: 0px 0px auto auto !important;
+}
+
+#fileInput {
+  display: none;
+}
+
+#customButton {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #eaeaea;
+  color: #333;
+  border: 2px solid #333;
+  border-radius: 4px;
+  height: 300px;
+  cursor: pointer;
+}
+
+.btn {
+  background-color: transparent !important;
+}
+
+.btn.show {
+  background-color: none !important;
+}
+
+.btn:hover {
+  background-color: transparent !important;
+}
+
 .menulist {
   inset: 0px 0px auto auto !important;
 }
@@ -49,6 +80,28 @@ summary {
 .css-17pwl6t {
   z-index: 1 !important;
 }
+
+.css-1o3pyl4 {
+  height: 100%;
+}
+
+@media screen and (max-width: 600px) {
+  .css-1dtnjt5 {
+    padding: 0;
+  }
+
+  .blogcardBox {
+    display: none;
+    padding: 0;
+  }
+
+  .css-yklny3 img {
+    width: 50px !important;
+    height: 50px !important;
+    margin-left: 10px;
+  }
+}
+
 @media screen and (max-width: 600px) {
   .css-3a5bz2 {
     width: 60% !important;

@@ -32,20 +32,26 @@ export default function MiniStoryCardOffCanvas(props: Props): JSX.Element {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const { user } = useContext(UserContext);
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  function edit(e: any) {
-    e.preventDefault();
-    axios.patch(`${process.env.NEXT_PUBLIC_BACKEND_API_URI}/ministory/${story._id}`, {
-      title: e.target.title.value,
-      sentence: e.target.sentence.value,
-    });
-    notifySuccess();
+  function remove() {
+    axios
+      .delete(
+        `${process.env.NEXT_PUBLIC_BACKEND_API_URI}/ministory/${story._id}`
+      )
+      .then(() => notifyDelete());
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  function remove() {
-    axios.delete(`${process.env.NEXT_PUBLIC_BACKEND_API_URI}/ministory/${story._id}`);
-    notifyDelete();
+  function edit(e: any) {
+    e.preventDefault();
+    axios
+      .patch(
+        `${process.env.NEXT_PUBLIC_BACKEND_API_URI}/ministory/${story._id}`,
+        {
+          title: e.target.title.value,
+          sentence: e.target.sentence.value,
+        }
+      )
+      .then(() => notifySuccess());
   }
 
   function handleChange() {
@@ -82,7 +88,7 @@ export default function MiniStoryCardOffCanvas(props: Props): JSX.Element {
 
   return (
     <Drawer placement="bottom" onClose={onClose} isOpen={isOpen}>
-      <DrawerContent bg="gray.100">
+      <DrawerContent>
         <DrawerHeader
           borderBottomWidth="1px"
           bg="gray.200"
@@ -129,7 +135,7 @@ export default function MiniStoryCardOffCanvas(props: Props): JSX.Element {
             </div>
             <form onSubmit={edit}>
               <input
-                className="flex justify-center text-xl font-medium mb-2 rounded-lg text-center"
+                className="flex justify-center text-xl font-medium mb-2 rounded-lg pl-2 w-full h-[40px]"
                 defaultValue={story.title}
                 name="title"
                 onChange={handleChange}
@@ -214,7 +220,7 @@ export function Modal(prop: { remove: () => void }) {
   return (
     <>
       <div className="  border-0 ">
-        <div className="flex flex-wrap justify-content-center gap-2 w-[78px] reou ">
+        <div className="flex flex-wrap justify-content-center gap-2 w-[78px] ">
           <Button
             icon="pi pi-trash"
             onClick={() => show("top")}
