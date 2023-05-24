@@ -106,6 +106,7 @@ export class StoryService {
   //     // return result;
   //   }
   // }
+
   async findMark(query: any): Promise<any> {
     const {
       category: selectedCategory,
@@ -251,7 +252,6 @@ export class StoryService {
         userId &&
         category
       ) {
-        console.log('new story', newStory);
         const newAsStory = new this.storyModel(newStory);
         await newAsStory.save();
 

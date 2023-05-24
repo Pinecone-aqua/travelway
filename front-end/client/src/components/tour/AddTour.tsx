@@ -1,14 +1,13 @@
-import React from "react";
-import { DayType } from "../../../util/types";
-import { ChangeEvent, FormEvent, useState } from "react";
-import { useUser } from "../../../context/user.context";
-import { ToastContainer, toast } from "react-toastify";
-import { UserDataContextType } from "../../../util/types";
+import React, { ChangeEvent, FormEvent, useState } from "react";
 import Link from "next/link";
-import TourDetails from "./TourDetails";
-import axios from "axios";
+
 import jwtDecode from "jwt-decode";
 import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
+import { useUser } from "../../../context/user.context";
+import { UserDataContextType, DayType } from "../../../util/types";
+import TourDetails from "./TourDetails";
+import axios from "axios";
 
 const AddTour = () => {
   const [activeClass, setActiveClass] = useState(0);
@@ -35,8 +34,83 @@ const AddTour = () => {
   const [dayImage, setDayImage] = useState<File[]>([]);
   const { token } = useUser();
 
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setTravelData((prevState) => ({ ...prevState, [name]: value }));
+  };
+
+  const handleTextAreaChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
+    const { name, value } = event.target;
+    setTravelData((prevState) => ({ ...prevState, [name]: value }));
+  };
+
+  const handleCoverImageChange = (event: ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files) {
+      const headerImage = event.target.files[0];
+      setCoverImage(headerImage);
+      console.log("Cover - ", coverImage);
+    }
+  };
+
+  const handleFormChange = (
+    event: ChangeEvent<HTMLInputElement>,
+    index: number
+  ) => {
+    const { name, value } = event.target;
+    setDayData((prevData) =>
+      prevData.map((day, i) => (i === index ? { ...day, [name]: value } : day))
+    );
+  };
+
+  // Images from form
+  // and add to useState()
+  // how can I also change image in state and form
+  const handleFileChange = (
+    event: ChangeEvent<HTMLInputElement>
+  ) => {
+    if (event.target.files) {
+      const selectedImage: FileList = event.target.files;
+
+      for (let i = 0; i < selectedImage.length; i++) {
+        // if(index === i) {
+          // dayImage.splice(index, 1, selectedImage[i]);
+        // } else {
+          dayImage.push(selectedImage[i]);
+        // }
+      }
+      setDayImage([...dayImage]);
+      // event.target.images.value = null;
+    }
+  };
+
+  const notifySaveSuccess = () =>
+    toast.success("Амжилттай холбогдлоо!", {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+
+  const notifySaveError = () =>
+    toast.warn("И-мэйл хаяг болон нууц үг буруу байна!", {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+
   const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
+    console.count("Assert-");
+    // console.log("ALL DATA Check===> ");
 
     try {
       if (token) {
@@ -51,64 +125,46 @@ const AddTour = () => {
           day: [...dayData],
         };
 
+        console.log("SUBMITED ======> Selected images");
+        console.log(dayImage);
+
         const sendFormData = new FormData();
-        sendFormData.append("images", String(coverImage));
-        if (dayImage.length > 0) {
-          dayImage.forEach((image) => sendFormData.append("images", image));
+        if (coverImage) {
+          sendFormData.append("images", coverImage);
         }
+
+        for (let i = 0; i < dayImage.length; i++) {
+          sendFormData.append("images", dayImage[i]);
+        }
+
         sendFormData.append("body", JSON.stringify(newFormData));
 
-        console.log("FORM Data ==> ");
-        console.log(sendFormData);
+        console.log("All images 0__0/? ====> ");
+        console.log(newFormData);
+        console.log(sendFormData.get("body"));
+        console.log("IMA?GES LIST 0)_(0 ==> ");
+        console.log(sendFormData.getAll("images"));
 
-        // axios
-        //   .post(
-        //     `${process.env.NEXT_PUBLIC_BACKEND_API_URI}/travels/add`,
-        //     sendFormData
-        //   )
-        //   .then((response) => response.data)
-        //   .then((responseAll) => {
-        //     console.log(responseAll);
-        //     notifySaveSuccess();
-        //   });
+        axios
+          .post(
+            `${process.env.NEXT_PUBLIC_BACKEND_API_URI}/travels/add`,
+            sendFormData
+          )
+          .then((response) => response.data)
+          .then((responseAll) => {
+            console.log(responseAll);
+          });
+        notifySaveSuccess();
       }
     } catch (error) {
       notifySaveError();
       console.error(error);
       setMessage("Failed to upload file.");
+
       setTimeout(() => {
         setMessage("");
       }, 10000);
     }
-  };
-
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setTravelData((prevState) => ({ ...prevState, [name]: value }));
-  };
-  
-  const handleTextAreaChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    const { name, value } = event.target;
-    setTravelData((prevState) => ({ ...prevState, [name]: value }));
-  };
-
-  const handleFormChange = (
-    event: ChangeEvent<HTMLInputElement>,
-    index: number
-  ) => {
-    const { name, value } = event.target;
-    setDayData((prevData) => {
-      const updateData = prevData.map((day, i) => {
-        if (i === index) {
-          return {
-            ...day,
-            [name]: value,
-          };
-        }
-        return day;
-      });
-      return updateData;
-    });
   };
 
   const handleAddDay = () => {
@@ -119,6 +175,7 @@ const AddTour = () => {
       destination: "",
       image: "",
     };
+
     setDayData((prevData) => [...prevData, newDay]);
     setActiveClass(dayData.length);
   };
@@ -147,59 +204,15 @@ const AddTour = () => {
     setActiveClass(0);
   };
 
-  const handleCoverImageChange = (event: ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files) {
-      const headerImage = event.target.files[0];
-      setCoverImage(headerImage);
-      console.log("Cover event listener");
-      console.log(headerImage);
-    }
-  };
-
-  const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
-    event.preventDefault();
-    if (event.target.files) {
-      const images: FileList = event.target.files;
-
-      for (let i = 0; i < images.length; i++) {
-        dayImage.push(images[i]);
-      }
-      setDayImage([...dayImage]);
-    }
-  };
-
-  const notifySaveSuccess = () =>
-    toast.success("Амжилттай холбогдлоо!", {
-      position: "bottom-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-
-  const notifySaveError = () =>
-    toast.warn("И-мэйл хаяг болон нууц үг буруу байна!", {
-      position: "bottom-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-  
-
   return (
     <>
       <button className="border p-3 rounded-xl font-semibold px-[25px] m-4">
         <Link href="/user">back</Link>
       </button>
       <div className="container w-8/12 mt-16 mb-8 sm:w-6/12 md:w-6/12 lg:w-4/12 ">
-        <h2 className="text-center text-slate-800 font-thin">Аяллын хөтөлбөр нэмэх</h2>
+        <h2 className="text-center text-slate-800 font-thin">
+          Аяллын хөтөлбөр нэмэх
+        </h2>
         <div className="flex flex-col gap-y-2">
           <p className="text-red-400 font-normal text-sm">{message}</p>
           <form onSubmit={handleSubmit}>
@@ -243,7 +256,11 @@ const AddTour = () => {
                   <button
                     key={index + "b"}
                     onClick={(e) => handleCurrentDisplay(e, index)}
-                    className={`p-2 my-2 mx-1 text-sm bg-cyan-500 text-white rounded`}
+                    className={`${
+                      index === activeClass
+                        ? "p-2 my-2 mx-1 text-sm bg-cyan-600 text-white rounded"
+                        : "p-2 my-2 mx-1 text-sm bg-cyan-500 text-white rounded"
+                    }`}
                   >
                     {index === 0
                       ? `${index + 1} дэх өдөр`
