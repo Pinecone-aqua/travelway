@@ -1,9 +1,10 @@
 import React from "react";
+// import "./scss/exo.scss";
 
 export default function Explore(): JSX.Element {
   return (
     <>
-      <section className="quoteVideoBlock is-inview" data-scroll>
+      <section className="quoteVideoBlock is-inview bg-[#121718]" data-scroll>
         <div className="background">
           <div className="innerBackground">
             <video loop muted playsInline autoPlay>
@@ -15,13 +16,28 @@ export default function Explore(): JSX.Element {
             <div
               className="image"
               style={{
-                backgroundImage: `url('/thumbs/1100x0/assets/img/plane-window.png')`,
+                backgroundImage: `url('https://www.kimiaviation.com/thumbs/1100x0/assets/img/plane-window.png')`,
               }}
             />
           </div>
         </div>
         <div className="quote is-inview" data-scroll>
-          {/* <div className="contentWrapper in-inview" data-scroll></div> */}
+          <div
+            className="contentWrapper in-inview"
+            data-scroll
+            data-scroll-speed="1"
+          >
+            <div className="perspectiveWrapper">
+              <h1 className="hugeTitle text-white">
+                Explore
+                <br />
+                the <strong>new force</strong> <br />
+                in the private
+                <br />
+                <strong>jet industry</strong>
+              </h1>
+            </div>
+          </div>
         </div>
         {/* <div className="scrollDownWrapper is-inview"></div> */}
       </section>

@@ -7,7 +7,7 @@ interface PropType {
 
 const Layout = ({ children }: PropType): JSX.Element => (
   <>
-    <div className="" data-scroll-container>
+    <div>
       <Header />
       <div className="content">
         <div className="contentScroller">
@@ -30,7 +30,7 @@ const Layout = ({ children }: PropType): JSX.Element => (
 );
 
 const Footer = () => (
-  <div className="text-slate-500  bg-slate-400  w-full h-[200px] flex justify-center items-center ">
+  <div className="text-slate-500  bg-[#121718]  w-full h-[200px] flex justify-center items-center ">
     <p> Copyright © 2023 Travelway development team.</p>
   </div>
 );

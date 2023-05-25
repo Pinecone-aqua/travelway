@@ -6,7 +6,7 @@ import "primeicons/primeicons.css";
 import { miniStoryType } from "../../util/types";
 import TravelblogCard from "@/components/travelBlog/TravelblogCard";
 import { Skeleton, Stack } from "@chakra-ui/react";
-import Pagination from "@/components/Pagination";
+// import Pagination from "@/components/Pagination";
 
 export default function TravelBlog(): JSX.Element {
   const [stories, setStories] = useState<miniStoryType[]>([]);
@@ -99,13 +99,13 @@ export default function TravelBlog(): JSX.Element {
           </div>
         </div>
       </div>
-      <div className="flex justify-center">
+      {/* <div className="flex justify-center">
         <Pagination
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
           path={path}
         />
-      </div>
+      </div> */}
     </>
   );
 }

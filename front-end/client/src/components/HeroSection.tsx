@@ -1,15 +1,13 @@
 import { UserContext } from "../../context/user.context";
 import { useContext } from "react";
+import { FiGithub } from "react-icons/fi";
 
 export default function HeroSection() {
   const { user } = useContext(UserContext);
 
-  console.log("USER CONTEXT check =====>");
-  console.log(user);
-
   return (
     <>
-      <div data-scroll-section data-scroll-section-inview>
+      <div className="dataScroller">
         <section className="headerBigBlock is-inview">
           <h1 className="color:#121718;">TravelWay</h1>
           <div className="background">
@@ -26,6 +24,7 @@ export default function HeroSection() {
                 src="https://player.vimeo.com/external/563130035.hd.mp4?s=5bd311f698519ffa90aa5136b96d1e86aa78d107&profile_id=175"
               />
             </video>
+            <div className="gradient" />
           </div>
           <div className="logoWrapper">
             <div
@@ -39,18 +38,18 @@ export default function HeroSection() {
                   <path
                     className="st0"
                     d="M1025.05,632.23V528.22c0.07-17.55,14.35-31.73,31.9-31.66c0,0,0,0,0,0v135.67H1025.05z
-            M904.95,632.23V554.2c0-1.8,0.05-3.76,0.14-5.87s0.27-4.25,0.52-6.42l-36.31,69.75c-1.01,2.05-2.59,3.76-4.55,4.94
-           c-1.98,1.14-4.24,1.72-6.52,1.68h-4.32c-2.29,0.04-4.54-0.54-6.52-1.68c-1.96-1.17-3.54-2.89-4.55-4.94l-36.31-69.93
-           c0.19,2.24,0.34,4.42,0.47,6.57c0.13,2.14,0.19,4.11,0.19,5.91v78.03h-27.96V496.56h24.21c1.37,0,2.58,0.03,3.61,0.09
-           c0.95,0.05,1.88,0.23,2.77,0.56c0.83,0.32,1.58,0.81,2.2,1.44c0.77,0.82,1.43,1.74,1.93,2.75l35.18,68.82
-           c1.25,2.36,2.46,4.81,3.61,7.36c1.16,2.55,2.27,5.15,3.33,7.82c1.07-2.73,2.18-5.4,3.33-8.01c1.15-2.61,2.39-5.09,3.71-7.45
-           l35.09-68.54c0.5-1,1.15-1.93,1.92-2.74c0.62-0.63,1.37-1.12,2.2-1.44c0.89-0.32,1.82-0.51,2.77-0.56c1.03-0.06,2.24-0.1,3.62-0.1
-           h24.21v135.67H904.95z M655.2,632.23V528.22c0.07-17.55,14.35-31.73,31.9-31.66v135.67H655.2z M550.96,632.23
-           c-1.56,0.02-3.11-0.1-4.64-0.37c-1.16-0.2-2.28-0.58-3.33-1.12c-0.91-0.47-1.73-1.08-2.44-1.82c-0.73-0.76-1.39-1.59-1.97-2.47
-           l-30.96-47.21c-1.01-1.64-2.5-2.92-4.27-3.68c-2.24-0.8-4.61-1.16-6.99-1.07h-7.7v57.73h-31.71v-27.57
-           c0.06-16.73,13.68-30.25,30.41-30.19c0,0,0,0,0,0h-30.41v-77.92h31.71v54.94h5.07c4.69,0,8.07-1.46,10.13-4.38l30.77-44.33
-           c1.5-2.1,3.52-3.79,5.86-4.89c2.49-0.97,5.16-1.43,7.84-1.35h27.58l-40.53,54.85c-2.43,3.4-5.61,6.2-9.29,8.2
-           c2.34,0.85,4.53,2.08,6.47,3.63c2.1,1.74,3.94,3.78,5.44,6.05l41.28,62.95L550.96,632.23z"
+                    M904.95,632.23V554.2c0-1.8,0.05-3.76,0.14-5.87s0.27-4.25,0.52-6.42l-36.31,69.75c-1.01,2.05-2.59,3.76-4.55,4.94
+                   c-1.98,1.14-4.24,1.72-6.52,1.68h-4.32c-2.29,0.04-4.54-0.54-6.52-1.68c-1.96-1.17-3.54-2.89-4.55-4.94l-36.31-69.93
+                   c0.19,2.24,0.34,4.42,0.47,6.57c0.13,2.14,0.19,4.11,0.19,5.91v78.03h-27.96V496.56h24.21c1.37,0,2.58,0.03,3.61,0.09
+                   c0.95,0.05,1.88,0.23,2.77,0.56c0.83,0.32,1.58,0.81,2.2,1.44c0.77,0.82,1.43,1.74,1.93,2.75l35.18,68.82
+                   c1.25,2.36,2.46,4.81,3.61,7.36c1.16,2.55,2.27,5.15,3.33,7.82c1.07-2.73,2.18-5.4,3.33-8.01c1.15-2.61,2.39-5.09,3.71-7.45
+                   l35.09-68.54c0.5-1,1.15-1.93,1.92-2.74c0.62-0.63,1.37-1.12,2.2-1.44c0.89-0.32,1.82-0.51,2.77-0.56c1.03-0.06,2.24-0.1,3.62-0.1
+                   h24.21v135.67H904.95z M655.2,632.23V528.22c0.07-17.55,14.35-31.73,31.9-31.66v135.67H655.2z M550.96,632.23
+                   c-1.56,0.02-3.11-0.1-4.64-0.37c-1.16-0.2-2.28-0.58-3.33-1.12c-0.91-0.47-1.73-1.08-2.44-1.82c-0.73-0.76-1.39-1.59-1.97-2.47
+                   l-30.96-47.21c-1.01-1.64-2.5-2.92-4.27-3.68c-2.24-0.8-4.61-1.16-6.99-1.07h-7.7v57.73h-31.71v-27.57
+                   c0.06-16.73,13.68-30.25,30.41-30.19c0,0,0,0,0,0h-30.41v-77.92h31.71v54.94h5.07c4.69,0,8.07-1.46,10.13-4.38l30.77-44.33
+                   c1.5-2.1,3.52-3.79,5.86-4.89c2.49-0.97,5.16-1.43,7.84-1.35h27.58l-40.53,54.85c-2.43,3.4-5.61,6.2-9.29,8.2
+                   c2.34,0.85,4.53,2.08,6.47,3.63c2.1,1.74,3.94,3.78,5.44,6.05l41.28,62.95L550.96,632.23z"
                   />
                   <path
                     className="st0"
@@ -84,35 +83,28 @@ export default function HeroSection() {
             </div>
           </div>
           <div className="bottomContent">
-            <div className="contentWrapper">
+            <div className="contentWrapper is-inview ">
               <div className="cols">
                 <div className="col">
                   <div className="innerCol">
                     <div className="socials">
                       <a
-                        href="https://www.instagram.com/antiFdote/"
+                        href="https://github.com/Pinecone-aqua/travelway"
                         target="_blank"
                       >
-                        <i className="icon-instagram" />
-                      </a>
-                      <a href="https://www.facebook.com//" target="_blank">
-                        <i className="icon-facebook" />
+                        <i>
+                          <FiGithub />
+                        </i>
                       </a>
                     </div>
                   </div>
                 </div>
-                <div
-                  className="col is-inview"
-                  data-scroll=""
-                  data-scroll-speed="-1"
-                  data-scroll-position="top"
-                >
+                <div className="col is-inview">
                   <div className="innerCol">
-                    <p>
-                      KIMI Aviation is a new force in the private jet industry.
-                      We provide the best travel experience for the modern era,
-                      in which your safety, comfort and efficiency are our
-                      priority.&nbsp;
+                    <p className="text-white">
+                      Хэрвээ Та өөрийн амьдралдаа адал явдал түүхийг бичихийг
+                      хүсвэл, сонирхолтой аялалд гарахыг хүсвэл манай блогийн
+                      аяллын туршлага хэсгээс уншиж танилцаж болно.&nbsp;
                     </p>
                   </div>
                 </div>
@@ -123,10 +115,11 @@ export default function HeroSection() {
                   data-scroll-position="top"
                 >
                   <div className="innerCol">
-                    <p>
-                      Traveling with KIMI means you can leave your worries on
-                      the ground. Ready to start your engines? Let us know your
-                      schedule and destination, and we’ll take care of the rest.
+                    <p className="text-white">
+                      Аялал гэдэг нь зөвхөн шинэ газруудаар зочлох төдийгүй
+                      өөрийгөө нээх, өөр өөр соёл иргэншлээс суралцах, дэлхийн
+                      өнцөг булан бүрд байгаа хүмүүстэй холбогдох явдал гэдэгт
+                      бид итгэдэг.
                     </p>
                   </div>
                 </div>
