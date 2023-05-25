@@ -322,7 +322,7 @@ body .contentScroller {
 header .innerHeader {
   height: 100px;
   left: 0;
-  position: fixed;
+  /* position: fixed; */
   top: 0;
   width: 100%;
   z-index: 2;
