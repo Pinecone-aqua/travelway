@@ -85,7 +85,7 @@ export default function CreateStory(): JSX.Element {
         }
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (error: any) {
-        console.log(error);
+        return error;
 
         toast.error(`${"аялалын мэдээлэл дутуу байна"}`, {
           position: "top-right",

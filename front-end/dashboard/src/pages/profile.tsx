@@ -1,5 +1,7 @@
 import { AdminContext } from "@/context/AdminProvider";
 import { StoryType, UserType } from "@/util/types";
+import Image from "next/image";
+import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
 
 export default function Profile(): JSX.Element {
@@ -17,19 +19,17 @@ export default function Profile(): JSX.Element {
   }, [admin?.id]);
   useEffect(() => {
     fetch(
-      `${process.env.NEXT_PUBLIC_API_BACK_END_URL}/ministory/user${admin?.id}`
+      `${process.env.NEXT_PUBLIC_API_BACK_END_URL}/stories/user${admin?.id}`
     )
       .then((response) => response.json())
       .then((res) => setStories(res));
   }, [admin?.id]);
 
-  console.log("admins", user);
-
   return (
     <div className="bg-white rounded-2xl h-100 p-4 shadow-xl shadow-cyan-500">
       <div className="bg-white rounded-2xl h-full flex flex-col">
-        <div className="w-full h-[350px] bg-slate-100 rounded-2xl flex justify-around">
-          <div className="flex items-center w-[70%] m-3">
+        <div className="w-full h-100 bg-slate-100 rounded-2xl flex justify-around">
+          <div className="flex items-center w-[65%] m-3">
             <div className="w-[22%] h-32 m-3 p-3 text-white bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-2xl flex">
               <div>
                 <p className="font-bold text-xl">travels</p>
@@ -56,7 +56,7 @@ export default function Profile(): JSX.Element {
             </div>
           </div>
 
-          <div className="bg-white rounded-2xl w-1/4 h-100 w-[30%] m-5 p-5 flex flex-col justify-between items-center m-5">
+          <div className="bg-white rounded-2xl w-1/4 h-[300px] w-[30%] p-2 flex flex-col justify-between items-center m-5">
             <div className="rounded-full bg-mycolor w-[80px] h-[80px] flex justify-center items-center text-white  text-[30px] -mt-[60px]">
               <p>{admin?.userName.slice(0, 1).toUpperCase()}</p>
             </div>
@@ -77,6 +77,25 @@ export default function Profile(): JSX.Element {
               />
             </div>
           </div>
+        </div>
+        <div>
+          {stories?.map((story: StoryType, index: number) => (
+            <Link
+              href={`/stories/story/${story._id}`}
+              key={index}
+              className="flex bg-gray-200 rounded-xl h-24 m-2 p-2 justify-between"
+            >
+              <Image
+                src={story.image[0]}
+                alt=""
+                width={60}
+                height={80}
+                className="w-24 h-full"
+              />
+              <div className="text-2xl">{story.title}</div>
+              <div className="text-2xl">{story.province}</div>
+            </Link>
+          ))}
         </div>
       </div>
     </div>

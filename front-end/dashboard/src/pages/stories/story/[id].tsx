@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import Suggest from "@/components/story/Suggest";
 import { StoryType } from "@/util/types";
+import Image from "next/image";
 
 export default function StoryID(props: { data: StoryType }): JSX.Element {
   const { query } = useRouter();
@@ -70,10 +71,12 @@ export default function StoryID(props: { data: StoryType }): JSX.Element {
           <div className="w-1/2">
             {data.image.map((img: string, index: number) => (
               <picture key={index} className="flex flex-wrap">
-                <img
+                <Image
                   className="h-64 w-[49%] rounded-2xl shadow-xl  shadow-cyan-700 mx-2"
                   src={img}
                   alt=""
+                  width={500}
+                  height={300}
                 />
               </picture>
             ))}

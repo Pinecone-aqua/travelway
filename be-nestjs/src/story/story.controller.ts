@@ -24,6 +24,15 @@ export class StoryController {
   countNum(): Promise<number> {
     return this.storyService.countNum();
   }
+  @Get('static')
+  status(): Promise<any> {
+    return this.storyService.status();
+  }
+  @Get('prostatic')
+  statusProvince(): Promise<any> {
+    return this.storyService.statusProvince();
+  }
+
   @Get('page:id')
   findPage(@Param('id') pageNum: number): Promise<Story> {
     return this.storyService.findPage(pageNum);

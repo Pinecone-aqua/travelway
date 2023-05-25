@@ -23,4 +23,4 @@ export const provinces = [
   "Хэнтий",
 ];
 
-export const categories = ["Бүгд", "нуур", "уул", "түүх"];
+export const categories = ["Бүгд", "нуур", "уул", "түүх", "өвөрмөц тогтоц"];

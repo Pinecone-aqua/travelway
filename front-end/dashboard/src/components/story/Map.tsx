@@ -36,8 +36,6 @@ export default function Map(props: PropType) {
     const lat = event.latLng.lat();
     const lng = event.latLng.lng();
     setClickedLocation({ lat, lng });
-    console.log("Clicked coordinates:", lat, lng);
-    console.log("Clicked coordinates:", clickedLocation);
   };
 
   return (

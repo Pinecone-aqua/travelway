@@ -49,7 +49,7 @@ export default function DeleteModal(props: PropType): JSX.Element {
       }
     } catch (error) {
       toast.error("An error occurred");
-      console.error(error);
+      return error;
     }
     const result = stories.filter((story: StoryType) => story._id !== id);
     setStories(result);

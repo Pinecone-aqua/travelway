@@ -21,91 +21,63 @@ export class StoryService {
     const result = await this.storyModel.count();
     return result;
   }
+  async status(): Promise<any> {
+    const categories = ['нуур', 'уул', 'түүх'];
+
+    const promises = categories.map(async (category) => {
+      const count = await this.storyModel.find({ category }).count();
+      return { name: category, count };
+    });
+
+    const tagsStatus = await Promise.all(promises);
+
+    return tagsStatus;
+  }
+
+  async statusProvince(): Promise<any> {
+    const provinces = [
+      'Улаанбаатар',
+      'Архангай',
+      'Баян-Өлгий',
+      'Баянхонгор',
+      'Булган',
+      'Говь-Алтай',
+      'Говьсүмбэр	',
+      'Дархан-Уул	',
+      'Дорноговь',
+      'Дорнод',
+      'Дундговь',
+      'Завхан',
+      'Орхон',
+      'Өвөрхангай',
+      'Өмнөговь',
+      'Сүхбаатар',
+      'Сэлэнгэ',
+      'Төв',
+      'Увс',
+      'Ховд',
+      'Хөвсгөл',
+      'Хэнтий',
+    ];
+
+    const promises = provinces.map(async (province) => {
+      const count = await this.storyModel.countDocuments({
+        province: province,
+      });
+      return { name: province, count };
+    });
+
+    const provinceStatus = await Promise.all(promises);
+
+    return provinceStatus;
+  }
+
 
   async findAllId(): Promise<any> {
     const result = await this.storyModel.find({}).select({ id: 1 });
     return result;
   }
-  //filter
-  // async findMark(query: any): Promise<any> {
-  //   const {
-  //     category: selectedCategory,
-  //     province: selectedProvince,
-  //     search: search,
-  //   } = query;
-  //   console.log(search, selectedProvince, selectedCategory);
 
-  //   if (!(selectedCategory || selectedProvince || search)) {
-  //     console.log('1');
-
-  //     const result = await this.storyModel.find({}).select({ id: 1, coord: 1 });
-  //     return result;
-  //   }
-  //   if (selectedCategory) {
-  //     const result = await this.storyModel
-  //       .find({ category: selectedCategory })
-  //       .select({ id: 1, coord: 1 });
-  //     return result;
-  //   }
-  //   if (selectedCategory || selectedProvince || search) {
-  //     console.log('2');
-  //     const result = await this.storyModel
-  //       .find({
-  //         category: selectedCategory,
-  //         province: selectedProvince,
-  //         title: { $regex: new RegExp(search) },
-  //       })
-  //       .select({ id: 1, coord: 1 });
-  //     return result;
-  //   }
-  //   if (selectedCategory || selectedProvince) {
-  //     console.log('3');
-  //     const result = await this.storyModel
-  //       .find({ category: selectedCategory, province: selectedProvince })
-  //       .select({ id: 1, coord: 1 });
-  //     return result;
-  //   }
-  //   if (selectedCategory || search) {
-  //     console.log('4');
-  //     const result = await this.storyModel
-  //       .find({
-  //         category: selectedCategory,
-  //         title: { $regex: new RegExp(search) },
-  //       })
-  //       .select({ id: 1, coord: 1 });
-  //     return result;
-  //   }
-  //   if (selectedProvince || search) {
-  //     console.log('5');
-  //     const result = await this.storyModel
-  //       .find({
-  //         province: selectedProvince,
-  //         title: { $regex: new RegExp(search) },
-  //       })
-  //       .select({ id: 1, coord: 1 });
-  //     return result;
-  //   }
-
-  //   if (selectedProvince) {
-  //     const result = await this.storyModel
-  //       .find({ province: selectedProvince })
-  //       .select({ id: 1, coord: 1 });
-  //     return result;
-  //   }
-  //   if (search) {
-  //     const result = await this.storyModel
-  //       .find({ title: { $regex: new RegExp(search) } })
-  //       .select({ id: 1, coord: 1 });
-  //     return result;
-  //   } else {
-  //     console.log('else');
-
-  //     // const result = await this.storyModel
-  //     //   .find({ province: selectedProvince, category: selectedCategory })
-  //     //   .select({ id: 1, coord: 1 });
-  //     // return result;
-  //   }
-  // }
   async findMark(query: any): Promise<any> {
     const {
       category: selectedCategory,
@@ -253,7 +225,6 @@ export class StoryService {
         userId &&
         category
       ) {
-        console.log('new story', newStory);
         const newAsStory = new this.storyModel(newStory);
         await newAsStory.save();
 
