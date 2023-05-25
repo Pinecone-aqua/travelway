@@ -17,9 +17,7 @@ export class TravelsService {
     private readonly cloudinary: Cloudinary,
   ) {}
   async create(createTravel: CreateTravelDto): Promise<Travel> {
-    console.log(createTravel);
     const newTravel = new this.travelModel({ ...createTravel });
-
     const result = await newTravel.save();
     return result;
   }
