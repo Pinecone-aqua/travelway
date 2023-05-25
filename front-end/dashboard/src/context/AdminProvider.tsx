@@ -23,7 +23,6 @@ interface ContextType {
 export const AdminContext = createContext<ContextType>({} as ContextType);
 export default function AdminProvider({ children }: PropType): JSX.Element {
   const [admin, setAdmin] = useState<AdminType | undefined>(undefined);
-
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     try {
@@ -41,8 +40,7 @@ export default function AdminProvider({ children }: PropType): JSX.Element {
         .then((res) => {
           if (res.data.token !== undefined) {
             localStorage.setItem("login", res.data.token);
-
-            console.log("hi", res.data);
+            window.location.reload();
           }
 
           if (res.data.token !== undefined) {
@@ -68,7 +66,7 @@ export default function AdminProvider({ children }: PropType): JSX.Element {
           }
         });
     } catch (error) {
-      console.log(" Aldaa uslee");
+      return error;
     }
   }
 

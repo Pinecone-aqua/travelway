@@ -50,10 +50,9 @@ export default function DeleteModalUser(props: PropType): JSX.Element {
           progress: undefined,
         });
       }
-      console.log(response.status);
     } catch (error) {
       toast.error("An error occurred");
-      console.error(error);
+      return error;
     }
     const result = users.filter((user: UserType) => user._id !== id);
     setUsers(result);

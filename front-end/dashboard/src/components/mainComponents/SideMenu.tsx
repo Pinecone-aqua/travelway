@@ -43,7 +43,6 @@ export default function SideMenu(): JSX.Element {
     setButton(name);
     localStorage.setItem("sideButton", name);
   }
-  console.log();
 
   return (
     <div className="w-1/6  h-[700px] flex bg-mycolor flex-col justify-center place-items-end decoration-double">
@@ -69,6 +68,7 @@ export default function SideMenu(): JSX.Element {
             className={button === unit.name ? activeClass : inActiveClass}
             href={unit.path}
             onClick={() => handleClick(unit.name)}
+            style={{ textDecoration: "none" }}
           >
             {unit.icon}
             {unit.name}

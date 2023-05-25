@@ -5,7 +5,11 @@ export default function Header(): JSX.Element {
   return (
     <div className="flex justify-center ">
       <div className="container flex justify-between h-24 items-center">
-        <Link className="text-3xl" href={"/"}>
+        <Link
+          className="text-3xl"
+          href={"/"}
+          style={{ textDecoration: "none" }}
+        >
           Хянах самбар
         </Link>
         <div className="flex ">

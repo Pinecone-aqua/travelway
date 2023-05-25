@@ -90,6 +90,10 @@ export async function getServerSideProps(context: { query: any }) {
         },
       };
   } catch (error) {
-    return error;
+    return {
+      props: {
+        markers: null,
+      },
+    };
   }
 }
