@@ -7,19 +7,31 @@ interface PropType {
 
 const Layout = ({ children }: PropType): JSX.Element => (
   <>
-    <div>
-      <div className="pt-3 p-1">
-        <Header />
+    <div className="" data-scroll-container>
+      <Header />
+      <div className="content">
+        <div className="contentScroller">
+          <div
+            className="dataScroller"
+            style={{
+              transform:
+                "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)",
+              opacity: 1,
+              pointerEvents: "all",
+            }}
+          >
+            {children}
+          </div>
+        </div>
       </div>
-      <div>{children}</div>
       <Footer />
     </div>
   </>
 );
 
 const Footer = () => (
-  <div className="text-center text-slate-500 py-4 bg-slate-100  w-full ">
-    {"Copyright © 2023 Travelway development team."}
+  <div className="text-slate-500  bg-slate-400  w-full h-[200px] flex justify-center items-center ">
+    <p> Copyright © 2023 Travelway development team.</p>
   </div>
 );
 

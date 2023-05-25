@@ -62,13 +62,13 @@ export default function User(): JSX.Element {
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-10">
-      <div className="flex justify-center">
+      <div className="flex justify-center ">
         {user && user.image && (
           <picture>
             <img
               src={`${user.image}`}
               alt="pic"
-              className="rounded-full w-40 h-40 bg-gray-200 outline outline-gray-500 shadow-lg text-center object-cover"
+              className="userProfile rounded-full w-40 h-40 bg-gray-200 outline outline-gray-500 shadow-lg text-center object-cover"
             />
           </picture>
         )}

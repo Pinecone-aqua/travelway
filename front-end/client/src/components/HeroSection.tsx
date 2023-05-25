@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { UserContext } from "../../context/user.context";
 import { useContext } from "react";
 
@@ -10,47 +9,131 @@ export default function HeroSection() {
 
   return (
     <>
-      <div className=" drop-shadow-xl border rounded-xl mt-4  md:flex justify-center p-4 w-[100%] ">
-        <div className=" flex justify-center grid place-content-center p-2 md:gap-5 z-50 gap-3">
-          <div className="flex justify-center">
-            <h2 className="font-bold text-[32px] text-center">
-              The Informed Retailer Blog
-            </h2>
+      <div data-scroll-section data-scroll-section-inview>
+        <section className="headerBigBlock is-inview">
+          <h1 className="color:#121718;">TravelWay</h1>
+          <div className="background">
+            <video
+              className="headerVideo h-[100%] l-0 absolute t-0 w-[100%] object-cover"
+              loop
+              muted
+              playsInline
+              autoPlay
+              poster="/thumbs/1800x1170/gfx/Kimi_seamless_video_first_frame.jpg"
+            >
+              <source
+                type="video/mp4"
+                src="https://player.vimeo.com/external/563130035.hd.mp4?s=5bd311f698519ffa90aa5136b96d1e86aa78d107&profile_id=175"
+              />
+            </video>
           </div>
-          <p className="flex justify-center text-center">
-            Welcome to TravelWay, a travel blog where travelers can share their
-            stories, knowledge, and suggestions with fellow adventure
-            enthusiasts.
-          </p>
-          <div className="box-border h-full">
-            <div className="flex gap-3 justify-center ">
-              {user ? (
-                <Link
-                  href="/user"
-                  className="rounded-full font-semibold px-5 py-2 pl-[10px] text-[18px] bg-black text-white cursor-pointer hover:bg-gray-700 transition-colors duration-300 ease-in-out transform-gpu hover:scale-105 active:bg-gray-900"
-                >
-                  Get started
-                </Link>
-              ) : (
-                <Link
-                  href="/auth/login"
-                  className="rounded-full font-semibold px-5 py-2 pl-[10px] text-[18px] bg-black text-white cursor-pointer hover:bg-gray-700 transition-colors duration-300 ease-in-out transform-gpu hover:scale-105 active:bg-gray-900"
-                >
-                  Get started
-                </Link>
-              )}
+          <div className="logoWrapper">
+            <div
+              className="innerLogo is-inview"
+              data-scroll
+              data-scroll-speed="1"
+              data-scroll-data-pr-position="top"
+            >
+              <svg width="600px" height="200.01px" viewBox="0 0 600 200.01">
+                <g transform="translate(-456.949 -496.548)">
+                  <path
+                    className="st0"
+                    d="M1025.05,632.23V528.22c0.07-17.55,14.35-31.73,31.9-31.66c0,0,0,0,0,0v135.67H1025.05z
+            M904.95,632.23V554.2c0-1.8,0.05-3.76,0.14-5.87s0.27-4.25,0.52-6.42l-36.31,69.75c-1.01,2.05-2.59,3.76-4.55,4.94
+           c-1.98,1.14-4.24,1.72-6.52,1.68h-4.32c-2.29,0.04-4.54-0.54-6.52-1.68c-1.96-1.17-3.54-2.89-4.55-4.94l-36.31-69.93
+           c0.19,2.24,0.34,4.42,0.47,6.57c0.13,2.14,0.19,4.11,0.19,5.91v78.03h-27.96V496.56h24.21c1.37,0,2.58,0.03,3.61,0.09
+           c0.95,0.05,1.88,0.23,2.77,0.56c0.83,0.32,1.58,0.81,2.2,1.44c0.77,0.82,1.43,1.74,1.93,2.75l35.18,68.82
+           c1.25,2.36,2.46,4.81,3.61,7.36c1.16,2.55,2.27,5.15,3.33,7.82c1.07-2.73,2.18-5.4,3.33-8.01c1.15-2.61,2.39-5.09,3.71-7.45
+           l35.09-68.54c0.5-1,1.15-1.93,1.92-2.74c0.62-0.63,1.37-1.12,2.2-1.44c0.89-0.32,1.82-0.51,2.77-0.56c1.03-0.06,2.24-0.1,3.62-0.1
+           h24.21v135.67H904.95z M655.2,632.23V528.22c0.07-17.55,14.35-31.73,31.9-31.66v135.67H655.2z M550.96,632.23
+           c-1.56,0.02-3.11-0.1-4.64-0.37c-1.16-0.2-2.28-0.58-3.33-1.12c-0.91-0.47-1.73-1.08-2.44-1.82c-0.73-0.76-1.39-1.59-1.97-2.47
+           l-30.96-47.21c-1.01-1.64-2.5-2.92-4.27-3.68c-2.24-0.8-4.61-1.16-6.99-1.07h-7.7v57.73h-31.71v-27.57
+           c0.06-16.73,13.68-30.25,30.41-30.19c0,0,0,0,0,0h-30.41v-77.92h31.71v54.94h5.07c4.69,0,8.07-1.46,10.13-4.38l30.77-44.33
+           c1.5-2.1,3.52-3.79,5.86-4.89c2.49-0.97,5.16-1.43,7.84-1.35h27.58l-40.53,54.85c-2.43,3.4-5.61,6.2-9.29,8.2
+           c2.34,0.85,4.53,2.08,6.47,3.63c2.1,1.74,3.94,3.78,5.44,6.05l41.28,62.95L550.96,632.23z"
+                  />
+                  <path
+                    className="st0"
+                    d="M877.99,695.64c-1.45-0.58-2.77-1.45-3.87-2.56c-1.09-1.11-1.93-2.43-2.49-3.88
+            c-0.6-1.55-0.9-3.21-0.89-4.88c-0.02-1.67,0.28-3.32,0.89-4.88c0.56-1.45,1.41-2.77,2.49-3.88c1.1-1.11,2.42-1.98,3.87-2.56
+            c1.59-0.63,3.28-0.94,4.99-0.92c1.16-0.01,2.33,0.13,3.45,0.42c1.04,0.26,2.04,0.67,2.97,1.19c0.89,0.51,1.71,1.14,2.43,1.87
+            c0.72,0.73,1.33,1.56,1.83,2.46c0.51,0.93,0.89,1.92,1.14,2.95c0.27,1.09,0.4,2.22,0.39,3.34c0.02,1.67-0.28,3.32-0.88,4.88
+            c-0.55,1.45-1.4,2.77-2.48,3.88c-1.09,1.11-2.41,1.98-3.85,2.56C884.77,696.86,881.21,696.86,877.99,695.64L877.99,695.64z
+             M879.8,676.46c-0.92,0.37-1.74,0.94-2.4,1.67c-0.69,0.77-1.21,1.68-1.53,2.66c-0.37,1.14-0.55,2.33-0.53,3.53
+            c-0.02,1.2,0.16,2.39,0.53,3.53c0.32,0.98,0.84,1.88,1.53,2.65c0.67,0.73,1.49,1.29,2.4,1.66c2.05,0.77,4.31,0.77,6.36,0
+            c0.91-0.37,1.73-0.93,2.39-1.66c0.68-0.77,1.2-1.67,1.52-2.65c0.37-1.14,0.55-2.34,0.53-3.53c0.02-1.2-0.16-2.39-0.53-3.53
+            c-0.32-0.98-0.84-1.88-1.52-2.66c-0.66-0.73-1.48-1.3-2.39-1.67C884.11,675.69,881.85,675.69,879.8,676.46L879.8,676.46z
+             M950.53,696.29c-0.31,0.01-0.61-0.05-0.89-0.17c-0.27-0.14-0.51-0.34-0.69-0.59l-12.59-15.96c0.07,0.73,0.1,1.4,0.1,2.02v14.7
+            h-3.95v-23.94h2.35c0.16,0,0.33,0.01,0.49,0.02c0.13,0.01,0.25,0.05,0.37,0.1c0.11,0.06,0.22,0.13,0.31,0.22
+            c0.12,0.12,0.23,0.24,0.34,0.37L949,689.09c-0.04-0.39-0.06-0.77-0.09-1.14c-0.02-0.38-0.03-0.72-0.03-1.04v-14.55h3.95v23.94
+            H950.53z M828.93,696.29v-19.47c0.01-2.48,2.02-4.48,4.5-4.47v23.94H828.93z M780.64,696.29v-20.28h-7.26v-3.66h19.03v3.66h-7.27
+            v20.28H780.64z M738.58,696.29c-0.34,0.02-0.68-0.09-0.95-0.29c-0.24-0.19-0.43-0.44-0.55-0.72l-1.34-3.68l-1.6-4.35l-0.18-0.48
+            l-0.02-0.05l-2.74-7.44c-0.14-0.35-0.29-0.77-0.45-1.26c-0.15-0.49-0.31-1.01-0.47-1.57c-0.14,0.56-0.29,1.09-0.45,1.58
+            c-0.16,0.49-0.31,0.92-0.45,1.28l-2.74,7.45l-1.34,3.63l0,0l-1.8,4.88c-0.11,0.27-0.28,0.52-0.52,0.7
+            c-0.27,0.21-0.61,0.33-0.95,0.32h-3.5l9.49-23.94h4.57l9.47,23.94H738.58z M678.13,696.29v-19.47c0.01-2.48,2.02-4.48,4.5-4.47
+            v23.94H678.13z M628.47,696.29l-9.73-23.94h3.6c0.34-0.02,0.67,0.08,0.95,0.28c0.24,0.19,0.44,0.44,0.55,0.73l5.69,14.6
+            c0.19,0.47,0.37,1,0.54,1.56c0.17,0.56,0.34,1.16,0.49,1.78c0.13-0.62,0.28-1.21,0.43-1.78c0.14-0.53,0.32-1.05,0.52-1.56
+            l5.66-14.6c0.11-0.28,0.29-0.52,0.52-0.69c0.27-0.21,0.61-0.32,0.96-0.31h3.62l-9.74,23.94H628.47z M584.19,696.29
+            c-0.34,0.02-0.68-0.09-0.95-0.29c-0.24-0.19-0.43-0.44-0.55-0.72l-1.36-3.7l-1.59-4.32l0,0l-2.93-7.96
+            c-0.15-0.35-0.3-0.77-0.45-1.26c-0.15-0.49-0.31-1.01-0.47-1.57c-0.15,0.56-0.3,1.09-0.45,1.58c-0.15,0.49-0.3,0.92-0.45,1.28
+            l-2.73,7.41l-1.36,3.67l0,0l-1.8,4.88c-0.1,0.27-0.28,0.52-0.52,0.7c-0.27,0.21-0.61,0.33-0.96,0.31h-3.5l9.49-23.94h4.57
+            l9.48,23.94H584.19z"
+                  />
+                </g>
+              </svg>
             </div>
           </div>
-        </div>
-        <picture className="w-[100%]">
-          <img
-            width={500}
-            height={500}
-            src={`../../images/tokyofuji.webp`}
-            alt=""
-            className="border rounded-xl h-[500px]  object-cover w-[100%]"
-          />
-        </picture>
+          <div className="bottomContent">
+            <div className="contentWrapper">
+              <div className="cols">
+                <div className="col">
+                  <div className="innerCol">
+                    <div className="socials">
+                      <a
+                        href="https://www.instagram.com/antiFdote/"
+                        target="_blank"
+                      >
+                        <i className="icon-instagram" />
+                      </a>
+                      <a href="https://www.facebook.com//" target="_blank">
+                        <i className="icon-facebook" />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="col is-inview"
+                  data-scroll=""
+                  data-scroll-speed="-1"
+                  data-scroll-position="top"
+                >
+                  <div className="innerCol">
+                    <p>
+                      KIMI Aviation is a new force in the private jet industry.
+                      We provide the best travel experience for the modern era,
+                      in which your safety, comfort and efficiency are our
+                      priority.&nbsp;
+                    </p>
+                  </div>
+                </div>
+                <div
+                  className="col is-inview"
+                  data-scroll=""
+                  data-scroll-speed="-1.5"
+                  data-scroll-position="top"
+                >
+                  <div className="innerCol">
+                    <p>
+                      Traveling with KIMI means you can leave your worries on
+                      the ground. Ready to start your engines? Let us know your
+                      schedule and destination, and we’ll take care of the rest.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
     </>
   );
