@@ -148,7 +148,6 @@ export async function getStaticProps({ params }: { params: { id: string } }) {
       },
     };
   } catch (error) {
-    console.error(error);
     return {
       props: {
         miniStory: [],

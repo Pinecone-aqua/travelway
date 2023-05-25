@@ -43,7 +43,6 @@ export default function Statistic() {
       .then((response) => response.data)
       .then((res) => setStory(res));
   }, []);
-  console.log("story", story);
 
   useEffect(() => {
     axios
@@ -51,7 +50,6 @@ export default function Statistic() {
       .then((response) => response.data)
       .then((res) => setProvince(res));
   }, []);
-  console.log("province", province);
 
   const ingredientData = {
     labels: story?.map((st: { name: string }) => st.name),

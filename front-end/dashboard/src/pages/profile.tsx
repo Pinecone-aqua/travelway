@@ -25,8 +25,6 @@ export default function Profile(): JSX.Element {
       .then((res) => setStories(res));
   }, [admin?.id]);
 
-  console.log("admins", stories);
-
   return (
     <div className="bg-white rounded-2xl h-100 p-4 shadow-xl shadow-cyan-500">
       <div className="bg-white rounded-2xl h-full flex flex-col">
