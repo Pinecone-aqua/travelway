@@ -1,5 +1,6 @@
 import { MiniStoryType, TravelType, UserType } from "@/util/types";
 import axios from "axios";
+import Image from "next/image";
 import Link from "next/link";
 
 interface PropType {
@@ -175,10 +176,12 @@ function UserMiniStory(props: { miniStory: MiniStoryType[] }): JSX.Element {
         >
           <picture className="">
             {" "}
-            <img
+            <Image
               className="w-[100px] h-32 rounded-lg"
               src={story.image}
               alt=""
+              width={500}
+              height={300}
             />
           </picture>
           <div className="flex w-[90%] justify-between">
@@ -211,14 +214,14 @@ function UserTravels(props: { travels: TravelType[] }) {
       {travels.map((travel: TravelType, index: number) => (
         <Link href={`/travels/travel/${travel._id}`} key={index}>
           <div className="rounded-2xl bg-white p-2 m-5 flex gap-5 h-100 w-[95%]">
-            <picture className="">
-              {" "}
-              <img
-                className="w-[100px] h-32 rounded-lg"
-                src={travel.image}
-                alt=""
-              />
-            </picture>
+            {" "}
+            <Image
+              className="w-[100px] h-32 rounded-lg"
+              src={travel.image}
+              alt=""
+              width={500}
+              height={300}
+            />
             <div className="flex w-[90%] justify-between">
               <div className="flex flex-col h-[90%] justify-between">
                 <p className="text-2xl">{travel.title}</p>

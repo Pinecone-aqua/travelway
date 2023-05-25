@@ -46,7 +46,7 @@ export default function SideMenu(): JSX.Element {
   console.log();
 
   return (
-    <div className="w-1/6  h-[700px] flex bg-mycolor flex-col justify-center place-items-end decoration-double">
+    <div className="w-1/5  h-[700px] flex bg-mycolor flex-col justify-center place-items-end decoration-double">
       <Image
         src="/images/travel-logo.png"
         alt="logo"
@@ -69,6 +69,7 @@ export default function SideMenu(): JSX.Element {
             className={button === unit.name ? activeClass : inActiveClass}
             href={unit.path}
             onClick={() => handleClick(unit.name)}
+            style={{ textDecoration: "none" }}
           >
             {unit.icon}
             {unit.name}
