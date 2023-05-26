@@ -10,21 +10,35 @@ import Link from "next/link";
 
 export default function MiniStoryAdd(): JSX.Element {
   const { user } = useContext(UserContext);
+
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function miniStoryHandler(e: any) {
     e.preventDefault();
-    const formDataObj = {
-      userId: user?._id,
+    const formData = new FormData();
+    // const target = e.currentTarget;
+    // formData.append("title", e.currentTarget.title.value);
+    // formData.append("sentence", e.currentTarget.sentence.value);
+    // formData.append("userId", user?._id || "");
+
+    const data = {
       title: e.currentTarget.title.value,
       sentence: e.currentTarget.sentence.value,
-      image: e.currentTarget.image.value,
+      image: "",
+      userId: user?._id,
     };
 
-    console.log(formDataObj);
+    const imageFile = e.currentTarget.image.files[0];
+    if (imageFile) {
+      formData.append("body", JSON.stringify(data));
+      formData.append("image", imageFile);
+    }
 
     axios
-      .post(`${process.env.NEXT_PUBLIC_BACKEND_API_URI}/miniStory/add`, formDataObj)
+      .post(
+        `${process.env.NEXT_PUBLIC_BACKEND_API_URI}/ministory/add`,
+        formData
+      )
       .then(() => {
         notifySuccess();
       })
@@ -68,8 +82,10 @@ export default function MiniStoryAdd(): JSX.Element {
   return (
     <>
       <div>
-        <button className="border p-3 rounded-xl font-semibold px-[25px] m-4">
-          <Link href="/user">back</Link>
+        <button className="border w-[50px] h-[50px] rounded-full text-gray-500 m-3">
+          <Link href="/user" className="">
+            back
+          </Link>
         </button>
         <div className="w-[100%]  bg-white p-5 z-50  ">
           <div className=" bg-white p-5 z-50">
@@ -79,18 +95,24 @@ export default function MiniStoryAdd(): JSX.Element {
             >
               <div className="gap-2 grid ">
                 <input
+                  type="file"
+                  placeholder="image"
+                  name="image"
+                  id="fileInput"
+                />
+                <label
+                  htmlFor="fileInput"
+                  id="customButton"
+                  className=" flex justify-center"
+                >
+                  Select image
+                </label>
+                <input
                   name="title"
                   type="text"
                   placeholder="Give me a name"
                   className="border-b-[2px]  p-2  placeholder:text-[25px] font-semibold text-[25px] activate:border-none"
                 />
-                <input
-                  type="text"
-                  placeholder="image"
-                  className="border  p-2 rounded-xl w-[100%] h-[300px] bg-gray-30 "
-                  name="image"
-                />
-
                 <textarea
                   name="sentence"
                   onChange={handleChange}

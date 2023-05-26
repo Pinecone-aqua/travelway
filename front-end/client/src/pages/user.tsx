@@ -17,6 +17,9 @@ export default function User(): JSX.Element {
   const activatedStyle =
     "border-black  py-[3px] font-semibold  border-b-2  transiton w-[200px]";
 
+  const twoButtonStyle =
+    " py-2 px-5 font-semibold text-gray-400 grid place-content-center w-[100%] bg-gray-200 rounded-lg shadow-lg hover:bg-gray-300 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110";
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function changer(e: any) {
     setChange(e.target.innerText);
@@ -25,7 +28,9 @@ export default function User(): JSX.Element {
   useEffect(() => {
     const getFetchTravel = async (): Promise<void> => {
       try {
-        const travels = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_API_URI}/travels/get`);
+        const travels = await axios.get(
+          `${process.env.NEXT_PUBLIC_BACKEND_API_URI}/travels/get`
+        );
         const filteredData = travels.data.filter(
           (item: TravelType) => item.userId === user?._id
         );
@@ -40,7 +45,9 @@ export default function User(): JSX.Element {
   useEffect(() => {
     const getFetchData = async (): Promise<void> => {
       try {
-        const travels = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_API_URI}/ministory/get`);
+        const travels = await axios.get(
+          `${process.env.NEXT_PUBLIC_BACKEND_API_URI}/ministory/get`
+        );
         const filteredData = travels.data.filter(
           (item: miniStoryType) => item.userId === user?._id
         );
@@ -55,13 +62,13 @@ export default function User(): JSX.Element {
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-10">
-      <div className="flex justify-center">
+      <div className="flex justify-center ">
         {user && user.image && (
           <picture>
             <img
               src={`${user.image}`}
               alt="pic"
-              className="rounded-full w-40 h-40 bg-gray-200 outline outline-gray-500 shadow-lg text-center object-cover"
+              className="userProfile rounded-full w-40 h-40 bg-gray-200 outline outline-gray-500 shadow-lg text-center object-cover"
             />
           </picture>
         )}
@@ -101,13 +108,13 @@ export default function User(): JSX.Element {
           <div className="gap-3 grid">
             {change == "Mini story" ? (
               <Link href="/miniStoryAdd">
-                <button className="py-2 px-5 font-semibold text-gray-400 grid place-content-center w-[100%] bg-gray-200 rounded-lg shadow-lg hover:bg-gray-300 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110">
+                <button className={`${twoButtonStyle}`}>
                   Add your new adventure
                 </button>
               </Link>
             ) : (
               <Link href="/addtour">
-                <button className="py-2 px-5 font-semibold text-gray-400 grid place-content-center w-[100%] bg-gray-200 rounded-lg shadow-lg hover:bg-gray-300 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110">
+                <button className={`${twoButtonStyle}`}>
                   Add your new Travel
                 </button>
               </Link>

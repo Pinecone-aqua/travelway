@@ -41,7 +41,7 @@ export default function MiniStory(props: {
             height={500}
             quality={10}
             alt="pic"
-            className={`w-full object-cover rounded-xl disable-text-selection border hover:bg-black cursor-pointer w-full h-56 object-cover transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105 `}
+            className={`  w-full object-cover rounded-xl disable-text-selection border hover:bg-black cursor-pointer w-full h-56 object-cover transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105 `}
             onMouseEnter={enter}
             onMouseLeave={leave}
           />

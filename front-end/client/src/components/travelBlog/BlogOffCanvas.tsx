@@ -34,7 +34,7 @@ export default function BlogOffCanvas(props: Props): JSX.Element {
 
   return (
     <Drawer placement="bottom" onClose={onClose} isOpen={isOpen}>
-      <DrawerContent bg="gray.100">
+      <DrawerContent>
         <DrawerHeader
           borderBottomWidth="1px"
           bg="gray.200"
@@ -67,7 +67,7 @@ export default function BlogOffCanvas(props: Props): JSX.Element {
                 </div>
               </div>
             </div>
-            <div className="flex justify-center mb-6">
+            <div className=" mb-6">
               <div className="h-96 w-full relative">
                 {story.image ? (
                   <Image

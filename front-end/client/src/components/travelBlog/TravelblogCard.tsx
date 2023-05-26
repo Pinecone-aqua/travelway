@@ -24,8 +24,6 @@ type StoryProps = {
 export default function TravelblogCard(props: StoryProps) {
   const { story, userInfo } = props;
 
-  console.log("usrIn", userInfo);
-
   const {
     isOpen: isOffCanvasOpen,
     onOpen: onOffCanvasOpen,
@@ -46,10 +44,10 @@ export default function TravelblogCard(props: StoryProps) {
           onClick={onOffCanvasOpen}
         >
           <Avatar name={userInfo.image} src={userInfo.image} mr="4" />
-          <Box className="hover:opacity-90 h-[50px] ">
+          <Box className="hover:opacity-90 lg:h-[50px] blogcardBox">
             <Heading size="sm">{story.title.slice(0, 12)}...</Heading>
-            <p className="text-gray-500 text-sm mt-2">
-              Creator: {userInfo.username}
+            <p className="text-gray-500 text-sm mt-2 creatorUser">
+              Creator: {userInfo.username?.slice(0, 10)}
             </p>
           </Box>
         </Flex>
@@ -71,7 +69,7 @@ export default function TravelblogCard(props: StoryProps) {
           height={500}
           alt="Chakra UI"
           onClick={onOffCanvasOpen}
-          className="w-full h-56 object-cover transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105"
+          className="w-full h-56 object-fit object-cover transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105"
         />
       )}
       <React.Suspense fallback={null}>
