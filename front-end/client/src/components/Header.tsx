@@ -45,10 +45,10 @@ export default function Header(): JSX.Element {
   }
 
   return (
-    <header id="header">
+    <header id="header z-50">
       <div className="innerHeader active">
         <div className="contentWrapper flex justify-between">
-          <div className="left">
+          <div className="left z-50">
             {isResponsive ? (
               <Menu>
                 <MenuButton
@@ -64,7 +64,7 @@ export default function Header(): JSX.Element {
                         key={index}
                         className="hover:bg-gray text-black"
                       >
-                        <button>{menuItem.name}</button>
+                        <button className="z-50 ">{menuItem.name}</button>
                       </MenuItem>
                     </Link>
                   ))}

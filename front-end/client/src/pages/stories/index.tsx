@@ -36,14 +36,14 @@ export default function BranchSection(props: {
 
   return (
     <div>
-      <div className="flex justify-between m-5">
+      <div className="flex justify-between m-5 h-[21vh]">
         <CategoryFilter />
         <SearchModal markers={markers} />
         <ProvinceFilter />
       </div>
 
       <div className="flex flex-col gap-8 md:flex md:flex-row md:items-center">
-        <div className="w-full h-[500px]">
+        <div className="w-full h-[700px]">
           <GoogleMap
             mapContainerStyle={mapContainerStyle}
             center={center}

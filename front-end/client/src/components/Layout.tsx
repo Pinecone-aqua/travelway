@@ -9,7 +9,7 @@ const Layout = ({ children }: PropType): JSX.Element => (
   <>
     <div>
       <Header />
-      <div className="content">
+      <div className="content bg-[#121718]">
         <div className="contentScroller">
           <div
             className="dataScroller"

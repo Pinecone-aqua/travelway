@@ -28,13 +28,13 @@ export default function Explore(): JSX.Element {
             data-scroll-speed="1"
           >
             <div className="perspectiveWrapper">
-              <h1 className="hugeTitle text-white">
+              <h1 className="hugeTitle text-white ">
                 Explore
                 <br />
-                the <strong>new force</strong> <br />
-                in the private
+                and <strong>Share</strong> <br />
+                you&apos;r
                 <br />
-                <strong>jet industry</strong>
+                <strong>experience</strong>
               </h1>
             </div>
           </div>

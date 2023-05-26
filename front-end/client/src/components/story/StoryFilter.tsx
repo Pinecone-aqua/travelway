@@ -14,10 +14,7 @@ export default function CategoryFilter() {
 
   return (
     <>
-      <select
-        onChange={filterHandler}
-        className="mx-5 p-2 w-64 border-2 rounded-lg"
-      >
+      <select onChange={filterHandler} className="border-2 rounded-lg">
         {categories.map((category, index) => (
           <option key={index}>{category}</option>
         ))}

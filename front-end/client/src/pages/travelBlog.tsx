@@ -14,8 +14,8 @@ export default function TravelBlog(): JSX.Element {
   const [userInfo, setUserInfo] = useState<any[]>([]);
   const [isOpen, setIsOpen] = useState(false);
   const [changeInput, setChangeInput] = useState(false);
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const path = "travelBlog";
+  // const [currentPage, setCurrentPage] = useState<number>(1);
+  // const path = "travelBlog";
 
   useEffect(() => {
     const getFetchdata = async (): Promise<void> => {
