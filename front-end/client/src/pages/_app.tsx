@@ -1,6 +1,5 @@
 import "@/styles/globals.css";
-// import "@/styles/heroSection.scss";
-import "../styles/slider.css";
+// import "../styles/slider.css";
 
 import type { AppProps } from "next/app";
 import UserProvider from "../../context/user.context";

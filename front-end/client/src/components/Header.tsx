@@ -23,10 +23,8 @@ const MENULIST = [
 ];
 
 export default function Header(): JSX.Element {
-  const [nav, setNav] = useState<string | null>();
   const [isResponsive, setIsResponsive] = useState(false);
   const { user, setUser } = useUser();
-  // user has email password
 
   useEffect(() => {
     const handleResize = () => {
@@ -38,11 +36,6 @@ export default function Header(): JSX.Element {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  function changeNav(e: any) {
-    setNav(e.target.innerText);
-  }
 
   return (
     <header id="header z-50">
@@ -73,7 +66,7 @@ export default function Header(): JSX.Element {
             ) : (
               MENULIST.map((menuItem, index) => (
                 <Link key={index} href={menuItem.uri} className="ml-5">
-                  <button onClick={changeNav}>{menuItem.name}</button>
+                  <button>{menuItem.name}</button>
                 </Link>
               ))
             )}

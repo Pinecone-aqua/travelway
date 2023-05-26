@@ -1,10 +1,8 @@
-// import HeroSection from "@/components/HeroSection";
 import React from "react";
 
 export default function About() {
   return (
     <>
-      {/* <HeroSection /> */}
       <div className="container mx-auto px-4 py-8 border border-gray-300 rounded-md mt-5">
         <h1 className="text-4xl font-normal mb-4 text-center">Бидний тухай</h1>
         <p className="text-lg leading-7 mb-6">
