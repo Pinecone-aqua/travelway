@@ -16,7 +16,7 @@ export default function ProvinceFilter(): JSX.Element {
   return (
     <>
       <select
-        className="mx-5 p-2 w-64 border-2 rounded-lg"
+        className="border-2 rounded-lg"
         name=""
         id=""
         onChange={filterHandler}

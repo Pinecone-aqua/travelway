@@ -25,7 +25,6 @@ const MENULIST = [
 export default function Header(): JSX.Element {
   const [isResponsive, setIsResponsive] = useState(false);
   const { user, setUser } = useUser();
-  // user has email password
 
   useEffect(() => {
     const handleResize = () => {
@@ -38,16 +37,11 @@ export default function Header(): JSX.Element {
     };
   }, []);
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  // function changeNav(e: any) {
-  //   setNav(e.target.innerText);
-  // }
-
   return (
-    <header id="header">
+    <header id="header z-50">
       <div className="innerHeader active">
         <div className="contentWrapper flex justify-between">
-          <div className="left">
+          <div className="left z-50">
             {isResponsive ? (
               <Menu>
                 <MenuButton
@@ -63,7 +57,7 @@ export default function Header(): JSX.Element {
                         key={index}
                         className="hover:bg-gray text-black"
                       >
-                        <button>{menuItem.name}</button>
+                        <button className="z-50 ">{menuItem.name}</button>
                       </MenuItem>
                     </Link>
                   ))}

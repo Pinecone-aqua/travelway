@@ -2,9 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 @import "bootstrap/dist/css/bootstrap.min.css";
-
-
-/*156 - 187*/
+/*94 - 124*/
 
 .dropdown-toggle::after {
   border-top: 0 solid !important;
@@ -80,7 +78,6 @@ html.has-scroll-dragging {
   text-rendering: optimizeSpeed;
 }
 
-
 a {
   text-decoration: none;
 }
@@ -89,35 +86,30 @@ a {
   background-image: none !important;
 }
 
-
-input,
+/* input,
 textarea {
   border-radius: 0 !important;
   -webkit-appearance: none !important;
-} */
-
+}
 input[type="number"]::-webkit-inner-spin-button,
 textarea[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
-}*/
-
+}
 input[type="number"]::-webkit-outer-spin-button,
 textarea[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
-}*/
-
+}
 img.lazy {
   visibility: hidden;
   opacity: 0;
-}*/
-
+}
 .lazyBackground.lazy {
   background-image: none !important;
-}
+} */
 
-.has-scroll-smooth[data-scroll-container] {
+/* .has-scroll-smooth[data-scroll-container] {
   -webkit-transform: none;
   -moz-transform: none;
   -o-transform: none;
@@ -127,8 +119,7 @@ img.lazy {
 
 .has-scroll-smooth body {
   overflow: hidden !important;
-}*/
-
+} */
 html,
 body {
   text-rendering: optimizeLegibility;
@@ -137,6 +128,7 @@ body {
   -webkit-font-smoothing: antialiased;
   font-family: "Poppins", sans-serif;
   font-weight: 300;
+  color: white;
   height: 100vh;
   width: 100vw;
   background: #121718;
@@ -261,7 +253,6 @@ body .contentScroller {
   opacity: 1;
 }
 
-
 .button {
   display: inline-block;
   color: #fff;
@@ -365,7 +356,6 @@ header .innerHeader .right {
 .mainLogo {
   margin-top: 30px;
 }
-
 
 header .innerHeader .logo {
   display: inline-block;
@@ -525,7 +515,6 @@ header .hamburgerMenu {
     top: 18px;
   }
 
-
   header .hamburgerMenu .innerWrapper {
     overflow: auto;
     height: 100%;
@@ -536,7 +525,6 @@ header .hamburgerMenu {
     padding-bottom: 50px;
     text-align: center;
   }
-
 
   header .hamburgerMenu .innerWrapper .text {
     margin-top: 50px;
@@ -735,7 +723,6 @@ footer .copyright .item .label {
   background: linear-gradient(to top, #121718, transparent);
   background: -moz-linear-gradient(to center top, #121718 0%, transparent 100%);
   background: -o-linear-gradient(to transparent, #121718);
-
 }
 
 .headerBigBlock .logoWrapper {
@@ -816,8 +803,6 @@ footer .copyright .item .label {
   transition: all 0.3s ease-out;
 }
 
-
-
 @media screen and (max-width: 768px) {
   .headerBigBlock {
     height: auto;
@@ -832,7 +817,6 @@ footer .copyright .item .label {
   .headerBigBlock .background .gradient {
     height: 200px;
   }
-
 
   .headerBigBlock .logoWrapper {
     padding: 0 40px;
@@ -893,9 +877,7 @@ footer .copyright .item .label {
     transform: translateY(0);
   }
 
-
   .headerBigBlock .bottomContent .cols {
-
     margin-left: -10px;
   }
 
@@ -910,7 +892,6 @@ footer .copyright .item .label {
 }
 
 @media all and (max-width: 400px) {
-
   .headerBigBlock .bottomContent .cols .col {
     width: 100%;
     -webkit-transform: none !important;
@@ -1140,9 +1121,6 @@ footer .copyright .item .label {
   width: 30%;
   margin-top: 180px;
 }
-
-
-
 
 .infoColumnsBlock .cols .col:nth-child(3) .innerCol .image {
   height: 350px;
@@ -1684,7 +1662,6 @@ footer .copyright .item .label {
   -o-transform: translateY(50px) rotateX(10deg);
   -ms-transform: translateY(50px) rotateX(10deg);
   transform: translateY(50px) rotateX(10deg);
-
 }
 
 .contactBlock .cols .col p a {
@@ -1725,7 +1702,6 @@ footer .copyright .item .label {
   margin-top: 10px;
 }
 
-
 .contactBlock .cols .col .subCol .iconWrapper:last-child {
   margin-bottom: 0;
 }
@@ -1737,7 +1713,6 @@ footer .copyright .item .label {
   -o-transform: translateY(50px) rotateX(10deg);
   -ms-transform: translateY(50px) rotateX(10deg);
   transform: translateY(50px) rotateX(10deg);
-
 }
 
 .contactBlock .cols .col .subCol .iconWrapper .iconCircle {
@@ -1814,7 +1789,6 @@ footer .copyright .item .label {
     margin: 0 auto;
   }
 }
-
 
 /* Original  */
 

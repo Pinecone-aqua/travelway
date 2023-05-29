@@ -3,18 +3,6 @@ import { useEffect, useState } from "react";
 import { TravelType } from "../../util/types";
 import HeroSection from "@/components/HeroSection";
 import Explore from "@/components/Explore";
-import { useRef } from "react";
-import {
-  motion,
-  useScroll,
-  useSpring,
-  useTransform,
-  useMotionValue,
-  useVelocity,
-  useAnimationFrame,
-  wrap,
-} from "framer-motion";
-// import { wrap } from "@motionone/utils";
 
 export default function Home(): JSX.Element {
   const [travels, setTravels] = useState<TravelType[] | null>(null);
@@ -29,7 +17,7 @@ export default function Home(): JSX.Element {
       <div className="contentScroller">
         <HeroSection />
         <Explore />
-        <div className="flex justify-center flex-wrap h-[100vh] bg-[#121718] ">
+        <div className="flex justify-center flex-wrap h-[auto] bg-[#121718] ">
           {travels &&
             travels.map((data: TravelType, index: number) => (
               <TravelCard data={data} key={index} />
@@ -40,7 +28,7 @@ export default function Home(): JSX.Element {
   );
 }
 
-interface ParallaxProps {
+export interface ParallaxProps {
   children: string;
   baseVelocity: number;
 }
