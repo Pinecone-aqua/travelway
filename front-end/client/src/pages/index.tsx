@@ -45,7 +45,7 @@ interface ParallaxProps {
   baseVelocity: number;
 }
 
-function ParallaxText({ children, baseVelocity = 100 }: ParallaxProps) {
+export function ParallaxText({ children, baseVelocity = 100 }: ParallaxProps) {
   const baseX = useMotionValue(0);
   const { scrollY } = useScroll();
   const scrollVelocity = useVelocity(scrollY);
@@ -53,6 +53,7 @@ function ParallaxText({ children, baseVelocity = 100 }: ParallaxProps) {
     damping: 50,
     stiffness: 400,
   });
+  
   const velocityFactor = useTransform(smoothVelocity, [0, 1000], [0, 5], {
     clamp: false,
   });
