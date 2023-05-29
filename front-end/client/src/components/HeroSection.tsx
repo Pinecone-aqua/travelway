@@ -1,9 +1,6 @@
-// import { UserContext } from "../../context/user.context";
-// import { useContext } from "react";
 import { FiGithub } from "react-icons/fi";
 
 export default function HeroSection() {
-  // const { user } = useContext(UserContext);
 
   return (
     <>
