@@ -36,7 +36,7 @@ export default function BranchSection(props: {
 
   return (
     <div>
-      <div className="flex justify-between m-5 h-[21vh]">
+      <div className="flex justify-between m-5 text-black">
         <CategoryFilter />
         <SearchModal markers={markers} />
         <ProvinceFilter />

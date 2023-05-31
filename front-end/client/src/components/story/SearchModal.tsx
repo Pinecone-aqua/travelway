@@ -35,13 +35,13 @@ export default function SearchModal(props: {
       </Button>
 
       <Modal show={show} onHide={handleClose}>
-        <Modal.Body>
+        <Modal.Body className="bg-black text-black">
           {" "}
           <div className="flex flex-col">
             <input
               type="text"
               placeholder="Хайх"
-              className="border-2 p-2 rounded-lg "
+              className="border-2 p-2 rounded-lg bg-black"
               onChange={SearchHandler}
             />
             <div>

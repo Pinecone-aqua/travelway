@@ -15,7 +15,7 @@ const TourDetails = (props: {
         Тухайн өдрийн гарчиг/Day Title:
       </label>
       <input
-        className="inline-block p-2 rounded w-full border border-slate-600"
+        className="inline-block p-2 rounded text-black w-full border border-slate-600"
         type="text"
         name="subTitle"
         defaultValue={dayDetailOf.subTitle}
@@ -27,7 +27,7 @@ const TourDetails = (props: {
         Аялалаар хийх зүйлс/Describe a day:
       </label>
       <input
-        className="inline-block p-2 rounded w-full border border-slate-600"
+        className="inline-block p-2 rounded text-black w-full border border-slate-600"
         type="text"
         name="describe"
         defaultValue={dayDetailOf.describe}
@@ -39,7 +39,7 @@ const TourDetails = (props: {
         Нэмэлт мэдээлэл/Considerations:
       </label>
       <input
-        className="inline-block p-2 rounded w-full border border-slate-600"
+        className="inline-block p-2 rounded text-black w-full border border-slate-600"
         type="text"
         name="considerations"
         defaultValue={dayDetailOf.considerations}
@@ -51,7 +51,7 @@ const TourDetails = (props: {
         Үзэх газрууд/Destination:
       </label>
       <input
-        className="inline-block p-2 rounded w-full border border-slate-600"
+        className="inline-block p-2 text-black rounded w-full border border-slate-600"
         type="text"
         name="destination"
         defaultValue={dayDetailOf.destination}
@@ -63,7 +63,12 @@ const TourDetails = (props: {
         <label className="mt-4 w-full" htmlFor="image">
           Зураг/Image:
         </label>
-        <input className="inline-block p-2 rounded bg-slate-100" type="file" name="image" onChange={(e) => handleFileChange(e)} />
+        <input
+          className="inline-block p-2 text-black rounded bg-slate-100"
+          type="file"
+          name="image"
+          onChange={(e) => handleFileChange(e)}
+        />
       </div>
     </div>
   );
