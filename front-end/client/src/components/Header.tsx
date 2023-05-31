@@ -106,10 +106,10 @@ const LoginAuthentication = ({ user, setUser }: HeaderType) => {
       {user ? (
         <>
           <Dropdown>
-            <Dropdown.Toggle className="border-0 hover:bg-none  ">
+            <Dropdown.Toggle className="border-0 hover:bg-none">
               <LoginButton user={user} />
             </Dropdown.Toggle>
-            <Dropdown.Menu className="border-gray-200 pr-10">
+            <Dropdown.Menu className="border-gray-200 ml-[300px] pr-10">
               <Dropdown.Item href="/user">Profile</Dropdown.Item>
               <Dropdown.Item
                 href="#/action-2"

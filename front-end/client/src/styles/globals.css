@@ -67,6 +67,7 @@ html.has-scroll-dragging {
 * {
   margin: 0;
   padding: 0;
+  color: white;
   border: none;
   outline: none;
   box-sizing: border-box;
@@ -85,6 +86,7 @@ a {
 .lazyBackground.lazy {
   background-image: none !important;
 }
+*/
 
 /* input,
 textarea {
@@ -104,10 +106,10 @@ textarea[type="number"]::-webkit-outer-spin-button {
 img.lazy {
   visibility: hidden;
   opacity: 0;
-}
+} */
 .lazyBackground.lazy {
   background-image: none !important;
-} */
+}
 
 /* .has-scroll-smooth[data-scroll-container] {
   -webkit-transform: none;
@@ -119,13 +121,13 @@ img.lazy {
 
 .has-scroll-smooth body {
   overflow: hidden !important;
-} */
+}
+
+*/
 html,
 body {
   text-rendering: optimizeLegibility;
   text-rendering: geometricPrecision;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
   font-family: "Poppins", sans-serif;
   font-weight: 300;
   color: white;
@@ -133,13 +135,8 @@ body {
   width: 100vw;
   background: #121718;
   font-size: 14px;
-  min-height: -webkit-fill-available;
-  overflow: hidden;
+  /* overflow: hidden; */
   opacity: 1;
-  -webkit-transition: opacity 0.3s 0s ease-out;
-  -moz-transition: opacity 0.3s 0s ease-out;
-  -o-transition: opacity 0.3s 0s ease-out;
-  transition: opacity 0.3s 0s ease-out;
 }
 
 html.fadeOut,
@@ -147,7 +144,7 @@ body.fadeOut {
   opacity: 0;
 }
 
-html p,
+/* html p,
 body p,
 html .pTag,
 body .pTag {
@@ -157,9 +154,9 @@ body .pTag {
   font-weight: 300;
   letter-spacing: 0.2px;
   display: block;
-}
+} */
 
-html p:last-child,
+/* html p:last-child,
 body p:last-child,
 html .pTag:last-child,
 body .pTag:last-child {
@@ -171,13 +168,13 @@ body .contentScroller {
   position: relative;
   z-index: 1;
   overflow: hidden;
-}
+} */
 
-/* body {
+body {
   position: fixed;
   height: 100%;
-  overflow: hidden;
-} */
+  /* overflow: hidden; */
+}
 
 .contentWrapper {
   width: 1200px;

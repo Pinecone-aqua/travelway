@@ -65,17 +65,15 @@ const AddTour = () => {
   // Images from form
   // and add to useState()
   // how can I also change image in state and form
-  const handleFileChange = (
-    event: ChangeEvent<HTMLInputElement>
-  ) => {
+  const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
       const selectedImage: FileList = event.target.files;
 
       for (let i = 0; i < selectedImage.length; i++) {
         // if(index === i) {
-          // dayImage.splice(index, 1, selectedImage[i]);
+        // dayImage.splice(index, 1, selectedImage[i]);
         // } else {
-          dayImage.push(selectedImage[i]);
+        dayImage.push(selectedImage[i]);
         // }
       }
       setDayImage([...dayImage]);
@@ -209,7 +207,7 @@ const AddTour = () => {
       <button className="border p-3 rounded-xl font-semibold px-[25px] m-4">
         <Link href="/user">back</Link>
       </button>
-      <div className="container w-8/12 mt-16 mb-8 sm:w-6/12 md:w-6/12 lg:w-4/12 ">
+      <div className="container w-8/12 mt-16 mb-8 sm:w-6/12 md:w-6/12 lg:w-4/12 text-black ">
         <h2 className="text-center text-slate-800 font-thin">
           Аяллын хөтөлбөр нэмэх
         </h2>
@@ -219,7 +217,7 @@ const AddTour = () => {
             <>
               <label htmlFor="title">Аяллын гарчиг/Title:</label>
               <input
-                className="inline-block p-2 rounded w-full border border-slate-600"
+                className="inline-block p-2 rounded w-full border border-slate-600 text-black"
                 type="text"
                 name="title"
                 defaultValue={travelData.title}
@@ -227,11 +225,11 @@ const AddTour = () => {
                 required
               />
 
-              <label htmlFor="description" className="mt-2 md:mt-4">
+              <label htmlFor="description" className="mt-2 md:mt-4 text-black">
                 Тайлбар/Description:
               </label>
               <textarea
-                className="inline-block w-full p-2 rounded border border-slate-300"
+                className="inline-block w-full p-2 rounded border border-slate-300 text-black"
                 rows={5}
                 cols={100}
                 name="description"
@@ -243,7 +241,7 @@ const AddTour = () => {
                 Зураг оруулах/Cover image:
               </label>
               <input
-                className="inline-block p-2 rounded w-full border border-slate-600"
+                className="inline-block p-2 rounded w-full border border-slate-600 text-black"
                 type="file"
                 name="coverImage"
                 onChange={handleCoverImageChange}
@@ -288,7 +286,7 @@ const AddTour = () => {
             <div className="flex flex-col md:flex-row sm:justify-between sm:items-center">
               <input
                 type="button"
-                className="mt-2 sm:mt-4 md:text-sm bg-cyan-500 p-2 mx-auto w-10/12 md:w-3/12 text-white rounded text-[10px] uppercase"
+                className="mt-2 text-black sm:mt-4 md:text-sm bg-cyan-500 p-2 mx-auto w-10/12 md:w-3/12 text-white rounded text-[10px] uppercase"
                 value="Өдөр нэмэх"
                 onClick={handleAddDay}
               />
@@ -297,7 +295,7 @@ const AddTour = () => {
                 name="clearBtn"
                 value="ЦЭВЭРЛЭХ"
                 onClick={handleCleanObjects}
-                className="mt-2 sm:mt-4 md:text-sm border bg-red-600 py-2 mx-auto w-10/12 md:w-3/12 px-8 text-white rounded text-[10px] uppercase"
+                className="mt-2 sm:mt-4 text-black md:text-sm border bg-red-600 py-2 mx-auto w-10/12 md:w-3/12 px-8 text-white rounded text-[10px] uppercase"
               />
               <button
                 type="submit"

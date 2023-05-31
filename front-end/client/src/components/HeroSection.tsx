@@ -17,7 +17,7 @@ export default function HeroSection() {
               muted
               playsInline
               autoPlay
-              poster="/thumbs/1800x1170/gfx/Kimi_seamless_video_first_frame.jpg"
+              // poster="/thumbs/1800x1170/gfx/Kimi_seamless_video_first_frame.jpg"
             >
               <source
                 type="video/mp4"
